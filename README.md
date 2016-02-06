@@ -13,7 +13,7 @@ that makes it easy to create variations of MIDI clips with tools to modify veloc
 * Shift the average velocity, start time, and duration of notes.
 * Spread the velocity, start time, and duration of notes towards or away from the average value.
 * Randomize the velocity, start time, and duration of notes with an intuitive 2-dimensional randomization control.
-* Controls are in a floating window that stays on top of Ableton Live, so you can quickly jump between differnt clips:
+* Controls are in a floating window that stays on top of Ableton Live, so you can quickly jump between different clips:
 
 ![Image of MIDI Clip Variator in use](https://raw.githubusercontent.com/adamjmurray/ableton-midi-clip-variator/master/midi-clip-variator-in-use.png)
 
