@@ -30,7 +30,8 @@ that makes it easy to create variations of MIDI clips with tools to modify veloc
     * Added range parameter to control the maximum change in value
     * When modifying a clip, automatically show the its detail view if it's not visible
     * Disable the controls and display "Select a MIDI clip" whenever a MIDI clip is not selected
-
+    * Popup control window & help window over the mouse when clicking the associated buttons
+    
 
 ## About
 
