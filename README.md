@@ -24,6 +24,14 @@ that makes it easy to create variations of MIDI clips with tools to modify veloc
 3. Drag the midi-clip-variator.amxd device into any MIDI track
 
 
+## Changelog
+
+* Version 1.1
+    * Added range parameter to control the maximum change in value
+    * When modifying a clip, automatically show the its detail view if it's not visible
+    * Disable the controls and display "Select a MIDI clip" whenever a MIDI clip is not selected
+
+
 ## About
 
 Designed and developed by [Adam Murray](https://github.com/adamjmurray).
