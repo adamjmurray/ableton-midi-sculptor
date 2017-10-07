@@ -1,5 +1,5 @@
 // MIDI Clip Variator
-// Copyright 2016 Adam Murray
+// Copyright 2017 Adam Murray
 // License: https://github.com/adamjmurray/ableton-midi-clip-variator/blob/master/LICENSE.txt
 
 //--------------------------------------------------------------------------------------
@@ -35,6 +35,12 @@ function Clip(path) {
 
 Clip.prototype.exists = function() {
   return this.liveObject.id != 0;
+};
+
+Clip.prototype.isMidiClip = function() {
+  var value = this.liveObject.get("is_midi_clip");
+  // Not sure why this value is an array containing a bool. It should be just a bool, so fallback to that:
+  return value instanceof Array ? value[0] : value;
 };
 
 Clip.prototype.getLength = function() {
@@ -153,66 +159,58 @@ Note.prototype.getMuted = function() {
 //--------------------------------------------------------------------------------------
 // State and helper functions
 
+var needsReset = true;
 var selectedClip;
 var clipLength;
 var origNotes;
 var newNotes;
-var avg;
+var midpoint;
+var maxMidDelta;
 var rand1 = [];
 var rand2 = [];
-var needsReset = true;
-var LOG4 = Math.log(4);
-var multipliers = {
-  velocity: {
-    average: 64,
-    random: 32,
-  },
-  start: {
-    random: 1/3,
-  },
-  duration: {
-    random: 1,
-  },
+var ranges = {
+  velocity: 64,
+  start: 1,
+  duration: 1,
 };
+var range;
+var appView;
 
-function _reset(property) {
-  if (!needsReset) return;
+function init(property) {
+  if (!needsReset) return true;
   selectedClip = selectedClip || new Clip("live_set view detail_clip");
-  if (!selectedClip.exists()) return;
+  if (!selectedClip.isMidiClip()) return false;
 
-  if (!clipLength) {
-    clipLength = selectedClip.getLength();
-    multipliers.start.average = clipLength/2;
-    multipliers.duration.average = clipLength/2;
-  }
+  appView = appView || new LiveAPI("live_app view");
+  appView.call("show_view", "Detail/Clip");
+
+  range = ranges[property];
+  clipLength = selectedClip.getLength();
 
   origNotes = selectedClip.getSelectedNotes();
-  var len = origNotes.length;
-  if (len === 0) {
+  if (!origNotes.length) { // no notes selected, so modify all notes
     selectedClip.selectAllNotes();
     origNotes = selectedClip.getSelectedNotes();
-    len = origNotes.length;
   }
   newNotes = selectedClip.getSelectedNotes(); // lazy clone
 
-  var i, total = 0;
-  for (i = 0; i < len; i++) {
-    total += origNotes[i][property];
+  var min = Infinity;
+  var max = -Infinity;
+  for (var i = 0; i < origNotes.length; i++) {
+    var val = origNotes[i][property];
+    min = Math.min(min, val);
+    max = Math.max(max, val);
     rand1[i] = 2 * Math.random() - 1;
     rand2[i] = 2 * Math.random() - 1;
   }
-  avg = total / len;
-
-  var diff;
-  var sqrDiffTotal = 0;
-  for (i = 0; i < len; i++) {
-    diff = (origNotes[i][property] - avg);
-    sqrDiffTotal += diff * diff;
+  midpoint = (max + min) / 2;
+  maxMidDelta = 0;
+  for (i = 0; i < origNotes.length; i++) {
+    maxMidDelta = Math.max(maxMidDelta, Math.abs(midpoint - origNotes[i][property]));
   }
-  var stdDev = Math.sqrt(sqrDiffTotal / len);
-  multipliers[property].spread = multipliers[property].average/2/stdDev;
 
   needsReset = false;
+  return true;
 }
 
 //--------------------------------------------------------------------------------------
@@ -244,34 +242,40 @@ function changelength() {
 }
 
 /**
+ Set maximum change in value for the given property.
+ The range value for each property applies to its average, spread, and random operations.
+ - property is velocity, start, duration
+ - amount is from 0 to 127 for velocity, or a positive number in beats for start/duration
+ */
+function setrange(property, amount) {
+  ranges[property] = amount;
+}
+
+/**
  Shift all notes' property values by the same amount.
  - property is velocity, start, duration
  - amount should be from -1.0 to 1.0
  */
 function average(property, amount) {
-  _reset(property);
-  if (!selectedClip.exists()) return;
-
-  amount *= multipliers[property].average;
-  for (var i = 0, len = origNotes.length; i < len; i++) {
+  if (!init(property)) return;
+  amount *= range;
+  for (var i = 0; i < origNotes.length; i++) {
     newNotes[i][property] = origNotes[i][property] + amount;
   }
   selectedClip.replaceSelectedNotes(newNotes);
 }
 
 /**
- Spread the notes' property values towards or away from the average value.
+ Spread the notes' property values towards or away from the midpoint value.
  - property is velocity, start, duration
  - amount should be from -1.0 to 1.0
  */
 function spread(property, amount) {
-  _reset(property);
-  if (!selectedClip.exists()) return;
-
-  amount *= multipliers[property].spread;
+  if (!init(property)) return;
+  amount *= range;
   for (var i = 0, len = origNotes.length; i < len; i++) {
     var val = origNotes[i][property];
-    newNotes[i][property] = val + (val - avg) * amount;
+    newNotes[i][property] = val + (val - midpoint)/maxMidDelta * amount;
   }
   selectedClip.replaceSelectedNotes(newNotes);
 }
@@ -282,16 +286,14 @@ function spread(property, amount) {
  - amount1 and amount2 should be from -1.0 to 1.0
 
  The randomization behavior is consistent until the next bang/reset, in other words:
- random('velocity', 0.5, -0.25) will always have the same effect until the next reset
+ random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
  */
 function random(property, amount1, amount2) {
-  _reset(property);
-  if (!selectedClip.exists()) return;
-
-  var multiplier = multipliers[property].random;
-  amount1 *= multiplier;
-  amount2 *= multiplier;
-  for (var i = 0, len = origNotes.length; i < len; i++) {
+  if (!init(property)) return;
+  // We halve the range because two random values are added, which would have a max of range + range
+  amount1 *= range/2;
+  amount2 *= range/2;
+  for (var i = 0; i < origNotes.length; i++) {
     newNotes[i][property] = origNotes[i][property] + (rand1[i] * amount1) + (rand2[i] * amount2);
   }
   selectedClip.replaceSelectedNotes(newNotes);
