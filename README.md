@@ -5,7 +5,15 @@ is a [Max for Live device](http://ableton.com/maxforlive)
 for [Ableton Live](http://ableton.com/live/)
 that makes it easy to create variations of MIDI clips with tools to modify velocity and timing.
 
-![Image of MIDI Clip Variator](https://raw.githubusercontent.com/adamjmurray/ableton-midi-clip-variator/master/midi-clip-variator.png)
+![Image of MIDI Clip Variator in use](./midi-clip-variator-in-use.gif)
+
+
+
+## Installation and Usage
+
+1. [Download](https://github.com/adamjmurray/ableton-midi-clip-variator/archive/master.zip) and unzip in the location of your choice
+2. Drag the midi-clip-variator.amxd device into any MIDI track
+3. Click the help button for usage instructions
 
 
 ## Features
@@ -15,14 +23,6 @@ that makes it easy to create variations of MIDI clips with tools to modify veloc
 * Randomize the velocity, start time, and duration of notes with an intuitive 2-dimensional randomization control.
 * Controls are in a floating window that stays on top of Ableton Live, so you can quickly jump between different clips:
 
-![Image of MIDI Clip Variator in use](https://raw.githubusercontent.com/adamjmurray/ableton-midi-clip-variator/master/midi-clip-variator-in-use.png)
-
-
-## Usage
-
-1. [Download](https://github.com/adamjmurray/ableton-midi-clip-variator/archive/master.zip) and unzip in the location of your choice
-3. Drag the midi-clip-variator.amxd device into any MIDI track
-
 
 ## Changelog
 
@@ -30,8 +30,13 @@ that makes it easy to create variations of MIDI clips with tools to modify veloc
     * Added range parameter to control the maximum change in value
     * When modifying a clip, automatically show the its detail view if it's not visible
     * Disable the controls and display "Select a MIDI clip" whenever a MIDI clip is not selected
-    * Popup control window & help window over the mouse when clicking the associated buttons
-    
+    * Popup the Clip Editor & Help window over the mouse when clicking the associated buttons (instead of a random location)
+    * Improved help info
+* Version 1.0
+    * Edit MIDI clip parameters: velocity, start (note start time), and duration
+    * Edit parameters with different operations: shift, spread, random
+    * GUI in a always-on-top popup window so you can easily keep using it when moving between different clips
+
 
 ## About
 
