@@ -1,0 +1,23 @@
+{
+  "name": "ableton-midi-sculptor",
+  "version": "1.0.0",
+  "description": "The **Ableton MIDI Clip Variator**\r is a [Max for Live device](http://ableton.com/maxforlive)\r for [Ableton Live](http://ableton.com/live/)\r that makes it easy to create variations of MIDI clips with tools to modify velocity and timing.",
+  "main": "midi-clip-variator.js",
+  "dependencies": {
+    "typescript": "^2.5.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamjmurray/ableton-midi-sculptor.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adamjmurray/ableton-midi-sculptor/issues"
+  },
+  "homepage": "https://github.com/adamjmurray/ableton-midi-sculptor#readme"
+}
