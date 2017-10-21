@@ -231,7 +231,7 @@ function bang() {
  * Reset the clip. Use this when the selected clip changes in Live
  */
 function changeclip() {
-  selectedClip = null;
+  selectedClip = null; // hmmm, is this really necessary? isn't it supposed to follow the path?
   clipLength = null;
   needsReset = true;
 }
