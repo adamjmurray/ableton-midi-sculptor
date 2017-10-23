@@ -36,14 +36,13 @@ class SlidablePropertiesMetadata {
 
 export default class Slider extends Transformer {
 
-  private metadata = new SlidablePropertiesMetadata 
-
-  get notes(): Note[] {
-    return this._notes
-  }
+  private metadata = new SlidablePropertiesMetadata
+  private oldNotes: Note[] = []
+  private newNotes: Note[] = []
 
   set notes(notes: Note[]) {
-    this._notes = notes
+    this.oldNotes = notes
+    this.newNotes = notes.map(note => note.clone())
     for (const property of SLIDABLE_PROPERTIES) {
       let min = Infinity
       let max = -Infinity  
@@ -77,21 +76,22 @@ export default class Slider extends Transformer {
     this.metadata[property].range = amount
   }
 
+  private transform(property: SlidableProperty, mapValue: (oldValue: number, index: number) => number) {
+    this.newNotes.forEach((newNote, index) => {
+      const oldNote = this.oldNotes[index]
+      newNote.set(property, mapValue(oldNote.get(property), index))
+    })
+    return this.newNotes
+  }
+
   /**
    Shift all notes' property values by the same amount.
    - property is velocity, start, duration
    - amount should be from -1.0 to 1.0
    */
   shift(property: SlidableProperty, amount: number) {
-    const shiftedNotes: Note[] = []
-    const { range } = this.metadata[property]
-    amount *= range
-    for (const note of this.notes) {
-      const shiftedNote = note.clone()
-      shiftedNote.set(property, amount + note.get(property))
-      shiftedNotes.push(shiftedNote)
-    }
-    return shiftedNotes
+    amount *= this.metadata[property].range
+    return this.transform(property, value => value + amount)
   }
 
   /**
@@ -100,17 +100,9 @@ export default class Slider extends Transformer {
    - amount should be from -1.0 to 1.0
   */
   spread(property: SlidableProperty, amount: number) {
-    const spreadNotes: Note[] = []
     const { range, midpoint, maxMidpointDelta } = this.metadata[property]
     amount = amount * range
-    for (const note of this.notes) {
-      const spreadNote = note.clone()
-      const value = note.get(property)
-      const newValue = value + amount * (value - midpoint)/maxMidpointDelta
-      spreadNote.set(property, newValue)
-      spreadNotes.push(spreadNote)
-    }
-    return spreadNotes
+    return this.transform(property, value => value + (amount * (value - midpoint)/maxMidpointDelta))
   }
 
   /**
@@ -122,17 +114,10 @@ export default class Slider extends Transformer {
    random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
 */
   randomize2D(property: SlidableProperty, amount1: number, amount2: number) {
-    const randomizedNotes: Note[] = []
     const { range, random1, random2 } = this.metadata[property]
     // We halve the range because two random values are added, which would have a max of range + range
     amount1 *= range/2
     amount2 *= range/2
-    this.notes.forEach((note, index) => {
-      const randomizedNote = note.clone()
-      const newValue = note.get(property) + (random1[index] * amount1) + (random2[index] * amount2)
-      randomizedNote.set(property, newValue)
-      randomizedNotes.push(randomizedNote)
-    })
-    return randomizedNotes
+    return this.transform(property, (value, index) => value + (random1[index] * amount1) + (random2[index] * amount2))
   }
 }
