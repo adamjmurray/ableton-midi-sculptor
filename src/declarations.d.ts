@@ -1,4 +1,4 @@
-declare function post(...args: Array<any>) // Max for Live's STDOUT mechanism (console.log doesn't exist)
+declare function post(...args: Array<any>): void // Max for Live's STDOUT mechanism (console.log doesn't exist)
 
 type ApiType = Boolean | Number | String | Array<Boolean|Number|String>
 declare class LiveAPI {
@@ -10,6 +10,7 @@ declare class LiveAPI {
 
 declare interface ObjectConstructor {
   assign(...objects: Object[]): Object
+  values(object: Object): any[]
 }
 
 declare interface String {

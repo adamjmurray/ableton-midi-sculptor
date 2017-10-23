@@ -1,4 +1,4 @@
-function toString(value: any) {
+function toString(value: any): string {
   if(value != null) {
     if (value instanceof Array) {
       return `[ ${value.map(item => toString(item)).join(', ')} ]`
@@ -12,9 +12,7 @@ function toString(value: any) {
   else return value === null ? '<null>' : '<undefined>'
 }
 
-export function log(...args: any[]) {
-  for(let i=0; i<arguments.length; i++) {
-    post(toString(arguments[i]))
-  }
+export function log(...args: any[]): void {
+  args.forEach(arg => post(toString(arg)))
   post('\n')
 }

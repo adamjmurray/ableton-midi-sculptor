@@ -1,13 +1,31 @@
 import Note from './note'
-import { log } from './logger'
 
-type NoteSerializer = (Note) => [Number, Number, Number, Number, Boolean]
-const DEFAULT_NOTE_SERIALIZER: NoteSerializer = note => [note.pitch, note.start, note.duration, note.velocity, note.muted]
+type NoteSerializer = (notes: Note[]) => [number, number, number, number, boolean][]
+const DEFAULT_NOTE_SERIALIZER: NoteSerializer = (notes: Note[]) => {
+  // This serializers avoids clipping to min/max values.
+  // When property values bcome invalid, the note is removed.
+  // The one exception is when velocity exceeds 127, it is clipped to 127 (it's undesirable to remove a note that gets "too loud")
+  const serializedNotes: [number, number, number, number, boolean][] = []
+  for (const note of notes) {
+    let { pitch, start, duration, velocity, muted } = note
+    if (pitch >= 0 && pitch <= 127 && duration >= Note.MIN_DURATION && velocity >= 0) {
+      serializedNotes.push([
+        pitch, 
+        start, 
+        duration, 
+        velocity > 127 ? 127 : velocity, 
+        muted
+      ]);
+    }
+  }
+  return serializedNotes
+}
 
 export default class Clip {
-  private api: LiveAPI
+  static readonly SELECTED_CLIP_PATH = 'live_set view detail_clip'
+  private readonly api: LiveAPI
 
-  constructor(path = 'live_set view detail_clip') { // default is currently selected clip
+  constructor(path: string) {
     this.api = new LiveAPI(path)
   }
 
@@ -32,7 +50,7 @@ export default class Clip {
         "note" pitch start duration velocity muted
         ...
       "done" */
-    if (!(data instanceof Array)) return
+    if (!(data instanceof Array)) return []
     const notes = []
     for (let i = 2; i < data.length-1; i += 6) { // `i = 2` skips "notes count" at beginning, `< data.length-1` skips "done" at end
       notes.push(new Note({
@@ -46,14 +64,16 @@ export default class Clip {
     return notes
   }
 
-  selectAllNotes() {
+  selectAllNotes(): Note[] {
     this.api.call('select_all_notes')
+    return this.selectedNotes
   }
 
   replaceSelectedNotes(notes: Note[], noteSerializer: NoteSerializer = DEFAULT_NOTE_SERIALIZER) {  // provide a custom note serializer to implement wrap-around behaviors
+    const serializedNotes = noteSerializer(notes)
     this.api.call('replace_selected_notes')
-    this.api.call('notes', notes.length)
-    notes.forEach(note => this.api.call('note', noteSerializer(note)))
+    this.api.call('notes', serializedNotes.length)
+    serializedNotes.forEach(serializedNote => this.api.call('note', ...serializedNote))
     this.api.call('done')
   }
 }

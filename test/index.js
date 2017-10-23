@@ -1,2 +1,2 @@
 require('./stubs')
-require('../dest/sculptor')
+require('../distrib/sculptor')
