@@ -50,7 +50,7 @@ export default class Controller {
    * - the user is done using a MIDI Clip Variator control to modify the clip
    * - the clip's note selection changes
    */
-  resync() {
+  desync() {
     // This can get called a lot, so we defer the actual syncing until the next operation is performaed
     this.isSynced = false
   }
