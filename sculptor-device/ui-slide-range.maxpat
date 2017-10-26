@@ -96,7 +96,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 400.5, 107.0, 129.0, 22.0 ],
-					"presentation_rect" : [ 415.5, 112.0, 0.0, 0.0 ],
 					"style" : "",
 					"text" : "covert-to-beats"
 				}
@@ -215,7 +214,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 434.950012, 60.0, 25.0, 25.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 32.450012, 88.0, 25.0, 25.0 ],
+					"presentation_rect" : [ 24.450012, 88.0, 25.0, 25.0 ],
 					"style" : "",
 					"text" : "/",
 					"textjustification" : 1
@@ -234,7 +233,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 455.0, 62.0, 49.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 50.5, 90.0, 49.0, 17.0 ],
+					"presentation_rect" : [ 42.5, 90.0, 36.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.menu[11]",
@@ -264,7 +263,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 400.5, 62.0, 39.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 90.0, 39.0, 17.0 ],
+					"presentation_rect" : [ 0.0, 90.0, 30.450012, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "velocity range[17]",
@@ -296,7 +295,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 52.950012, 60.0, 25.0, 25.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 32.450012, -2.0, 25.0, 25.0 ],
+					"presentation_rect" : [ 24.450012, -2.0, 25.0, 25.0 ],
 					"style" : "",
 					"text" : "/",
 					"textjustification" : 1
@@ -315,7 +314,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 73.0, 62.0, 49.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 50.5, 0.0, 49.0, 17.0 ],
+					"presentation_rect" : [ 42.5, 0.0, 36.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.menu[10]",
@@ -345,7 +344,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 18.5, 62.0, 39.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 39.0, 17.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 30.450012, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "velocity range[16]",
@@ -378,7 +377,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 510.5, 62.0, 39.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 106.0, 90.0, 39.0, 17.0 ],
+					"presentation_rect" : [ 84.0, 90.0, 39.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[14]",
@@ -409,7 +408,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 128.5, 62.0, 39.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 106.0, 0.0, 39.0, 17.0 ],
+					"presentation_rect" : [ 84.0, 0.0, 39.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[11]",
@@ -600,14 +599,14 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-135" : [ "velocity range[17]", "velrange", 0 ],
+			"obj-50" : [ "velocity range[7]", "velrange", 0 ],
 			"obj-134" : [ "live.menu[11]", "live.menu", 0 ],
 			"obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-50" : [ "velocity range[7]", "velrange", 0 ],
-			"obj-135" : [ "velocity range[17]", "velrange", 0 ],
-			"obj-131" : [ "live.menu[10]", "live.menu", 0 ],
-			"obj-132" : [ "velocity range[16]", "velrange", 0 ],
-			"obj-11" : [ "velocity range[5]", "velrange", 0 ],
-			"obj-98" : [ "live.text[11]", "live.text[2]", 0 ]
+			"obj-131" : [ "live.menu[10]", "live.menu", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -640,8 +639,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
