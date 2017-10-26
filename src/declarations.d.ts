@@ -1,6 +1,6 @@
 declare function post(...args: Array<any>): void // Max for Live's STDOUT mechanism (console.log doesn't exist)
 
-type ApiType = Boolean | Number | String | Array<Boolean|Number|String>
+type ApiType = boolean | number | string | Array<boolean|number|string>
 declare class LiveAPI {
   constructor(path: string)
   id: string

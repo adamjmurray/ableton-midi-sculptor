@@ -1,19 +1,19 @@
 import Note from './note'
 
-type NoteSerializer = (notes: Note[]) => [number, number, number, number, boolean][]
+type NoteSerializer = (notes: Note[]) => [number, string, string, number, boolean][]
 const DEFAULT_NOTE_SERIALIZER: NoteSerializer = (notes: Note[]) => {
   // This serializers avoids clipping to min/max values.
   // When property values bcome invalid, the note is removed.
   // The one exception is when velocity exceeds 127, it is clipped to 127 (it's undesirable to remove a note that gets "too loud")
-  const serializedNotes: [number, number, number, number, boolean][] = []
+  const serializedNotes: [number, string, string, number, boolean][] = []
   for (const note of notes) {
     let { pitch, start, duration, velocity, muted } = note
     if (pitch >= 0 && pitch <= 127 && duration >= Note.MIN_DURATION && velocity >= 0) {
       serializedNotes.push([
-        pitch, 
-        start, 
-        duration, 
-        velocity > 127 ? 127 : velocity, 
+        Math.round(pitch),
+        start.toFixed(4),
+        duration.toFixed(4),
+        velocity > 127 ? 127 : Math.round(velocity),
         muted
       ]);
     }

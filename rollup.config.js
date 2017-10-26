@@ -7,6 +7,6 @@ export default {
     format: 'es',
   },
   plugins: [
-    cleanup(),
+    cleanup(), // remove comments and extra whitespace (but keeps the code formatting)
   ],
 };
