@@ -8,14 +8,12 @@
     "rollup-plugin-cleanup": "^2.0.0",
     "typescript": "^2.5.3"
   },
-  "devDependencies": {
-    "nodemon": "^1.12.1"
-  },
+  "devDependencies": {},
   "scripts": {
     "compile": "node_modules/.bin/tsc && cp src/main.js build/main.js",
     "bundle": "node_modules/.bin/rollup --silent -c && sed -i \"s/export {.*};//\" sculptor-device/sculptor.js",
     "build": "npm run compile && npm run bundle",
-    "watch": "node_modules/.bin/nodemon -x \"npm run build\" -w src -e js,ts",
+    "watch": "node watch.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
