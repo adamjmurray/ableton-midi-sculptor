@@ -5,6 +5,8 @@
     "rootDir": "src",
     "outDir": "build",
 
+    "lib": ["es5"],
+
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
