@@ -10,6 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "clean": "rm -rf build; rm sculptor-device/sculptor.js",
     "compile": "node_modules/.bin/tsc && cp src/main.js build/main.js",
     "bundle": "node_modules/.bin/rollup --silent -c && sed -i \"s/export {.*};//\" sculptor-device/sculptor.js",
     "build": "npm run compile && npm run bundle",

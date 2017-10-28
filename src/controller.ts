@@ -31,7 +31,7 @@ export default class Controller {
       transformer.notes = selectedNotes
     }
   
-    this.isSynced = truec
+    this.isSynced = true
     return true
   }
 
