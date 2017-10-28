@@ -1,9 +1,12 @@
+- Bugs
+  - Slide spread deletes notes when notes have the same value
+
+- GUI
+  - Change color scheme to match live (and can you make it dynamic with live.color or something?)
+
+
+
 - Slide
-  - Select one of pitch, velocity, duration, start to slide
-  - set range of change (set independently for each param)
-  - options for wrap-around: clip, reflect, rotate, off
-    NOTE: for parameters where it doesn't make sense to go below 0/min (velocity and duration) delete the note when wrap is set to off
-  - shift, spread, and randomize operations
   - anchor spread operation to lowest or highest value (default is the average value)
 
 - Swap

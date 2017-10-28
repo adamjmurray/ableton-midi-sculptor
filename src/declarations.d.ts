@@ -16,4 +16,3 @@ declare interface ObjectConstructor {
 declare interface String {
    includes(text: string, start?: number): boolean
 }
-

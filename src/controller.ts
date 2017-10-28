@@ -3,13 +3,15 @@ import Clip from './clip'
 import Note from './note'
 import Transformer from './transforms/transformer'
 import Slider, { SlidableProperty } from './transforms/slider'
+import { EdgeBehavior } from './transforms/edge-transformers'
+// import { log } from './logger'
 
 export { SlidableProperty }
 
 export default class Controller {
   private isSynced = false
-  private appView: AppView
-  private selectedClip: Clip
+  private appView?: AppView
+  private selectedClip?: Clip
   private slider = new Slider()
 
   private sync() {
@@ -29,7 +31,7 @@ export default class Controller {
       transformer.notes = selectedNotes
     }
   
-    this.isSynced = true
+    this.isSynced = truec
     return true
   }
 
@@ -37,9 +39,10 @@ export default class Controller {
     return [this.slider];
   }
 
-  private transformNotes(transform: () => Note[]) {
+  private transformNotes(transform: (clip: Clip) => Note[]) {
     if (!this.sync()) return
-    const notes = transform()
+    if (!this.selectedClip) return
+    const notes = transform(this.selectedClip)
     this.selectedClip.replaceSelectedNotes(notes)
   }
 
@@ -53,6 +56,7 @@ export default class Controller {
   desync() {
     // This can get called a lot, so we defer the actual syncing until the next operation is performaed
     this.isSynced = false
+    if (this.selectedClip) this.selectedClip.desync()
   }
 
   /**
@@ -65,8 +69,8 @@ export default class Controller {
     this.slider.setRange(property, amount)
   }
 
-  setSlideEdgeBehavior() {
-
+  setSlideEdgeBehavior(behavior: EdgeBehavior) {
+    this.slider.edgeBehavior = behavior
   }
 
   setSpreadType() {
@@ -74,17 +78,17 @@ export default class Controller {
   }
 
   randomSlide(property: SlidableProperty, amount1: number, amount2: number) {
-    this.transformNotes(() => 
-      this.slider.randomize2D(property, amount1, amount2))
+    this.transformNotes((clip: Clip) => 
+      this.slider.randomize2D(clip, property, amount1, amount2))
   }
 
   shift(property: SlidableProperty, amount: number) {
-    this.transformNotes(() => 
-      this.slider.shift(property, amount))    
+    this.transformNotes((clip: Clip) => 
+      this.slider.shift(clip, property, amount))    
   }
   
   spread(property: SlidableProperty, amount: number) {
-    this.transformNotes(() => 
-      this.slider.spread(property, amount))    
+    this.transformNotes((clip: Clip) => 
+      this.slider.spread(clip, property, amount))    
   }
 };

@@ -1,11 +1,14 @@
 import Note from './note'
+// import { log } from './logger'
 
-type NoteSerializer = (notes: Note[]) => [number, string, string, number, boolean][]
+// TODO: move this into the Note class
+type SerializedNote = [number, string, string, number, boolean]
+type NoteSerializer = (notes: Note[]) => SerializedNote[]
 const DEFAULT_NOTE_SERIALIZER: NoteSerializer = (notes: Note[]) => {
   // This serializers avoids clipping to min/max values.
   // When property values bcome invalid, the note is removed.
   // The one exception is when velocity exceeds 127, it is clipped to 127 (it's undesirable to remove a note that gets "too loud")
-  const serializedNotes: [number, string, string, number, boolean][] = []
+  const serializedNotes: SerializedNote[] = []
   for (const note of notes) {
     let { pitch, start, duration, velocity, muted } = note
     if (pitch >= 0 && pitch <= 127 && duration >= Note.MIN_DURATION && velocity >= 0) {
@@ -23,24 +26,60 @@ const DEFAULT_NOTE_SERIALIZER: NoteSerializer = (notes: Note[]) => {
 
 export default class Clip {
   static readonly SELECTED_CLIP_PATH = 'live_set view detail_clip'
-  private readonly api: LiveAPI
+  private api: LiveAPI
+  private _exists?: boolean
+  private _isMidi?: boolean
+  private _length?: number
+  private _start?: number
+  private _end?: number
 
   constructor(path: string) {
     this.api = new LiveAPI(path)
   }
 
-  get exists(): Boolean {
-    return Boolean(this.api.id !== '0')
+  desync() {
+    this._exists = undefined
+    this._isMidi = undefined
+    this._length = undefined
+    this._start = undefined
+    this._end = undefined
   }
 
-  get isMidi(): Boolean {
+  get exists(): boolean {
+    if (this._exists === undefined) {
+      this._exists = Boolean(this.api.id !== '0')
+    }
+    return this._exists
+  }
+
+  get isMidi(): boolean {
     if (!this.exists) return false
-    const isMidi = this.api.get('is_midi_clip')
-    return Boolean(isMidi instanceof Array ? isMidi[0] : isMidi) // api quirk
+    if (this._isMidi === undefined) {
+      const value =this.api.get('is_midi_clip')
+      this._isMidi = Boolean(value instanceof Array ? value[0] : value) // api quirk
+    }
+    return this._isMidi
   }
 
-  get length(): Number {
-    return Number(this.api.get('length'))
+  get length(): number {
+    if (this._length === undefined) {
+      this._length = Number(this.api.get('length'))
+    }
+    return this._length
+  }
+
+  get start(): number {
+    if (this._start === undefined) {
+      this._start = Number(this.api.get('loop_start'))
+    }
+    return this._start
+  }
+
+  get end(): number {
+    if (this._end === undefined) {
+      this._end = Number(this.api.get('loop_end'))
+    }
+    return this._end
   }
 
   get selectedNotes(): Note[] {

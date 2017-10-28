@@ -6,6 +6,14 @@ interface NoteOptions {
   muted?: boolean
 }
 
+export interface NoteJSON {
+  pitch: number
+  start: number
+  velocity: number
+  duration: number
+  muted: boolean
+}
+
 const DEFAULT_NOTE_OPTIONS = { 
   pitch: 60, 
   start: 0, 
@@ -30,6 +38,12 @@ export default class Note {
     Object.assign(this, DEFAULT_NOTE_OPTIONS, options)
   }
 
+  get valid() {
+    return this.pitch >= 0 && this.pitch <= 127
+      && this.velocity >= 0 && this.velocity <= 127
+      && this.duration >= Note.MIN_DURATION
+  }
+
   // get and set numeric properties dynamically:
   get(property: NumericProperty): number {
     return this[property]
@@ -39,7 +53,7 @@ export default class Note {
    this[property] = value
   }
 
-  toJSON(): NoteOptions {
+  toJSON(): NoteJSON {
     return { pitch: this.pitch, start: this.start, velocity: this.velocity, duration: this.duration, muted: this.muted }
   }
 

@@ -20,8 +20,8 @@ export function slide_range(property, amount) {
   controller.setSlideRange(property, amount)
 }
 
-export function slide_edge(behavior) {
-
+export function slide_edges(behavior) {
+  controller.setSlideEdgeBehavior(behavior)
 }
 
 export function slide_anchor(behavior) {

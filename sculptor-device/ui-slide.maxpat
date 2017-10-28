@@ -185,9 +185,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 168.0, 360.0, 116.0, 22.0 ],
+					"patching_rect" : [ 168.0, 360.0, 123.0, 22.0 ],
 					"style" : "",
-					"text" : "prepend slide_edge"
+					"text" : "prepend slide_edges"
 				}
 
 			}
@@ -660,7 +660,7 @@
 							"parameter_longname" : "live.menu[5]",
 							"parameter_shortname" : "live.menu[5]",
 							"parameter_type" : 2,
-							"parameter_enum" : [ "clip", "reflect", "rotate", "-" ],
+							"parameter_enum" : [ "clip", "reflect", "rotate", "remove" ],
 							"parameter_invisible" : 2
 						}
 
@@ -682,7 +682,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 704.0, 88.0, 131.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 20.0, 65.0, 17.0 ],
+					"presentation_rect" : [ 0.0, 20.0, 72.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.menu[1]",

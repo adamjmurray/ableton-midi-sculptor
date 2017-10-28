@@ -1,5 +1,8 @@
 import Transformer from './transformer'
+import Clip from '../clip'
 import Note from '../note'
+import EdgeTransformers, { EdgeTransformer, EdgeBehavior } from './edge-transformers'
+// import { log } from '../logger'
 
 export enum SlidableProperty {
   START = 'start',
@@ -22,23 +25,18 @@ class SlidablePropertyMetadata {
 
 class SlidablePropertiesMetadata {
   readonly [key: string]: SlidablePropertyMetadata
-  start = new SlidablePropertyMetadata(1)
-  pitch = new SlidablePropertyMetadata(12)
-  velocity = new SlidablePropertyMetadata(64)
-  duration = new SlidablePropertyMetadata(1)
+  readonly start = new SlidablePropertyMetadata(1)
+  readonly pitch = new SlidablePropertyMetadata(12)
+  readonly velocity = new SlidablePropertyMetadata(64)
+  readonly duration = new SlidablePropertyMetadata(1)
 }
-
-// interface SlideArguments {
-//   notes: Note[]
-//   property: SlidableProperty
-//   amount: number
-// }
 
 export default class Slider extends Transformer {
 
   private metadata = new SlidablePropertiesMetadata
   private oldNotes: Note[] = []
   private newNotes: Note[] = []
+  private edgeTransformer: EdgeTransformer = EdgeTransformers.clip
 
   set notes(notes: Note[]) {
     this.oldNotes = notes
@@ -72,16 +70,20 @@ export default class Slider extends Transformer {
     }
   }
 
+  set edgeBehavior(behavior: EdgeBehavior) {
+    this.edgeTransformer = EdgeTransformers[behavior]
+  }
+
   setRange(property: SlidableProperty, amount: number) {
     this.metadata[property].range = amount
   }
 
-  private transform(property: SlidableProperty, mapValue: (oldValue: number, index: number) => number) {
+  private transform(clip: Clip, property: SlidableProperty, mapValue: (oldValue: number, index: number) => number) {
     this.newNotes.forEach((newNote, index) => {
       const oldNote = this.oldNotes[index]
       newNote.set(property, mapValue(oldNote.get(property), index))
     })
-    return this.newNotes
+    return this.edgeTransformer(this.newNotes, clip)
   }
 
   /**
@@ -89,9 +91,9 @@ export default class Slider extends Transformer {
    - property is velocity, start, duration
    - amount should be from -1.0 to 1.0
    */
-  shift(property: SlidableProperty, amount: number) {
+  shift(clip: Clip, property: SlidableProperty, amount: number) {
     amount *= this.metadata[property].range
-    return this.transform(property, value => value + amount)
+    return this.transform(clip, property, value => value + amount)
   }
 
   /**
@@ -99,10 +101,10 @@ export default class Slider extends Transformer {
    - property is velocity, start, duration
    - amount should be from -1.0 to 1.0
   */
-  spread(property: SlidableProperty, amount: number) {
+  spread(clip: Clip, property: SlidableProperty, amount: number) {
     const { range, midpoint, maxMidpointDelta } = this.metadata[property]
     amount = amount * range
-    return this.transform(property, value => value + (amount * (value - midpoint)/maxMidpointDelta))
+    return this.transform(clip, property, value => value + (amount * (value - midpoint)/maxMidpointDelta))
   }
 
   /**
@@ -113,11 +115,11 @@ export default class Slider extends Transformer {
    The randomization behavior is consistent until the next bang/reset, in other words:
    random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
 */
-  randomize2D(property: SlidableProperty, amount1: number, amount2: number) {
+  randomize2D(clip: Clip, property: SlidableProperty, amount1: number, amount2: number) {
     const { range, random1, random2 } = this.metadata[property]
     // We halve the range because two random values are added, which would have a max of range + range
     amount1 *= range/2
     amount2 *= range/2
-    return this.transform(property, (value, index) => value + (random1[index] * amount1) + (random2[index] * amount2))
+    return this.transform(clip, property, (value, index) => value + (random1[index] * amount1) + (random2[index] * amount2))
   }
 }
