@@ -1,29 +1,6 @@
 import Note from './note'
 // import { log } from './logger'
 
-// TODO: move this into the Note class
-type SerializedNote = [number, string, string, number, boolean]
-type NoteSerializer = (notes: Note[]) => SerializedNote[]
-const DEFAULT_NOTE_SERIALIZER: NoteSerializer = (notes: Note[]) => {
-  // This serializers avoids clipping to min/max values.
-  // When property values bcome invalid, the note is removed.
-  // The one exception is when velocity exceeds 127, it is clipped to 127 (it's undesirable to remove a note that gets "too loud")
-  const serializedNotes: SerializedNote[] = []
-  for (const note of notes) {
-    let { pitch, start, duration, velocity, muted } = note
-    if (pitch >= 0 && pitch <= 127 && duration >= Note.MIN_DURATION && velocity >= 0) {
-      serializedNotes.push([
-        Math.round(pitch),
-        start.toFixed(4),
-        duration.toFixed(4),
-        velocity > 127 ? 127 : Math.round(velocity),
-        muted
-      ]);
-    }
-  }
-  return serializedNotes
-}
-
 export default class Clip {
   static readonly SELECTED_CLIP_PATH = 'live_set view detail_clip'
   private api: LiveAPI
@@ -108,11 +85,10 @@ export default class Clip {
     return this.selectedNotes
   }
 
-  replaceSelectedNotes(notes: Note[], noteSerializer: NoteSerializer = DEFAULT_NOTE_SERIALIZER) {  // provide a custom note serializer to implement wrap-around behaviors
-    const serializedNotes = noteSerializer(notes)
+  replaceSelectedNotes(notes: Note[]) {
     this.api.call('replace_selected_notes')
-    this.api.call('notes', serializedNotes.length)
-    serializedNotes.forEach(serializedNote => this.api.call('note', ...serializedNote))
+    this.api.call('notes', notes.length)
+    notes.forEach(note => this.api.call('note', ...note.serialize()))
     this.api.call('done')
   }
 }

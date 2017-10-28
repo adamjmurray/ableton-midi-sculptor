@@ -1,9 +1,8 @@
 import AppView from './app-view'
 import Clip from './clip'
 import Note from './note'
-import Transformer from './transforms/transformer'
-import Slider, { SlidableProperty } from './transforms/slider'
-import { EdgeBehavior } from './transforms/edge-transformers'
+import Transformer from './transformers/transformer'
+import Slider, { SlidableProperty, EdgeTransformationType } from './transformers/slide-transformer'
 // import { log } from './logger'
 
 export { SlidableProperty }
@@ -69,7 +68,7 @@ export default class Controller {
     this.slider.setRange(property, amount)
   }
 
-  setSlideEdgeBehavior(behavior: EdgeBehavior) {
+  setSlideEdgeBehavior(behavior: EdgeTransformationType) {
     this.slider.edgeBehavior = behavior
   }
 

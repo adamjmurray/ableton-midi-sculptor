@@ -23,6 +23,7 @@ const DEFAULT_NOTE_OPTIONS = {
 }
 
 type NumericProperty = 'pitch' | 'start' | 'velocity' | 'duration'
+type SerializedNote = [number, string, string, number, boolean]
 
 export default class Note {
   
@@ -55,6 +56,16 @@ export default class Note {
 
   toJSON(): NoteJSON {
     return { pitch: this.pitch, start: this.start, velocity: this.velocity, duration: this.duration, muted: this.muted }
+  }
+
+  serialize(): SerializedNote {
+    return [
+      Math.round(this.pitch),
+      this.start.toFixed(4),
+      this.duration.toFixed(4),
+      this.velocity > 127 ? 127 : Math.round(this.velocity),
+      this.muted
+    ]
   }
 
   toString() {
