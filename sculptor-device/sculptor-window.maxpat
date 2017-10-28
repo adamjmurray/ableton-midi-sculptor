@@ -456,7 +456,7 @@
 					"patching_rect" : [ 468.0, 246.0, 123.0, 64.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 4,
-					"presentation_rect" : [ 2.299988, 157.0, 123.0, 64.0 ],
+					"presentation_rect" : [ -35.700012, 127.0, 123.0, 64.0 ],
 					"style" : "",
 					"text" : "window flags menu, window flags nofloat, window flags grow, window exec"
 				}
@@ -490,7 +490,7 @@
 					"offset" : [ 0.0, 0.0 ],
 					"patching_rect" : [ 36.0, 246.0, 165.0, 184.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 60.0, 16.25, 226.0, 237.25 ],
+					"presentation_rect" : [ 22.0, 36.25, 226.0, 237.25 ],
 					"viewvisibility" : 1
 				}
 
@@ -506,7 +506,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 139.0, 116.0, 128.0, 128.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 54.0, 12.375, 238.0, 245.0 ],
+					"presentation_rect" : [ 16.0, 32.375, 238.0, 245.0 ],
 					"proportion" : 0.39,
 					"rounded" : 0,
 					"style" : ""
@@ -616,14 +616,14 @@
 					"id" : "obj-20",
 					"maxclass" : "live.tab",
 					"num_lines_patching" : 1,
-					"num_lines_presentation" : 4,
+					"num_lines_presentation" : 1,
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "float" ],
 					"parameter_enable" : 1,
 					"patching_rect" : [ 36.0, 54.0, 213.0, 26.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 2.299988, 7.875, 45.0, 137.0 ],
+					"presentation_rect" : [ 11.0, 2.375, 245.0, 23.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.tab[2]",
@@ -702,7 +702,7 @@
 					"outlettype" : [ "int" ],
 					"patching_rect" : [ 704.398682, 232.5, 41.0, 22.0 ],
 					"style" : "",
-					"text" : "+ 310"
+					"text" : "+ 270"
 				}
 
 			}
@@ -828,7 +828,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 116.0, 92.0, 128.0, 128.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 45.0, 3.0, 254.299988, 261.875 ],
+					"presentation_rect" : [ 7.0, 23.0, 254.299988, 261.875 ],
 					"proportion" : 0.39,
 					"style" : ""
 				}
@@ -1034,55 +1034,55 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-1::obj-8::obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
-			"obj-1::obj-11::obj-104" : [ "live.menu[7]", "live.menu", 0 ],
+			"obj-1::obj-3::obj-31::obj-168" : [ "velocity range[19]", "velrange", 0 ],
+			"obj-1::obj-11::obj-143" : [ "live.text[12]", "live.text[2]", 0 ],
+			"obj-1::obj-11::obj-108" : [ "live.text[15]", "live.text[2]", 0 ],
 			"obj-1::obj-8::obj-111" : [ "live.menu[8]", "live.menu[5]", 0 ],
-			"obj-1::obj-11::obj-142" : [ "velocity range[18]", "velrange", 0 ],
+			"obj-1::obj-10::obj-195" : [ "live.text[22]", "live.text[6]", 0 ],
+			"obj-1::obj-10::obj-4::obj-192" : [ "velocity range[10]", "velrange", 0 ],
+			"obj-1::obj-11::obj-104" : [ "live.menu[7]", "live.menu", 0 ],
+			"obj-1::obj-3::obj-31::obj-164" : [ "live.menu[21]", "live.menu[5]", 0 ],
 			"obj-1::obj-11::obj-106" : [ "velocity range[15]", "velrange", 0 ],
+			"obj-20" : [ "live.tab[2]", "live.tab", 0 ],
+			"obj-1::obj-3::obj-31::obj-169" : [ "live.text[9]", "live.text[2]", 0 ],
 			"obj-1::obj-3::obj-44" : [ "live.text[29]", "live.text[6]", 0 ],
-			"obj-1::obj-11::obj-141" : [ "velocity range[12]", "velrange", 0 ],
-			"obj-1::obj-3::obj-43" : [ "live.text[30]", "live.text[2]", 0 ],
-			"obj-1::obj-10::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
-			"obj-1::obj-10::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-1::obj-11::obj-154" : [ "live.text[18]", "live.text[2]", 0 ],
-			"obj-1::obj-3::obj-64" : [ "live.text[27]", "live.text[2]", 0 ],
-			"obj-1::obj-3::obj-110" : [ "live.text[26]", "live.text[6]", 0 ],
-			"obj-1::obj-3::obj-65" : [ "live.text[28]", "live.text[2]", 0 ],
-			"obj-1::obj-11::obj-25" : [ "velocity range[9]", "velrange", 0 ],
-			"obj-1::obj-8::obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
-			"obj-1::obj-10::obj-189" : [ "live.menu[19]", "live.menu", 0 ],
-			"obj-1::obj-10::obj-190" : [ "velocity range[21]", "velrange", 0 ],
-			"obj-1::obj-10::obj-191" : [ "live.text[21]", "live.text[2]", 0 ],
-			"obj-1::obj-8::obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-1::obj-3::obj-40" : [ "live.text[31]", "live.text[2]", 0 ],
-			"obj-1::obj-10::obj-192" : [ "velocity range[22]", "velrange", 0 ],
-			"obj-1::obj-3::obj-169" : [ "live.text[24]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-1::obj-10::obj-4::obj-197" : [ "live.menu[6]", "live.menu", 0 ],
+			"obj-1::obj-3::obj-31::obj-172" : [ "velocity range[17]", "velrange", 0 ],
 			"obj-1::obj-10::obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
+			"obj-1::obj-8::obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-1::obj-10::obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-1::obj-3::obj-31::obj-167" : [ "live.menu[17]", "live.menu", 0 ],
+			"obj-1::obj-8::obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-1::obj-8::obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-1::obj-3::obj-110" : [ "live.text[26]", "live.text[6]", 0 ],
+			"obj-1::obj-10::obj-4::obj-194" : [ "velocity range[9]", "velrange", 0 ],
+			"obj-1::obj-11::obj-25" : [ "velocity range[11]", "velrange", 0 ],
+			"obj-1::obj-10::obj-4::obj-2" : [ "live.menu[2]", "live.menu", 0 ],
+			"obj-1::obj-11::obj-154" : [ "live.text[18]", "live.text[2]", 0 ],
+			"obj-1::obj-11::obj-142" : [ "velocity range[18]", "velrange", 0 ],
+			"obj-1::obj-3::obj-43" : [ "live.text[30]", "live.text[2]", 0 ],
+			"obj-1::obj-11::obj-141" : [ "velocity range[12]", "velrange", 0 ],
+			"obj-1::obj-8::obj-45" : [ "live.menu[5]", "live.menu[5]", 0 ],
+			"obj-1::obj-10::obj-4::obj-3" : [ "velocity range[2]", "velrange", 0 ],
 			"obj-1::obj-11::obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
 			"obj-1::obj-3::obj-139" : [ "live.menu[24]", "live.menu[5]", 0 ],
-			"obj-1::obj-8::obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
-			"obj-20" : [ "live.tab[2]", "live.tab", 0 ],
-			"obj-1::obj-8::obj-45" : [ "live.menu[5]", "live.menu[5]", 0 ],
-			"obj-1::obj-3::obj-168" : [ "velocity range[20]", "velrange", 0 ],
-			"obj-1::obj-3::obj-156" : [ "live.text[25]", "live.text[6]", 0 ],
-			"obj-1::obj-8::obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
-			"obj-1::obj-8::obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-1::obj-8::obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
-			"obj-1::obj-10::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
-			"obj-1::obj-11::obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
-			"obj-1::obj-10::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-1::obj-3::obj-164" : [ "live.menu[23]", "live.menu[5]", 0 ],
-			"obj-1::obj-8::obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
-			"obj-1::obj-10::obj-195" : [ "live.text[22]", "live.text[6]", 0 ],
+			"obj-1::obj-10::obj-4::obj-199" : [ "live.text[4]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
+			"obj-1::obj-10::obj-4::obj-201" : [ "live.menu[4]", "live.menu[1]", 0 ],
+			"obj-1::obj-3::obj-64" : [ "live.text[27]", "live.text[2]", 0 ],
+			"obj-1::obj-11::obj-15" : [ "live.menu[25]", "live.menu[5]", 0 ],
+			"obj-1::obj-3::obj-65" : [ "live.text[28]", "live.text[2]", 0 ],
+			"obj-1::obj-10::obj-4::obj-198" : [ "velocity range[8]", "velrange", 0 ],
 			"obj-1::obj-11::obj-171" : [ "live.menu[16]", "live.menu[5]", 0 ],
-			"obj-1::obj-3::obj-172" : [ "velocity range[13]", "velrange", 0 ],
-			"obj-1::obj-8::obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
-			"obj-1::obj-10::obj-194" : [ "velocity range[23]", "velrange", 0 ],
+			"obj-1::obj-3::obj-40" : [ "live.text[31]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
 			"obj-1::obj-11::obj-155" : [ "live.text[19]", "live.text[2]", 0 ],
-			"obj-1::obj-11::obj-144" : [ "velocity range[19]", "velrange", 0 ],
-			"obj-1::obj-3::obj-167" : [ "live.menu[22]", "live.menu", 0 ],
-			"obj-1::obj-11::obj-108" : [ "live.text[15]", "live.text[2]", 0 ],
-			"obj-1::obj-11::obj-143" : [ "live.text[12]", "live.text[2]", 0 ]
+			"obj-1::obj-3::obj-156" : [ "live.text[25]", "live.text[6]", 0 ],
+			"obj-1::obj-8::obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
+			"obj-1::obj-11::obj-144" : [ "velocity range[20]", "velrange", 0 ],
+			"obj-1::obj-8::obj-11::obj-135" : [ "velocity range[1]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -1094,6 +1094,13 @@
 			}
 , 			{
 				"name" : "ui-swap.maxpat",
+				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ui-swap-grouping.maxpat",
 				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -1122,6 +1129,13 @@
 			}
 , 			{
 				"name" : "ui-set.maxpat",
+				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ui-set-value.maxpat",
 				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",

@@ -52,7 +52,7 @@
 					"offset" : [ 0.0, 0.0 ],
 					"patching_rect" : [ 816.0, 8.0, 264.0, 304.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 714.191589, -4.0, 260.383179, 304.0 ],
+					"presentation_rect" : [ 728.0, 0.0, 260.383179, 304.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -73,7 +73,7 @@
 					"offset" : [ 0.0, 0.0 ],
 					"patching_rect" : [ 552.0, 8.0, 256.0, 304.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 473.0, -4.0, 240.0, 296.0 ],
+					"presentation_rect" : [ 482.0, 2.0, 240.0, 296.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -115,7 +115,7 @@
 					"offset" : [ 0.0, 0.0 ],
 					"patching_rect" : [ 264.0, 8.0, 272.0, 280.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 231.0, -4.0, 240.0, 272.0 ],
+					"presentation_rect" : [ 241.0, 4.0, 240.0, 272.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -226,50 +226,65 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-3::obj-110" : [ "live.text[26]", "live.text[6]", 0 ],
-			"obj-3::obj-168" : [ "velocity range[20]", "velrange", 0 ],
-			"obj-3::obj-156" : [ "live.text[25]", "live.text[6]", 0 ],
-			"obj-3::obj-40" : [ "live.text[31]", "live.text[2]", 0 ],
-			"obj-11::obj-108" : [ "live.text[15]", "live.text[2]", 0 ],
-			"obj-11::obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
-			"obj-11::obj-144" : [ "velocity range[19]", "velrange", 0 ],
-			"obj-8::obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
-			"obj-10::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
-			"obj-11::obj-104" : [ "live.menu[7]", "live.menu", 0 ],
-			"obj-8::obj-45" : [ "live.menu[5]", "live.menu[5]", 0 ],
-			"obj-11::obj-143" : [ "live.text[12]", "live.text[2]", 0 ],
-			"obj-10::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-11::obj-106" : [ "velocity range[15]", "velrange", 0 ],
-			"obj-11::obj-142" : [ "velocity range[18]", "velrange", 0 ],
-			"obj-11::obj-141" : [ "velocity range[12]", "velrange", 0 ],
-			"obj-3::obj-139" : [ "live.menu[24]", "live.menu[5]", 0 ],
-			"obj-10::obj-189" : [ "live.menu[19]", "live.menu", 0 ],
-			"obj-3::obj-64" : [ "live.text[27]", "live.text[2]", 0 ],
-			"obj-10::obj-190" : [ "velocity range[21]", "velrange", 0 ],
-			"obj-3::obj-65" : [ "live.text[28]", "live.text[2]", 0 ],
-			"obj-10::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
-			"obj-10::obj-191" : [ "live.text[21]", "live.text[2]", 0 ],
-			"obj-11::obj-171" : [ "live.menu[16]", "live.menu[5]", 0 ],
-			"obj-3::obj-44" : [ "live.text[29]", "live.text[6]", 0 ],
-			"obj-10::obj-192" : [ "velocity range[22]", "velrange", 0 ],
-			"obj-11::obj-155" : [ "live.text[19]", "live.text[2]", 0 ],
-			"obj-3::obj-43" : [ "live.text[30]", "live.text[2]", 0 ],
-			"obj-10::obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
-			"obj-3::obj-169" : [ "live.text[24]", "live.text[2]", 0 ],
-			"obj-11::obj-154" : [ "live.text[18]", "live.text[2]", 0 ],
-			"obj-3::obj-164" : [ "live.menu[23]", "live.menu[5]", 0 ],
-			"obj-11::obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
-			"obj-11::obj-25" : [ "velocity range[9]", "velrange", 0 ],
+			"obj-3::obj-31::obj-168" : [ "velocity range[19]", "velrange", 0 ],
+			"obj-11::obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-8::obj-111" : [ "live.menu[8]", "live.menu[5]", 0 ],
-			"obj-10::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-3::obj-172" : [ "velocity range[13]", "velrange", 0 ],
 			"obj-10::obj-195" : [ "live.text[22]", "live.text[6]", 0 ],
-			"obj-3::obj-167" : [ "live.menu[22]", "live.menu", 0 ],
-			"obj-10::obj-194" : [ "velocity range[23]", "velrange", 0 ]
+			"obj-10::obj-4::obj-192" : [ "velocity range[10]", "velrange", 0 ],
+			"obj-3::obj-31::obj-164" : [ "live.menu[21]", "live.menu[5]", 0 ],
+			"obj-11::obj-5::obj-144" : [ "velocity range[4]", "velrange", 0 ],
+			"obj-3::obj-31::obj-169" : [ "live.text[9]", "live.text[2]", 0 ],
+			"obj-3::obj-44" : [ "live.text[29]", "live.text[6]", 0 ],
+			"obj-8::obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-10::obj-4::obj-197" : [ "live.menu[6]", "live.menu", 0 ],
+			"obj-3::obj-31::obj-172" : [ "velocity range[17]", "velrange", 0 ],
+			"obj-10::obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
+			"obj-8::obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-10::obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-3::obj-31::obj-167" : [ "live.menu[17]", "live.menu", 0 ],
+			"obj-8::obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-8::obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-11::obj-5::obj-155" : [ "live.text[2]", "live.text[2]", 0 ],
+			"obj-11::obj-5::obj-143" : [ "live.text[5]", "live.text[2]", 0 ],
+			"obj-3::obj-110" : [ "live.text[26]", "live.text[6]", 0 ],
+			"obj-11::obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-10::obj-4::obj-194" : [ "velocity range[9]", "velrange", 0 ],
+			"obj-11::obj-154" : [ "live.text[18]", "live.text[2]", 0 ],
+			"obj-10::obj-4::obj-3" : [ "velocity range[18]", "velrange", 0 ],
+			"obj-3::obj-43" : [ "live.text[30]", "live.text[2]", 0 ],
+			"obj-8::obj-45" : [ "live.menu[5]", "live.menu[5]", 0 ],
+			"obj-11::obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-11::obj-5::obj-142" : [ "velocity range[2]", "velrange", 0 ],
+			"obj-11::obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
+			"obj-3::obj-139" : [ "live.menu[24]", "live.menu[5]", 0 ],
+			"obj-10::obj-4::obj-199" : [ "live.text[4]", "live.text[2]", 0 ],
+			"obj-11::obj-5::obj-141" : [ "velocity range[6]", "velrange", 0 ],
+			"obj-8::obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
+			"obj-10::obj-4::obj-201" : [ "live.menu[4]", "live.menu[1]", 0 ],
+			"obj-10::obj-4::obj-2" : [ "live.menu[12]", "live.menu", 0 ],
+			"obj-3::obj-64" : [ "live.text[27]", "live.text[2]", 0 ],
+			"obj-11::obj-15" : [ "live.menu[25]", "live.menu[5]", 0 ],
+			"obj-3::obj-65" : [ "live.text[28]", "live.text[2]", 0 ],
+			"obj-10::obj-4::obj-198" : [ "velocity range[8]", "velrange", 0 ],
+			"obj-11::obj-171" : [ "live.menu[16]", "live.menu[5]", 0 ],
+			"obj-3::obj-40" : [ "live.text[31]", "live.text[2]", 0 ],
+			"obj-8::obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
+			"obj-8::obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-11::obj-25" : [ "velocity range[25]", "velrange", 0 ],
+			"obj-3::obj-156" : [ "live.text[25]", "live.text[6]", 0 ],
+			"obj-8::obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
+			"obj-8::obj-11::obj-135" : [ "velocity range[1]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "ui-swap.maxpat",
+				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ui-swap-grouping.maxpat",
 				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -283,6 +298,20 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "ui-slide-range.maxpat",
+				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "covert-to-beats.maxpat",
+				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "ui-set.maxpat",
 				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
 				"patcherrelativepath" : ".",
@@ -290,7 +319,21 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "ui-set-value.maxpat",
+				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "ui-chop.maxpat",
+				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ui-chop-into.maxpat",
 				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -319,8 +362,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
