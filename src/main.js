@@ -21,11 +21,11 @@ export function slide_range(property, amount) {
 }
 
 export function slide_edges(behavior) {
-  controller.setSlideEdgeBehavior(behavior)
+  controller.slideEdgeBehavior = behavior
 }
 
-export function slide_anchor(behavior) {
-
+export function slide_anchor(anchor) {
+  controller.spreadAnchor = anchor
 }
 
 export function slide_shift(property, amount) {

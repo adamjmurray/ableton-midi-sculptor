@@ -2,7 +2,7 @@ import AppView from './app-view'
 import Clip from './clip'
 import Note from './note'
 import Transformer from './transformers/transformer'
-import Slider, { SlidableProperty, EdgeTransformationType } from './transformers/slide-transformer'
+import Slider, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
 // import { log } from './logger'
 
 export { SlidableProperty }
@@ -68,12 +68,12 @@ export default class Controller {
     this.slider.setRange(property, amount)
   }
 
-  setSlideEdgeBehavior(behavior: EdgeTransformationType) {
+  set slideEdgeBehavior(behavior: EdgeTransformationType) {
     this.slider.edgeBehavior = behavior
   }
 
-  setSpreadType() {
-
+  set spreadAnchor(anchor: SpreadAnchorType) {
+    this.slider.spreadAnchor = anchor
   }
 
   randomSlide(property: SlidableProperty, amount1: number, amount2: number) {

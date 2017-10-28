@@ -31,6 +31,12 @@ type EdgeTransformation = (notes: Note[], clip: Clip) => Note[]
 
 export type EdgeTransformationType = 'clip' | 'rotate' | 'reflect' | 'remove'
 
+export enum SpreadAnchorType {
+  MIN = 'min',
+  MIDPOINT = 'mid',
+  MAX = 'max'
+}
+
 export enum SlidableProperty {
   START = 'start',
   PITCH = 'pitch',
@@ -41,8 +47,12 @@ const SLIDABLE_PROPERTIES = Object.values(SlidableProperty)
 
 class SlidablePropertyMetadata {
   range: number
-  midpoint: number = 0
-  maxMidpointDelta: number = 0
+  min: number
+  midpoint: number
+  max: number
+  largestDeltaFromMin: number
+  largestDeltaFromMidpoint: number
+  largestDeltaFromMax: number
   random1: number[] = []
   random2: number[] = []
   constructor(defaultRange: number) {
@@ -102,6 +112,7 @@ export default class SlideTransformer extends Transformer {
   private oldNotes: Note[] = []
   private newNotes: Note[] = []
   private edgeTransformer: EdgeTransformation = edgeTransformer.clip
+  private anchor = SpreadAnchorType.MIDPOINT
 
   set notes(notes: Note[]) {
     this.oldNotes = notes
@@ -110,7 +121,9 @@ export default class SlideTransformer extends Transformer {
       let min = Infinity
       let max = -Infinity  
       let midpoint: number
-      let maxMidpointDelta = 0
+      let largestDeltaFromMin = 0
+      let largestDeltaFromMidpoint = 0
+      let largestDeltaFromMax = 0
       const random1: number[] = []
       const random2: number[] = []
 
@@ -123,13 +136,18 @@ export default class SlideTransformer extends Transformer {
         random2[index] = 2 * Math.random() - 1
       });
       midpoint = (max + min) / 2;
-      maxMidpointDelta = 0
       for (const note of notes) {
-        maxMidpointDelta = Math.max(maxMidpointDelta, Math.abs(midpoint - note.get(property)))
+        largestDeltaFromMin = Math.max(largestDeltaFromMin, Math.abs(min - note.get(property)))
+        largestDeltaFromMidpoint = Math.max(largestDeltaFromMidpoint, Math.abs(midpoint - note.get(property)))
+        largestDeltaFromMax = Math.max(largestDeltaFromMax, Math.abs(max - note.get(property)))        
       }
       const propertyMetadata = this.metadata[property]
+      propertyMetadata.min = min
       propertyMetadata.midpoint = midpoint
-      propertyMetadata.maxMidpointDelta = maxMidpointDelta
+      propertyMetadata.max = max
+      propertyMetadata.largestDeltaFromMin = largestDeltaFromMin
+      propertyMetadata.largestDeltaFromMidpoint = largestDeltaFromMidpoint
+      propertyMetadata.largestDeltaFromMax = largestDeltaFromMax
       propertyMetadata.random1 = random1
       propertyMetadata.random2 = random2
     }
@@ -137,6 +155,10 @@ export default class SlideTransformer extends Transformer {
 
   set edgeBehavior(behavior: EdgeTransformationType) {
     this.edgeTransformer = edgeTransformer[behavior]
+  }
+
+  set spreadAnchor(anchor: SpreadAnchorType) {
+    this.anchor = anchor
   }
 
   setRange(property: SlidableProperty, amount: number) {
@@ -167,9 +189,25 @@ export default class SlideTransformer extends Transformer {
    - amount should be from -1.0 to 1.0
   */
   spread(clip: Clip, property: SlidableProperty, amount: number) {
-    const { range, midpoint, maxMidpointDelta } = this.metadata[property]
-    amount = amount * range
-    return this.transform(clip, property, value => value + (amount * (value - midpoint)/maxMidpointDelta))
+    const metadata = this.metadata[property]
+    let spreadPoint: number
+    let largestDelta: number
+    switch (this.anchor) {
+      case SpreadAnchorType.MIN:
+        spreadPoint = metadata.min
+        largestDelta = metadata.largestDeltaFromMin
+        break
+      case SpreadAnchorType.MIDPOINT:
+        spreadPoint = metadata.midpoint
+        largestDelta =  metadata.largestDeltaFromMidpoint
+        break
+      case SpreadAnchorType.MAX:
+        spreadPoint = metadata.max
+        largestDelta =  metadata.largestDeltaFromMax
+        break
+    }
+    amount = amount * metadata.range
+    return this.transform(clip, property, value => value + (amount * (value - spreadPoint)/largestDelta))
   }
 
   /**
