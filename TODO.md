@@ -5,9 +5,6 @@
   - Change color scheme to match live
     - mostly done but doesn't work quite right in Live 10
 
-- Slide
-  - anchor spread operation to lowest or highest value (default is the average value)
-
 - Swap
   - Swap pitch, velocity, duration, start in any combination
   - rotate slider to contiuously rotate the selected params around the selection
