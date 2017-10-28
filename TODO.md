@@ -2,9 +2,8 @@
   - Slide spread deletes notes when notes have the same value
 
 - GUI
-  - Change color scheme to match live (and can you make it dynamic with live.color or something?)
-
-
+  - Change color scheme to match live
+    - mostly done but doesn't work quite right in Live 10
 
 - Slide
   - anchor spread operation to lowest or highest value (default is the average value)
