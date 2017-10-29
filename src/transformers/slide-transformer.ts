@@ -191,7 +191,7 @@ export default class SlideTransformer extends Transformer {
   spread(clip: Clip, property: SlidableProperty, amount: number) {
     const metadata = this.metadata[property]
     let spreadPoint: number
-    let largestDelta: number
+    let largestDelta = 0
     switch (this.anchor) {
       case SpreadAnchorType.MIN:
         spreadPoint = metadata.min
@@ -206,6 +206,7 @@ export default class SlideTransformer extends Transformer {
         largestDelta =  metadata.largestDeltaFromMax
         break
     }
+    if (largestDelta === 0) return this.newNotes
     amount = amount * metadata.range
     return this.transform(clip, property, value => value + (amount * (value - spreadPoint)/largestDelta))
   }

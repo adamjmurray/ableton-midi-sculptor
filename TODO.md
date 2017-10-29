@@ -1,5 +1,5 @@
 - Bugs
-  - Slide spread deletes notes when notes have the same value
+  -
 
 - GUI
   - Don't forget to re-enable the "choose midi clip" overlay
