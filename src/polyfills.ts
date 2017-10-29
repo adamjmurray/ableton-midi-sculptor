@@ -60,3 +60,4 @@ if (!String.prototype.includes) {
     }
   };
 }
+

@@ -4,6 +4,7 @@ import Note from './note'
 import Transformer from './transformers/transformer'
 import SlideTransformer, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
 import SetTransformer, { SettableProperty, NotePropertyValue } from './transformers/set-transformer'
+import SwapTransformer, { SwappableProperty } from './transformers/swap-transformer'
 import { log } from './logger'
 
 export { SlidableProperty }
@@ -14,9 +15,10 @@ export default class Controller {
   private selectedClip?: Clip
   private slideTransformer = new SlideTransformer()
   private setTransformer = new SetTransformer()
+  private swapTransformer = new SwapTransformer
 
   private get transformers(): Transformer[] {
-    return [this.slideTransformer, this.setTransformer];
+    return [this.slideTransformer, this.setTransformer, this.swapTransformer]
   }
 
   private sync() {
@@ -91,6 +93,35 @@ export default class Controller {
   spread(property: SlidableProperty, amount: number) {
     this.transformNotes((clip: Clip) => 
       this.slideTransformer.spread(clip, property, amount))    
+  }
+
+  toggleSwapProperty(property: SwappableProperty, enabled: boolean) {
+    this.swapTransformer.toggleProperty(property, enabled)
+  }
+
+  rotate(amount: number) {
+    this.transformNotes(() => 
+      this.swapTransformer.rotate(amount))
+  }
+
+  swapPairs() {
+    this.transformNotes(() => 
+      this.swapTransformer.swapPairs())
+  }
+
+  reverse() {
+    this.transformNotes(() => 
+      this.swapTransformer.reverse())
+  }
+
+  zip() {
+    this.transformNotes(() => 
+      this.swapTransformer.zip())
+  }
+
+  randomSwap(amount1: number, amount2: number) {
+    this.transformNotes(() => 
+      this.swapTransformer.randomize2D(amount1, amount2))
   }
 
   setValues(property: SettableProperty, value: number | string) {

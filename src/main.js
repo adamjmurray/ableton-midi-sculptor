@@ -53,6 +53,30 @@ export function slide_random(property, amount1, amount2) {
   controller.randomSlide(property, amount1, amount2)
 }
 
+export function swap_property(property, enabled) {
+  controller.toggleSwapProperty(property, enabled)
+}
+
+export function rotate(amount) {
+  controller.rotate(amount)
+}
+
+export function swap_pairs() {
+  controller.swapPairs()
+}
+
+export function reverse() {
+  controller.reverse()
+}
+
+export function zip() {
+  controller.zip()
+}
+
+export function swap_random(amount1, amount2) {
+  controller.randomSwap(amount1, amount2)
+}
+
 export function set_values(property, value) {
   controller.setValues(property, value)
 }

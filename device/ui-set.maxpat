@@ -44,7 +44,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 226.0, 336.0, 43.0, 22.0 ],
-					"presentation_rect" : [ 212.0, 362.0, 0.0, 0.0 ],
 					"style" : "",
 					"text" : "set $1"
 				}
@@ -129,7 +128,7 @@
 
 					}
 ,
-					"text" : "apply",
+					"text" : "set all",
 					"varname" : "live.text"
 				}
 
@@ -797,7 +796,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 139.0, 25.5, 64.0, 20.0 ],
+					"patching_rect" : [ 128.0, 32.0, 64.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 67.5, 20.0 ],
 					"style" : "",
@@ -996,17 +995,17 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
+			"obj-4::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-4::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
+			"obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
 			"obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
 			"obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
-			"obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
-			"obj-4::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-11" : [ "live.text", "live.text", 0 ],
-			"obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
-			"obj-4::obj-3" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ]
+			"obj-4::obj-3" : [ "velocity range[1]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

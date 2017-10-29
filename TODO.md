@@ -1,22 +1,18 @@
 - Bugs
   - SetTransformer target/property doesn't seem to initialize correctly (when editing the device, it showed note/deleted but mutest the notes when clicking "apply")
+    - And similar issue with the edge behavior in the SlideTransformer. I think we just need loadbangs for most of the GUI inputs?
+  - I think utils.reflectedMod is wrong for negative n - need tests!
 
 - GUI
   - Don't forget to re-enable the "choose midi clip" overlay
   - Change color scheme to match live
     - mostly done but doesn't work quite right in Live 10
 
-- SetTransformer
-  - rename "apply" to "set all"
+- Refactoring
+  - I think having SwapTransformer keep track of the properties toggle state 
 
 - Swap
-  - Swap pitch, velocity, duration, start in any combination
-  - rotate slider to contiuously rotate the selected params around the selection
   - Randomization x-y control - swap random notes 
-  - buttons to do swap operations:
-    - flip
-    - pairs (next to each other)
-    - zip (interleave first and second half)
   - groupings
     - turn off or divide clip into consecutive groups based on number of notes or time
     - put any extra notes in the first group, last group, random group, or a new group (when grouping by num notes)
