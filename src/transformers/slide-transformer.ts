@@ -53,8 +53,6 @@ class SlidablePropertyMetadata {
   largestDeltaFromMin: number
   largestDeltaFromMidpoint: number
   largestDeltaFromMax: number
-  random1: number[] = []
-  random2: number[] = []
   constructor(defaultRange: number) {
     this.range = defaultRange
   }
@@ -109,33 +107,19 @@ const edgeTransformer = new EdgeTransformer
 export default class SlideTransformer extends Transformer {
 
   private metadata = new SlidablePropertiesMetadata
-  private oldNotes: Note[] = []
-  private newNotes: Note[] = []
   private edgeTransformer: EdgeTransformation = edgeTransformer.clip
   private anchor = SpreadAnchorType.MIDPOINT
 
   set notes(notes: Note[]) {
-    this.oldNotes = notes
-    this.newNotes = notes.map(note => note.clone())
+    super.setNotes(notes)
     for (const property of SLIDABLE_PROPERTIES) {
-      let min = Infinity
-      let max = -Infinity  
-      let midpoint: number
+      let values = notes.map(note => note.get(property))
+      let min = Math.min.apply(null, values)
+      let max = Math.max.apply(null, values)
+      let midpoint = (max + min) / 2;
       let largestDeltaFromMin = 0
       let largestDeltaFromMidpoint = 0
       let largestDeltaFromMax = 0
-      const random1: number[] = []
-      const random2: number[] = []
-
-      notes.forEach((note, index) => {
-        const value = note.get(property)
-        min = Math.min(min, value)
-        max = Math.max(max, value)
-        // TODO: handle this in controller, or in a superclass, because every transformer will need it
-        random1[index] = 2 * Math.random() - 1
-        random2[index] = 2 * Math.random() - 1
-      });
-      midpoint = (max + min) / 2;
       for (const note of notes) {
         largestDeltaFromMin = Math.max(largestDeltaFromMin, Math.abs(min - note.get(property)))
         largestDeltaFromMidpoint = Math.max(largestDeltaFromMidpoint, Math.abs(midpoint - note.get(property)))
@@ -148,8 +132,6 @@ export default class SlideTransformer extends Transformer {
       propertyMetadata.largestDeltaFromMin = largestDeltaFromMin
       propertyMetadata.largestDeltaFromMidpoint = largestDeltaFromMidpoint
       propertyMetadata.largestDeltaFromMax = largestDeltaFromMax
-      propertyMetadata.random1 = random1
-      propertyMetadata.random2 = random2
     }
   }
 
@@ -220,10 +202,10 @@ export default class SlideTransformer extends Transformer {
    random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
 */
   randomize2D(clip: Clip, property: SlidableProperty, amount1: number, amount2: number) {
-    const { range, random1, random2 } = this.metadata[property]
+    const range = this.metadata[property].range
     // We halve the range because two random values are added, which would have a max of range + range
     amount1 *= range/2
     amount2 *= range/2
-    return this.transform(clip, property, (value, index) => value + (random1[index] * amount1) + (random2[index] * amount2))
+    return this.transform(clip, property, (value, index) => value + (this.bipolarRandom1[index] * amount1) + (this.bipolarRandom2[index] * amount2))
   }
 }

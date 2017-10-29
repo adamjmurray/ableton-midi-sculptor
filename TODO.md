@@ -1,10 +1,13 @@
 - Bugs
-  -
+  - SetTransformer target/property doesn't seem to initialize correctly (when editing the device, it showed note/deleted but mutest the notes when clicking "apply")
 
 - GUI
   - Don't forget to re-enable the "choose midi clip" overlay
   - Change color scheme to match live
     - mostly done but doesn't work quite right in Live 10
+
+- SetTransformer
+  - rename "apply" to "set all"
 
 - Swap
   - Swap pitch, velocity, duration, start in any combination
