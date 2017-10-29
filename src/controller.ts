@@ -2,8 +2,9 @@ import AppView from './app-view'
 import Clip from './clip'
 import Note from './note'
 import Transformer from './transformers/transformer'
-import Slider, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
-// import { log } from './logger'
+import SlideTransformer, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
+import SetTransformer, { SettableProperty, NotePropertyValue } from './transformers/set-transformer'
+import { log } from './logger'
 
 export { SlidableProperty }
 
@@ -11,7 +12,12 @@ export default class Controller {
   private isSynced = false
   private appView?: AppView
   private selectedClip?: Clip
-  private slider = new Slider()
+  private slideTransformer = new SlideTransformer()
+  private setTransformer = new SetTransformer()
+
+  private get transformers(): Transformer[] {
+    return [this.slideTransformer, this.setTransformer];
+  }
 
   private sync() {
     if (this.isSynced) return true
@@ -32,10 +38,6 @@ export default class Controller {
   
     this.isSynced = true
     return true
-  }
-
-  private get transformers(): Transformer[] {
-    return [this.slider];
   }
 
   private transformNotes(transform: (clip: Clip) => Note[]) {
@@ -65,29 +67,67 @@ export default class Controller {
    - amount is from 0 to 127 for velocity, or a positive number in beats for start/duration
    */
   setSlideRange(property: SlidableProperty, amount: number) {
-    this.slider.setRange(property, amount)
+    this.slideTransformer.setRange(property, amount)
   }
 
   set slideEdgeBehavior(behavior: EdgeTransformationType) {
-    this.slider.edgeBehavior = behavior
+    this.slideTransformer.edgeBehavior = behavior
   }
 
   set spreadAnchor(anchor: SpreadAnchorType) {
-    this.slider.spreadAnchor = anchor
+    this.slideTransformer.spreadAnchor = anchor
   }
 
   randomSlide(property: SlidableProperty, amount1: number, amount2: number) {
     this.transformNotes((clip: Clip) => 
-      this.slider.randomize2D(clip, property, amount1, amount2))
+      this.slideTransformer.randomize2D(clip, property, amount1, amount2))
   }
 
   shift(property: SlidableProperty, amount: number) {
     this.transformNotes((clip: Clip) => 
-      this.slider.shift(clip, property, amount))    
+      this.slideTransformer.shift(clip, property, amount))    
   }
   
   spread(property: SlidableProperty, amount: number) {
     this.transformNotes((clip: Clip) => 
-      this.slider.spread(clip, property, amount))    
+      this.slideTransformer.spread(clip, property, amount))    
   }
-};
+
+  setValues(property: SettableProperty, value: number | string) {
+    let numericValue: number
+    if (typeof value === 'number') {
+      numericValue = value
+    }
+    else {
+      if (value === 'muted') {
+        numericValue = NotePropertyValue.MUTED
+      } else if (value === 'deleted') {
+        numericValue = NotePropertyValue.DELETED
+      } else {
+        log(`Invalid "Set" value: ${value}`)
+        return
+      }
+    }
+    this.transformNotes(() =>
+      this.setTransformer.setValues(property, numericValue))
+  }
+
+  randomSetValues(property: SettableProperty, value: number | string, amount1: number, amount2: number) {
+    let numericValue: number
+    if (typeof value === 'number') {
+      numericValue = value
+    }
+    else {
+      if (value === 'muted') {
+        numericValue = NotePropertyValue.MUTED
+      } else if (value === 'deleted') {
+        numericValue = NotePropertyValue.DELETED
+      } else {
+        log(`Invalid "Set" value: ${value}`)
+        return
+      }
+    }
+    this.transformNotes(() =>
+      this.setTransformer.randomize2D(property, numericValue, amount1, amount2))
+  }
+}

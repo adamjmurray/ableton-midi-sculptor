@@ -2,6 +2,7 @@
   - Slide spread deletes notes when notes have the same value
 
 - GUI
+  - Don't forget to re-enable the "choose midi clip" overlay
   - Change color scheme to match live
     - mostly done but doesn't work quite right in Live 10
 
@@ -19,12 +20,6 @@
     - toggle to control scope, whether all operations apply within each group or to the groups themselves (swap entire groups)
       NOTE: when swapping entire groups, the number of notes may be different, so we might have to swap all parameters when the
       scope is set to "groups", and might want to gray out parameter controls
-
-- Set
-  - Choose a parameter (pitch, velocity, duration, start) and a value
-  - One of the parameters is "delete" which randomly deletes notes (basically this is a convenient shortcut for duration 0)
-  - Click "Set" to set selected notes
-  - randomize x-y control
 
 - Chop
   - control gate/sustain

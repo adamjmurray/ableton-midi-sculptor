@@ -22,8 +22,8 @@ const DEFAULT_NOTE_OPTIONS = {
   muted: false,
 }
 
-type NumericProperty = 'pitch' | 'start' | 'velocity' | 'duration'
-type SerializedNote = [number, string, string, number, boolean]
+export type NumericProperty = 'pitch' | 'start' | 'velocity' | 'duration'
+type SerializedNote = [number, string, string, number, number]
 
 export default class Note {
   
@@ -64,7 +64,7 @@ export default class Note {
       this.start.toFixed(4),
       this.duration.toFixed(4),
       this.velocity > 127 ? 127 : Math.round(this.velocity),
-      this.muted
+      Number(this.muted)
     ]
   }
 

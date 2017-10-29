@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 42.0, 85.0, 1209.0, 585.0 ],
+		"rect" : [ 1014.0, 540.0, 1209.0, 585.0 ],
 		"bgcolor" : [ 0.402827, 0.442342, 0.446734, 1.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -47,18 +47,6 @@
 					"patching_rect" : [ 693.0, 86.0, 63.0, 22.0 ],
 					"style" : "",
 					"text" : "delay 100"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-27",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 845.0, 207.0, 34.0, 22.0 ],
-					"style" : "",
-					"text" : "print"
 				}
 
 			}
@@ -108,7 +96,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 891.0, 327.0, 154.0, 75.0 ],
+					"patching_rect" : [ 900.0, 327.0, 154.0, 75.0 ],
 					"style" : "",
 					"text" : "Unfortunately the js script doesn't work if the nogrow flag is on, but it seems like we can't toggle it from js, so we have to do this"
 				}
@@ -120,7 +108,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 913.0, 62.0, 78.0, 20.0 ],
+					"patching_rect" : [ 865.0, 42.5, 78.0, 20.0 ],
 					"style" : "",
 					"text" : "zoom the UI"
 				}
@@ -136,7 +124,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 873.0, 412.0, 118.0, 36.0 ],
+					"patching_rect" : [ 882.0, 412.0, 118.0, 36.0 ],
 					"style" : "",
 					"text" : "window flags grow, window exec"
 				}
@@ -152,7 +140,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 741.0, 360.5, 127.0, 36.0 ],
+					"patching_rect" : [ 750.0, 360.5, 127.0, 36.0 ],
 					"style" : "",
 					"text" : "window flags nogrow, window exec"
 				}
@@ -165,7 +153,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "bang", "float", "bang" ],
-					"patching_rect" : [ 741.0, 266.0, 151.0, 22.0 ],
+					"patching_rect" : [ 750.0, 266.0, 151.0, 22.0 ],
 					"style" : "",
 					"text" : "t b f b"
 				}
@@ -180,7 +168,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 873.0, 52.5, 34.0, 34.0 ],
+					"patching_rect" : [ 825.0, 33.0, 34.0, 34.0 ],
 					"style" : ""
 				}
 
@@ -192,7 +180,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 807.0, 317.5, 52.0, 22.0 ],
+					"patching_rect" : [ 816.0, 317.5, 52.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "zoom",
 						"parameter_enable" : 0
@@ -1146,16 +1134,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-27", 0 ],
-					"order" : 0,
-					"source" : [ "obj-26", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
-					"order" : 1,
 					"source" : [ "obj-26", 0 ]
 				}
 

@@ -52,3 +52,11 @@ export function slide_spread(property, amount) {
 export function slide_random(property, amount1, amount2) {
   controller.randomSlide(property, amount1, amount2)
 }
+
+export function set_values(property, value) {
+  controller.setValues(property, value)
+}
+
+export function set_random(property, value, amount1, amount2) {
+  controller.randomSetValues(property, value, amount1, amount2)
+}
