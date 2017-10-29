@@ -9,26 +9,39 @@ export enum NotePropertyValue {
   DELETED
 }
 
-function isInRandomizationBounds(amount1: number, amount2: number, random1: number, random2: number) {
-  const inBounds1 = random1 >= 0 ? amount1 > random1 : amount1 < random1
-  const inBounds2 = random2 >= 0 ? amount2 > random2 : amount2 < random2
-  return inBounds1 && inBounds2
+function scaleAmount(amount: number): number {
+  // use exponential curves for better usability, so you can see an effect with less mouse movement
+  return Math.pow(Math.abs(amount), 0.67) * (amount < 0 ? -1 : 1) 
 }
 
 export default class SetTransformer extends Transformer {
 
   private oldNotes: Note[] = []
   private newNotes: Note[] = []
-  private random1: number[] = []
-  private random2: number[] = []
+  private randoms: number[][] = [[1], [2], [3], [4], [5], [6], [7], [8]] // x and y random values for each quadrant
 
   set notes(notes: Note[]) {
     this.oldNotes = notes
     this.newNotes = notes.map(note => note.clone())
     notes.forEach((_, index) => {
-      this.random1[index] = 2 * Math.random() - 1
-      this.random2[index] = 2 * Math.random() - 1
+      this.randoms.forEach(random => random[index] = Math.random())
     });
+  }
+
+  private isInRandomBounds(amount1: number, amount2: number, index: number) {
+    if (amount1 > 0) {
+      if (amount2 > 0) {
+        return amount1 > this.randoms[0][index] && amount2 > this.randoms[1][index]
+      } else {
+        return amount1 > this.randoms[2][index] && -amount2 > this.randoms[3][index]
+      }
+    } else {
+      if (amount2 > 0) {
+        return -amount1 > this.randoms[4][index] && amount2 > this.randoms[5][index]
+      } else {
+        return -amount1 > this.randoms[6][index] && -amount2 > this.randoms[7][index]
+      }
+    }
   }
 
   setValues(property: SettableProperty, value: number): Note[] {
@@ -45,10 +58,11 @@ export default class SetTransformer extends Transformer {
   }
 
   randomize2D(property: SettableProperty, value: number, amount1: number, amount2: number): Note[] {
-    // We halve the range because two random values are added, which would have a max of range + range
     const notes: Note[] = []
+    amount1 = scaleAmount(amount1)
+    amount2 = scaleAmount(amount2)
     this.newNotes.forEach((note, index) => {
-      if (isInRandomizationBounds(amount1, amount2, this.random1[index], this.random2[index])) {
+      if (this.isInRandomBounds(amount1, amount2, index)) {
         if (property === 'note') {
           if (value === NotePropertyValue.MUTED) {
             note.muted = true
