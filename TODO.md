@@ -4,6 +4,8 @@
   - I think utils.reflectedMod is wrong for negative n - need tests!
   - "method getwind called on invalid object" error - it's from the zoom.js script. It seems harmless, but I think we can avoid the error
     if we gate the script execution on whether the window is active (and may need to trigger the script whenever the window does become active)
+  - Make sure nothing blows up when there's no notes in the clip
+  - Values seem to "jump" when lifting up from the x-y pad sometimes
 
 - GUI
   - Don't forget to re-enable the "choose midi clip" overlay
@@ -18,11 +20,14 @@
 
 - Swap
   - groupings
-    - turn off or divide clip into consecutive groups based on number of notes or time
-    - put any extra notes in the first group, last group, random group, or a new group (when grouping by num notes)
     - toggle to control scope, whether all operations apply within each group or to the groups themselves (swap entire groups)
       NOTE: when swapping entire groups, the number of notes may be different, so we might have to swap all parameters when the
       scope is set to "groups", and might want to gray out parameter controls
+      This seems tricky. Later...
+      One idea for toggling this is to select every target (which normally does nothing). Kind of hidden, but there isn't much room for this toggle
+      So when you "swap" groups I guess we are talking about swapping their start times relative to the min start time of the group
+      FIrst pass of this feature may be fine, but I imagine you'd want some kind of "fuzziness" when determining if a note shoudl be
+      included in the next group because it's start time is so close. And again we don't have much room...
 
 - Chop
   - control gate/sustain
@@ -32,7 +37,7 @@
     - euclidean
   - random x-y depends on type
     - duration (min is choosen duration for each slice)
-    - number (max is choosen number)   
+    - number (max is choosen number)
     - euclid -  show a [?] toggle next to each number box when random is on
   - "tilt" slider depends on chop type:
     - duration: start/end is choosen (or random) duration, gets progressively shorter

@@ -1,5 +1,5 @@
 import './polyfills'
-import { log } from './logger' 
+import { log } from './logger'
 import Controller, { SlidableProperty } from './controller'
 log("___________________________________________________")
 log("Reload:", new Date())
@@ -57,6 +57,10 @@ export function swap_property(property, enabled) {
   controller.toggleSwapProperty(property, enabled)
 }
 
+export function swap_group(type, size, extras) {
+  controller.swapGroupBy(type, size, extras)
+}
+
 export function rotate(amount) {
   controller.rotate(amount)
 }
@@ -71,6 +75,10 @@ export function reverse() {
 
 export function zip() {
   controller.zip()
+}
+
+export function unzip() {
+  controller.unzip()
 }
 
 export function swap_random(amount1, amount2) {
