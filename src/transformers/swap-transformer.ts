@@ -86,8 +86,24 @@ export default class SwapTransformer extends Transformer {
     return this.newNotes
   }
 
-  randomize2D(_amount1: number, _amount2: number): Note[] {
-    // TODO:
+  randomize2D(amountX: number, amountY: number): Note[] {
+    const oldNotes = this.oldNotes
+    this.newNotes.forEach((note, index) => {
+      if (this.isInRandomBounds(amountX, amountY, index)) {
+        const random = Math.abs(amountX > 0 ? this.bipolarRandom1[index] : this.bipolarRandom2[index])
+        const targetIndex = Math.floor(random * oldNotes.length)
+        if (targetIndex != index) {
+          for (const property of this.properties) {
+            note.set(property, oldNotes[targetIndex].get(property))
+          }
+          return
+        }
+      }
+      // else revert to original value:
+      for (const property of this.properties) {
+        note.set(property, oldNotes[index].get(property))
+      }
+    })
     return this.newNotes
   }
 }

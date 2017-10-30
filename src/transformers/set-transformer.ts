@@ -15,22 +15,6 @@ export default class SetTransformer extends Transformer {
     super.setNotes(notes)
   }
 
-  private isInRandomBounds(amount1: number, amount2: number, index: number) {
-    if (amount1 > 0) {
-      if (amount2 > 0) {
-        return amount1 > this.randoms[0][index] && amount2 > this.randoms[1][index]
-      } else {
-        return amount1 > this.randoms[2][index] && -amount2 > this.randoms[3][index]
-      }
-    } else {
-      if (amount2 > 0) {
-        return -amount1 > this.randoms[4][index] && amount2 > this.randoms[5][index]
-      } else {
-        return -amount1 > this.randoms[6][index] && -amount2 > this.randoms[7][index]
-      }
-    }
-  }
-
   setValues(property: SettableProperty, value: number): Note[] {
     if (property === 'note') {
       if (value === NotePropertyValue.MUTED) {

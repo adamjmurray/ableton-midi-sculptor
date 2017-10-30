@@ -2,17 +2,21 @@
   - SetTransformer target/property doesn't seem to initialize correctly (when editing the device, it showed note/deleted but mutest the notes when clicking "apply")
     - And similar issue with the edge behavior in the SlideTransformer. I think we just need loadbangs for most of the GUI inputs?
   - I think utils.reflectedMod is wrong for negative n - need tests!
+  - "method getwind called on invalid object" error - it's from the zoom.js script. It seems harmless, but I think we can avoid the error
+    if we gate the script execution on whether the window is active (and may need to trigger the script whenever the window does become active)
 
 - GUI
   - Don't forget to re-enable the "choose midi clip" overlay
   - Change color scheme to match live
     - mostly done but doesn't work quite right in Live 10
+  - control labels should be capitalized (compare with built in devices)
 
 - Refactoring
-  - I think having SwapTransformer keep track of the properties toggle state 
+  - I think having SwapTransformer keep track of the properties toggle state simplified the UI implementation, so consider doing similar things
+    with the other transformers
+  - Rename amount1/2 to amountX/Y
 
 - Swap
-  - Randomization x-y control - swap random notes 
   - groupings
     - turn off or divide clip into consecutive groups based on number of notes or time
     - put any extra notes in the first group, last group, random group, or a new group (when grouping by num notes)

@@ -28,4 +28,25 @@ export default abstract class Transformer {
   protected get oldNotes(): ReadonlyArray<Note> {
     return this._oldNotes
   }
+
+  /**
+   * With the 8 random numbers (from 0 to 1), use one pair for each quadrant in the (-1,-1) to (1,1) cartesian coordinate space
+   * From the 2 given (x,y) (which should be from -1 to 1), return true if amount x,y exceeds the random x,y for that quadrant.
+   * This algorithm is suitable for determining when an on/off operation (such as set or swap) should occur from the x-y pad input
+   */
+  protected isInRandomBounds(x: number, y: number, noteIndex: number) {
+    if (x > 0) {
+      if (y > 0) {
+        return x > this.randoms[0][noteIndex] && y > this.randoms[1][noteIndex]
+      } else {
+        return x > this.randoms[2][noteIndex] && -y > this.randoms[3][noteIndex]
+      }
+    } else {
+      if (y > 0) {
+        return -x > this.randoms[4][noteIndex] && y > this.randoms[5][noteIndex]
+      } else {
+        return -x > this.randoms[6][noteIndex] && -y > this.randoms[7][noteIndex]
+      }
+    }
+  }
 }
