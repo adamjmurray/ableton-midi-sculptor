@@ -5,6 +5,7 @@ import Transformer from './transformers/transformer'
 import SlideTransformer, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
 import SetTransformer, { SettableProperty, NotePropertyValue } from './transformers/set-transformer'
 import SwapTransformer, { SwappableProperty, GroupType, ExtraGroupType } from './transformers/swap-transformer'
+import ChopTransformer, { ChopType, ChopEnvelopeType } from './transformers/chop-transformer'
 import { log } from './logger'
 
 export { SlidableProperty }
@@ -17,9 +18,10 @@ export default class Controller {
   private slideTransformer = new SlideTransformer()
   private setTransformer = new SetTransformer()
   private swapTransformer = new SwapTransformer
+  private chopTransformer = new ChopTransformer()
 
   private get transformers(): Transformer[] {
-    return [this.slideTransformer, this.setTransformer, this.swapTransformer]
+    return [this.slideTransformer, this.setTransformer, this.swapTransformer, this.chopTransformer]
   }
 
   private sync() {
@@ -137,6 +139,7 @@ export default class Controller {
 
   setValues(property: SettableProperty, value: number | string) {
     let numericValue: number
+    // TODO move this (and similar code below) into main.js
     if (typeof value === 'number') {
       numericValue = value
     }
@@ -171,5 +174,22 @@ export default class Controller {
     }
     this.transformNotes(() =>
       this.setTransformer.randomize2D(property, numericValue, amount1, amount2))
+  }
+
+  setChopType(type: ChopType, amount1: number, amount2: number) {
+    this.chopTransformer.setChopType(type, amount1, amount2)
+  }
+
+  set chopGate(amount: number) {
+    this.chopTransformer.gate = amount
+  }
+
+  chopEnvelope(type: ChopEnvelopeType) {
+    this.chopTransformer.envelope = type
+  }
+
+  chop() {
+    this.transformNotes(() =>
+      this.chopTransformer.chop())
   }
 }

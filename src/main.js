@@ -92,3 +92,19 @@ export function set_values(property, value) {
 export function set_random(property, value, amount1, amount2) {
   controller.randomSetValues(property, value, amount1, amount2)
 }
+
+export function chop_type(type, amount1, amount2) {
+  controller.setChopType(type, amount1, amount2)
+}
+
+export function chop_gate(amount) {
+  controller.chopGate = amount
+}
+
+export function chop_envelope(type) {
+  controller.chopEnvelope = type
+}
+
+export function chop() {
+  controller.chop()
+}

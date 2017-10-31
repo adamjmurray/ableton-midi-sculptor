@@ -541,24 +541,6 @@
 				"patchline" : 				{
 					"color" : [ 0.67451, 0.819608, 0.572549, 1.0 ],
 					"destination" : [ "obj-164", 0 ],
-					"order" : 3,
-					"source" : [ "obj-29", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.67451, 0.819608, 0.572549, 1.0 ],
-					"destination" : [ "obj-167", 0 ],
-					"order" : 1,
-					"source" : [ "obj-29", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.67451, 0.819608, 0.572549, 1.0 ],
-					"destination" : [ "obj-168", 0 ],
 					"order" : 2,
 					"source" : [ "obj-29", 0 ]
 				}
@@ -567,7 +549,7 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.67451, 0.819608, 0.572549, 1.0 ],
-					"destination" : [ "obj-169", 0 ],
+					"destination" : [ "obj-167", 0 ],
 					"order" : 0,
 					"source" : [ "obj-29", 0 ]
 				}
@@ -576,8 +558,17 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.67451, 0.819608, 0.572549, 1.0 ],
+					"destination" : [ "obj-168", 0 ],
+					"order" : 1,
+					"source" : [ "obj-29", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.67451, 0.819608, 0.572549, 1.0 ],
 					"destination" : [ "obj-172", 0 ],
-					"order" : 4,
+					"order" : 3,
 					"source" : [ "obj-29", 0 ]
 				}
 
@@ -619,11 +610,11 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-169" : [ "live.text[13]", "live.text[2]", 0 ],
 			"obj-168" : [ "velocity range[10]", "velrange", 0 ],
-			"obj-167" : [ "live.menu[15]", "live.menu", 0 ],
 			"obj-164" : [ "live.menu[14]", "live.menu[5]", 0 ],
-			"obj-172" : [ "velocity range[11]", "velrange", 0 ]
+			"obj-167" : [ "live.menu[15]", "live.menu", 0 ],
+			"obj-172" : [ "velocity range[11]", "velrange", 0 ],
+			"obj-169" : [ "live.text[13]", "live.text[2]", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -656,8 +647,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
