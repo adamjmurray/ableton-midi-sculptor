@@ -81,17 +81,19 @@ export default class ChopTransformer extends Transformer {
         const segmentDuration = oldNote.duration / total
         let note = oldNote.clone()
         let numSegments = 0
-        let pulseCount = 0
-        let nextPulse = Math.floor(++pulseCount/pulses * total)
-        for (let i=0; i<=total; i++) {
-          if (i < nextPulse) {
+        // To get the longest segment first, we have to run this loop in reverse
+        let pulseCount = pulses
+        let nextPulse = Math.floor(--pulseCount/pulses * total)
+        for (let i=total; i>=0; i--) {
+          if (i > nextPulse) {
             numSegments++
           } else { // end of pulse
-            note.duration = numSegments * segmentDuration
+            note.duration = numSegments * segmentDuration * gate
             notes.push(note)
             note = oldNote.clone()
-            note.start = i * segmentDuration
-            nextPulse = Math.floor(++pulseCount/pulses * total)
+            note.start = note.start + (total - i) * segmentDuration
+            numSegments = 1
+            nextPulse = Math.floor(--pulseCount/pulses * total)
           }
         }
       }
