@@ -6,6 +6,7 @@
     if we gate the script execution on whether the window is active (and may need to trigger the script whenever the window does become active)
   - Make sure nothing blows up when there's no notes in the clip
   - Values seem to "jump" when lifting up from the x-y pad sometimes
+    - Not sure much can be done? Seems like the component just has some "inertia"
   - Swap seems to malfunction sometimes because notes may need to be sorted by start time (try with a lot of notes - chop then randomize pitch)
 
 - GUI
