@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 761.0, 494.0, 987.0, 644.0 ],
+		"rect" : [ 1286.0, 381.0, 987.0, 644.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -58,7 +58,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 424.0, 296.0, 5.0, 100.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 58.5, 111.0, 5.0, 121.0 ]
+					"presentation_rect" : [ 59.5, 111.0, 5.0, 121.0 ]
 				}
 
 			}
@@ -945,7 +945,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 170.5, 385.5, 49.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ -4.0, 46.0, 44.0, 20.0 ],
+					"presentation_rect" : [ -3.0, 46.0, 44.0, 20.0 ],
 					"style" : "",
 					"text" : "Edges"
 				}
@@ -1051,7 +1051,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 616.0, 248.0, 31.749329, 50.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 184.0, 111.0, 29.0, 121.0 ],
+					"presentation_rect" : [ 186.0, 111.0, 29.0, 121.0 ],
 					"slidercolor" : [ 0.952941, 0.745098, 0.0, 1.0 ],
 					"style" : "",
 					"thickness" : 3
@@ -1075,7 +1075,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 328.0, 248.0, 103.0, 50.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ -1.0, 111.0, 121.0, 121.0 ],
+					"presentation_rect" : [ 0.0, 111.0, 121.0, 121.0 ],
 					"rightmargin" : 1,
 					"rightvalue" : 100,
 					"scaleknob" : 1,
@@ -1097,7 +1097,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 488.0, 248.0, 33.749329, 50.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 137.0, 111.0, 29.0, 121.0 ],
+					"presentation_rect" : [ 139.0, 111.0, 29.0, 121.0 ],
 					"slidercolor" : [ 0.952941, 0.745098, 0.0, 1.0 ],
 					"style" : "",
 					"thickness" : 3
@@ -1114,10 +1114,10 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 562.0, 248.0, 52.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 175.0, 92.0, 53.933167, 20.0 ],
+					"presentation_rect" : [ 177.0, 92.0, 47.933167, 20.0 ],
 					"style" : "",
 					"text" : "Spread",
-					"textjustification" : 1
+					"textjustification" : 0
 				}
 
 			}
@@ -1131,7 +1131,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 448.0, 248.0, 36.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 132.0, 92.0, 35.0, 20.0 ],
+					"presentation_rect" : [ 135.0, 92.0, 35.0, 20.0 ],
 					"style" : "",
 					"text" : "Shift",
 					"textjustification" : 1

@@ -43,7 +43,7 @@
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 56.0, 264.0, 5.0, 100.0 ],
+					"patching_rect" : [ 584.0, 272.0, 7.799988, 48.5 ],
 					"presentation" : 1,
 					"presentation_rect" : [ -2.0, 170.75, 121.0, 9.25 ]
 				}
@@ -56,7 +56,7 @@
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 424.0, 296.0, 5.0, 100.0 ],
+					"patching_rect" : [ 592.0, 272.0, 9.0, 48.5 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 59.5, 110.0, 5.0, 121.0 ]
 				}
@@ -88,7 +88,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 280.0, 360.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 173.985596, 206.919998, 52.0, 24.0 ],
+					"presentation_rect" : [ 181.985596, 206.919998, 52.0, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[9]",
@@ -896,7 +896,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 41.799988, 360.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 173.985596, 114.0, 52.0, 24.0 ],
+					"presentation_rect" : [ 181.985596, 114.0, 52.0, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[20]",
@@ -972,7 +972,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 217.799988, 360.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 173.985596, 175.946655, 52.0, 24.0 ],
+					"presentation_rect" : [ 181.985596, 175.946655, 52.0, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[16]",
@@ -1128,7 +1128,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 137.799988, 360.0, 51.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 173.985596, 144.973343, 52.0, 24.0 ],
+					"presentation_rect" : [ 181.985596, 144.973343, 52.0, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[6]",

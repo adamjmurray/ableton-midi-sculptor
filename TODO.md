@@ -16,13 +16,12 @@
   - control labels should be capitalized (compare with built in devices)
 
 - Refactoring
-  - I think having SwapTransformer keep track of the properties toggle state simplified the UI implementation, so consider doing similar things
-    with the other transformers
   - Rename amount1/2 to amountX/Y
 
 - Set
-  - Controls to set every N out of M notes to the value.
-  - Expanding on above, general controls for patterns? Like a step sequencer sort of thing (but just on/off toggles)
+  - Controls to set/not set values in a repeating pattern using a toggle grid with an adjustable length
+    - The pattern can be applied to either the notes (e.g. every other note) or all the notes within a cretain time unit
+      (e.g. every other beat)
 
 - Swap
   - ditch swap property and replace with dropdown:

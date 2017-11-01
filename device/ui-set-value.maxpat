@@ -336,7 +336,7 @@
 							"parameter_longname" : "velocity range[24]",
 							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
-							"parameter_mmin" : -127.0,
+							"parameter_mmin" : 1.0,
 							"parameter_mmax" : 128.0,
 							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 0 ],
@@ -576,15 +576,15 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
-			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-192" : [ "velocity range[22]", "velrange", 0 ],
-			"obj-194" : [ "velocity range[23]", "velrange", 0 ],
-			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
-			"obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
 			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
 			"obj-3" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-2" : [ "live.menu[1]", "live.menu", 0 ]
+			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
+			"obj-194" : [ "velocity range[23]", "velrange", 0 ],
+			"obj-192" : [ "velocity range[22]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -617,8 +617,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
