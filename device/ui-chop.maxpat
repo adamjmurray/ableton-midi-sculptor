@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 146.0, 240.0, 944.0, 490.0 ],
+		"rect" : [ 101.0, 76.0, 944.0, 490.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -634,11 +634,10 @@
 				"box" : 				{
 					"fontsize" : 12.0,
 					"id" : "obj-138",
-					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 424.0, 192.0, 56.0, 34.0 ],
+					"patching_rect" : [ 424.0, 192.0, 72.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 63.349121, 44.025024, 62.650879, 20.0 ],
 					"style" : "",
@@ -1072,18 +1071,18 @@
  ],
 		"parameters" : 		{
 			"obj-5::obj-141" : [ "velocity range[6]", "velrange", 0 ],
-			"obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
-			"obj-5::obj-143" : [ "live.text[5]", "live.text[2]", 0 ],
-			"obj-5::obj-155" : [ "live.text[4]", "live.text[2]", 0 ],
-			"obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
 			"obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-5::obj-142" : [ "velocity range[5]", "velrange", 0 ],
-			"obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-25" : [ "velocity range[9]", "velrange", 0 ],
+			"obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
+			"obj-154" : [ "live.text[18]", "live.text[2]", 0 ],
 			"obj-5::obj-144" : [ "velocity range[4]", "velrange", 0 ],
+			"obj-5::obj-155" : [ "live.text[4]", "live.text[2]", 0 ],
+			"obj-5::obj-142" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-171" : [ "live.menu[16]", "live.menu[5]", 0 ],
-			"obj-154" : [ "live.text[18]", "live.text[2]", 0 ]
+			"obj-5::obj-143" : [ "live.text[5]", "live.text[2]", 0 ],
+			"obj-62" : [ "live.text[10]", "live.text[6]", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -1123,8 +1122,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",

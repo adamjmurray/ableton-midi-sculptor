@@ -1,6 +1,7 @@
 import './polyfills'
 import { log } from './logger'
 import Controller, { SlidableProperty } from './controller'
+import { NotePropertyValue } from './transformers/set-transformer'
 log("___________________________________________________")
 log("Reload:", new Date())
 
@@ -85,12 +86,33 @@ export function swap_random(amount1, amount2) {
   controller.randomSwap(amount1, amount2)
 }
 
+function toNumericSetValue(value) {
+  if (typeof value === 'number') {
+    return value
+  } else {
+    if (value === 'muted') {
+      return NotePropertyValue.MUTED
+    } else if (value === 'deleted') {
+      return NotePropertyValue.DELETED
+    } else {
+      log('Invalid "Set" value:', value)
+      return null
+    }
+  }
+}
+
 export function set_values(property, value) {
-  controller.setValues(property, value)
+  var numericValue = toNumericSetValue(value)
+  if (numericValue != null) {
+    controller.setValues(property, numericValue)
+  }
 }
 
 export function set_random(property, value, amount1, amount2) {
-  controller.randomSetValues(property, value, amount1, amount2)
+  var numericValue = toNumericSetValue(value)
+  if (numericValue != null) {
+    controller.randomSetValues(property, numericValue, amount1, amount2)
+  }
 }
 
 export function chop_type(type, amount1, amount2) {

@@ -3,10 +3,10 @@ import Clip from './clip'
 import Note from './note'
 import Transformer from './transformers/transformer'
 import SlideTransformer, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
-import SetTransformer, { SettableProperty, NotePropertyValue } from './transformers/set-transformer'
+import SetTransformer, { SettableProperty } from './transformers/set-transformer'
 import SwapTransformer, { SwappableProperty, GroupType, ExtraGroupType } from './transformers/swap-transformer'
 import ChopTransformer, { ChopType, ChopEnvelopeType } from './transformers/chop-transformer'
-import { log } from './logger'
+// import { log } from './logger'
 
 export { SlidableProperty }
 
@@ -137,43 +137,14 @@ export default class Controller {
       this.swapTransformer.randomize2D(amount1, amount2))
   }
 
-  setValues(property: SettableProperty, value: number | string) {
-    let numericValue: number
-    // TODO move this (and similar code below) into main.js
-    if (typeof value === 'number') {
-      numericValue = value
-    }
-    else {
-      if (value === 'muted') {
-        numericValue = NotePropertyValue.MUTED
-      } else if (value === 'deleted') {
-        numericValue = NotePropertyValue.DELETED
-      } else {
-        log(`Invalid "Set" value: ${value}`)
-        return
-      }
-    }
+  setValues(property: SettableProperty, value: number) {
     this.transformNotes(() =>
-      this.setTransformer.setValues(property, numericValue))
+      this.setTransformer.setValues(property, value))
   }
 
-  randomSetValues(property: SettableProperty, value: number | string, amount1: number, amount2: number) {
-    let numericValue: number
-    if (typeof value === 'number') {
-      numericValue = value
-    }
-    else {
-      if (value === 'muted') {
-        numericValue = NotePropertyValue.MUTED
-      } else if (value === 'deleted') {
-        numericValue = NotePropertyValue.DELETED
-      } else {
-        log(`Invalid "Set" value: ${value}`)
-        return
-      }
-    }
+  randomSetValues(property: SettableProperty, value: number, amount1: number, amount2: number) {
     this.transformNotes(() =>
-      this.setTransformer.randomize2D(property, numericValue, amount1, amount2))
+      this.setTransformer.randomize2D(property, value, amount1, amount2))
   }
 
   setChopType(type: ChopType, amount1: number, amount2: number) {

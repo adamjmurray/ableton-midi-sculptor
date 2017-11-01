@@ -49,9 +49,9 @@ export default class SetTransformer extends Transformer {
         } else {
           note.set(property, this.oldNotes[index].get(property))
         }
-        
+
       }
-      notes.push(note)      
+      notes.push(note)
     })
     return notes
   }
