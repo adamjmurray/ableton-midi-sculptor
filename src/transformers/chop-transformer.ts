@@ -22,7 +22,7 @@ export default class ChopTransformer extends Transformer {
   private chopType = ChopType.TIME
   private time = 1
   private number = 1
-  private euclid = [1, 1]
+  private euclid = [1, 1] // [pulses, total]
   private _gate = 1
   private _envelope = ChopEnvelopeType.NONE
 
@@ -77,7 +77,23 @@ export default class ChopTransformer extends Transformer {
         }
       }
       else if (chopType === ChopType.EUCLID) {
-
+        const [pulses, total] = this.euclid
+        const segmentDuration = oldNote.duration / total
+        let note = oldNote.clone()
+        let numSegments = 0
+        let pulseCount = 0
+        let nextPulse = Math.floor(++pulseCount/pulses * total)
+        for (let i=0; i<=total; i++) {
+          if (i < nextPulse) {
+            numSegments++
+          } else { // end of pulse
+            note.duration = numSegments * segmentDuration
+            notes.push(note)
+            note = oldNote.clone()
+            note.start = i * segmentDuration
+            nextPulse = Math.floor(++pulseCount/pulses * total)
+          }
+        }
       }
     }
     return notes
