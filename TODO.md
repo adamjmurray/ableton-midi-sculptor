@@ -20,7 +20,20 @@
     with the other transformers
   - Rename amount1/2 to amountX/Y
 
+- Set
+  - Controls to set every N out of M notes to the value.
+  - Expanding on above, general controls for patterns? Like a step sequencer sort of thing (but just on/off toggles)
+
 - Swap
+  - ditch swap property and replace with dropdown:
+    - notes
+    - groups (see below)
+    - pitches
+    - velocities
+    - durations
+    - pitch + velocity
+    - pitch + duration
+    - velocity + duration
   - groupings
     - toggle to control scope, whether all operations apply within each group or to the groups themselves (swap entire groups)
       NOTE: when swapping entire groups, the number of notes may be different, so we might have to swap all parameters when the
@@ -28,8 +41,8 @@
       This seems tricky. Later...
       One idea for toggling this is to select every target (which normally does nothing). Kind of hidden, but there isn't much room for this toggle
       So when you "swap" groups I guess we are talking about swapping their start times relative to the min start time of the group
-      FIrst pass of this feature may be fine, but I imagine you'd want some kind of "fuzziness" when determining if a note shoudl be
-      included in the next group because it's start time is so close. And again we don't have much room...
+    - Some kind of "fuzziness" (sensitivity?) when determining if a note shoudl be
+      included in the next group because it's start time is so close.SHould have space for this after the above is done
 
 - Chop
   - control gate/sustain
