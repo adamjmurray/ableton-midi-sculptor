@@ -1,6 +1,6 @@
 import Transformer from './transformer'
 import Note, { NumericProperty } from '../note'
-import { log } from '../logger'
+// import { log } from '../logger'
 
 export type SettableProperty = NumericProperty | 'note'
 
@@ -22,7 +22,6 @@ export default class SetTransformer extends Transformer {
   }
 
   set pattern(pattern: boolean[]) {
-    log({ pattern })
     this._pattern = pattern
   }
 

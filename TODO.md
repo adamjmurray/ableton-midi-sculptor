@@ -8,6 +8,7 @@
   - Values seem to "jump" when lifting up from the x-y pad sometimes
     - Not sure much can be done? Seems like the component just has some "inertia"
   - Swap seems to malfunction sometimes because notes may need to be sorted by start time (try with a lot of notes - chop then randomize pitch)
+  - Confirm set transformer's time-based pattern works with negative start times
 
 - GUI
   - Don't forget to re-enable the "choose midi clip" overlay
@@ -19,9 +20,7 @@
   - Rename amount1/2 to amountX/Y
 
 - Set
-  - Controls to set/not set values in a repeating pattern using a toggle grid with an adjustable length
-    - The pattern can be applied to either the notes (e.g. every other note) or all the notes within a cretain time unit
-      (e.g. every other beat)
+  - Allow a number of notes to be set with the set pattern unit
   - allow setting 'unmuted'
 
 - Swap
