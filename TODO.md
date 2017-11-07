@@ -24,23 +24,11 @@
   - allow setting 'unmuted'
 
 - Swap
-  - ditch swap property and replace with dropdown:
-    - notes
-    - groups (see below)
-    - pitches
-    - velocities
-    - durations
-    - pitch + velocity
-    - pitch + duration
-    - velocity + duration
-  - groupings
-    - toggle to control scope, whether all operations apply within each group or to the groups themselves (swap entire groups)
-      NOTE: when swapping entire groups, the number of notes may be different, so we might have to swap all parameters when the
-      scope is set to "groups", and might want to gray out parameter controls
-      This seems tricky. Later...
-      One idea for toggling this is to select every target (which normally does nothing). Kind of hidden, but there isn't much room for this toggle
-      So when you "swap" groups I guess we are talking about swapping their start times relative to the min start time of the group
-    - Some kind of "fuzziness" (sensitivity?) when determining if a note shoudl be
+  - swap groups
+    - for time-based grouping, just swap the start times whilemaintaining the rhythm (relative start times) in each group
+    - for number-of-notes-based grouping, swap the start times where the group start is the start of the first note in the group
+      Note: this could lead to overlap between groups and lost notes, but I'm not sure how else this could be implemneted. It's a feature ;)
+    - Some kind of "fuzziness" (sensitivity?) when determining if a note should be
       included in the next group because it's start time is so close.SHould have space for this after the above is done
 
 - Chop
@@ -59,3 +47,5 @@
     - eucliean: offset the pattern
   - button to apply the chop to all selected notes
   - options to keep constant velocity, or fade it out/in with the duration
+  - usability idea: if we just applied the chop but the scultor window hasn't lost focus, maybe the tilt slider can apply to the
+    notes that were just chopped, instead of re-chopping (which I expect to be unintuitive but I'll have to test it out)

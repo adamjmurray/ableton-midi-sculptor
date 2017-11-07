@@ -99,8 +99,8 @@ export default class Controller {
       this.slideTransformer.spread(clip, property, amount))
   }
 
-  toggleSwapProperty(property: SwappableProperty, enabled: boolean) {
-    this.swapTransformer.toggleProperty(property, enabled)
+  swapTarget(target: SwappableProperty) {
+    this.swapTransformer.target = target
   }
 
   swapGroupBy(type: GroupType, size?: number, extraGroupType?: ExtraGroupType) {

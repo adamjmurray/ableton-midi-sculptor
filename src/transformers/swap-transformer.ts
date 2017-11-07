@@ -1,15 +1,15 @@
 import Transformer from './transformer'
-import Note, { NumericProperty } from '../note'
+import Note, { NumericProperty} from '../note'
 import { mod } from '../utils'
 // import { log } from '../logger'
 
-export type SwappableProperty = NumericProperty
+export type SwappableProperty = 'notes' | 'groups' | 'pitch' | 'velocity' | 'duration' | 'pitch + velocity' | 'pitch + duration' | 'velocity + duration'
 export type GroupType = 'all' | 'notes' | 'time'
 export type ExtraGroupType = 'first' | 'last' | 'any' | 'new'
 
 export default class SwapTransformer extends Transformer {
 
-  private properties: SwappableProperty[] = []
+  private _target: SwappableProperty = 'notes'
   private groupType: GroupType = 'all'
   private groupSize? = 2
   private extraGroupType?: ExtraGroupType = 'new'
@@ -18,18 +18,8 @@ export default class SwapTransformer extends Transformer {
     super.setNotes(notes)
   }
 
-  toggleProperty(property: SwappableProperty, enabled: boolean) {
-    const existingPropertyIndex = this.properties.indexOf(property)
-    const currentlyEnabled = existingPropertyIndex >= 0
-    if (enabled) {
-      if (!currentlyEnabled) {
-        this.properties.push(property)
-      }
-    } else { // disable
-      if (currentlyEnabled) {
-        this.properties.splice(existingPropertyIndex, 1)
-      }
-    }
+  set target(target: SwappableProperty) {
+    this._target = target
   }
 
   groupBy(type: GroupType, size?: number, extraGroupType?: ExtraGroupType) {
@@ -88,6 +78,19 @@ export default class SwapTransformer extends Transformer {
     return [notes.map((_,index) => index)] // fallback to one group containing all indexes
   }
 
+  private get targetProperties(): NumericProperty[] {
+    switch (this._target) {
+      case 'notes': return ['pitch', 'velocity', 'duration']
+      case 'pitch': return ['pitch']
+      case 'velocity': return ['velocity']
+      case 'duration': return ['duration']
+      case 'pitch + velocity': return ['pitch', 'velocity']
+      case 'pitch + duration': return ['pitch', 'duration']
+      case 'velocity + duration': return ['velocity', 'duration']
+      default: return []
+    }
+  }
+
   private transformGroups(mapGroupPosition: (positionInGroup: number, noteIndexesInGroup: number[], noteIndex: number) => number): Note[] {
     const { newNotes, oldNotes } = this
     const groupedIndexes = this.groupedIndexes
@@ -96,7 +99,8 @@ export default class SwapTransformer extends Transformer {
         const note = newNotes[noteIndex]
         const mappedPosition = mapGroupPosition(position, noteIndexes, noteIndex)
         const mappedNote = oldNotes[noteIndexes[mappedPosition]] || oldNotes[noteIndex]
-        this.properties.forEach(property => note.set(property, mappedNote.get(property)))
+        // TODO: need special handling for swapping groups
+        this.targetProperties.forEach(property => note.set(property, mappedNote.get(property)))
       })
     }
     return this.newNotes

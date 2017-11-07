@@ -54,8 +54,8 @@ export function slide_random(property, amount1, amount2) {
   controller.randomSlide(property, amount1, amount2)
 }
 
-export function swap_property(property, enabled) {
-  controller.toggleSwapProperty(property, enabled)
+export function swap_target(property) {
+  controller.swapTarget(property)
 }
 
 export function swap_group(type, size, extras) {
