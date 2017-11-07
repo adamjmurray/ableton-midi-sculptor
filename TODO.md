@@ -22,6 +22,7 @@
   - Controls to set/not set values in a repeating pattern using a toggle grid with an adjustable length
     - The pattern can be applied to either the notes (e.g. every other note) or all the notes within a cretain time unit
       (e.g. every other beat)
+  - allow setting 'unmuted'
 
 - Swap
   - ditch swap property and replace with dropdown:

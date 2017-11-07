@@ -3,7 +3,7 @@ import Clip from './clip'
 import Note from './note'
 import Transformer from './transformers/transformer'
 import SlideTransformer, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
-import SetTransformer, { SettableProperty } from './transformers/set-transformer'
+import SetTransformer, { SettableProperty, SetPatternUnitType } from './transformers/set-transformer'
 import SwapTransformer, { SwappableProperty, GroupType, ExtraGroupType } from './transformers/swap-transformer'
 import ChopTransformer, { ChopType, ChopEnvelopeType } from './transformers/chop-transformer'
 // import { log } from './logger'
@@ -140,6 +140,14 @@ export default class Controller {
   setValues(property: SettableProperty, value: number) {
     this.transformNotes(() =>
       this.setTransformer.setValues(property, value))
+  }
+
+  setPattern(pattern: boolean[]) {
+    this.setTransformer.pattern = pattern
+  }
+
+  setPatternUnit(unitType: SetPatternUnitType, unitAmount: number) {
+    this.setTransformer.setPatternUnit(unitType, unitAmount)
   }
 
   randomSetValues(property: SettableProperty, value: number, amount1: number, amount2: number) {

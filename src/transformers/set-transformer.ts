@@ -1,6 +1,6 @@
 import Transformer from './transformer'
 import Note, { NumericProperty } from '../note'
-// import { log } from '../logger'
+import { log } from '../logger'
 
 export type SettableProperty = NumericProperty | 'note'
 
@@ -9,21 +9,55 @@ export enum NotePropertyValue {
   DELETED
 }
 
+export type SetPatternUnitType = 'note' | 'time'
+
 export default class SetTransformer extends Transformer {
+
+  private _pattern: boolean[] = [true]
+  private patternUnitType: SetPatternUnitType = 'note'
+  private patternUnitAmount: number = 1
 
   set notes(notes: Note[]) {
     super.setNotes(notes)
   }
 
+  set pattern(pattern: boolean[]) {
+    log({ pattern })
+    this._pattern = pattern
+  }
+
+  setPatternUnit(unitType: SetPatternUnitType, unitAmount: number) {
+    this.patternUnitType = unitType
+    this.patternUnitAmount = unitAmount
+  }
+
+  private isNoteInPattern(note: Note, noteIndex: number) {
+    const pattern = this._pattern
+    if (this.patternUnitType === 'note') {
+      return pattern[noteIndex % pattern.length]
+    } else { // time
+      const offset = Math.floor(note.start / this.patternUnitAmount)
+      return pattern[offset % pattern.length]
+    }
+  }
+
   setValues(property: SettableProperty, value: number): Note[] {
     if (property === 'note') {
       if (value === NotePropertyValue.MUTED) {
-        this.newNotes.forEach(note => note.muted = true)
-      } else {
-        return [] // delete all the selected notes
+        this.newNotes.forEach((note, index) => {
+          if (this.isNoteInPattern(note, index)) {
+            note.muted = true
+          }
+        })
+      } else { // delete notes based on the pattern
+        return this.newNotes.filter((note, index) => !this.isNoteInPattern(note, index))
       }
     } else {
-      this.newNotes.forEach(note => note.set(property, value))
+      this.newNotes.forEach((note, index) => {
+        if (this.isNoteInPattern(note, index)) {
+          note.set(property, value)
+        }
+      })
     }
     return this.newNotes
   }

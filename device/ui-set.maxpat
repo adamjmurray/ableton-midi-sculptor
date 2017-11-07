@@ -474,6 +474,7 @@
 			}
 , 			{
 				"box" : 				{
+					"focusbordercolor" : [ 0.0, 0.019608, 0.078431, 0.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-38",
@@ -495,13 +496,15 @@
 							"parameter_mmax" : 16.0,
 							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 1.0 ],
-							"parameter_unitstyle" : 0
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
 						}
 
 					}
 ,
 					"showname" : 0,
 					"shownumber" : 0,
+					"slidercolor" : [ 0.332728, 0.330493, 0.315602, 1.0 ],
 					"varname" : "live.slider"
 				}
 
@@ -1808,23 +1811,23 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-4::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
-			"obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
-			"obj-38" : [ " ", "Pattern Length", 0 ],
-			"obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
-			"obj-199" : [ "live.text[2]", "live.text[2]", 0 ],
-			"obj-197" : [ "live.menu[2]", "live.menu", 0 ],
-			"obj-4::obj-3" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-4::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ],
-			"obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
-			"obj-11" : [ "live.text", "live.text", 0 ],
 			"obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
-			"obj-34" : [ "live.grid", "live.grid", 0 ],
 			"obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
+			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-11" : [ "live.text", "live.text", 0 ],
+			"obj-4::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-34" : [ "live.grid", "live.grid", 0 ],
+			"obj-4::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-38" : [ " ", "Pattern Length", 0 ],
+			"obj-45" : [ "live.menu[3]", "live.menu[1]", 0 ],
+			"obj-199" : [ "live.text[2]", "live.text[2]", 0 ],
+			"obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
+			"obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
 			"obj-198" : [ "velocity range[2]", "velrange", 0 ],
-			"obj-45" : [ "live.menu[3]", "live.menu[1]", 0 ]
+			"obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-4::obj-3" : [ "velocity range[1]", "velrange", 0 ],
+			"obj-197" : [ "live.menu[2]", "live.menu", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -1864,8 +1867,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",

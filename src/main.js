@@ -115,6 +115,15 @@ export function set_random(property, value, amount1, amount2) {
   }
 }
 
+export function set_pattern() {
+  var pattern = Array.prototype.slice.call(arguments).map(function(val) { return !!val })
+  controller.setPattern(pattern)
+}
+
+export function set_pattern_unit(unit_type, amount) {
+  controller.setPatternUnit(unit_type, amount)
+}
+
 export function chop_type(type, amount1, amount2) {
   controller.setChopType(type, amount1, amount2)
 }
