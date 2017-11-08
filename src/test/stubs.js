@@ -4,5 +4,5 @@ if (typeof post === 'undefined') {
 if (typeof LiveAPI === 'undefined') {
   LiveAPI = function LiveAPI(path) { this.path = path }
   LiveAPI.prototype.get = function(property) { return false }
-  LiveAPI.prototype.call = function() { return false }    
+  LiveAPI.prototype.call = function() { return false }
 }
