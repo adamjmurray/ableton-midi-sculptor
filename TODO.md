@@ -1,6 +1,8 @@
+
 - Bugs
   - SetTransformer target/property doesn't seem to initialize correctly (when editing the device, it showed note/deleted but mutest the notes when clicking "apply")
     - And similar issue with the edge behavior in the SlideTransformer. I think we just need loadbangs for most of the GUI inputs?
+    - AND swap transformer. This is bad. FIX IT!
   - I think utils.reflectedMod is wrong for negative n - need tests!
   - "method getwind called on invalid object" error - it's from the zoom.js script. It seems harmless, but I think we can avoid the error
     if we gate the script execution on whether the window is active (and may need to trigger the script whenever the window does become active)
@@ -15,6 +17,13 @@
   - Change color scheme to match live
     - mostly done but doesn't work quite right in Live 10
   - control labels should be capitalized (compare with built in devices)
+
+Misc
+  - Tests
+  - Check for updates feature (hit a 'latest version' text file on github master) - Document release process in README or DEVELOPERS.md
+  - Back port some things to the MIDI clip variator
+    - pitch sliding
+    - shuffle bug fix (all notes same value - notes disappear)
 
 - Refactoring
   - Rename amount1/2 to amountX/Y
@@ -32,11 +41,8 @@
       included in the next group because it's start time is so close.SHould have space for this after the above is done
 
 - Chop
-  - control gate/sustain
   - chop type:
-    - pick duration of each slice
-    - pick number of slices
-    - euclidean
+    - exponential (halve the duration every N notes) - but maybe this can be handled by the tilt slider?
   - random x-y depends on type
     - duration (min is choosen duration for each slice)
     - number (max is choosen number)
@@ -45,7 +51,6 @@
     - duration: start/end is choosen (or random) duration, gets progressively shorter
     - number: uses the choosen (or random) number, gets progressively shorter towards start/end
     - eucliean: offset the pattern
-  - button to apply the chop to all selected notes
   - options to keep constant velocity, or fade it out/in with the duration
   - usability idea: if we just applied the chop but the scultor window hasn't lost focus, maybe the tilt slider can apply to the
     notes that were just chopped, instead of re-chopping (which I expect to be unintuitive but I'll have to test it out)

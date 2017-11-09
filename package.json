@@ -12,12 +12,13 @@
   "devDependencies": {},
   "scripts": {
     "clean": "rm -rf build && rm -f device/sculptor.js",
-    "compile": "tsc && cp src/main.js build/main.js && cp -r src/test/. build/test",
+    "compile": "tsc && cp src/main.js build/main.js && cp -r src/tests/. build/tests",
     "bundle": "rollup --silent -c && sed -i \"s/export {.*};//\" device/sculptor.js",
     "build": "npm run compile && npm run bundle",
-    "watch": "node watch.js",
-    "build-tests": "npm run compile && rollup -c rollup.tests.js",
-    "test": "npm run build-tests && mocha build/test/all-tests.js"
+    "build:watch": "node watch.js",
+    "build:tests": "npm run compile && rollup --silent -c rollup.tests.js",
+    "test": "npm run build:tests && mocha -c build/tests/all-tests.js",
+    "test:watch": "node watch-tests.js"
   },
   "repository": {
     "type": "git",

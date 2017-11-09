@@ -3,7 +3,7 @@ import { mod } from '../utils'
 
 describe('utils', () => {
 
-  describe('mod', () => {
+  describe('mod()', () => {
     it('should behave like the % operator for positive numbers', () => {
       assert.equal(mod(0,3), 0 % 3)
       assert.equal(mod(2,3), 2 % 3)

@@ -100,4 +100,9 @@ export default class ChopTransformer extends Transformer {
     }
     return notes
   }
+
+  // TODO: latest version of TS seems to be stricter so I added this here to shut it up for now
+  applyEnvelope() {
+    return this._envelope.length
+  }
 }
