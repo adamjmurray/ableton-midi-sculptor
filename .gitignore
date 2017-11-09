@@ -1,3 +1,4 @@
 node_modules
 build
 device/sculptor.js
+*.stackdump
