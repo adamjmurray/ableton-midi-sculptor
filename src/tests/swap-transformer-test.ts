@@ -4,22 +4,22 @@ import SwapTransformer from '../transformers/swap-transformer'
 
 describe('SwapTransformer', () => {
 
-  let swapTransformer
-  let notes
+  let swapTransformer: SwapTransformer
+  let notes: Note[]
   beforeEach(() => {
     swapTransformer = new SwapTransformer()
   })
 
-  function makeNotes(...values) {
+  function makeNotes(...values: number[]) {
     return values.map(val => new Note({ start: val, pitch: val, velocity: val, duration: val }))
   }
 
-  function useNotes(...values) {
+  function useNotes(...values: number[]) {
     notes = makeNotes(...values)
     swapTransformer.notes = notes
   }
 
-  function clone(notes) {
+  function clone(notes: Note[]) {
     return notes.map(n => n.clone())
   }
 

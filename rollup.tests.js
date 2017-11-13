@@ -1,7 +1,7 @@
 import cleanup from 'rollup-plugin-cleanup'
 
 export default {
-  input: 'build/tests/index.js',
+  input: 'build/tests/tests-init.js',
   output: {
     file: 'build/tests/all-tests.js',
     format: 'es',

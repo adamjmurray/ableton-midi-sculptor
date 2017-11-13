@@ -6,3 +6,6 @@ if (typeof LiveAPI === 'undefined') {
   LiveAPI.prototype.get = function(property) { return false }
   LiveAPI.prototype.call = function() { return false }
 }
+
+import './utils-test'
+import './swap-transformer-test'
