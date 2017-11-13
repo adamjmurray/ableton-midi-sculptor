@@ -21,7 +21,7 @@ describe.only('Clip', () => {
   beforeEach(() => clip = new Clip(Clip.SELECTED_CLIP_PATH))
 
   describe('selectedNotes', () => {
-    it('returns the notes in the clip', () => {
+    it('returns the notes in the clip in sorted order (by time, pitch)', () => {
       LiveAPI.handleCall('get_selected_notes', () => returnNotes(makeNotes(3,2,1)))
       assert.deepEqual(makeNotes(1,2,3), clip.selectedNotes)
     })

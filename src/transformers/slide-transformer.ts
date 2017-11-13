@@ -8,7 +8,7 @@ function rotateOrReflect(notes: Note[], clip: Clip, operation: (n: number, q: nu
   for (const note of notes) {
     const relativeStart = note.start - clip.start
     note.start = operation(relativeStart, clip.length) + clip.start
-    note.pitch = operation(note.pitch, 127) 
+    note.pitch = operation(note.pitch, 127)
     note.velocity = operation(note.velocity, 127)
     const relativeDuration = note.duration - Note.MIN_DURATION
     note.duration = operation(relativeDuration, clip.length) + Note.MIN_DURATION
@@ -59,7 +59,7 @@ class SlidablePropertiesMetadata {
 // The Slider transformer keeps a separate copy of the original notes and regenerates modified notes
 // on each transformation, so we can safely modify here before serialization.
 // The return value still needs to be used, because the note list could be filtered.
-class EdgeTransformer { 
+class EdgeTransformer {
   readonly [key: string]: EdgeTransformation
 
   clip(notes: Note[], clip: Clip): Note[] {
@@ -83,7 +83,8 @@ class EdgeTransformer {
   remove(notes: Note[]): Note[] {
     // This serializers avoids clipping to min/max values.
     // When property values bcome invalid, the note is removed.
-    // The one exception is when velocity exceeds 127, it is clipped to 127 (it's undesirable to remove a note that gets "too loud")   
+    // The one exception is when velocity exceeds 127, it is clipped to 127
+    // (because it's undesirable to remove a note that gets "too loud")
     for (const note of notes) {
       note.velocity = Math.min(127, note.velocity)
     }
@@ -112,7 +113,7 @@ export default class SlideTransformer extends Transformer {
       for (const note of notes) {
         largestDeltaFromMin = Math.max(largestDeltaFromMin, Math.abs(min - note.get(property)))
         largestDeltaFromMidpoint = Math.max(largestDeltaFromMidpoint, Math.abs(midpoint - note.get(property)))
-        largestDeltaFromMax = Math.max(largestDeltaFromMax, Math.abs(max - note.get(property)))        
+        largestDeltaFromMax = Math.max(largestDeltaFromMax, Math.abs(max - note.get(property)))
       }
       const propertyMetadata = this.metadata[property]
       propertyMetadata.min = min
@@ -185,16 +186,16 @@ export default class SlideTransformer extends Transformer {
   /**
    2-D randomization for the notes' property value.
    - property is velocity, start, duration
-   - amount1 and amount2 should be from -1.0 to 1.0
-
+   - amountX and amountY should be from -1.0 to 1.0
    The randomization behavior is consistent until the next bang/reset, in other words:
    random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
 */
-  randomize2D(clip: Clip, property: SlidableProperty, amount1: number, amount2: number) {
+  randomize2D(clip: Clip, property: SlidableProperty, amountX: number, amountY: number) {
     const range = this.metadata[property].range
     // We halve the range because two random values are added, which would have a max of range + range
-    amount1 *= range/2
-    amount2 *= range/2
-    return this.transform(clip, property, (value, index) => value + (this.bipolarRandom1[index] * amount1) + (this.bipolarRandom2[index] * amount2))
+    amountX *= range/2
+    amountY *= range/2
+    return this.transform(clip, property,
+      (value, index) => value + (this.bipolarRandom1[index] * amountX) + (this.bipolarRandom2[index] * amountY))
   }
 }

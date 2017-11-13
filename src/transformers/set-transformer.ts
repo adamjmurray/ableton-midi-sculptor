@@ -61,10 +61,10 @@ export default class SetTransformer extends Transformer {
     return this.newNotes
   }
 
-  randomize2D(property: SettableProperty, value: number, amount1: number, amount2: number): Note[] {
+  randomize2D(property: SettableProperty, value: number, amountX: number, amountY: number): Note[] {
     const notes: Note[] = []
     this.newNotes.forEach((note, index) => {
-      if (this.isInRandomBounds(amount1, amount2, index)) {
+      if (this.isInRandomBounds(amountX, amountY, index)) {
         if (property === 'note') {
           if (value === NotePropertyValue.MUTED) {
             note.muted = true

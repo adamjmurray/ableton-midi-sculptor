@@ -45,13 +45,12 @@ export function slide_spread(property, amount) {
 /**
  2-D randomization for the notes' property value.
  - property is velocity, start, duration
- - amount1 and amount2 should be from -1.0 to 1.0
-
+ - amountX and amountY should be from -1.0 to 1.0
  The randomization behavior is consistent until the next bang/reset, in other words:
  random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
  */
-export function slide_random(property, amount1, amount2) {
-  controller.randomSlide(property, amount1, amount2)
+export function slide_random(property, amountX, amountY) {
+  controller.randomSlide(property, amountX, amountY)
 }
 
 export function swap_target(property) {
@@ -82,8 +81,8 @@ export function unzip() {
   controller.unzip()
 }
 
-export function swap_random(amount1, amount2) {
-  controller.randomSwap(amount1, amount2)
+export function swap_random(amountX, amountY) {
+  controller.randomSwap(amountX, amountY)
 }
 
 function toNumericSetValue(value) {
@@ -108,10 +107,10 @@ export function set_values(property, value) {
   }
 }
 
-export function set_random(property, value, amount1, amount2) {
+export function set_random(property, value, amountX, amountY) {
   var numericValue = toNumericSetValue(value)
   if (numericValue != null) {
-    controller.randomSetValues(property, numericValue, amount1, amount2)
+    controller.randomSetValues(property, numericValue, amountX, amountY)
   }
 }
 

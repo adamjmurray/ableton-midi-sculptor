@@ -11,6 +11,7 @@
   - FIXED? TEST: Swap seems to malfunction sometimes because notes may need to be sorted by start time (try with a lot of notes - chop then randomize pitch)
   - swap group targetting probably has bugs when the clip start is not 0 (see TODO comment)
   - Confirm set transformer's time-based pattern works with negative start times
+    - Both these issues can be fixed by making all note times relative to clip start
 
 - GUI
   - Don't forget to re-enable the "choose midi clip" overlay
@@ -24,9 +25,6 @@ Misc
   - Back port some things to the MIDI clip variator
     - pitch sliding
     - shuffle bug fix (all notes same value - notes disappear)
-
-- Refactoring
-  - Rename amount1/2 to amountX/Y
 
 - Set
   - Allow a number of notes to be set with the set pattern unit

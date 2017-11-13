@@ -84,9 +84,9 @@ export default class Controller {
     this.slideTransformer.spreadAnchor = anchor
   }
 
-  randomSlide(property: SlidableProperty, amount1: number, amount2: number) {
+  randomSlide(property: SlidableProperty, amountX: number, amountY: number) {
     this.transformNotes((clip: Clip) =>
-      this.slideTransformer.randomize2D(clip, property, amount1, amount2))
+      this.slideTransformer.randomize2D(clip, property, amountX, amountY))
   }
 
   shift(property: SlidableProperty, amount: number) {
@@ -132,9 +132,9 @@ export default class Controller {
       this.swapTransformer.unzip())
   }
 
-  randomSwap(amount1: number, amount2: number) {
+  randomSwap(amountX: number, amountY: number) {
     this.transformNotes(() =>
-      this.swapTransformer.randomize2D(amount1, amount2))
+      this.swapTransformer.randomize2D(amountX, amountY))
   }
 
   setValues(property: SettableProperty, value: number) {
@@ -150,9 +150,9 @@ export default class Controller {
     this.setTransformer.setPatternUnit(unitType, unitAmount)
   }
 
-  randomSetValues(property: SettableProperty, value: number, amount1: number, amount2: number) {
+  randomSetValues(property: SettableProperty, value: number, amountX: number, amountY: number) {
     this.transformNotes(() =>
-      this.setTransformer.randomize2D(property, value, amount1, amount2))
+      this.setTransformer.randomize2D(property, value, amountX, amountY))
   }
 
   setChopType(type: ChopType, amount1: number, amount2: number) {
