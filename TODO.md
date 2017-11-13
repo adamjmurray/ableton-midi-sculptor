@@ -34,9 +34,6 @@ Misc
 
 - Swap
   - swap groups
-    - for time-based grouping, just swap the start times whilemaintaining the rhythm (relative start times) in each group
-    - for number-of-notes-based grouping, swap the start times where the group start is the start of the first note in the group
-      Note: this could lead to overlap between groups and lost notes, but I'm not sure how else this could be implemneted. It's a feature ;)
     - Some kind of "fuzziness" (sensitivity?) when determining if a note should be
       included in the next group because it's start time is so close.SHould have space for this after the above is done
 

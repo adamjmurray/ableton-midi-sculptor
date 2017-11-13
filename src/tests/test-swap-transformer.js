@@ -81,7 +81,7 @@ describe('SwapTransformer', () => {
       })
     })
 
-    context('target: notes, groupBy: notes, size: 3', () => {
+    context('target: notes, groupBy: notes', () => {
       beforeEach(() => {
         useNotes(1,2,3,4,5,6)
         swapTransformer.target = 'notes'
@@ -92,6 +92,40 @@ describe('SwapTransformer', () => {
         const expected = makeNotes(2,3,1,5,6,4)
         expected.forEach((note, index) => note.start = notes[index].start)
         const actual = swapTransformer.rotate(1/notes.length)
+        assert.deepEqual(actual, expected)
+      })
+    })
+
+    context('target: groups, groupBy: notes', () => {
+      beforeEach(() => {
+        useNotes(1,2,3,4,6,8,10,11,12)
+        swapTransformer.target = 'groups'
+        swapTransformer.groupBy('notes', 3)
+      })
+
+      it('rotates within the group size', () => {
+        const expected = makeNotes(10,11,12,1,2,3,4,6,8)
+        const starts = [1,2,3,4,5,6,10,12,14]
+        starts.forEach((start, index) => expected[index].start = start)
+        const actual = swapTransformer.rotate(1/notes.length)
+        actual.sort((n1,n2) => n1.start - n2.start)
+        assert.deepEqual(actual, expected)
+      })
+    })
+
+    context('target: groups, groupBy: time', () => {
+      beforeEach(() => {
+        useNotes(0,1,2,4,5,7,12,13)
+        swapTransformer.target = 'groups'
+        swapTransformer.groupBy('time', 4)
+      })
+
+      it('rotates within the group size', () => {
+        const expected = makeNotes(12,13,0,1,2,4,5,7)
+        const starts = [0,1,4,5,6,8,9,11]
+        starts.forEach((start, index) => expected[index].start = start)
+        const actual = swapTransformer.rotate(1/notes.length)
+        actual.sort((n1,n2) => n1.start - n2.start)
         assert.deepEqual(actual, expected)
       })
     })

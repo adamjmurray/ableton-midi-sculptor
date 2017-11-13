@@ -1,7 +1,7 @@
 import Transformer from './transformer'
 import Note, { NumericProperty} from '../note'
 import { mod } from '../utils'
-import { log } from '../logger'
+// import { log } from '../logger'
 
 export type SwappableProperty = 'notes' | 'groups' | 'pitch' | 'velocity' | 'duration' | 'pitch + velocity' | 'pitch + duration' | 'velocity + duration'
 export type GroupType = 'all' | 'notes' | 'time'
@@ -71,6 +71,13 @@ export default class SwapTransformer extends Transformer {
           if (!groups[groupIndex]) groups[groupIndex] = []
           groups[groupIndex].push(noteIndex)
         })
+        // TODO: this isn't going to work right with clips that don't start at time 0
+        // I think we either need to know the clip start/end here, or we could make all note.starts be
+        // relative to the clip start, and then map the relative times back when updating the clip
+        // THe latter option is probably easiest?
+        for (let i = 0; i < groups.length; i++) {
+          if (!groups[i]) groups[i] = []
+        }
         return groups
         // Not doing this anymore because group-swapping can swap a group into an empty group's position
         // return groups.filter(group => group) // get rid of any gaps
@@ -96,32 +103,32 @@ export default class SwapTransformer extends Transformer {
   private transformGroups(mapGroupPosition: (position: number, groupSize: number, index: number) => number): Note[] {
     const { newNotes, oldNotes } = this
     const groupedIndexes = this.groupedIndexes
-    // TODO: need special handling for swapping groups
+    const groupSize = this.groupSize || 1
     if (this._target === 'groups') {
       if (groupedIndexes.length > 1) { // otherwise there is nothing to swap
         groupedIndexes.forEach((group, position) => {
+          if (!group.length) return
           const mappedPosition = mapGroupPosition(position, groupedIndexes.length, position)
-          const mappedGroup = groupedIndexes[mappedPosition] || group
-          // TODO: now swap the group. If the group type is 'note' then swap relative times from the first note of each group
+          let groupStart: number
+          let mappedStart: number
+          // Now swap the group. If the group type is 'note' then swap relative times from the first note of each group
           // If the group type is time, then swap group start times
           // TODO: we need to make sure it works repeatedly with random (see how we default the mappedNote to the oldNotes[noteIndex] below)
           if (this.groupType === 'notes') {
-            if (!group.length || !mappedGroup.length) return
-            const start = oldNotes[group[0]].start
-            const mappedStart = oldNotes[mappedGroup[0]].start
-            log({ group, mappedGroup, start, mappedStart })
-            for (const noteIndex of group) {
-              const note = newNotes[noteIndex]
-              const relativeStart = note.start - start
-              note.start = mappedStart + relativeStart
-            }
-            for (const noteIndex of mappedGroup) {
-              const note = newNotes[noteIndex]
-              const relativeStart = note.start - mappedStart
-              note.start = start + relativeStart
-            }
+            const mappedGroup = groupedIndexes[mappedPosition]
+            if (!mappedGroup.length) return
+            groupStart = oldNotes[group[0]].start
+            mappedStart = oldNotes[mappedGroup[0]].start
           } else if (this.groupType === 'time') {
-
+            groupStart = position * groupSize
+            mappedStart = mappedPosition * groupSize
+          } else {
+            return
+          }
+          for (const noteIndex of group) {
+            const note = newNotes[noteIndex]
+            const relativeStart = note.start - groupStart
+            note.start = mappedStart + relativeStart
           }
         })
       }
