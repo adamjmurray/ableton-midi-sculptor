@@ -10,7 +10,7 @@ describe('SwapTransformer', () => {
     swapTransformer = new SwapTransformer()
   })
 
-  function makeNotes(...values: number[]) {
+  function makeNotes(...values: number[]): Note[] {
     return values.map(val => new Note({ start: val, pitch: val, velocity: val, duration: val }))
   }
 
@@ -19,7 +19,7 @@ describe('SwapTransformer', () => {
     swapTransformer.notes = notes
   }
 
-  function clone(notes: Note[]) {
+  function clone(notes: Note[]): Note[] {
     return notes.map(n => n.clone())
   }
 
