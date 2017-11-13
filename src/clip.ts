@@ -70,10 +70,10 @@ export default class Clip {
     const notes = []
     for (let i = 2; i < data.length-1; i += 6) { // `i = 2` skips "notes count" at beginning, `< data.length-1` skips "done" at end
       notes.push(new Note({
-        pitch: Number(data[i+1]), 
-        start: Number(data[i+2]), 
-        duration: Number(data[i+3]), 
-        velocity: Number(data[i+4]), 
+        pitch: Number(data[i+1]),
+        start: Number(data[i+2]),
+        duration: Number(data[i+3]),
+        velocity: Number(data[i+4]),
         muted: Boolean(data[i+5]),
       }))
     }
