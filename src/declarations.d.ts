@@ -6,6 +6,9 @@ declare class LiveAPI {
   id: string
   get(property: string): ApiType
   call(...args: Array<ApiType>): ApiType
+  // for testing:
+  static handleGet(handler: (property: string) => void): void
+  static handleCall(method: string, handler: (...args: ApiType[]) => void): void
 }
 
 declare interface ObjectConstructor {

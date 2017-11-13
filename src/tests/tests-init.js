@@ -1,11 +1,25 @@
 if (typeof post === 'undefined') {
   post = console.log // Fallback when testing in Node.js
 }
+
+let getHandler
+let callHandlers = {}
+
 if (typeof LiveAPI === 'undefined') {
-  LiveAPI = function LiveAPI(path) { this.path = path }
-  LiveAPI.prototype.get = function(property) { return false }
-  LiveAPI.prototype.call = function() { return false }
+  LiveAPI = class LiveAPI {
+    static handleGet(handler) { getHandler = handler }
+    static handleCall(functionName, handler) { callHandlers[functionName] = handler }
+    constructor(path) { this.patch = path }
+    get(property) { return getHandler && getHandler(property) }
+    call(method) { return callHandlers[method] && callHandlers[method].apply(null, Array.prototype.slice.call(arguments)) }
+  }
 }
 
-import './utils-test'
+beforeEach(() => {
+  getHandler = null
+  callHandler = {}
+})
+
+import './clip-test'
 import './swap-transformer-test'
+import './utils-test'

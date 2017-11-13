@@ -77,6 +77,7 @@ export default class Clip {
         muted: Boolean(data[i+5]),
       }))
     }
+    notes.sort((n1,n2) => (n1.start - n2.start) || (n1.pitch - n2.pitch))
     return notes
   }
 

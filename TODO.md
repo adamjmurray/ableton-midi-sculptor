@@ -8,7 +8,7 @@
   - Make sure nothing blows up when there's no notes in the clip
   - Values seem to "jump" when lifting up from the x-y pad sometimes
     - Not sure much can be done? Seems like the component just has some "inertia"
-  - Swap seems to malfunction sometimes because notes may need to be sorted by start time (try with a lot of notes - chop then randomize pitch)
+  - FIXED? TEST: Swap seems to malfunction sometimes because notes may need to be sorted by start time (try with a lot of notes - chop then randomize pitch)
   - swap group targetting probably has bugs when the clip start is not 0 (see TODO comment)
   - Confirm set transformer's time-based pattern works with negative start times
 
