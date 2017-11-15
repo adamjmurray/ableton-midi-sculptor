@@ -2,12 +2,8 @@ import Transformer from './transformer'
 import Note, { NumericProperty } from '../note'
 // import { log } from '../logger'
 
-export enum NotePropertyValue {
-  DELETED,
-  MUTED,
-  UNMUTED
-}
-export type SettableProperty = NumericProperty | 'note'
+export type SettableProperty = 'note' | NumericProperty
+export type SettableValue = 'deleted' | 'muted' | 'unmuted'
 export type SetPatternUnitType = 'note' | 'time'
 
 export default class SetTransformer extends Transformer {
@@ -39,24 +35,23 @@ export default class SetTransformer extends Transformer {
     }
   }
 
-  setValues(property: SettableProperty, value: number): Note[] {
+  setValues(property: SettableProperty, value: SettableValue): Note[] {
+    const inPattern = this.isNoteInPattern
     if (property === 'note') {
-      switch(value) {
-        case NotePropertyValue.DELETED:
-          return this.newNotes.filter(
-            (note, index) => !this.isNoteInPattern(note, index))
-        case NotePropertyValue.MUTED:
-        case NotePropertyValue.UNMUTED:
-          const muted = (value === NotePropertyValue.MUTED)
-          this.newNotes.forEach((note, index) => {
-            if (this.isNoteInPattern(note, index)) {
-              note.muted = muted
-            }
-          })
+      if (value === 'deleted') {
+        return this.newNotes.filter((note, index) => !inPattern(note, index))
       }
-    } else {
+      else if (value === 'muted' || value === 'unmuted') {
+        const muted = (value === 'muted')
+        this.newNotes.forEach((note, index) => {
+          if (inPattern(note, index)) {
+            note.muted = muted
+          }
+        })
+      }
+    } else if (typeof value === 'number') {
       this.newNotes.forEach((note, index) => {
-        if (this.isNoteInPattern(note, index)) {
+        if (inPattern(note, index)) {
           note.set(property, value)
         }
       })
@@ -64,28 +59,28 @@ export default class SetTransformer extends Transformer {
     return this.newNotes
   }
 
-  randomize2D(property: SettableProperty, value: number, amountX: number, amountY: number): Note[] {
+  randomize2D(property: SettableProperty, value: SettableValue, amountX: number, amountY: number): Note[] {
     const notes: Note[] = []
     this.newNotes.forEach((note, index) => {
       if (this.isInRandomBounds(amountX, amountY, index)) {
         if (property === 'note') {
-          if (value === NotePropertyValue.MUTED) {
-            note.muted = true
-          } else {
+          if (value === 'deleted') {
             return // delete the note
+          } else if (value === 'muted') {
+            note.muted = true
+          } else if (value === 'unmuted') {
+            note.muted = false
           }
-        } else {
+        }
+        else if (typeof value === 'number') {
           note.set(property, value)
         }
-      } else {
+      } else { // reset back to oldNote value (since randomization occurs multiple times before a desync)
         if (property === 'note') {
-          if (value === NotePropertyValue.MUTED) {
-            note.muted = this.oldNotes[index].muted
-          }
+          note.muted = this.oldNotes[index].muted
         } else {
           note.set(property, this.oldNotes[index].get(property))
         }
-
       }
       notes.push(note)
     })

@@ -16,7 +16,7 @@
   - control labels should be capitalized (compare with built in devices)
 
 Misc
-  - Tests
+  - More tests
   - Check for updates feature (hit a 'latest version' text file on github master) - Document release process in README or DEVELOPERS.md
   - Back port some things to the MIDI clip variator
     - pitch sliding
@@ -26,6 +26,9 @@ Misc
   - swap groups
     - Some kind of "fuzziness" (sensitivity?) when determining if a note should be
       included in the next group because it's start time is so close.SHould have space for this after the above is done
+
+- Set
+  - should the pattern apply to the randomization behavior too? Make it a toggle? Over-engineering this thing?
 
 - Chop
   - rename chop to slice?
