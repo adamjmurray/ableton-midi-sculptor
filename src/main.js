@@ -57,6 +57,8 @@ export function swap_target(property) {
 }
 
 export function swap_group(type, size, extras) {
+  // log('swap_group', type, size, extras)
+  // TODO: now 'extras' can be the offset when grouping by time
   controller.swapGroupBy(type, size, extras)
 }
 

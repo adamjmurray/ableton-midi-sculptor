@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 549.0, 654.0, 1011.0, 567.0 ],
+		"rect" : [ 233.0, 700.0, 1011.0, 567.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -529,11 +529,11 @@
 					"name" : "ui-swap-grouping.maxpat",
 					"numinlets" : 2,
 					"numoutlets" : 1,
-					"offset" : [ 0.0, 0.0 ],
+					"offset" : [ 0.0, -120.0 ],
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 680.0, 280.0, 156.47406, 48.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 58.748199, 45.5, 159.0, 40.0 ],
+					"presentation_rect" : [ 58.748199, 38.5, 181.0, 57.5 ],
 					"viewvisibility" : 1
 				}
 
@@ -545,9 +545,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
-					"patching_rect" : [ 680.0, 208.0, 36.0, 22.0 ],
+					"patching_rect" : [ 680.0, 208.0, 43.0, 22.0 ],
 					"style" : "",
-					"text" : "* -48"
+					"text" : "* -100"
 				}
 
 			}
@@ -1323,17 +1323,18 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-22" : [ "live.menu[1]", "live.menu[5]", 0 ],
-			"obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
-			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
-			"obj-31::obj-168" : [ "velocity range[10]", "velrange", 0 ],
-			"obj-31::obj-167" : [ "live.menu[15]", "live.menu", 0 ],
-			"obj-31::obj-164" : [ "live.menu[14]", "live.menu[5]", 0 ],
 			"obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
-			"obj-31::obj-169" : [ "live.text[13]", "live.text[2]", 0 ],
+			"obj-31::obj-168" : [ "velocity range[10]", "velrange", 0 ],
+			"obj-110" : [ "live.text[16]", "live.text[6]", 0 ],
+			"obj-31::obj-164" : [ "live.menu[14]", "live.menu[5]", 0 ],
 			"obj-139" : [ "live.menu[13]", "live.menu[5]", 0 ],
+			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
 			"obj-31::obj-172" : [ "velocity range[11]", "velrange", 0 ],
-			"obj-110" : [ "live.text[16]", "live.text[6]", 0 ]
+			"obj-22" : [ "live.menu[1]", "live.menu[5]", 0 ],
+			"obj-31::obj-5" : [ "offset", "offset", 0 ],
+			"obj-31::obj-169" : [ "live.text[13]", "live.text[2]", 0 ],
+			"obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
+			"obj-31::obj-167" : [ "live.menu[15]", "live.menu", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
