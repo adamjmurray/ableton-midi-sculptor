@@ -1,11 +1,6 @@
 
 - Bugs
-  - SetTransformer target/property doesn't seem to initialize correctly (when editing the device, it showed note/deleted but muted the notes when clicking "apply")
-    - And similar issue with the edge behavior in the SlideTransformer. I think we just need loadbangs for most of the GUI inputs?
-    - AND swap transformer. This is bad. FIX IT!
-    - I can't reproduce with a fresh instance that's not open for edit. Might be an editing / JS script reset issue
-  - "method getwind called on invalid object" error - it's from the zoom.js script. It seems harmless, but I think we can avoid the error
-    if we gate the script execution on whether the window is active (and may need to trigger the script whenever the window does become active)
+  - Some numboxes get "stuck" (usually on the first value). Check the number of steps in the inspector. It's probably too high
   - Make sure nothing blows up when there's no notes in the clip
   - Values seem to "jump" when lifting up from the x-y pad sometimes
     - Not sure much can be done? Seems like the component just has some "inertia"
@@ -26,9 +21,6 @@ Misc
   - Back port some things to the MIDI clip variator
     - pitch sliding
     - shuffle bug fix (all notes same value - notes disappear)
-
-- Set
-  - Allow a number of notes to be set with the set pattern unit
 
 - Swap
   - swap groups

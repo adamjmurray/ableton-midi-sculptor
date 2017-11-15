@@ -32,7 +32,7 @@ export default class SetTransformer extends Transformer {
   private isNoteInPattern(note: Note, noteIndex: number) {
     const pattern = this._pattern
     if (this.patternUnitType === 'note') {
-      return pattern[noteIndex % pattern.length]
+      return pattern[Math.floor(noteIndex/this.patternUnitAmount) % pattern.length]
     } else { // time
       const offset = Math.floor(note.start / this.patternUnitAmount)
       return pattern[offset % pattern.length]

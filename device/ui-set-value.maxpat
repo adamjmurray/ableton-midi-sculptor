@@ -336,7 +336,6 @@
 							"parameter_longname" : "velocity range[24]",
 							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
-							"parameter_mmin" : 1.0,
 							"parameter_mmax" : 128.0,
 							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 0 ],

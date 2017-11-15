@@ -95,14 +95,14 @@ function toNumericSetValue(value) {
 }
 
 export function set_values(property, value) {
-  var numericValue = toNumericSetValue(value)
+  var numericValue = property === 'note' ? toNumericSetValue(value) : value
   if (numericValue != null) {
     controller.setValues(property, numericValue)
   }
 }
 
 export function set_random(property, value, amountX, amountY) {
-  var numericValue = toNumericSetValue(value)
+  var numericValue = property === 'note' ? toNumericSetValue(value) : value
   if (numericValue != null) {
     controller.randomSetValues(property, numericValue, amountX, amountY)
   }
