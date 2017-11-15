@@ -27,9 +27,6 @@ Misc
     - Some kind of "fuzziness" (sensitivity?) when determining if a note should be
       included in the next group because it's start time is so close.SHould have space for this after the above is done
 
-- Set
-  - should the pattern apply to the randomization behavior too? Make it a toggle? Over-engineering this thing?
-
 - Chop
   - rename chop to slice?
   - chop type:

@@ -62,24 +62,25 @@ export default class SetTransformer extends Transformer {
   randomize2D(property: SettableProperty, value: SettableValue, amountX: number, amountY: number): Note[] {
     const notes: Note[] = []
     this.newNotes.forEach((note, index) => {
-      if (this.isInRandomBounds(amountX, amountY, index)) {
-        if (property === 'note') {
-          if (value === 'deleted') {
-            return // delete the note
-          } else if (value === 'muted') {
-            note.muted = true
-          } else if (value === 'unmuted') {
-            note.muted = false
+      if (this.isNoteInPattern(note, index)) {
+        if (this.isInRandomBounds(amountX, amountY, index)) {
+          if (property === 'note') {
+            if (value === 'deleted') {
+              return // delete the note
+            } else if (value === 'muted') {
+              note.muted = true
+            } else if (value === 'unmuted') {
+              note.muted = false
+            }
+          } else if (typeof value === 'number') {
+            note.set(property, value)
           }
-        }
-        else if (typeof value === 'number') {
-          note.set(property, value)
-        }
-      } else { // reset back to oldNote value (since randomization occurs multiple times before a desync)
-        if (property === 'note') {
-          note.muted = this.oldNotes[index].muted
-        } else {
-          note.set(property, this.oldNotes[index].get(property))
+        } else { // reset back to oldNote value (since randomization occurs multiple times before a desync)
+          if (property === 'note') {
+            note.muted = this.oldNotes[index].muted
+          } else {
+            note.set(property, this.oldNotes[index].get(property))
+          }
         }
       }
       notes.push(note)
