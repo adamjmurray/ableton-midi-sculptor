@@ -86,17 +86,11 @@ export function swap_random(amountX, amountY) {
 }
 
 function toNumericSetValue(value) {
-  if (typeof value === 'number') {
-    return value
-  } else {
-    if (value === 'muted') {
-      return NotePropertyValue.MUTED
-    } else if (value === 'deleted') {
-      return NotePropertyValue.DELETED
-    } else {
-      log('Invalid "Set" value:', value)
-      return null
-    }
+  switch(value) {
+    case 'deleted': return NotePropertyValue.DELETED
+    case 'muted': return NotePropertyValue.MUTED
+    case 'unmuted': return NotePropertyValue.UNMUTED
+    default: log('Invalid "Set" value:', value)
   }
 }
 

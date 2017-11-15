@@ -2,13 +2,12 @@ import Transformer from './transformer'
 import Note, { NumericProperty } from '../note'
 // import { log } from '../logger'
 
-export type SettableProperty = NumericProperty | 'note'
-
 export enum NotePropertyValue {
+  DELETED,
   MUTED,
-  DELETED
+  UNMUTED
 }
-
+export type SettableProperty = NumericProperty | 'note'
 export type SetPatternUnitType = 'note' | 'time'
 
 export default class SetTransformer extends Transformer {
@@ -42,14 +41,18 @@ export default class SetTransformer extends Transformer {
 
   setValues(property: SettableProperty, value: number): Note[] {
     if (property === 'note') {
-      if (value === NotePropertyValue.MUTED) {
-        this.newNotes.forEach((note, index) => {
-          if (this.isNoteInPattern(note, index)) {
-            note.muted = true
-          }
-        })
-      } else { // delete notes based on the pattern
-        return this.newNotes.filter((note, index) => !this.isNoteInPattern(note, index))
+      switch(value) {
+        case NotePropertyValue.DELETED:
+          return this.newNotes.filter(
+            (note, index) => !this.isNoteInPattern(note, index))
+        case NotePropertyValue.MUTED:
+        case NotePropertyValue.UNMUTED:
+          const muted = (value === NotePropertyValue.MUTED)
+          this.newNotes.forEach((note, index) => {
+            if (this.isNoteInPattern(note, index)) {
+              note.muted = muted
+            }
+          })
       }
     } else {
       this.newNotes.forEach((note, index) => {

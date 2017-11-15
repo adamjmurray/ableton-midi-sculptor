@@ -254,13 +254,13 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 40.516846, 202.0, 100.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.383179, 0.474976, 61.0, 17.0 ],
+					"presentation_rect" : [ 0.383179, 0.474976, 65.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.menu[21]",
 							"parameter_shortname" : "live.menu[1]",
 							"parameter_type" : 2,
-							"parameter_enum" : [ "deleted", "muted" ],
+							"parameter_enum" : [ "deleted", "muted", "unmuted" ],
 							"parameter_invisible" : 2
 						}
 
@@ -576,15 +576,15 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
-			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
 			"obj-3" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
+			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
 			"obj-194" : [ "velocity range[23]", "velrange", 0 ],
-			"obj-192" : [ "velocity range[22]", "velrange", 0 ]
+			"obj-192" : [ "velocity range[22]", "velrange", 0 ],
+			"obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -617,8 +617,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
