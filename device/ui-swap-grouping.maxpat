@@ -81,8 +81,8 @@
 							"parameter_longname" : "offset",
 							"parameter_shortname" : "offset",
 							"parameter_type" : 0,
-							"parameter_mmin" : -0.25,
-							"parameter_mmax" : 0.25,
+							"parameter_mmin" : -0.5,
+							"parameter_mmax" : 0.5,
 							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 0 ],
 							"parameter_unitstyle" : 5,
@@ -673,10 +673,10 @@
 		"parameters" : 		{
 			"obj-168" : [ "velocity range[10]", "velrange", 0 ],
 			"obj-164" : [ "live.menu[14]", "live.menu[5]", 0 ],
-			"obj-172" : [ "velocity range[11]", "velrange", 0 ],
-			"obj-5" : [ "offset", "offset", 0 ],
 			"obj-169" : [ "live.text[13]", "live.text[2]", 0 ],
-			"obj-167" : [ "live.menu[15]", "live.menu", 0 ]
+			"obj-5" : [ "offset", "offset", 0 ],
+			"obj-167" : [ "live.menu[15]", "live.menu", 0 ],
+			"obj-172" : [ "velocity range[11]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -709,8 +709,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",

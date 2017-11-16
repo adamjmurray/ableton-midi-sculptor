@@ -10,6 +10,7 @@
     - Both these issues can be fixed by making all note times relative to clip start
 
 - GUI
+  - Improve window sizing (too much space on right and bottom)
   - Don't forget to re-enable the "choose midi clip" overlay
   - Change color scheme to match live
     - mostly done but doesn't work quite right in Live 10
@@ -18,14 +19,11 @@
 Misc
   - More tests
   - Check for updates feature (hit a 'latest version' text file on github master) - Document release process in README or DEVELOPERS.md
+    - Try using the maxurl object
+    - Probably need to develop this with the midi clip variator (since it's a public repo)
   - Back port some things to the MIDI clip variator
     - pitch sliding
     - shuffle bug fix (all notes same value - notes disappear)
-
-- Swap
-  - swap groups
-    - Some kind of "fuzziness" (sensitivity?) when determining if a note should be
-      included in the next group because it's start time is so close.SHould have space for this after the above is done
 
 - Chop
   - rename chop to slice?

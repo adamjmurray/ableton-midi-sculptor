@@ -56,10 +56,11 @@ export function swap_target(property) {
   controller.swapTarget(property)
 }
 
-export function swap_group(type, size, extras) {
-  // log('swap_group', type, size, extras)
-  // TODO: now 'extras' can be the offset when grouping by time
-  controller.swapGroupBy(type, size, extras)
+// The 'param' can be either:
+// - the 'extras' setting for 'notes' group type
+// - the 'offset' setting for 'time' group type
+export function swap_group(type, size, param) {
+  controller.swapGroupBy(type, size, param)
 }
 
 export function rotate(amount) {

@@ -12,7 +12,8 @@ export default class SwapTransformer extends Transformer {
   private _target: SwappableProperty = 'notes'
   private groupType: GroupType = 'all'
   private groupSize? = 2
-  private extraGroupType?: ExtraGroupType = 'new'
+  private extraGroupType: ExtraGroupType = 'new' // for note groupings
+  private groupOffsetPercent: number = 0 // for time groupings, 100% is 1.0, negative values allowed
 
   set notes(notes: Note[]) {
     super.setNotes(notes)
@@ -22,10 +23,22 @@ export default class SwapTransformer extends Transformer {
     this._target = target
   }
 
-  groupBy(type: GroupType, size?: number, extraGroupType?: ExtraGroupType) {
+  groupBy(type: GroupType, size?: number, param?: ExtraGroupType | number) {
     this.groupType = type
     this.groupSize = size
-    this.extraGroupType = extraGroupType
+    if (type === 'notes') {
+      if (param != null && typeof param !== 'number') {
+        this.extraGroupType = param
+      } else {
+        this.extraGroupType = 'new'
+      }
+    } else if (type === 'time') {
+      if (typeof param === 'number') {
+        this.groupOffsetPercent = param
+      } else {
+        this.groupOffsetPercent = 0
+      }
+    }
   }
 
   private get groupedIndexes(): number[][] {
@@ -66,11 +79,17 @@ export default class SwapTransformer extends Transformer {
       }
 
       else if (this.groupType === 'time') {
+        const groupOffsetPercent = this.groupOffsetPercent
         notes.forEach((note, noteIndex) => {
-          const groupIndex = Math.floor(note.start / groupSize)
+          const groupIndex = Math.floor((note.start - groupOffsetPercent * groupSize) / groupSize)
           if (!groups[groupIndex]) groups[groupIndex] = []
           groups[groupIndex].push(noteIndex)
         })
+        if (groups[-1]) {
+          // If we end up with a negative index due to the groupOffsetPercent, prepend it:
+          groups.unshift(groups[-1])
+          delete groups[-1]
+        }
         // TODO: this isn't going to work right with clips that don't start at time 0
         // I think we either need to know the clip start/end here, or we could make all note.starts be
         // relative to the clip start, and then map the relative times back when updating the clip
@@ -79,10 +98,7 @@ export default class SwapTransformer extends Transformer {
           if (!groups[i]) groups[i] = []
         }
         return groups
-        // Not doing this anymore because group-swapping can swap a group into an empty group's position
-        // return groups.filter(group => group) // get rid of any gaps
       }
-
     }
     return [notes.map((_,index) => index)] // fallback to one group containing all indexes
   }

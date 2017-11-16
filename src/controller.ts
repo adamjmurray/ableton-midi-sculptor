@@ -103,8 +103,8 @@ export default class Controller {
     this.swapTransformer.target = target
   }
 
-  swapGroupBy(type: GroupType, size?: number, extraGroupType?: ExtraGroupType) {
-    this.swapTransformer.groupBy(type, size, extraGroupType)
+  swapGroupBy(type: GroupType, size?: number, param?: ExtraGroupType | number) {
+    this.swapTransformer.groupBy(type, size, param)
   }
 
   rotate(amount: number) {
