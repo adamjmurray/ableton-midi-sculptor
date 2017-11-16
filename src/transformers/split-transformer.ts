@@ -1,42 +1,31 @@
 import Transformer from './transformer'
 import Note from '../note'
-// import { log } from '../logger'
+import { log } from '../logger'
 
-export enum ChopType {
-  TIME = 'time',
-  NUMBER = 'number',
-  EUCLID = 'euclid'
-   // TODO: maybe  | 'exponential', halves the duration after `amount` times
-}
+export type SplitType = 'time' | 'note' | 'euclid' // and maybe  | 'exponential', halves the duration after `amount` times
+export type SplitEnvelopeType = 'none' | 'ramp-up' | 'ramp-down' | 'curve-up' | 'curve-down'
 
-export enum ChopEnvelopeType {
-  NONE = 'none',
-  RAMP_UP = 'ramp-up',
-  RAMP_DOWN = 'ramp-down',
-  CURVE_UP = 'curve-up',
-  CURVE_DOWN = 'curve-down',
-}
+export default class SplitTransformer extends Transformer {
 
-export default class ChopTransformer extends Transformer {
-
-  private chopType = ChopType.TIME
+  private splitType = 'time'
   private time = 1
   private number = 1
   private euclid = [1, 1] // [pulses, total]
   private _gate = 1
-  private _envelope = ChopEnvelopeType.NONE
+  private _envelope = 'none'
 
   set notes(notes: Note[]) {
     super.setNotes(notes)
   }
 
-  setChopType(type: ChopType, amount1: number = 1, amount2: number = 1) {
-    this.chopType = type
-    if (type === ChopType.TIME) {
+  setSplitType(type: SplitType, amount1: number = 1, amount2: number = 1) {
+    log('setting split type', { type, amount1, amount2 })
+    this.splitType = type
+    if (type === 'time') {
       this.time = amount1
-    } else if (type === ChopType.NUMBER) {
+    } else if (type === 'note') {
       this.number = amount1
-    } else if (type === ChopType.EUCLID) {
+    } else if (type === 'euclid') {
       this.euclid = [amount1, amount2]
     }
   }
@@ -45,15 +34,15 @@ export default class ChopTransformer extends Transformer {
     this._gate = gate
   }
 
-  set envelope(envelope: ChopEnvelopeType) {
+  set envelope(envelope: SplitEnvelopeType) {
     this._envelope = envelope
   }
 
-  chop() {
+  split() {
     const notes: Note[] = []
-    const { oldNotes, chopType, time, number, _gate: gate } = this
+    const { oldNotes, splitType, time, number, _gate: gate } = this
     for (const oldNote of oldNotes) {
-      if (chopType === ChopType.TIME) {
+      if (splitType === 'time') {
         const duration = gate * time
         for (let t = 0; t < oldNote.duration; t += time) {
           const note = oldNote.clone()
@@ -66,7 +55,7 @@ export default class ChopTransformer extends Transformer {
           notes.push(note)
         }
       }
-      else if (chopType === ChopType.NUMBER) {
+      else if (splitType === 'note') {
         const timeBetweenNotes = oldNote.duration / number
         const duration = gate * timeBetweenNotes
         for(let i = 0; i < number; i++) {
@@ -76,7 +65,7 @@ export default class ChopTransformer extends Transformer {
           notes.push(note)
         }
       }
-      else if (chopType === ChopType.EUCLID) {
+      else if (splitType ==='euclid') {
         const [pulses, total] = this.euclid
         const segmentDuration = oldNote.duration / total
         let note = oldNote.clone()

@@ -25,10 +25,10 @@ describe('SwapTransformer', () => {
 
   describe('rotate()', () => {
 
-    context('target: notes, groupBy: all', () => {
+    context('target: note, groupBy: all', () => {
       beforeEach(() => {
         useNotes(1,2,3,4)
-        swapTransformer.target = 'notes'
+        swapTransformer.target = 'note'
         swapTransformer.groupBy('all')
       })
 
@@ -81,10 +81,10 @@ describe('SwapTransformer', () => {
       })
     })
 
-    context('target: notes, groupBy: notes', () => {
+    context('target: note, groupBy: notes', () => {
       beforeEach(() => {
         useNotes(1,2,3,4,5,6)
-        swapTransformer.target = 'notes'
+        swapTransformer.target = 'note'
         swapTransformer.groupBy('notes', 3)
       })
 
@@ -96,10 +96,10 @@ describe('SwapTransformer', () => {
       })
     })
 
-    context('target: groups, groupBy: notes', () => {
+    context('target: group, groupBy: notes', () => {
       beforeEach(() => {
         useNotes(1,2,3,4,6,8,10,11,12)
-        swapTransformer.target = 'groups'
+        swapTransformer.target = 'group'
         swapTransformer.groupBy('notes', 3)
       })
 
@@ -113,10 +113,10 @@ describe('SwapTransformer', () => {
       })
     })
 
-    context('target: groups, groupBy: time', () => {
+    context('target: group, groupBy: time', () => {
       beforeEach(() => {
         useNotes(0,1,2,4,5,7,12,13)
-        swapTransformer.target = 'groups'
+        swapTransformer.target = 'group'
         swapTransformer.groupBy('time', 4)
       })
 

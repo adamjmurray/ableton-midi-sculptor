@@ -5,7 +5,7 @@ import Transformer from './transformers/transformer'
 import SlideTransformer, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
 import SetTransformer, { SettableProperty, SettableValue, SetPatternUnitType } from './transformers/set-transformer'
 import SwapTransformer, { SwappableProperty, GroupType, ExtraGroupType } from './transformers/swap-transformer'
-import ChopTransformer, { ChopType, ChopEnvelopeType } from './transformers/chop-transformer'
+import SplitTransformer, { SplitType, SplitEnvelopeType } from './transformers/split-transformer'
 // import { log } from './logger'
 
 export { SlidableProperty }
@@ -18,10 +18,10 @@ export default class Controller {
   private slideTransformer = new SlideTransformer()
   private setTransformer = new SetTransformer()
   private swapTransformer = new SwapTransformer
-  private chopTransformer = new ChopTransformer()
+  private splitTransformer = new SplitTransformer()
 
   private get transformers(): Transformer[] {
-    return [this.slideTransformer, this.setTransformer, this.swapTransformer, this.chopTransformer]
+    return [this.slideTransformer, this.setTransformer, this.swapTransformer, this.splitTransformer]
   }
 
   private sync() {
@@ -155,20 +155,20 @@ export default class Controller {
       this.setTransformer.randomize2D(property, value, amountX, amountY))
   }
 
-  setChopType(type: ChopType, amount1: number, amount2: number) {
-    this.chopTransformer.setChopType(type, amount1, amount2)
+  setSplitType(type: SplitType, amount1: number, amount2: number) {
+    this.splitTransformer.setSplitType(type, amount1, amount2)
   }
 
-  set chopGate(amount: number) {
-    this.chopTransformer.gate = amount
+  set splitGate(amount: number) {
+    this.splitTransformer.gate = amount
   }
 
-  chopEnvelope(type: ChopEnvelopeType) {
-    this.chopTransformer.envelope = type
+  splitEnvelope(type: SplitEnvelopeType) {
+    this.splitTransformer.envelope = type
   }
 
-  chop() {
+  split() {
     this.transformNotes(() =>
-      this.chopTransformer.chop())
+      this.splitTransformer.split())
   }
 }

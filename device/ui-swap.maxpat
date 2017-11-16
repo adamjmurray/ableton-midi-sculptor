@@ -54,7 +54,7 @@
 							"parameter_longname" : "live.menu[1]",
 							"parameter_shortname" : "live.menu[5]",
 							"parameter_type" : 2,
-							"parameter_enum" : [ "notes", "groups", "pitch", "velocity", "duration", "pitch + velocity", "pitch + duration", "velocity + duration" ],
+							"parameter_enum" : [ "note", "group", "pitch", "velocity", "duration", "pitch + velocity", "pitch + duration", "velocity + duration" ],
 							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 0.0 ],
 							"parameter_invisible" : 2
@@ -529,7 +529,7 @@
 					"name" : "ui-swap-grouping.maxpat",
 					"numinlets" : 2,
 					"numoutlets" : 1,
-					"offset" : [ 0.0, -120.0 ],
+					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 680.0, 280.0, 156.47406, 48.0 ],
 					"presentation" : 1,
@@ -1323,18 +1323,18 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
+			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
+			"obj-139" : [ "live.menu[13]", "live.menu[5]", 0 ],
 			"obj-31::obj-168" : [ "velocity range[10]", "velrange", 0 ],
+			"obj-22" : [ "live.menu[1]", "live.menu[5]", 0 ],
 			"obj-110" : [ "live.text[16]", "live.text[6]", 0 ],
 			"obj-31::obj-164" : [ "live.menu[14]", "live.menu[5]", 0 ],
-			"obj-139" : [ "live.menu[13]", "live.menu[5]", 0 ],
-			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
-			"obj-31::obj-172" : [ "velocity range[11]", "velrange", 0 ],
-			"obj-22" : [ "live.menu[1]", "live.menu[5]", 0 ],
-			"obj-31::obj-5" : [ "offset", "offset", 0 ],
 			"obj-31::obj-169" : [ "live.text[13]", "live.text[2]", 0 ],
-			"obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
-			"obj-31::obj-167" : [ "live.menu[15]", "live.menu", 0 ]
+			"obj-31::obj-5" : [ "offset", "offset", 0 ],
+			"obj-31::obj-167" : [ "live.menu[15]", "live.menu", 0 ],
+			"obj-31::obj-172" : [ "velocity range[11]", "velrange", 0 ],
+			"obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
+			"obj-6" : [ "live.text[9]", "live.text[6]", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -1374,8 +1374,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",

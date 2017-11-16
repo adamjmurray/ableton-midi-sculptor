@@ -36,22 +36,21 @@ export default class SetTransformer extends Transformer {
   }
 
   setValues(property: SettableProperty, value: SettableValue): Note[] {
-    const inPattern = this.isNoteInPattern
     if (property === 'note') {
       if (value === 'deleted') {
-        return this.newNotes.filter((note, index) => !inPattern(note, index))
+        return this.newNotes.filter((note, index) => !this.isNoteInPattern(note, index))
       }
       else if (value === 'muted' || value === 'unmuted') {
         const muted = (value === 'muted')
         this.newNotes.forEach((note, index) => {
-          if (inPattern(note, index)) {
+          if (this.isNoteInPattern(note, index)) {
             note.muted = muted
           }
         })
       }
     } else if (typeof value === 'number') {
       this.newNotes.forEach((note, index) => {
-        if (inPattern(note, index)) {
+        if (this.isNoteInPattern(note, index)) {
           note.set(property, value)
         }
       })

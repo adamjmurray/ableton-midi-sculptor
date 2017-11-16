@@ -15,7 +15,7 @@ function returnNotes(notes: Note[]): [number|string] {
   return apiNotes
 }
 
-describe.only('Clip', () => {
+describe('Clip', () => {
 
   let clip: Clip
   beforeEach(() => clip = new Clip(Clip.SELECTED_CLIP_PATH))

@@ -25,18 +25,19 @@ Misc
     - pitch sliding
     - shuffle bug fix (all notes same value - notes disappear)
 
-- Chop
-  - rename chop to slice?
-  - chop type:
+- Split
+  - split type:
     - exponential (halve the duration every N notes) - but maybe this can be handled by the tilt slider?
   - random x-y depends on type
-    - duration (min is choosen duration for each slice)
-    - number (max is choosen number)
-    - euclid -  show a [?] toggle next to each number box when random is on
+    - duration (min duration is the selected duration for each slice)
+    - number (max number is selected number)
+    - euclid -  show a [?] toggle next to each number box when random is on (can we change this to a lock? icon)
+    - exponential - ???
   - "tilt" slider depends on chop type:
     - duration: start/end is choosen (or random) duration, gets progressively shorter
     - number: uses the choosen (or random) number, gets progressively shorter towards start/end
     - eucliean: offset the pattern
+    - exponential: change how many notes before the duration is halved? (negative direction goes from 2 to 1 and then the inverse pattern?)
   - options to keep constant velocity, or fade it out/in with the duration
   - usability idea: if we just applied the chop but the scultor window hasn't lost focus, maybe the tilt slider can apply to the
     notes that were just chopped, instead of re-chopping (which I expect to be unintuitive but I'll have to test it out)

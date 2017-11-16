@@ -108,9 +108,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 229.0, 309.0, 68.0, 22.0 ],
+					"patching_rect" : [ 229.0, 309.0, 51.0, 22.0 ],
 					"style" : "",
-					"text" : "number $1"
+					"text" : "note $1"
 				}
 
 			}
@@ -160,9 +160,9 @@
 					"numinlets" : 4,
 					"numoutlets" : 4,
 					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 281.0, 189.0, 143.0, 22.0 ],
+					"patching_rect" : [ 281.0, 189.0, 125.0, 22.0 ],
 					"style" : "",
-					"text" : "route time number euclid"
+					"text" : "route time note euclid"
 				}
 
 			}
@@ -214,7 +214,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 241.0, 85.0, 56.0, 20.0 ],
 					"style" : "",
-					"text" : "number"
+					"text" : "note"
 				}
 
 			}
@@ -740,13 +740,13 @@
  ],
 		"parameters" : 		{
 			"obj-142" : [ "velocity range[18]", "velrange", 0 ],
-			"obj-144" : [ "velocity range[19]", "velrange", 0 ],
-			"obj-143" : [ "live.text[12]", "live.text[2]", 0 ],
-			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
 			"obj-141" : [ "velocity range[12]", "velrange", 0 ],
+			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
-			"obj-155" : [ "live.text[19]", "live.text[2]", 0 ]
+			"obj-155" : [ "live.text[19]", "live.text[2]", 0 ],
+			"obj-144" : [ "velocity range[19]", "velrange", 0 ],
+			"obj-143" : [ "live.text[12]", "live.text[2]", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -779,8 +779,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",

@@ -3,13 +3,13 @@ import Note, { NumericProperty} from '../note'
 import { mod } from '../utils'
 // import { log } from '../logger'
 
-export type SwappableProperty = 'notes' | 'groups' | 'pitch' | 'velocity' | 'duration' | 'pitch + velocity' | 'pitch + duration' | 'velocity + duration'
+export type SwappableProperty = 'note' | 'group' | 'pitch' | 'velocity' | 'duration' | 'pitch + velocity' | 'pitch + duration' | 'velocity + duration'
 export type GroupType = 'all' | 'notes' | 'time'
 export type ExtraGroupType = 'first' | 'last' | 'any' | 'new'
 
 export default class SwapTransformer extends Transformer {
 
-  private _target: SwappableProperty = 'notes'
+  private _target: SwappableProperty = 'note'
   private groupType: GroupType = 'all'
   private groupSize? = 2
   private extraGroupType: ExtraGroupType = 'new' // for note groupings
@@ -105,7 +105,7 @@ export default class SwapTransformer extends Transformer {
 
   private get targetProperties(): NumericProperty[] {
     switch (this._target) {
-      case 'notes': return ['pitch', 'velocity', 'duration']
+      case 'note': return ['pitch', 'velocity', 'duration']
       case 'pitch': return ['pitch']
       case 'velocity': return ['velocity']
       case 'duration': return ['duration']
@@ -120,7 +120,7 @@ export default class SwapTransformer extends Transformer {
     const { newNotes, oldNotes } = this
     const groupedIndexes = this.groupedIndexes
     const groupSize = this.groupSize || 1
-    if (this._target === 'groups') {
+    if (this._target === 'group') {
       if (groupedIndexes.length > 1) { // otherwise there is nothing to swap
         groupedIndexes.forEach((group, position) => {
           if (!group.length) return

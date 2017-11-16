@@ -104,18 +104,18 @@ export function set_pattern_unit(unit_type, amount) {
   controller.setPatternUnit(unit_type, amount)
 }
 
-export function chop_type(type, amount1, amount2) {
-  controller.setChopType(type, amount1, amount2)
+export function split_type(type, amount1, amount2) {
+  controller.setSplitType(type, amount1, amount2)
 }
 
-export function chop_gate(amount) {
-  controller.chopGate = amount
+export function split_gate(amount) {
+  controller.splitGate = amount
 }
 
-export function chop_envelope(type) {
-  controller.chopEnvelope = type
+export function split_envelope(type) {
+  controller.splitEnvelope = type
 }
 
-export function chop() {
-  controller.chop()
+export function split() {
+  controller.split()
 }
