@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 504.0, 376.0, 391.0, 682.0 ],
+		"rect" : [ 504.0, 376.0, 378.0, 726.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,11 +38,36 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 107.0, 297.0, 89.0, 22.0 ],
+					"style" : "",
+					"text" : "s ---clipchange"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-9",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "bang" ],
+					"patching_rect" : [ 71.0, 254.0, 55.0, 22.0 ],
+					"style" : "",
+					"text" : "t l b"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 52.0, 599.0, 94.0, 22.0 ],
+					"patching_rect" : [ 71.0, 662.0, 94.0, 22.0 ],
 					"style" : "",
 					"text" : "s ---is_midi_clip"
 				}
@@ -57,7 +82,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 145.0, 516.0, 109.0, 22.0 ],
+					"patching_rect" : [ 164.0, 587.0, 109.0, 22.0 ],
 					"style" : "",
 					"text" : "route is_midi_clip"
 				}
@@ -70,7 +95,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 145.0, 307.0, 56.0, 22.0 ],
+					"patching_rect" : [ 164.0, 378.0, 56.0, 22.0 ],
 					"style" : "",
 					"text" : "deferlow"
 				}
@@ -83,7 +108,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 145.0, 411.0, 123.0, 22.0 ],
+					"patching_rect" : [ 164.0, 482.0, 123.0, 22.0 ],
 					"style" : "",
 					"text" : "t b l"
 				}
@@ -96,7 +121,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 145.0, 342.0, 162.0, 22.0 ],
+					"patching_rect" : [ 164.0, 413.0, 162.0, 22.0 ],
 					"style" : "",
 					"text" : "path live_set view detail_clip"
 				}
@@ -109,7 +134,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 145.0, 376.0, 55.0, 22.0 ],
+					"patching_rect" : [ 164.0, 447.0, 55.0, 22.0 ],
 					"style" : "",
 					"text" : "live.path"
 				}
@@ -122,7 +147,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 52.0, 303.0, 29.5, 22.0 ],
+					"patching_rect" : [ 71.0, 374.0, 29.5, 22.0 ],
 					"style" : "",
 					"text" : "0"
 				}
@@ -135,7 +160,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 52.0, 269.0, 112.0, 22.0 ],
+					"patching_rect" : [ 71.0, 340.0, 112.0, 22.0 ],
 					"style" : "",
 					"text" : "sel 0"
 				}
@@ -148,7 +173,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 52.0, 236.0, 51.0, 22.0 ],
+					"patching_rect" : [ 71.0, 215.0, 51.0, 22.0 ],
 					"style" : "",
 					"text" : "route id"
 				}
@@ -163,7 +188,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 145.0, 448.0, 95.0, 22.0 ],
+					"patching_rect" : [ 164.0, 519.0, 95.0, 22.0 ],
 					"style" : "",
 					"text" : "get is_midi_clip"
 				}
@@ -178,7 +203,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 145.0, 482.0, 123.0, 22.0 ],
+					"patching_rect" : [ 164.0, 553.0, 123.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"_persistence" : 1
 					}
@@ -197,7 +222,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 51.5, 84.0, 103.0, 22.0 ],
+					"patching_rect" : [ 70.5, 95.0, 103.0, 22.0 ],
 					"style" : "",
 					"text" : "t b l"
 				}
@@ -212,7 +237,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 51.5, 138.0, 67.0, 22.0 ],
+					"patching_rect" : [ 70.5, 134.0, 67.0, 22.0 ],
 					"style" : "",
 					"text" : "property id"
 				}
@@ -227,7 +252,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 33.0, 20.0, 217.0, 22.0 ],
+					"patching_rect" : [ 52.0, 31.0, 217.0, 22.0 ],
 					"style" : "",
 					"text" : "loadmess path live_set view detail_clip"
 				}
@@ -242,7 +267,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 33.0, 49.0, 56.0, 22.0 ],
+					"patching_rect" : [ 52.0, 60.0, 56.0, 22.0 ],
 					"style" : "",
 					"text" : "live.path"
 				}
@@ -257,7 +282,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 51.5, 188.0, 103.0, 22.0 ],
+					"patching_rect" : [ 70.5, 174.0, 103.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"_persistence" : 0
 					}
@@ -277,7 +302,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-22", 0 ],
+					"destination" : [ "obj-9", 0 ],
 					"source" : [ "obj-17", 0 ]
 				}
 
@@ -396,6 +421,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-8", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-9", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-22", 0 ],
+					"source" : [ "obj-9", 0 ]
 				}
 
 			}

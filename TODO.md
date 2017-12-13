@@ -24,6 +24,9 @@ Misc
   - Back port some things to the MIDI clip variator
     - pitch sliding
     - shuffle bug fix (all notes same value - notes disappear)
+  - Pseudo-bug: edge clip for slide start time has a max start time of the clip end time (so it's silent)
+    But I'm not sure we want to keep the end time within the clip bounds, seems too limiting.
+    Maybe we can set the max to the clip end minus a small delta
 
 - Split
   - split type:

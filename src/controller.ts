@@ -66,6 +66,10 @@ export default class Controller {
     if (this.selectedClip) this.selectedClip.desync()
   }
 
+  onClipChange() {
+    this.selectedClip = undefined
+  }
+
   /**
    Set maximum change in value for the given property.
    The range value for each property applies to its average, spread, and random operations.

@@ -10,6 +10,10 @@ export function desync() {
   controller.desync()
 }
 
+export function clipchange() {
+  controller.onClipChange()
+}
+
 /**
  Set maximum change in value for the given property.
  The range value for each property applies to its average, spread, and random operations.
