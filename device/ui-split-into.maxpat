@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 696.0, 327.0, 738.0, 501.0 ],
+		"rect" : [ 461.0, 698.0, 738.0, 501.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -282,7 +282,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 74.516846, 113.0, 25.0, 25.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 28.883179, -2.525024, 25.0, 25.0 ],
+					"presentation_rect" : [ 28.883179, 27.474976, 25.0, 25.0 ],
 					"style" : "",
 					"text" : "/",
 					"textjustification" : 1
@@ -301,7 +301,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 93.699951, 117.0, 49.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 47.766357, 0.0, 39.0, 17.0 ],
+					"presentation_rect" : [ 47.766357, 30.0, 39.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.menu[20]",
@@ -331,7 +331,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 42.199951, 117.0, 39.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.383179, 0.0, 35.0, 17.0 ],
+					"presentation_rect" : [ 0.383179, 30.0, 35.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "velocity range[24]",
@@ -364,7 +364,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 154.0, 117.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 92.516357, 0.0, 47.5, 17.0 ],
+					"presentation_rect" : [ 92.516357, 30.0, 47.5, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[23]",
@@ -425,7 +425,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 229.0, 117.0, 40.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.383179, 30.0, 30.0, 17.0 ],
+					"presentation_rect" : [ 0.383179, 0.0, 30.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "velocity range[19]",
@@ -739,14 +739,14 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-142" : [ "velocity range[18]", "velrange", 0 ],
-			"obj-141" : [ "velocity range[12]", "velrange", 0 ],
-			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-155" : [ "live.text[19]", "live.text[2]", 0 ],
+			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
 			"obj-144" : [ "velocity range[19]", "velrange", 0 ],
-			"obj-143" : [ "live.text[12]", "live.text[2]", 0 ]
+			"obj-143" : [ "live.text[12]", "live.text[2]", 0 ],
+			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-142" : [ "velocity range[18]", "velrange", 0 ],
+			"obj-141" : [ "velocity range[12]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

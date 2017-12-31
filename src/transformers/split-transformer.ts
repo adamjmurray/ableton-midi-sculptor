@@ -1,6 +1,6 @@
 import Transformer from './transformer'
 import Note from '../note'
-import { log } from '../logger'
+// import { log } from '../logger'
 
 export type SplitType = 'time' | 'note' | 'euclid' // and maybe  | 'exponential', halves the duration after `amount` times
 export type SplitEnvelopeType = 'none' | 'ramp-up' | 'ramp-down' | 'curve-up' | 'curve-down'
@@ -19,7 +19,6 @@ export default class SplitTransformer extends Transformer {
   }
 
   setSplitType(type: SplitType, amount1: number = 1, amount2: number = 1) {
-    log('setting split type', { type, amount1, amount2 })
     this.splitType = type
     if (type === 'time') {
       this.time = amount1
