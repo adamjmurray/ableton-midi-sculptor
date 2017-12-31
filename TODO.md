@@ -12,9 +12,9 @@
 - GUI
   - Improve window sizing (too much space on right and bottom)
   - Don't forget to re-enable the "choose midi clip" overlay
-  - Change color scheme to match live
-    - mostly done but doesn't work quite right in Live 10
   - control labels should be capitalized (compare with built in devices)
+  - test color schemes in Live 9 and 10
+    - the device panel (not window) button colors need improvement in Live 10
 
 Misc
   - More tests
