@@ -4,19 +4,21 @@ import Note from '../note'
 import { mod, reflectedMod } from '../utils'
 // import { log } from '../logger'
 
-function rotateOrReflect(notes: Note[], clip: Clip, operation: (n: number, q: number) => number): Note[] {
+function rotateOrReflect(notes: Note[], operation: (n: number, q: number) => number, clip?: Clip): Note[] {
   for (const note of notes) {
-    const relativeStart = note.start - clip.start
-    note.start = operation(relativeStart, clip.length) + clip.start
     note.pitch = operation(note.pitch, 127)
     note.velocity = operation(note.velocity, 127)
-    const relativeDuration = note.duration - Note.MIN_DURATION
-    note.duration = operation(relativeDuration, clip.length) + Note.MIN_DURATION
+    if (clip) {
+      const relativeStart = note.start - clip.start
+      const relativeDuration = note.duration - Note.MIN_DURATION
+      note.start = operation(relativeStart, clip.length) + clip.start
+      note.duration = operation(relativeDuration, clip.length) + Note.MIN_DURATION
+    }
   }
   return notes
 }
 
-type EdgeTransformation = (notes: Note[], clip: Clip) => Note[]
+type EdgeTransformation = (notes: Note[], clip?: Clip) => Note[]
 
 export type EdgeTransformationType = 'clip' | 'rotate' | 'reflect' | 'remove'
 
@@ -62,22 +64,24 @@ class SlidablePropertiesMetadata {
 class EdgeTransformer {
   readonly [key: string]: EdgeTransformation
 
-  clip(notes: Note[], clip: Clip): Note[] {
+  clip(notes: Note[], clip?: Clip): Note[] {
     for (const note of notes) {
-      note.start = Math.max(clip.start, Math.min(clip.end, note.start))
       note.pitch = Math.max(0, Math.min(127, note.pitch))
       note.velocity = Math.max(0, Math.min(127, note.velocity))
-      note.duration = Math.max(Note.MIN_DURATION, Math.min(clip.length, note.duration))
+      if (clip) {
+        note.start = Math.max(clip.start, Math.min(clip.end, note.start))
+        note.duration = Math.max(Note.MIN_DURATION, Math.min(clip.length, note.duration))
+      }
     }
     return notes
   }
 
-  rotate(notes: Note[], clip: Clip): Note[] {
-    return rotateOrReflect(notes, clip, mod)
+  rotate(notes: Note[], clip?: Clip): Note[] {
+    return rotateOrReflect(notes, mod, clip)
   }
 
-  reflect(notes: Note[], clip: Clip): Note[] {
-    return rotateOrReflect(notes, clip, reflectedMod)
+  reflect(notes: Note[], clip?: Clip): Note[] {
+    return rotateOrReflect(notes, reflectedMod, clip)
   }
 
   remove(notes: Note[]): Note[] {
@@ -97,7 +101,7 @@ const edgeTransformer = new EdgeTransformer
 export default class SlideTransformer extends Transformer {
 
   private metadata = new SlidablePropertiesMetadata
-  private edgeTransformer: EdgeTransformation = edgeTransformer.clip
+  private edgeTransformation: EdgeTransformation = edgeTransformer.clip
   private anchor = SpreadAnchorType.MIDPOINT
 
   set notes(notes: Note[]) {
@@ -125,8 +129,8 @@ export default class SlideTransformer extends Transformer {
     }
   }
 
-  set edgeBehavior(behavior: EdgeTransformationType) {
-    this.edgeTransformer = edgeTransformer[behavior]
+  set edgeBehavior(transformationType: EdgeTransformationType) {
+    this.edgeTransformation = edgeTransformer[transformationType]
   }
 
   set spreadAnchor(anchor: SpreadAnchorType) {
@@ -137,12 +141,12 @@ export default class SlideTransformer extends Transformer {
     this.metadata[property].range = amount
   }
 
-  private transform(clip: Clip, property: SlidableProperty, mapValue: (oldValue: number, index: number) => number) {
+  private transform(property: SlidableProperty, mapValue: (oldValue: number, index: number) => number) {
     this.newNotes.forEach((newNote, index) => {
       const oldNote = this.oldNotes[index]
       newNote.set(property, mapValue(oldNote.get(property), index))
     })
-    return this.edgeTransformer(this.newNotes, clip)
+    return this.edgeTransformation(this.newNotes, this.clip)
   }
 
   /**
@@ -150,9 +154,9 @@ export default class SlideTransformer extends Transformer {
    - property is velocity, start, duration
    - amount should be from -1.0 to 1.0
    */
-  shift(clip: Clip, property: SlidableProperty, amount: number) {
+  shift(property: SlidableProperty, amount: number) {
     amount *= this.metadata[property].range
-    return this.transform(clip, property, value => value + amount)
+    return this.transform(property, value => value + amount)
   }
 
   /**
@@ -160,7 +164,7 @@ export default class SlideTransformer extends Transformer {
    - property is velocity, start, duration
    - amount should be from -1.0 to 1.0
   */
-  spread(clip: Clip, property: SlidableProperty, amount: number) {
+  spread(property: SlidableProperty, amount: number) {
     const metadata = this.metadata[property]
     let spreadPoint: number
     let largestDelta = 0
@@ -171,16 +175,16 @@ export default class SlideTransformer extends Transformer {
         break
       case SpreadAnchorType.MIDPOINT:
         spreadPoint = metadata.midpoint
-        largestDelta =  metadata.largestDeltaFromMidpoint
+        largestDelta = metadata.largestDeltaFromMidpoint
         break
       case SpreadAnchorType.MAX:
         spreadPoint = metadata.max
-        largestDelta =  metadata.largestDeltaFromMax
+        largestDelta = metadata.largestDeltaFromMax
         break
     }
     if (largestDelta === 0) return this.newNotes
     amount = amount * metadata.range
-    return this.transform(clip, property, value => value + (amount * (value - spreadPoint)/largestDelta))
+    return this.transform(property, value => value + (amount * (value - spreadPoint) / largestDelta))
   }
 
   /**
@@ -190,12 +194,12 @@ export default class SlideTransformer extends Transformer {
    The randomization behavior is consistent until the next bang/reset, in other words:
    random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
 */
-  randomize2D(clip: Clip, property: SlidableProperty, amountX: number, amountY: number) {
+  randomize2D(property: SlidableProperty, amountX: number, amountY: number) {
     const range = this.metadata[property].range
     // We halve the range because two random values are added, which would have a max of range + range
-    amountX *= range/2
-    amountY *= range/2
-    return this.transform(clip, property,
+    amountX *= range / 2
+    amountY *= range / 2
+    return this.transform(property,
       (value, index) => value + (this.bipolarRandom1[index] * amountX) + (this.bipolarRandom2[index] * amountY))
   }
 }

@@ -38,6 +38,7 @@ export default class Controller {
     }
     this.selectedNotes = selectedNotes
     for (const transformer of this.transformers) {
+      transformer.clip = selectedClip
       transformer.notes = selectedNotes
     }
 
@@ -45,11 +46,11 @@ export default class Controller {
     return true
   }
 
-  private transformNotes(transform: (clip: Clip) => Note[]) {
+  private transformNotes(transform: () => Note[]) {
     if (!this.sync()) return
     if (!this.selectedClip) return
     if (!this.selectedNotes.length) return
-    const notes = transform(this.selectedClip)
+    const notes = transform()
     this.selectedClip.replaceSelectedNotes(notes)
   }
 
@@ -61,7 +62,7 @@ export default class Controller {
    * - the clip's note selection changes
    */
   desync() {
-    // This can get called a lot, so we defer the actual syncing until the next operation is performaed
+    // This can get called a lot, so we defer the actual syncing until the next operation is performed
     this.isSynced = false
     if (this.selectedClip) this.selectedClip.desync()
   }
@@ -89,18 +90,18 @@ export default class Controller {
   }
 
   randomSlide(property: SlidableProperty, amountX: number, amountY: number) {
-    this.transformNotes((clip: Clip) =>
-      this.slideTransformer.randomize2D(clip, property, amountX, amountY))
+    this.transformNotes(() =>
+      this.slideTransformer.randomize2D(property, amountX, amountY))
   }
 
   shift(property: SlidableProperty, amount: number) {
-    this.transformNotes((clip: Clip) =>
-      this.slideTransformer.shift(clip, property, amount))
+    this.transformNotes(() =>
+      this.slideTransformer.shift(property, amount))
   }
 
   spread(property: SlidableProperty, amount: number) {
-    this.transformNotes((clip: Clip) =>
-      this.slideTransformer.spread(clip, property, amount))
+    this.transformNotes(() =>
+      this.slideTransformer.spread(property, amount))
   }
 
   swapTarget(target: SwappableProperty) {

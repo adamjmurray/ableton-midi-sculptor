@@ -1,6 +1,9 @@
 import Note from '../note'
+import Clip from '../clip'
 
 export default abstract class Transformer {
+
+  public clip?: Clip
 
   private _oldNotes: ReadonlyArray<Note> = [] // Don't change this
   protected newNotes: Note[] = [] // Modify this in place (to avoid constantly creating new objects while dragging a slider/x-y pad)
@@ -17,7 +20,7 @@ export default abstract class Transformer {
     this.newNotes = notes.map(note => note.clone())
     notes.forEach((_, index) => {
       for (const random of this.randoms) {
-      // use exponential curves for better usability, so you can see an effect with less mouse movement:
+        // use exponential curves for better usability, so you can see an effect with less mouse movement:
         random[index] = Math.pow(Math.random(), 2)
       }
       this.bipolarRandom1[index] = 2 * Math.random() - 1

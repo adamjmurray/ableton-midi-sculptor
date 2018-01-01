@@ -21,5 +21,6 @@ beforeEach(() => {
 })
 
 import './clip-test'
+import './slide-transformer-test'
 import './swap-transformer-test'
 import './utils-test'
