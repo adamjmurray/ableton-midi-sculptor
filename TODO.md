@@ -1,4 +1,19 @@
 
+- UX Rework Ideas
+  - Swap
+    - Get rid of pairs, zip, and unzip buttons
+    - Replace target dropdown with independent pitch/velocity/duration buttons, all on by default
+    - Maybe get rid of grouping? Or maybe limit groupings to time?
+  - Set
+    - Get rid of patterns
+    - Introduce value setting options like random range or randomly between a few values
+      - Have Value1 and Value2 and a dropdown for "2nd value": [none, "between", "or"]
+        (for range/choice, maybe needs better names though. Labels could say "Value", "From ... to", "either ... or")
+  - Split
+    - Get rid of randomizatio
+    - Finish tilt (/rotate for Euclid).
+    - Make tilt horizontal?
+
 - Bugs
   - Some numboxes get "stuck" (usually on the first value). Check the number of steps in the inspector. It's probably too high
   - Make sure nothing blows up when there's no notes in the clip
