@@ -91,21 +91,28 @@ export function swap_random(amountX, amountY) {
   controller.randomSwap(amountX, amountY)
 }
 
-export function set_values(property, value) {
-  controller.setValues(property, value)
+export function set_property(property) {
+  controller.setProperty(property)
 }
 
-export function set_random(property, value, amountX, amountY) {
-  controller.randomSetValues(property, value, amountX, amountY)
+export function set_value(value) {
+  controller.setValue(value)
 }
 
-export function set_pattern() {
-  var pattern = Array.prototype.slice.call(arguments).map(function(val) { return !!val })
-  controller.setPattern(pattern)
+export function set_operation(operation) {
+  controller.setOperation(operation)
 }
 
-export function set_pattern_unit(unit_type, amount) {
-  controller.setPatternUnit(unit_type, amount)
+export function set_value2(value) {
+  controller.setValue2(value)
+}
+
+export function set_all() {
+  controller.setAll()
+}
+
+export function set_random(amountX, amountY) {
+  controller.randomSetValues(amountX, amountY)
 }
 
 export function split_type(type, amount1, amount2) {

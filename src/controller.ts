@@ -3,7 +3,7 @@ import Clip from './clip'
 import Note from './note'
 import Transformer from './transformers/transformer'
 import SlideTransformer, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
-import SetTransformer, { SettableProperty, SettableValue, SetPatternUnitType } from './transformers/set-transformer'
+import SetTransformer, { SettableProperty, SettableValue, ValueOperation } from './transformers/set-transformer'
 import SwapTransformer, { SwappableProperty, GroupType, ExtraGroupType } from './transformers/swap-transformer'
 import SplitTransformer, { SplitType, SplitEnvelopeType } from './transformers/split-transformer'
 // import { log } from './logger'
@@ -142,22 +142,30 @@ export default class Controller {
       this.swapTransformer.randomize2D(amountX, amountY))
   }
 
-  setValues(property: SettableProperty, value: SettableValue) {
+  setProperty(property: SettableProperty) {
+    this.setTransformer.property = property
+  }
+
+  setValue(value: SettableValue) {
+    this.setTransformer.value = value
+  }
+
+  setValue2(value?: SettableValue) {
+    this.setTransformer.value2 = value
+  }
+
+  setOperation(operation?: ValueOperation) {
+    this.setTransformer.operation = operation
+  }
+
+  setAll() {
     this.transformNotes(() =>
-      this.setTransformer.setValues(property, value))
+      this.setTransformer.setAll())
   }
 
-  setPattern(pattern: boolean[]) {
-    this.setTransformer.pattern = pattern
-  }
-
-  setPatternUnit(unitType: SetPatternUnitType, unitAmount: number) {
-    this.setTransformer.setPatternUnit(unitType, unitAmount)
-  }
-
-  randomSetValues(property: SettableProperty, value: SettableValue, amountX: number, amountY: number) {
+  randomSetValues(amountX: number, amountY: number) {
     this.transformNotes(() =>
-      this.setTransformer.randomize2D(property, value, amountX, amountY))
+      this.setTransformer.randomize2D(amountX, amountY))
   }
 
   setSplitType(type: SplitType, amount1: number, amount2: number) {
