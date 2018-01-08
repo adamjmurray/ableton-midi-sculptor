@@ -3,7 +3,7 @@ import Clip from './clip'
 import Note from './note'
 import Transformer from './transformers/transformer'
 import SlideTransformer, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
-import SetTransformer, { SettableProperty, SettableValue, ValueOperation } from './transformers/set-transformer'
+import SetTransformer, { SettableProperty, SettableValue } from './transformers/set-transformer'
 import SwapTransformer, { SwappableProperty, GroupType, ExtraGroupType } from './transformers/swap-transformer'
 import SplitTransformer, { SplitType, SplitEnvelopeType } from './transformers/split-transformer'
 // import { log } from './logger'
@@ -148,14 +148,6 @@ export default class Controller {
 
   setValue(value: SettableValue) {
     this.setTransformer.value = value
-  }
-
-  setValue2(value?: SettableValue) {
-    this.setTransformer.value2 = value
-  }
-
-  setOperation(operation?: ValueOperation) {
-    this.setTransformer.operation = operation
   }
 
   setAll() {

@@ -1,6 +1,6 @@
 
 - UX Rework Ideas
-  - Swap
+ - Swap
     - Get rid of pairs, zip, and unzip buttons
     - Replace target dropdown with independent pitch/velocity/duration buttons, all on by default
     - Maybe get rid of grouping? Or maybe limit groupings to time?

@@ -99,14 +99,6 @@ export function set_value(value) {
   controller.setValue(value)
 }
 
-export function set_operation(operation) {
-  controller.setOperation(operation)
-}
-
-export function set_value2(value) {
-  controller.setValue2(value)
-}
-
 export function set_all() {
   controller.setAll()
 }
