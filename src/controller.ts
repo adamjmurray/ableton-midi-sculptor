@@ -4,7 +4,7 @@ import Note from './note'
 import Transformer from './transformers/transformer'
 import SlideTransformer, { SlidableProperty, EdgeTransformationType, SpreadAnchorType } from './transformers/slide-transformer'
 import SetTransformer, { SettableProperty, SettableValue } from './transformers/set-transformer'
-import SwapTransformer, { SwappableProperty, GroupType, ExtraGroupType } from './transformers/swap-transformer'
+import SwapTransformer, { SwappableProperty } from './transformers/swap-transformer'
 import SplitTransformer, { SplitType, SplitEnvelopeType } from './transformers/split-transformer'
 // import { log } from './logger'
 
@@ -104,12 +104,8 @@ export default class Controller {
       this.slideTransformer.spread(property, amount))
   }
 
-  swapTarget(target: SwappableProperty) {
-    this.swapTransformer.target = target
-  }
-
-  swapGroupBy(type: GroupType, size?: number, param?: ExtraGroupType | number) {
-    this.swapTransformer.groupBy(type, size, param)
+  swapTarget(target: SwappableProperty, enabled: boolean) {
+    this.swapTransformer.target(target, enabled)
   }
 
   rotate(amount: number) {

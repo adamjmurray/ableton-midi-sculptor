@@ -56,15 +56,8 @@ export function slide_random(property, amountX, amountY) {
   controller.randomSlide(property, amountX, amountY)
 }
 
-export function swap_target(property) {
-  controller.swapTarget(property)
-}
-
-// The 'param' can be either:
-// - the 'extras' setting for 'notes' group type
-// - the 'offset' setting for 'time' group type
-export function swap_group(type, size, param) {
-  controller.swapGroupBy(type, size, param)
+export function swap_target(property, enabled) {
+  controller.swapTarget(property, enabled)
 }
 
 export function rotate(amount) {

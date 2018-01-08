@@ -3,45 +3,36 @@ import Note, { NumericProperty } from '../note'
 import { mod } from '../utils'
 // import { log } from '../logger'
 
-export type SwappableProperty = 'note' | 'group' | 'pitch' | 'velocity' | 'duration' | 'pitch + velocity' | 'pitch + duration' | 'velocity + duration'
-export type GroupType = 'all' | 'notes' | 'time'
-export type ExtraGroupType = 'first' | 'last' | 'any' | 'new'
+export type SwappableProperty = NumericProperty
 
 export default class SwapTransformer extends Transformer {
 
-  private _target: SwappableProperty = 'note'
-  private groupType: GroupType = 'all'
-  private groupSize?= 2
-  private extraGroupType: ExtraGroupType = 'new' // for note groupings
-  private groupOffsetPercent: number = 0 // for time groupings, 100% is 1.0, negative values allowed
+  private targets: SwappableProperty[] = ['pitch', 'velocity', 'duration']
 
   set notes(notes: Note[]) {
     super.setNotes(notes)
   }
 
-  set target(target: SwappableProperty) {
-    this._target = target
-  }
-
-  private get targetProperties(): NumericProperty[] {
-    switch (this._target) {
-      case 'note': return ['pitch', 'velocity', 'duration']
-      case 'pitch': return ['pitch']
-      case 'velocity': return ['velocity']
-      case 'duration': return ['duration']
-      case 'pitch + velocity': return ['pitch', 'velocity']
-      case 'pitch + duration': return ['pitch', 'duration']
-      case 'velocity + duration': return ['velocity', 'duration']
-      default: return []
+  target(target: SwappableProperty, enabled: boolean) {
+    const { targets } = this;
+    const index = targets.indexOf(target);
+    if (enabled) {
+      if (index < 0) {
+        targets.push(target);
+      }
+    } else {
+      if (index >= 0) {
+        targets.splice(index, 1);
+      }
     }
   }
 
   private swap(mapIndex: (noteIndex: number, size: number) => number): Note[] {
-    const { newNotes, oldNotes, targetProperties } = this
+    const { newNotes, oldNotes, targets } = this
     return newNotes.map((note, index) => {
       const mappedIndex = mapIndex(index, newNotes.length)
       const mappedNote = oldNotes[mappedIndex] || oldNotes[index]
-      targetProperties.forEach(prop => note.set(prop, mappedNote.get(prop)))
+      targets.forEach(prop => note.set(prop, mappedNote.get(prop)))
       return note
     })
   }
@@ -53,7 +44,7 @@ export default class SwapTransformer extends Transformer {
 
   rotate(amount: number): Note[] {
     amount = Math.round(amount * this.oldNotes.length)
-    return this.swap((index, size) => mod(index + amount, size))
+    return this.swap((index, size) => mod(index - amount, size))
   }
 
   swapPairs(): Note[] {
@@ -75,7 +66,6 @@ export default class SwapTransformer extends Transformer {
     })
   }
 
-  // TODO?
   unzip(): Note[] {
     return this.swap((index, size) => {
       const middle = Math.floor(size / 2)
@@ -85,7 +75,7 @@ export default class SwapTransformer extends Transformer {
   }
 
   randomize2D(amountX: number, amountY: number): Note[] {
-    return this.swap((index, size) => {
+    const swappedNotes = this.swap((index, size) => {
       if (this.isInRandomBounds(amountX, amountY, index)) {
         // it might be better if there were a different random for each quadrant
         // and we want a random shuffling of the order that
@@ -95,5 +85,6 @@ export default class SwapTransformer extends Transformer {
         return index
       }
     })
+    return swappedNotes
   }
 }
