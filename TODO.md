@@ -1,19 +1,6 @@
-
-- UX Rework Ideas
-  - Split
-    - Get rid of randomizatio
-    - Finish tilt (/rotate for Euclid).
-    - Make tilt horizontal?
-
 - Bugs
   - Some numboxes get "stuck" (usually on the first value). Check the number of steps in the inspector. It's probably too high
   - Make sure nothing blows up when there's no notes in the clip
-  - Values seem to "jump" when lifting up from the x-y pad sometimes
-    - Not sure much can be done? Seems like the component just has some "inertia"
-  - FIXED? TEST: Swap seems to malfunction sometimes because notes may need to be sorted by start time (try with a lot of notes - chop then randomize pitch)
-  - swap group targetting probably has bugs when the clip start is not 0 (see TODO comment)
-  - Confirm set transformer's time-based pattern works with negative start times
-    - Both these issues can be fixed by making all note times relative to clip start
 
 - GUI
   - Improve window sizing (too much space on right and bottom)
@@ -35,13 +22,6 @@ Misc
     Maybe we can set the max to the clip end minus a small delta
 
 - Split
-  - split type:
-    - exponential (halve the duration every N notes) - but maybe this can be handled by the tilt slider?
-  - random x-y depends on type
-    - duration (min duration is the selected duration for each slice)
-    - number (max number is selected number)
-    - euclid -  show a [?] toggle next to each number box when random is on (can we change this to a lock? icon)
-    - exponential - ???
   - "tilt" slider depends on chop type:
     - duration: start/end is choosen (or random) duration, gets progressively shorter
     - number: uses the choosen (or random) number, gets progressively shorter towards start/end
