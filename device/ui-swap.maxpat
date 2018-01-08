@@ -46,7 +46,7 @@
 					"patching_rect" : [ 296.0, 176.0, 43.0, 22.0 ],
 					"presentation_rect" : [ 296.0, 176.0, 43.0, 22.0 ],
 					"style" : "",
-					"text" : "set $0"
+					"text" : "set $1"
 				}
 
 			}
@@ -61,7 +61,7 @@
 					"patching_rect" : [ 128.0, 312.0, 50.0, 62.0 ],
 					"presentation_rect" : [ 128.0, 312.0, 50.0, 62.0 ],
 					"style" : "",
-					"text" : "swap_target velocity 1"
+					"text" : "swap_target duration 1"
 				}
 
 			}

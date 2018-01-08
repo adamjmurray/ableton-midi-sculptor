@@ -1,10 +1,5 @@
 
 - UX Rework Ideas
- - Swap
-    - Get rid of grouping
-    - Combine zip/unzip into "Shuffle"?
-    - Replace target dropdown with independent pitch/velocity/duration buttons, all on by default
-
   - Split
     - Get rid of randomizatio
     - Finish tilt (/rotate for Euclid).
