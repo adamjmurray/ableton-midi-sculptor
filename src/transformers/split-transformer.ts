@@ -3,7 +3,7 @@ import Note from '../note'
 // import { log } from '../logger'
 
 export type SplitType = 'time' | 'note' | 'euclid' // and maybe  | 'exponential', halves the duration after `amount` times
-export type SplitEnvelopeType = 'none' | 'ramp-up' | 'ramp-down' | 'curve-up' | 'curve-down'
+export type SplitEnvelopeType = 'none' | 'fade-out' | 'fade-in' | 'ramp-up' | 'ramp-down'
 
 const splitInTime = (oldNote: Note, timeBetweenNotes: number): Note[] => {
   const notes: Note[] = []
@@ -44,6 +44,24 @@ const splitEuclid = (oldNote: Note, pulses: number, total: number): Note[] => {
   return notes
 }
 
+const applyGateAndEnvelope = (notes: Note[], gate: number, envelope: string) => {
+  const length = notes.length
+  if (!length) return
+  const deltaFromMax = 127 - notes[0].velocity
+  notes.forEach((note, index) => {
+    note.duration *= gate
+    switch (envelope) {
+      case 'fade-out': note.velocity *= (length - index) / length
+        break
+      case 'fade-in': note.velocity *= (index + 1) / length
+        break
+      case 'ramp-down': note.velocity += deltaFromMax * (length - index) / length
+        break
+      case 'ramp-up': note.velocity += deltaFromMax * (index + 1) / length
+    }
+  })
+}
+
 export default class SplitTransformer extends Transformer {
 
   private splitType = 'time'
@@ -69,14 +87,12 @@ export default class SplitTransformer extends Transformer {
   }
 
   private splitWith(splitter: (note: Note) => Note[]) {
-    const { oldNotes, gate } = this
+    const { oldNotes, gate, envelope } = this
     let notes: Note[] = []
     for (const oldNote of oldNotes) {
-      notes = notes.concat(splitter(oldNote))
-    }
-    for (const note of notes) {
-      note.duration *= gate
-      // TODO: here's where to apply the envelope
+      const splitNotes = splitter(oldNote)
+      applyGateAndEnvelope(splitNotes, gate, envelope)
+      notes = notes.concat(splitNotes)
     }
     return notes
   }

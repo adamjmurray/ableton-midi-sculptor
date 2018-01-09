@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 1017.0, 154.0, 1041.0, 741.0 ],
+		"rect" : [ 93.0, 126.0, 1000.0, 455.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -231,7 +231,7 @@
 					"name" : "ui-split-into.maxpat",
 					"numinlets" : 2,
 					"numoutlets" : 1,
-					"offset" : [ 0.0, -60.0 ],
+					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 160.0, 208.0, 152.0, 24.0 ],
 					"presentation" : 1,
@@ -669,11 +669,11 @@
 					"presentation_rect" : [ 66.349121, 63.025024, 77.650879, 18.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "none", "ramp down", "curve down", "ramp up", "curve up" ],
-							"parameter_type" : 2,
 							"parameter_longname" : "live.menu[16]",
 							"parameter_invisible" : 2,
-							"parameter_shortname" : "live.menu[5]"
+							"parameter_shortname" : "live.menu[5]",
+							"parameter_enum" : [ "none", "fade out", "fade in", "ramp down", "ramp up" ],
+							"parameter_type" : 2
 						}
 
 					}
@@ -748,14 +748,14 @@
 					"presentation_rect" : [ 160.0, 62.025024, 48.061401, 20.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_longname" : "live.text[10]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 1.0,
 							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.text[6]"
+							"parameter_shortname" : "live.text[6]",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_type" : 2
 						}
 
 					}
@@ -795,8 +795,6 @@
 					"presentation_rect" : [ -0.230469, 63.025024, 44.104248, 18.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_type" : 1,
-							"parameter_unitstyle" : 5,
 							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[9]",
 							"parameter_initial_enable" : 1,
@@ -804,7 +802,9 @@
 							"parameter_mmax" : 100.0,
 							"parameter_initial" : [ 100 ],
 							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange"
+							"parameter_shortname" : "velrange",
+							"parameter_type" : 1,
+							"parameter_unitstyle" : 5
 						}
 
 					}
@@ -858,11 +858,11 @@
 					"presentation_rect" : [ 0.0, 16.0, 60.108002, 18.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "note", "time", "euclid" ],
-							"parameter_type" : 2,
 							"parameter_longname" : "live.menu[6]",
 							"parameter_invisible" : 2,
-							"parameter_shortname" : "live.menu[5]"
+							"parameter_shortname" : "live.menu[5]",
+							"parameter_enum" : [ "note", "time", "euclid" ],
+							"parameter_type" : 2
 						}
 
 					}
@@ -931,7 +931,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-22", 0 ],
-					"source" : [ "obj-23", 4 ]
+					"source" : [ "obj-23", 3 ]
 				}
 
 			}
@@ -1058,16 +1058,16 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
+			"obj-171" : [ "live.menu[16]", "live.menu[5]", 0 ],
 			"obj-25" : [ "velocity range[9]", "velrange", 0 ],
 			"obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
-			"obj-171" : [ "live.menu[16]", "live.menu[5]", 0 ],
-			"obj-5::obj-142" : [ "velocity range[18]", "velrange", 0 ],
-			"obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
-			"obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-5::obj-144" : [ "velocity range[19]", "velrange", 0 ],
+			"obj-5::obj-142" : [ "velocity range[18]", "velrange", 0 ],
 			"obj-5::obj-141" : [ "velocity range[12]", "velrange", 0 ],
-			"obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -1111,8 +1111,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",

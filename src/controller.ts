@@ -164,7 +164,7 @@ export default class Controller {
     this.splitTransformer.gate = amount
   }
 
-  splitEnvelope(type: SplitEnvelopeType) {
+  set splitEnvelope(type: SplitEnvelopeType) {
     this.splitTransformer.envelope = type
   }
 

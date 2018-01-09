@@ -22,12 +22,16 @@ Misc
     Maybe we can set the max to the clip end minus a small delta
 
 - Split
+  - exponential split type
+    - 2 args: num notes before division, and number of divisions.
+    - Ex: 4 and 2 would give [x...x...x...x...x.x.x.x.xxxxxxxx]
   - "tilt" slider depends on chop type:
-    - duration: start/end is choosen (or random) duration, gets progressively shorter
-    - number: uses the choosen (or random) number, gets progressively shorter towards start/end
+    - duration: start/end is choosen duration, gets progressively shorter
+    - number: uses the choosen number, gets progressively shorter towards start/end
     - eucliean: offset the pattern
-    - exponential: change how many notes before the duration is halved? (negative direction goes from 2 to 1 and then the inverse pattern?)
-  - options to keep constant velocity, or fade it out/in with the duration
-  - usability idea: if we just applied the chop but the scultor window hasn't lost focus, maybe the tilt slider can apply to the
-    notes that were just chopped, instead of re-chopping (which I expect to be unintuitive but I'll have to test it out)
-    - How about whenever performing a split, join any consecutive notes of the same pitch first, Could be tricky with gating.
+    - exponential: do the number tilt but independently within each grouping of same length notes?
+    - usability idea: if we just applied the chop but the scultor window hasn't lost focus, maybe the tilt slider can apply to the
+      notes that were just chopped, instead of re-chopping (which I expect to be unintuitive but I'll have to test it out)
+      How about whenever performing a split, join any consecutive notes of the same pitch first, Could be tricky with gating and envelopes.
+      Or, maybe the transformer can keep a "memory" of previously old notes & split notes and if the incoming notes are deepEqual
+      the work off the previous old notes
