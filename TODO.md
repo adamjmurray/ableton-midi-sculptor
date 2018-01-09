@@ -1,11 +1,11 @@
 - Split
-  - exponential split type
-    - 2 args: num notes before division, and number of divisions.
-    - Ex: 4 and 2 would give [x...x...x...x...x.x.x.x.xxxxxxxx]
-  - euclid split type
+  - euclid split type:
     - want a way to control the phase (AKA rotation). 3rd arg? But it would be nice to turn a knob after the split occurs
   - "tilt" slider:
     - take the current notes, keep the earliest and latest note starts, and map every other note with an exponential curve
+  - Should be able to re-split without undoing. Might make euclid rotation easy too.
+    What if we keep track of the previous old & new notes, and when the current old notes are the previous new notes, then
+    operate off the previous old notes instead of the current ones. Otherwise, maybe join all consecutive notes first?
 
 - GUI
   - Some numboxes get "stuck" (usually on the first value). Check the number of steps in the inspector. It's probably too high

@@ -2,7 +2,7 @@ import Transformer from './transformer'
 import Note from '../note'
 // import { log } from '../logger'
 
-export type SplitType = 'time' | 'note' | 'euclid' // and maybe  | 'exponential', halves the duration after `amount` times
+export type SplitType = 'time' | 'note' | 'euclid' | 'exp'
 export type SplitEnvelopeType = 'none' | 'fade-out' | 'fade-in' | 'ramp-up' | 'ramp-down'
 
 const splitInTime = (oldNote: Note, timeBetweenNotes: number): Note[] => {
@@ -44,6 +44,29 @@ const splitEuclid = (oldNote: Note, pulses: number, total: number): Note[] => {
   return notes
 }
 
+const splitExponentially = (oldNote: Note, notesPerDivision: number, divisions: number): Note[] => {
+  const notes: Note[] = []
+  let start = oldNote.start
+  for (let d = 0; d < divisions; d++) {
+    let divisionDuration = oldNote.duration / Math.pow(2, d + 1)
+    let numNotes = notesPerDivision
+    if (d === divisions - 1) {
+      // last division has to double the time and number of notes to fill up the original duration
+      divisionDuration *= 2
+      numNotes *= 2
+    }
+    const duration = divisionDuration / numNotes
+    for (let n = 0; n < numNotes; n++) {
+      const note = oldNote.clone()
+      note.duration = duration
+      note.start = start + duration * n
+      notes.push(note)
+    }
+    start += divisionDuration
+  }
+  return notes
+}
+
 const applyGateAndEnvelope = (notes: Note[], gate: number, envelope: string) => {
   const length = notes.length
   if (!length) return
@@ -68,6 +91,7 @@ export default class SplitTransformer extends Transformer {
   private time = 1
   private number = 1
   private euclid = [1, 1] // [pulses, total]
+  private exponential = [4, 4] // [notesBeforeDivision, divisions]
   gate = 1
   envelope = 'none'
 
@@ -83,6 +107,8 @@ export default class SplitTransformer extends Transformer {
       this.number = amount1
     } else if (type === 'euclid') {
       this.euclid = [amount1, amount2]
+    } else if (type === 'exp') {
+      this.exponential = [amount1, amount2]
     }
   }
 
@@ -98,11 +124,12 @@ export default class SplitTransformer extends Transformer {
   }
 
   split(): Note[] {
-    const { splitType, time, number, euclid: [pulses, total] } = this
+    const { splitType, time, number, euclid: [pulses, total], exponential: [notesBeforeDivision, divisions] } = this
     switch (splitType) {
       case 'time': return this.splitWith(note => splitInTime(note, time))
       case 'note': return this.splitWith(note => splitInTime(note, (note.duration / number)))
       case 'euclid': return this.splitWith(note => splitEuclid(note, pulses, total))
+      case 'exp': return this.splitWith(note => splitExponentially(note, notesBeforeDivision, divisions))
       default: return this.newNotes
     }
   }
