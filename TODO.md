@@ -30,3 +30,4 @@ Misc
   - options to keep constant velocity, or fade it out/in with the duration
   - usability idea: if we just applied the chop but the scultor window hasn't lost focus, maybe the tilt slider can apply to the
     notes that were just chopped, instead of re-chopping (which I expect to be unintuitive but I'll have to test it out)
+    - How about whenever performing a split, join any consecutive notes of the same pitch first, Could be tricky with gating.
