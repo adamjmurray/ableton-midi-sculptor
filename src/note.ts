@@ -25,6 +25,8 @@ const DEFAULT_NOTE_OPTIONS = {
 export type NumericProperty = 'pitch' | 'start' | 'velocity' | 'duration'
 type SerializedNote = [number, string, string, number, number]
 
+const fuzzyEquals = (n1: number, n2: number, delta = 0.001): boolean => Math.abs(n1 - n2) < delta
+
 export default class Note {
 
   static get MIN_DURATION() { return 1 / 256 }
@@ -72,11 +74,11 @@ export default class Note {
     return `Note{pitch:${this.pitch},velocity:${this.velocity},duration:${this.duration},start:${this.start}${this.muted ? ',muted:true' : ''}}`;
   }
 
-  equals(note: Note) {
+  equals(note: Note, ignoreDuration = false) {
     return this.pitch === note.pitch &&
       this.velocity === note.velocity &&
-      this.duration === note.duration &&
-      this.start === note.start &&
+      (ignoreDuration || fuzzyEquals(this.duration, note.duration)) &&
+      fuzzyEquals(this.start, note.start) &&
       this.muted === note.muted
   }
 

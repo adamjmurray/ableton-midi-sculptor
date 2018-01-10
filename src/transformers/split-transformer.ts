@@ -94,11 +94,14 @@ export default class SplitTransformer extends Transformer {
   private number = 1
   private euclid = [1, 1] // [pulses, total]
   private exponential = [4, 4] // [notesBeforeDivision, divisions]
+  private start = 0
+  private end = 1
   gate = 1
   envelope = 'none'
 
   set notes(notes: Note[]) {
     super.setNotes(notes)
+    this.newNotes = [] // splitTilt() uses this to know if it needs to split
   }
 
   setSplitType(type: SplitType, amount1: number, amount2: number = 1) {
@@ -114,22 +117,25 @@ export default class SplitTransformer extends Transformer {
     }
   }
 
-  private splitWith(splitter: (note: Note) => Note[]) {
-    const { oldNotes, gate, envelope, previousOldNotes, previousSplitNotes } = this
-    // Go back to original notes when splitting multiple times in a row (for usability)
-    const isResplit = oldNotes.length === previousSplitNotes.length &&
-      !oldNotes.find((note, index) => !note.equals(previousSplitNotes[index])) // can't find an unequal note
-    const notesToSplit = isResplit ? previousOldNotes : oldNotes
+  private isResplit() {
+    const { oldNotes, previousSplitNotes } = this
+    return (oldNotes.length === previousSplitNotes.length) &&
+      !oldNotes.find((note, index) => !note.equals(previousSplitNotes[index], true)) // can't find an unequal note (ignoring duration)
+  }
 
+  private splitWith(splitter: (note: Note) => Note[]) {
+    const { oldNotes, gate, envelope, previousOldNotes } = this
+    // Go back to original notes when splitting multiple times in a row (for usability)
+    const notesToSplit = this.isResplit() ? previousOldNotes : oldNotes
+    // Consider only spitting the first note, or joining consecutive notes before splitting...
     let notes: Note[] = []
-    for (const oldNote of notesToSplit) {
-      const splitNotes = splitter(oldNote)
+    for (const note of notesToSplit) {
+      const splitNotes = splitter(note)
       applyGateAndEnvelope(splitNotes, gate, envelope)
       notes = notes.concat(splitNotes)
     }
-
-    this.previousOldNotes = notesToSplit;
-    this.previousSplitNotes = notes;
+    this.previousOldNotes = notesToSplit
+    this.previousSplitNotes = notes
     return notes
   }
 
@@ -142,5 +148,31 @@ export default class SplitTransformer extends Transformer {
       case 'exp': return this.splitWith(note => splitExponentially(note, notesBeforeDivision, divisions))
       default: return this.newNotes
     }
+  }
+
+  splitTilt(amount: number): Note[] {
+    if (!this.newNotes.length) {
+      const notes = this.split().map(note => note.clone())
+      this.oldNotes = notes
+      this.newNotes = notes.map(note => note.clone())
+      this.previousSplitNotes = this.newNotes // so isResplit() will still work after tilting
+      this.start = Math.min(...notes.map(note => note.start))
+      this.end = Math.max(...notes.map(note => note.start + note.duration))
+    }
+    const { oldNotes, newNotes, start, end } = this
+    if (amount === 0) return newNotes
+    let power: number
+    if (amount < 0) {
+      power = 1 - amount * 2
+    } else {
+      power = 1 / (1 + amount * 2)
+    }
+    const totalDuration = end - start
+    oldNotes.forEach((note, index) => {
+      const normalizedStart = (note.start - start) / totalDuration
+      const mapped = Math.pow(normalizedStart, power)
+      newNotes[index].start = mapped * totalDuration + start
+    })
+    return newNotes
   }
 }

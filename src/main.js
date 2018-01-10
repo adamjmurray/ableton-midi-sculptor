@@ -115,3 +115,7 @@ export function split_envelope(type) {
 export function split() {
   controller.split()
 }
+
+export function split_tilt(amount) {
+  controller.splitTilt(amount)
+}

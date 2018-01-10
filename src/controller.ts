@@ -172,4 +172,9 @@ export default class Controller {
     this.transformNotes(() =>
       this.splitTransformer.split())
   }
+
+  splitTilt(amount: number) {
+    this.transformNotes(() =>
+      this.splitTransformer.splitTilt(amount))
+  }
 }

@@ -2,7 +2,9 @@
   - euclid split type:
     - want a way to control the phase (AKA rotation). 3rd arg? But it would be nice to turn a knob after the split occurs (resplit behavior should help?)
   - "tilt" slider:
-    - take the current notes, keep the earliest and latest note starts, and map every other note with an exponential curve
+    - should adjust the duration of notes, and maintain the gate as much as possible
+      - seems hard, maybe just force everything legato (although this won't work with multiple notes unless we join all the same pitches?)
+    - needs some fine tuning, doesn't seem symmetrical, backwards? it's ok in one direction , maybe just apply the algorithm "in reverse" for the other?
 
 - GUI
   - Some numboxes get "stuck" (usually on the first value). Check the number of steps in the inspector. It's probably too high

@@ -5,7 +5,7 @@ export default abstract class Transformer {
 
   public clip?: Clip
 
-  private _oldNotes: ReadonlyArray<Note> = [] // Don't change this
+  protected oldNotes: ReadonlyArray<Note> = [] // Don't change this
   protected newNotes: Note[] = [] // Modify this in place (to avoid constantly creating new objects while dragging a slider/x-y pad)
   protected randoms: number[][] = [[1], [2], [3], [4], [5], [6], [7], [8]] // x and y random values for each quadrant
   protected unipolarRandom: number[] = []
@@ -17,7 +17,7 @@ export default abstract class Transformer {
   abstract set notes(notes: Note[])
 
   protected setNotes(notes: Note[]): void {
-    this._oldNotes = Object.freeze(notes)
+    this.oldNotes = Object.freeze(notes)
     this.newNotes = notes.map(note => note.clone())
     notes.forEach((_, index) => {
       for (const random of this.randoms) {
@@ -28,10 +28,6 @@ export default abstract class Transformer {
       this.bipolarRandom1[index] = 2 * Math.random() - 1
       this.bipolarRandom2[index] = 2 * Math.random() - 1
     })
-  }
-
-  protected get oldNotes(): ReadonlyArray<Note> {
-    return this._oldNotes
   }
 
   /**
