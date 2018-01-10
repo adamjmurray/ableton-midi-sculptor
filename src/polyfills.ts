@@ -48,7 +48,7 @@ if (typeof Object.values != 'function') {
 
 // String.includes()
 if (!String.prototype.includes) {
-  String.prototype.includes = function(search, start) {
+  String.prototype.includes = function (search, start) {
     'use strict';
     if (typeof start !== 'number') {
       start = 0;
@@ -61,3 +61,15 @@ if (!String.prototype.includes) {
   };
 }
 
+if (!Array.prototype.find) {
+  Array.prototype.find = function (predicate, thisArg) {
+    thisArg = thisArg || this
+    for (var i = 0; i < this.length; i++) {
+      var value = this[i];
+      if (predicate.call(thisArg, value, i, this)) {
+        return value;
+      }
+    }
+    return undefined;
+  }
+}

@@ -1,11 +1,8 @@
 - Split
   - euclid split type:
-    - want a way to control the phase (AKA rotation). 3rd arg? But it would be nice to turn a knob after the split occurs
+    - want a way to control the phase (AKA rotation). 3rd arg? But it would be nice to turn a knob after the split occurs (resplit behavior should help?)
   - "tilt" slider:
     - take the current notes, keep the earliest and latest note starts, and map every other note with an exponential curve
-  - Should be able to re-split without undoing. Might make euclid rotation easy too.
-    What if we keep track of the previous old & new notes, and when the current old notes are the previous new notes, then
-    operate off the previous old notes instead of the current ones. Otherwise, maybe join all consecutive notes first?
 
 - GUI
   - Some numboxes get "stuck" (usually on the first value). Check the number of steps in the inspector. It's probably too high
@@ -26,5 +23,6 @@ Misc
   - Back port some things to the MIDI clip variator
     - pitch sliding
     - shuffle bug fix (all notes same value - notes disappear)
+    - check for updates
   - Edge clip for slide start time has a max start time of the clip end time (so the note is silent because it's past the end of the clip)
     Maybe we can set the max to the clip end minus a small delta

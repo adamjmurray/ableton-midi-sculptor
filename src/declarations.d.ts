@@ -1,6 +1,6 @@
 declare function post(...args: Array<any>): void // Max for Live's STDOUT mechanism (console.log doesn't exist)
 
-type ApiType = boolean | number | string | Array<boolean|number|string>
+type ApiType = boolean | number | string | Array<boolean | number | string>
 declare class LiveAPI {
   constructor(path: string)
   id: string
@@ -17,5 +17,13 @@ declare interface ObjectConstructor {
 }
 
 declare interface String {
-   includes(text: string, start?: number): boolean
+  includes(text: string, start?: number): boolean
+}
+
+declare interface Array<T> {
+  find(predicate: (value: T, index: number, obj: Array<T>) => boolean, thisArg?: any): T | undefined;
+}
+
+declare interface ReadonlyArray<T> {
+  find(predicate: (value: T, index: number, obj: ReadonlyArray<T>) => boolean, thisArg?: any): T | undefined;
 }

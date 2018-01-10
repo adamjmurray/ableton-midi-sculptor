@@ -87,6 +87,8 @@ const applyGateAndEnvelope = (notes: Note[], gate: number, envelope: string) => 
 
 export default class SplitTransformer extends Transformer {
 
+  private previousSplitNotes: Note[] = []
+  private previousOldNotes: ReadonlyArray<Note> = []
   private splitType = 'time'
   private time = 1
   private number = 1
@@ -113,13 +115,21 @@ export default class SplitTransformer extends Transformer {
   }
 
   private splitWith(splitter: (note: Note) => Note[]) {
-    const { oldNotes, gate, envelope } = this
+    const { oldNotes, gate, envelope, previousOldNotes, previousSplitNotes } = this
+    // Go back to original notes when splitting multiple times in a row (for usability)
+    const isResplit = oldNotes.length === previousSplitNotes.length &&
+      !oldNotes.find((note, index) => !note.equals(previousSplitNotes[index])) // can't find an unequal note
+    const notesToSplit = isResplit ? previousOldNotes : oldNotes
+
     let notes: Note[] = []
-    for (const oldNote of oldNotes) {
+    for (const oldNote of notesToSplit) {
       const splitNotes = splitter(oldNote)
       applyGateAndEnvelope(splitNotes, gate, envelope)
       notes = notes.concat(splitNotes)
     }
+
+    this.previousOldNotes = notesToSplit;
+    this.previousSplitNotes = notes;
     return notes
   }
 
