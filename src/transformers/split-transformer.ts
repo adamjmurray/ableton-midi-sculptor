@@ -89,9 +89,9 @@ export default class SplitTransformer extends Transformer {
 
   private previousSplitNotes: Note[] = []
   private previousOldNotes: ReadonlyArray<Note> = []
-  private splitType = 'time'
+  private splitType = 'note'
   private time = 1
-  private number = 1
+  private number = 2
   private euclid = [1, 1] // [pulses, total]
   private exponential = [4, 4] // [notesBeforeDivision, divisions]
   private start = 0
@@ -117,7 +117,7 @@ export default class SplitTransformer extends Transformer {
     }
   }
 
-  private isResplit() {
+  isResplit() {
     const { oldNotes, previousSplitNotes } = this
     return (oldNotes.length === previousSplitNotes.length) &&
       !oldNotes.find((note, index) => !note.equals(previousSplitNotes[index], true)) // can't find an unequal note (ignoring duration)

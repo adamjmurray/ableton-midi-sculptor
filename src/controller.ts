@@ -46,12 +46,12 @@ export default class Controller {
     return true
   }
 
-  private transformNotes(transform: () => Note[]) {
+  private transformNotes(transform: () => Note[] | null) {
     if (!this.sync()) return
     if (!this.selectedClip) return
     if (!this.selectedNotes.length) return
     const notes = transform()
-    this.selectedClip.replaceSelectedNotes(notes)
+    if (notes) this.selectedClip.replaceSelectedNotes(notes)
   }
 
   /**
@@ -162,6 +162,9 @@ export default class Controller {
 
   set splitGate(amount: number) {
     this.splitTransformer.gate = amount
+    this.transformNotes(() =>
+      this.splitTransformer.isResplit() ? this.splitTransformer.split() : null
+    )
   }
 
   set splitEnvelope(type: SplitEnvelopeType) {

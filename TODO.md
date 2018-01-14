@@ -1,9 +1,11 @@
 - Split
+  - BUG: if you split a 3-beat note into 11, it creates 12 notes (the last one is very short)
+  - BUG: tilting and then chaing gate doesn't replit (chang gate in realtime)
+  - Make the split param auto resplit (like gate)?
   - euclid split type:
     - want a way to control the phase (AKA rotation). 3rd arg? But it would be nice to turn a knob after the split occurs (resplit behavior should help?)
   - "tilt" slider:
     - should adjust the duration of notes, and maintain the gate as much as possible
-      - seems hard, maybe just force everything legato (although this won't work with multiple notes unless we join all the same pitches?)
     - needs some fine tuning, doesn't seem symmetrical, backwards? it's ok in one direction , maybe just apply the algorithm "in reverse" for the other?
 
 - GUI
