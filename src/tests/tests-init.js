@@ -1,6 +1,9 @@
 if (typeof post === 'undefined') {
   post = console.log // Fallback when testing in Node.js
 }
+if (typeof error === 'undefined') {
+  error = console.error // Fallback when testing in Node.js
+}
 
 let getHandler
 let callHandlers = {}

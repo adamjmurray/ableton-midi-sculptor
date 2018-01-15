@@ -1,13 +1,20 @@
 import Transformer from './transformer'
 import Note from '../note'
-// import { log } from '../logger'
+import Clip from '../clip'
+import { log } from '../logger'
 
 export type SplitType = 'time' | 'note' | 'euclid' | 'exp'
 export type SplitEnvelopeType = 'none' | 'fade-out' | 'fade-in' | 'ramp-up' | 'ramp-down'
 
-const splitInTime = (oldNote: Note, timeBetweenNotes: number): Note[] => {
+const truncated = (notes: Note[]): Note[] => {
+  log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`)
+  return notes
+}
+
+const splitInTime = (oldNote: Note, timeBetweenNotes: number, maxNotes: number): Note[] => {
   const notes: Note[] = []
   for (let t = 0; t < oldNote.duration; t += timeBetweenNotes) {
+    if (notes.length >= maxNotes) return truncated(notes)
     const note = oldNote.clone()
     note.start = oldNote.start + t
     if (t + timeBetweenNotes >= oldNote.duration) { // last note, don't go beyond the existing end of the note:
@@ -20,10 +27,11 @@ const splitInTime = (oldNote: Note, timeBetweenNotes: number): Note[] => {
   return notes
 }
 
-const splitInto = (oldNote: Note, numberOfNotes: number): Note[] => {
+const splitInto = (oldNote: Note, numberOfNotes: number, maxNotes: number): Note[] => {
   const notes: Note[] = []
   const duration = oldNote.duration / numberOfNotes
   for (let i = 0; i < numberOfNotes; i++) {
+    if (notes.length >= maxNotes) return truncated(notes)
     const note = oldNote.clone()
     note.start = i * duration
     note.duration = duration
@@ -32,7 +40,7 @@ const splitInto = (oldNote: Note, numberOfNotes: number): Note[] => {
   return notes
 }
 
-const splitEuclid = (oldNote: Note, pulses: number, total: number): Note[] => {
+const splitEuclid = (oldNote: Note, pulses: number, total: number, maxNotes: number): Note[] => {
   const notes: Note[] = []
   const segmentDuration = oldNote.duration / total
   let note = oldNote.clone()
@@ -41,6 +49,7 @@ const splitEuclid = (oldNote: Note, pulses: number, total: number): Note[] => {
   let pulseCount = pulses
   let nextPulse = Math.floor(--pulseCount / pulses * total)
   for (let i = total; i >= 0; i--) {
+    if (notes.length >= maxNotes) return truncated(notes)
     if (i > nextPulse) {
       numSegments++
     } else { // end of pulse
@@ -56,7 +65,7 @@ const splitEuclid = (oldNote: Note, pulses: number, total: number): Note[] => {
   return notes
 }
 
-const splitExponentially = (oldNote: Note, notesPerDivision: number, divisions: number): Note[] => {
+const splitExponentially = (oldNote: Note, notesPerDivision: number, divisions: number, maxNotes: number): Note[] => {
   const notes: Note[] = []
   let start = oldNote.start
   for (let d = 0; d < divisions; d++) {
@@ -69,6 +78,7 @@ const splitExponentially = (oldNote: Note, notesPerDivision: number, divisions: 
     }
     const duration = divisionDuration / numNotes
     for (let n = 0; n < numNotes; n++) {
+      if (notes.length >= maxNotes) return truncated(notes)
       const note = oldNote.clone()
       note.duration = duration
       note.start = start + duration * n
@@ -79,7 +89,7 @@ const splitExponentially = (oldNote: Note, notesPerDivision: number, divisions: 
   return notes
 }
 
-const applyGateAndEnvelope = (notes: Note[], gate: number, envelope: string) => {
+const applyGateAndEnvelope = (notes: Note[], gate: number, envelope: string, ) => {
   const length = notes.length
   if (!length) return
   const deltaFromMax = 127 - notes[0].velocity
@@ -135,16 +145,19 @@ export default class SplitTransformer extends Transformer {
       !oldNotes.find((note, index) => !note.equals(previousSplitNotes[index], true)) // can't find an unequal note (ignoring duration)
   }
 
-  private splitWith(splitter: (note: Note) => Note[]) {
+  private splitWith(splitter: (note: Note, maxNotes: number) => Note[]) {
     const { oldNotes, gate, envelope, previousOldNotes } = this
     // Go back to original notes when splitting multiple times in a row (for usability)
     const notesToSplit = this.isResplit() ? previousOldNotes : oldNotes
     // Consider only spitting the first note, or joining consecutive notes before splitting...
     let notes: Note[] = []
+    let maxNotes = Clip.MAX_NOTES
     for (const note of notesToSplit) {
-      const splitNotes = splitter(note)
+      const splitNotes = splitter(note, maxNotes)
       applyGateAndEnvelope(splitNotes, gate, envelope)
       notes = notes.concat(splitNotes)
+      if (notes.length >= Clip.MAX_NOTES) break
+      maxNotes = Clip.MAX_NOTES - notes.length
     }
     this.previousOldNotes = notesToSplit
     this.previousSplitNotes = notes
@@ -154,10 +167,10 @@ export default class SplitTransformer extends Transformer {
   split(): Note[] {
     const { splitType, time, number, euclid: [pulses, total], exponential: [notesBeforeDivision, divisions] } = this
     switch (splitType) {
-      case 'time': return this.splitWith(note => splitInTime(note, time))
-      case 'note': return this.splitWith(note => splitInto(note, number))
-      case 'euclid': return this.splitWith(note => splitEuclid(note, pulses, total))
-      case 'exp': return this.splitWith(note => splitExponentially(note, notesBeforeDivision, divisions))
+      case 'time': return this.splitWith((note, maxNotes) => splitInTime(note, time, maxNotes))
+      case 'note': return this.splitWith((note, maxNotes) => splitInto(note, number, maxNotes))
+      case 'euclid': return this.splitWith((note, maxNotes) => splitEuclid(note, pulses, total, maxNotes))
+      case 'exp': return this.splitWith((note, maxNotes) => splitExponentially(note, notesBeforeDivision, divisions, maxNotes))
       default: return this.newNotes
     }
   }

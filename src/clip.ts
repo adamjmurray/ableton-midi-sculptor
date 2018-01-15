@@ -1,5 +1,5 @@
 import Note from './note'
-// import { log } from './logger'
+import { log } from './logger'
 
 export default class Clip {
   static readonly SELECTED_CLIP_PATH = 'live_set view detail_clip'
@@ -9,6 +9,8 @@ export default class Clip {
   private _length?: number
   private _start?: number
   private _end?: number
+
+  static get MAX_NOTES() { return 1000 }
 
   constructor(path: string) {
     this.api = new LiveAPI(path)
@@ -32,7 +34,7 @@ export default class Clip {
   get isMidi(): boolean {
     if (!this.exists) return false
     if (this._isMidi === undefined) {
-      const value =this.api.get('is_midi_clip')
+      const value = this.api.get('is_midi_clip')
       this._isMidi = Boolean(value instanceof Array ? value[0] : value) // api quirk
     }
     return this._isMidi
@@ -68,16 +70,16 @@ export default class Clip {
       "done" */
     if (!(data instanceof Array)) return []
     const notes = []
-    for (let i = 2; i < data.length-1; i += 6) { // `i = 2` skips "notes count" at beginning, `< data.length-1` skips "done" at end
+    for (let i = 2; i < data.length - 1; i += 6) { // `i = 2` skips "notes count" at beginning, `< data.length-1` skips "done" at end
       notes.push(new Note({
-        pitch: Number(data[i+1]),
-        start: Number(data[i+2]),
-        duration: Number(data[i+3]),
-        velocity: Number(data[i+4]),
-        muted: Boolean(data[i+5]),
+        pitch: Number(data[i + 1]),
+        start: Number(data[i + 2]),
+        duration: Number(data[i + 3]),
+        velocity: Number(data[i + 4]),
+        muted: Boolean(data[i + 5]),
       }))
     }
-    notes.sort((n1,n2) => (n1.start - n2.start) || (n1.pitch - n2.pitch))
+    notes.sort((n1, n2) => (n1.start - n2.start) || (n1.pitch - n2.pitch))
     return notes
   }
 
@@ -87,6 +89,10 @@ export default class Clip {
   }
 
   replaceSelectedNotes(notes: Note[]) {
+    if (notes.length > Clip.MAX_NOTES) {
+      log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`)
+      notes = notes.slice(0, Clip.MAX_NOTES)
+    }
     this.api.call('replace_selected_notes')
     this.api.call('notes', notes.length)
     notes.forEach(note => this.api.call('note', ...note.serialize()))

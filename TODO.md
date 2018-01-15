@@ -1,7 +1,6 @@
 - Split
   - BUG: tilting and then chaing gate doesn't replit (chang gate in realtime)
   - BUG: changing exp after a split didn't resplit (creating way too many notes)
-  - BUG: trying to create too many notes froze the device (put a limit on notes created?)
   - Rename exp to halves
   - Make the split param auto resplit (like gate)?
   - euclid split type:

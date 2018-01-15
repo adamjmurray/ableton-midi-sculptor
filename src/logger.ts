@@ -1,5 +1,5 @@
 export function toString(value: any): string {
-  if(value != null) {
+  if (value != null) {
     if (value instanceof Array) {
       return `[ ${value.map(item => toString(item)).join(', ')} ]`
     }

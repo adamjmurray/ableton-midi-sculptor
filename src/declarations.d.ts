@@ -1,4 +1,5 @@
 declare function post(...args: Array<any>): void // Max for Live's STDOUT mechanism (console.log doesn't exist)
+declare function error(...args: Array<any>): void // Max for Live's STDERR mechanism
 
 type ApiType = boolean | number | string | Array<boolean | number | string>
 declare class LiveAPI {
