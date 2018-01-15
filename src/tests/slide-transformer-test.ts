@@ -2,7 +2,7 @@ const assert = require('assert')
 import Note from '../note'
 import SlideTransformer, { SpreadAnchorType, SlidableProperty } from '../transformers/slide-transformer'
 
-describe('SwapTransformer', () => {
+describe('SlideTransformer', () => {
 
   let slideTransformer: SlideTransformer
   let notes: Note[]
