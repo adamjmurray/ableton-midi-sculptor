@@ -20,6 +20,18 @@ const splitInTime = (oldNote: Note, timeBetweenNotes: number): Note[] => {
   return notes
 }
 
+const splitInto = (oldNote: Note, numberOfNotes: number): Note[] => {
+  const notes: Note[] = []
+  const duration = oldNote.duration / numberOfNotes
+  for (let i = 0; i < numberOfNotes; i++) {
+    const note = oldNote.clone()
+    note.start = i * duration
+    note.duration = duration
+    notes.push(note)
+  }
+  return notes
+}
+
 const splitEuclid = (oldNote: Note, pulses: number, total: number): Note[] => {
   const notes: Note[] = []
   const segmentDuration = oldNote.duration / total
@@ -143,7 +155,7 @@ export default class SplitTransformer extends Transformer {
     const { splitType, time, number, euclid: [pulses, total], exponential: [notesBeforeDivision, divisions] } = this
     switch (splitType) {
       case 'time': return this.splitWith(note => splitInTime(note, time))
-      case 'note': return this.splitWith(note => splitInTime(note, (note.duration / number)))
+      case 'note': return this.splitWith(note => splitInto(note, number))
       case 'euclid': return this.splitWith(note => splitEuclid(note, pulses, total))
       case 'exp': return this.splitWith(note => splitExponentially(note, notesBeforeDivision, divisions))
       default: return this.newNotes

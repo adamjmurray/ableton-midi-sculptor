@@ -1,5 +1,4 @@
 - Split
-  - BUG: if you split a 3-beat note into 11, it creates 12 notes (the last one is very short)
   - BUG: tilting and then chaing gate doesn't replit (chang gate in realtime)
   - BUG: changing exp after a split didn't resplit (creating way too many notes)
   - BUG: trying to create too many notes froze the device (put a limit on notes created?)

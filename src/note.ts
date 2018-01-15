@@ -1,4 +1,4 @@
-interface NoteOptions {
+export interface NoteOptions {
   pitch?: number
   start?: number
   velocity?: number
