@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 1205.0, 639.0, 525.0, 511.0 ],
+		"rect" : [ 1205.0, 85.0, 525.0, 476.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -150,6 +150,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The duration unit. 4 is quarter note, 8 is 8th note, etc.",
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-2",
@@ -169,7 +170,8 @@
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 2.0 ],
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_annotation_name" : "Duration Unit"
 						}
 
 					}
@@ -180,6 +182,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The duration to be set. Depends on the unit choosen to the right.",
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-3",
@@ -202,7 +205,8 @@
 							"parameter_initial" : [ 1.0 ],
 							"parameter_unitstyle" : 0,
 							"parameter_speedlim" : 5.0,
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_annotation_name" : "Duration Value"
 						}
 
 					}
@@ -213,6 +217,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Changes the duration unit to a triplet (2/3 the normal value).",
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-4",
@@ -223,7 +228,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 738.449951, 206.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 92.516357, 120.0, 47.5, 17.0 ],
+					"presentation_rect" : [ 92.516357, 120.0, 42.5, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[1]",
@@ -231,7 +236,8 @@
 							"parameter_type" : 2,
 							"parameter_mmax" : 1.0,
 							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_annotation_name" : "Duration Triplet"
 						}
 
 					}
@@ -244,6 +250,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Delete, mute, or unmute notes.",
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-201",
@@ -261,7 +268,8 @@
 							"parameter_shortname" : "live.menu[1]",
 							"parameter_type" : 2,
 							"parameter_enum" : [ "deleted", "muted", "unmuted" ],
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_annotation_name" : "Note Value"
 						}
 
 					}
@@ -290,6 +298,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The start time unit. 4 is quarter note, 8 is 8th note, etc.",
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-197",
@@ -309,7 +318,8 @@
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 2.0 ],
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_annotation_name" : "Start Time Unit"
 						}
 
 					}
@@ -320,6 +330,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The start time to be set. Depends on the unit choosen to the right.",
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-198",
@@ -342,7 +353,8 @@
 							"parameter_unitstyle" : 0,
 							"parameter_steps" : 256,
 							"parameter_speedlim" : 5.0,
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_annotation_name" : "Start Time Value"
 						}
 
 					}
@@ -353,6 +365,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Changes the start time unit to a triplet (2/3 the normal value).",
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-199",
@@ -363,7 +376,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 307.75, 202.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 92.516357, 30.0, 47.5, 17.0 ],
+					"presentation_rect" : [ 92.516357, 30.0, 42.5, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[23]",
@@ -371,7 +384,8 @@
 							"parameter_type" : 2,
 							"parameter_mmax" : 1.0,
 							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_annotation_name" : "Start Time Triplet"
 						}
 
 					}
@@ -384,6 +398,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The pitch to be set.",
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-194",
@@ -405,7 +420,8 @@
 							"parameter_initial" : [ 64.0 ],
 							"parameter_unitstyle" : 8,
 							"parameter_speedlim" : 5.0,
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_annotation_name" : "Pitch Value"
 						}
 
 					}
@@ -416,6 +432,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The velocity to be set.",
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-192",
@@ -437,7 +454,8 @@
 							"parameter_initial" : [ 64.0 ],
 							"parameter_unitstyle" : 0,
 							"parameter_speedlim" : 5.0,
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_annotation_name" : "Velocity Value"
 						}
 
 					}
@@ -575,15 +593,15 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-3" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-2" : [ "live.menu[1]", "live.menu", 0 ],
 			"obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
+			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
 			"obj-194" : [ "velocity range[23]", "velrange", 0 ],
 			"obj-192" : [ "velocity range[22]", "velrange", 0 ],
-			"obj-2" : [ "live.menu[1]", "live.menu", 0 ],
-			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ]
+			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-3" : [ "velocity range[1]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

@@ -2,9 +2,9 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 8,
-			"minor" : 0,
-			"revision" : 0,
+			"major" : 7,
+			"minor" : 3,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -53,15 +53,16 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-40",
-					"linecount" : 4,
+					"linecount" : 3,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 128.0, 312.0, 50.0, 62.0 ],
+					"presentation_linecount" : 3,
 					"presentation_rect" : [ 128.0, 312.0, 50.0, 62.0 ],
 					"style" : "",
-					"text" : "swap_target duration 1"
+					"text" : "swap_target pitch 1"
 				}
 
 			}
@@ -103,14 +104,14 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 271.0, 117.0, 44.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 88.0, 2.5, 44.0, 15.0 ],
+					"presentation_rect" : [ 96.0, -0.5, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_longname" : "live.text[13]",
+							"parameter_shortname" : "live.text",
+							"parameter_type" : 2,
 							"parameter_mmax" : 1.0,
-							"parameter_shortname" : "live.text"
+							"parameter_enum" : [ "val1", "val2" ]
 						}
 
 					}
@@ -131,14 +132,14 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 200.0, 117.0, 44.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 39.799988, 2.5, 44.0, 15.0 ],
+					"presentation_rect" : [ 47.799988, -0.5, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_longname" : "live.text[1]",
+							"parameter_shortname" : "live.text",
+							"parameter_type" : 2,
 							"parameter_mmax" : 1.0,
-							"parameter_shortname" : "live.text"
+							"parameter_enum" : [ "val1", "val2" ]
 						}
 
 					}
@@ -159,14 +160,14 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 137.799988, 128.0, 44.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ -8.0, 2.5, 44.0, 15.0 ],
+					"presentation_rect" : [ 0.0, -0.5, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_longname" : "live.text",
+							"parameter_shortname" : "live.text",
+							"parameter_type" : 2,
 							"parameter_mmax" : 1.0,
-							"parameter_shortname" : "live.text"
+							"parameter_enum" : [ "val1", "val2" ]
 						}
 
 					}
@@ -186,7 +187,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 504.0, 256.0, 7.799988, 48.5 ],
 					"presentation" : 1,
-					"presentation_rect" : [ -2.0, 99.75, 121.0, 9.25 ]
+					"presentation_rect" : [ -2.0, 96.75, 121.0, 9.25 ]
 				}
 
 			}
@@ -199,7 +200,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 512.0, 256.0, 9.0, 48.5 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 59.5, 39.0, 5.0, 121.0 ]
+					"presentation_rect" : [ 59.5, 36.0, 5.0, 121.0 ]
 				}
 
 			}
@@ -231,14 +232,14 @@
 					"presentation_rect" : [ 280.0, 360.0, 40.0, 20.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_longname" : "live.text[9]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
+							"parameter_shortname" : "live.text[6]",
+							"parameter_type" : 2,
 							"parameter_mmax" : 1.0,
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.text[6]"
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -440,9 +441,9 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 0,
-							"revision" : 0,
+							"major" : 7,
+							"minor" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -645,9 +646,9 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 0,
-							"revision" : 0,
+							"major" : 7,
+							"minor" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -941,17 +942,17 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 41.799988, 360.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 62.0, 34.014404, 19.5 ],
+					"presentation_rect" : [ 176.0, 59.0, 34.014404, 19.5 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_longname" : "live.text[20]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
+							"parameter_shortname" : "live.text[6]",
+							"parameter_type" : 2,
 							"parameter_mmax" : 1.0,
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.text[6]"
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -973,17 +974,17 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 217.799988, 360.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 123.946655, 34.014404, 19.5 ],
+					"presentation_rect" : [ 176.0, 120.946655, 34.014404, 19.5 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_longname" : "live.text[16]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
+							"parameter_shortname" : "live.text[6]",
+							"parameter_type" : 2,
 							"parameter_mmax" : 1.0,
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.text[6]"
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -1005,7 +1006,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 552.0, 254.5, 33.749329, 50.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 137.0, 40.0, 29.0, 121.0 ],
+					"presentation_rect" : [ 137.0, 37.0, 29.0, 121.0 ],
 					"slidercolor" : [ 1.0, 0.709804, 0.196078, 1.0 ],
 					"style" : "",
 					"thickness" : 3
@@ -1029,7 +1030,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 392.0, 256.0, 103.0, 50.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 40.0, 121.0, 121.0 ],
+					"presentation_rect" : [ 0.0, 37.0, 121.0, 121.0 ],
 					"rightmargin" : 1,
 					"rightvalue" : 100,
 					"scaleknob" : 1,
@@ -1048,7 +1049,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 557.199341, 227.5, 51.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 131.175537, 22.5, 47.0, 20.0 ],
+					"presentation_rect" : [ 131.175537, 19.5, 47.0, 20.0 ],
 					"style" : "",
 					"text" : "Rotate",
 					"textjustification" : 1
@@ -1067,17 +1068,17 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 137.799988, 360.0, 51.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 92.973343, 34.014404, 19.5 ],
+					"presentation_rect" : [ 176.0, 89.973343, 34.014404, 19.5 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_longname" : "live.text[6]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
+							"parameter_shortname" : "live.text[6]",
+							"parameter_type" : 2,
 							"parameter_mmax" : 1.0,
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial_enable" : 1,
 							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.text[6]"
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -1096,7 +1097,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 388.5, 229.0, 74.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ -4.946747, 22.5, 71.0, 20.0 ],
+					"presentation_rect" : [ -4.946747, 19.5, 71.0, 20.0 ],
 					"style" : "",
 					"text" : "Randomize",
 					"textjustification" : 1
@@ -1377,17 +1378,13 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
+			"obj-110" : [ "live.text[16]", "live.text[6]", 0 ],
 			"obj-11" : [ "live.text[13]", "live.text", 0 ],
 			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
-			"obj-10" : [ "live.text[1]", "live.text", 0 ],
-			"obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
-			"obj-110" : [ "live.text[16]", "live.text[6]", 0 ],
 			"obj-7" : [ "live.text", "live.text", 0 ],
-			"obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
-			"parameterbanks" : 			{
-
-			}
-
+			"obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
+			"obj-10" : [ "live.text[1]", "live.text", 0 ]
 		}
 ,
 		"dependency_cache" : [  ],
@@ -1413,8 +1410,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",

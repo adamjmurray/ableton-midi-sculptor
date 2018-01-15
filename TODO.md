@@ -10,9 +10,10 @@
     - needs some fine tuning, doesn't seem symmetrical, backwards? it's ok in one direction , maybe just apply the algorithm "in reverse" for the other?
 
 - GUI
+  - Add annotations for all controls (set Set UI)
   - Some numboxes get "stuck" (usually on the first value). Check the number of steps in the inspector. It's probably too high
   - Use default Live 10 font size and rely on scaling to make it readable
-  - Persist scaling setting in Live set (or can we figure it out from the Live API?)
+  - Persist scaling setting in Live set (or can we figure it out from the Live API? scaling automatically would be nice)
   - Improve window sizing (too much space on right and bottom)
   - Don't forget to re-enable the "choose midi clip" overlay
   - control labels should be capitalized (compare with built in devices)
