@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 1205.0, 85.0, 525.0, 476.0 ],
+		"rect" : [ 382.0, 88.0, 525.0, 476.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -242,8 +242,8 @@
 
 					}
 ,
-					"text" : "triplet",
-					"texton" : "triplet",
+					"text" : "Triplet",
+					"texton" : "Triplet",
 					"varname" : "live.text[1]"
 				}
 
@@ -267,7 +267,7 @@
 							"parameter_longname" : "live.menu[21]",
 							"parameter_shortname" : "live.menu[1]",
 							"parameter_type" : 2,
-							"parameter_enum" : [ "deleted", "muted", "unmuted" ],
+							"parameter_enum" : [ "Deleted", "Muted", "Unmuted" ],
 							"parameter_invisible" : 2,
 							"parameter_annotation_name" : "Note Value"
 						}
@@ -390,8 +390,8 @@
 
 					}
 ,
-					"text" : "triplet",
-					"texton" : "triplet",
+					"text" : "Triplet",
+					"texton" : "Triplet",
 					"varname" : "live.text[18]"
 				}
 
@@ -593,15 +593,15 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-194" : [ "velocity range[23]", "velrange", 0 ],
 			"obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
-			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-3" : [ "velocity range[1]", "velrange", 0 ],
 			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-194" : [ "velocity range[23]", "velrange", 0 ],
-			"obj-192" : [ "velocity range[22]", "velrange", 0 ],
+			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
-			"obj-3" : [ "velocity range[1]", "velrange", 0 ]
+			"obj-192" : [ "velocity range[22]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

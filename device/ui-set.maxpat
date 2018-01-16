@@ -207,6 +207,7 @@
 , 			{
 				"box" : 				{
 					"annotation" : "Set all selected notes to the choosen value.",
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-11",
 					"maxclass" : "live.text",
@@ -217,7 +218,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 360.0, 236.5, 49.0, 25.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 135.5, 89.0, 67.058411, 24.0 ],
+					"presentation_rect" : [ 135.5, 89.0, 55.058411, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text",
@@ -801,6 +802,7 @@
 , 			{
 				"box" : 				{
 					"annotation" : "The target to be set to the value choosen to the right. Notes can be deleted, muted, or unmuted. Start time, pitch, velocity, and duration can be set to any value.",
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-179",
 					"maxclass" : "live.menu",
@@ -816,7 +818,7 @@
 							"parameter_longname" : "live.menu[18]",
 							"parameter_shortname" : "live.menu[1]",
 							"parameter_type" : 2,
-							"parameter_enum" : [ "note", "start time", "pitch", "velocity", "duration" ],
+							"parameter_enum" : [ "Note", "Start Time", "Pitch", "Velocity", "Duration" ],
 							"parameter_invisible" : 2,
 							"parameter_annotation_name" : "Target"
 						}
@@ -1044,17 +1046,17 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
 			"obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
+			"obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
 			"obj-11" : [ "live.text", "live.text", 0 ],
-			"obj-4::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-4::obj-3" : [ "velocity range[1]", "velrange", 0 ],
 			"obj-4::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
-			"obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
+			"obj-4::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
-			"obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
-			"obj-4::obj-3" : [ "velocity range[1]", "velrange", 0 ]
+			"obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

@@ -2,14 +2,14 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 8,
-			"minor" : 0,
-			"revision" : 0,
+			"major" : 7,
+			"minor" : 3,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 402.0, 664.0, 1095.0, 644.0 ],
+		"rect" : [ 89.0, 124.0, 1095.0, 644.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -54,11 +54,11 @@
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.tab[1]",
-							"parameter_invisible" : 2,
 							"parameter_shortname" : "live.tab",
-							"parameter_enum" : [ "min", "mid", "max" ],
 							"parameter_type" : 2,
-							"parameter_unitstyle" : 0
+							"parameter_enum" : [ "min", "mid", "max" ],
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -86,11 +86,11 @@
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.tab",
-							"parameter_invisible" : 2,
 							"parameter_shortname" : "live.tab",
-							"parameter_enum" : [ "clip", "reflect", "rotate", "remove" ],
 							"parameter_type" : 2,
-							"parameter_unitstyle" : 0
+							"parameter_enum" : [ "clip", "reflect", "rotate", "remove" ],
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -164,9 +164,9 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 0,
-							"revision" : 0,
+							"major" : 7,
+							"minor" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -516,7 +516,7 @@
 					"name" : "ui-slide-range.maxpat",
 					"numinlets" : 1,
 					"numoutlets" : 1,
-					"offset" : [ 0.0, -30.0 ],
+					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 776.0, 409.5, 152.0, 17.0 ],
 					"presentation" : 1,
@@ -620,9 +620,9 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 0,
-							"revision" : 0,
+							"major" : 7,
+							"minor" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1029,6 +1029,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-42",
 					"maxclass" : "live.menu",
@@ -1036,16 +1037,16 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 720.0, 177.5, 131.0, 18.0 ],
+					"patching_rect" : [ 720.0, 177.5, 131.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 72.0, 18.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 72.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.menu[1]",
-							"parameter_invisible" : 2,
 							"parameter_shortname" : "live.menu[1]",
-							"parameter_enum" : [ "start time", "pitch", "velocity", "duration" ],
-							"parameter_type" : 2
+							"parameter_type" : 2,
+							"parameter_enum" : [ "Start Time", "Pitch", "Velocity", "Duration" ],
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -1478,21 +1479,17 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
 			"obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
+			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
+			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
 			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
 			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
-			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
-			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
-			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
-			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
 			"obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
+			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
 			"obj-22" : [ "live.tab", "live.tab", 0 ],
-			"parameterbanks" : 			{
-
-			}
-
+			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -1581,8 +1578,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",

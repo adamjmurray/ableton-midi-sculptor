@@ -2,9 +2,9 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 8,
-			"minor" : 0,
-			"revision" : 0,
+			"major" : 7,
+			"minor" : 3,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -245,7 +245,7 @@
 					"name" : "ui-split-into.maxpat",
 					"numinlets" : 2,
 					"numoutlets" : 1,
-					"offset" : [ 0.0, 0.0 ],
+					"offset" : [ 0.0, -30.0 ],
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 160.0, 208.0, 152.0, 24.0 ],
 					"presentation" : 1,
@@ -292,9 +292,9 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 0,
-							"revision" : 0,
+							"major" : 7,
+							"minor" : 3,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -671,6 +671,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-171",
 					"maxclass" : "live.menu",
@@ -678,16 +679,16 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 424.0, 216.0, 100.0, 18.0 ],
+					"patching_rect" : [ 424.0, 216.0, 100.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 66.349121, 63.025024, 77.650879, 18.0 ],
+					"presentation_rect" : [ 66.349121, 63.025024, 77.650879, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.menu[16]",
-							"parameter_invisible" : 2,
 							"parameter_shortname" : "live.menu[5]",
-							"parameter_enum" : [ "none", "fade out", "fade in", "ramp down", "ramp up" ],
-							"parameter_type" : 2
+							"parameter_type" : 2,
+							"parameter_enum" : [ "None", "Fade Out", "Fade In", "Ramp Down", "Ramp Up" ],
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -749,6 +750,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-62",
 					"maxclass" : "live.text",
@@ -763,13 +765,13 @@
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[10]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 1.0,
-							"parameter_initial" : [ 0.0 ],
 							"parameter_shortname" : "live.text[6]",
+							"parameter_type" : 2,
+							"parameter_mmax" : 1.0,
 							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 0.0 ],
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -797,6 +799,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-25",
 					"maxclass" : "live.numbox",
@@ -804,21 +807,21 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 48.0, 192.0, 38.0, 18.0 ],
+					"patching_rect" : [ 48.0, 192.0, 38.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ -0.230469, 63.025024, 44.104248, 18.0 ],
+					"presentation_rect" : [ -0.230469, 63.025024, 45.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[9]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 100.0,
-							"parameter_initial" : [ 100 ],
-							"parameter_speedlim" : 5.0,
 							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
-							"parameter_unitstyle" : 5
+							"parameter_mmin" : 1.0,
+							"parameter_mmax" : 100.0,
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 100 ],
+							"parameter_unitstyle" : 5,
+							"parameter_speedlim" : 5.0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -860,6 +863,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-15",
 					"maxclass" : "live.menu",
@@ -867,16 +871,16 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 160.0, 96.0, 100.0, 18.0 ],
+					"patching_rect" : [ 160.0, 96.0, 100.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 16.0, 60.108002, 18.0 ],
+					"presentation_rect" : [ 0.0, 16.0, 60.108002, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.menu[6]",
-							"parameter_invisible" : 2,
 							"parameter_shortname" : "live.menu[5]",
-							"parameter_enum" : [ "note", "time", "euclid", "exp" ],
-							"parameter_type" : 2
+							"parameter_type" : 2,
+							"parameter_enum" : [ "Note", "Time", "Euclid", "Exp" ],
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -1086,22 +1090,18 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
-			"obj-5::obj-20" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-171" : [ "live.menu[16]", "live.menu[5]", 0 ],
-			"obj-25" : [ "velocity range[9]", "velrange", 0 ],
-			"obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
-			"obj-5::obj-144" : [ "velocity range[19]", "velrange", 0 ],
 			"obj-5::obj-142" : [ "velocity range[18]", "velrange", 0 ],
 			"obj-5::obj-141" : [ "velocity range[12]", "velrange", 0 ],
+			"obj-25" : [ "velocity range[9]", "velrange", 0 ],
+			"obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
+			"obj-171" : [ "live.menu[16]", "live.menu[5]", 0 ],
+			"obj-5::obj-20" : [ "velocity range[1]", "velrange", 0 ],
+			"obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
 			"obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-5::obj-21" : [ "velocity range[2]", "velrange", 0 ],
-			"parameterbanks" : 			{
-
-			}
-
+			"obj-5::obj-144" : [ "velocity range[19]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

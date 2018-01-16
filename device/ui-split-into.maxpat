@@ -2,9 +2,9 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 8,
-			"minor" : 0,
-			"revision" : 0,
+			"major" : 7,
+			"minor" : 3,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -94,6 +94,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-20",
 					"maxclass" : "live.numbox",
@@ -101,21 +102,21 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 795.0, 123.0, 40.0, 18.0 ],
+					"patching_rect" : [ 795.0, 123.0, 40.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 47.766357, 91.0, 30.0, 18.0 ],
+					"presentation_rect" : [ 47.766357, 91.0, 30.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmin" : 2.0,
 							"parameter_longname" : "velocity range[1]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 8.0,
-							"parameter_initial" : [ 4 ],
-							"parameter_speedlim" : 5.0,
 							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
-							"parameter_unitstyle" : 0
+							"parameter_mmin" : 2.0,
+							"parameter_mmax" : 8.0,
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 4 ],
+							"parameter_unitstyle" : 0,
+							"parameter_speedlim" : 5.0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -126,6 +127,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-21",
 					"maxclass" : "live.numbox",
@@ -133,21 +135,21 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 701.516846, 123.0, 40.0, 18.0 ],
+					"patching_rect" : [ 701.516846, 123.0, 40.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.516846, 91.0, 30.0, 18.0 ],
+					"presentation_rect" : [ 0.516846, 91.0, 30.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[2]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 16.0,
-							"parameter_initial" : [ 4 ],
-							"parameter_speedlim" : 5.0,
 							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
-							"parameter_unitstyle" : 0
+							"parameter_mmin" : 1.0,
+							"parameter_mmax" : 16.0,
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 4 ],
+							"parameter_unitstyle" : 0,
+							"parameter_speedlim" : 5.0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -417,9 +419,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 74.516846, 113.0, 25.0, 24.0 ],
+					"patching_rect" : [ 74.516846, 113.0, 25.0, 25.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 28.883179, 27.474976, 25.0, 24.0 ],
+					"presentation_rect" : [ 28.883179, 27.474976, 25.0, 25.0 ],
 					"style" : "",
 					"text" : "/",
 					"textjustification" : 1
@@ -428,6 +430,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-197",
 					"maxclass" : "live.menu",
@@ -435,18 +438,18 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 93.699951, 117.0, 49.0, 18.0 ],
+					"patching_rect" : [ 93.699951, 117.0, 49.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 47.766357, 30.0, 39.0, 18.0 ],
+					"presentation_rect" : [ 47.766357, 30.0, 39.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.menu[20]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_initial" : [ 2.0 ],
 							"parameter_shortname" : "live.menu",
+							"parameter_type" : 2,
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
-							"parameter_type" : 2
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 2.0 ],
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -457,6 +460,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-198",
 					"maxclass" : "live.numbox",
@@ -464,21 +468,21 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 42.199951, 117.0, 39.0, 18.0 ],
+					"patching_rect" : [ 42.199951, 117.0, 39.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.383179, 30.0, 35.0, 18.0 ],
+					"presentation_rect" : [ 0.383179, 30.0, 35.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[24]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 128.0,
-							"parameter_initial" : [ 1.0 ],
-							"parameter_speedlim" : 5.0,
 							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
-							"parameter_unitstyle" : 0
+							"parameter_mmin" : 1.0,
+							"parameter_mmax" : 128.0,
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 1.0 ],
+							"parameter_unitstyle" : 0,
+							"parameter_speedlim" : 5.0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -489,6 +493,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-199",
 					"maxclass" : "live.text",
@@ -502,23 +507,24 @@
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "live.text[23]",
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 1.0,
 							"parameter_shortname" : "live.text[2]",
+							"parameter_type" : 2,
+							"parameter_mmax" : 1.0,
 							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2
+							"parameter_invisible" : 2
 						}
 
 					}
 ,
-					"text" : "triplet",
-					"texton" : "triplet",
+					"text" : "Triplet",
+					"texton" : "Triplet",
 					"varname" : "live.text[18]"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-144",
 					"maxclass" : "live.numbox",
@@ -526,21 +532,21 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 229.0, 117.0, 40.0, 18.0 ],
+					"patching_rect" : [ 229.0, 117.0, 40.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.383179, 0.0, 30.0, 18.0 ],
+					"presentation_rect" : [ 0.383179, 0.0, 30.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmin" : 2.0,
 							"parameter_longname" : "velocity range[19]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 128.0,
-							"parameter_initial" : [ 1.0 ],
-							"parameter_speedlim" : 5.0,
 							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
-							"parameter_unitstyle" : 0
+							"parameter_mmin" : 2.0,
+							"parameter_mmax" : 128.0,
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 1.0 ],
+							"parameter_unitstyle" : 0,
+							"parameter_speedlim" : 5.0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -551,6 +557,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-142",
 					"maxclass" : "live.numbox",
@@ -558,21 +565,21 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 553.0, 117.0, 40.0, 18.0 ],
+					"patching_rect" : [ 553.0, 117.0, 40.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 52.160034, 60.0, 30.0, 18.0 ],
+					"presentation_rect" : [ 52.160034, 60.0, 30.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[18]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 128.0,
-							"parameter_initial" : [ 1.0 ],
-							"parameter_speedlim" : 5.0,
 							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
-							"parameter_unitstyle" : 0
+							"parameter_mmin" : 1.0,
+							"parameter_mmax" : 128.0,
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 1.0 ],
+							"parameter_unitstyle" : 0,
+							"parameter_speedlim" : 5.0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -583,6 +590,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-141",
 					"maxclass" : "live.numbox",
@@ -590,21 +598,21 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 459.516846, 117.0, 40.0, 18.0 ],
+					"patching_rect" : [ 459.516846, 117.0, 40.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.383179, 60.0, 30.0, 18.0 ],
+					"presentation_rect" : [ 0.383179, 60.0, 30.0, 17.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[12]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 128.0,
-							"parameter_initial" : [ 1.0 ],
-							"parameter_speedlim" : 5.0,
 							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
-							"parameter_unitstyle" : 0
+							"parameter_mmin" : 1.0,
+							"parameter_mmax" : 128.0,
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 1.0 ],
+							"parameter_unitstyle" : 0,
+							"parameter_speedlim" : 5.0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -879,18 +887,14 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-20" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-144" : [ "velocity range[19]", "velrange", 0 ],
 			"obj-142" : [ "velocity range[18]", "velrange", 0 ],
 			"obj-141" : [ "velocity range[12]", "velrange", 0 ],
+			"obj-20" : [ "velocity range[1]", "velrange", 0 ],
 			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-21" : [ "velocity range[2]", "velrange", 0 ],
-			"parameterbanks" : 			{
-
-			}
-
+			"obj-144" : [ "velocity range[19]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

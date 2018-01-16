@@ -53,16 +53,16 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-40",
-					"linecount" : 3,
+					"linecount" : 4,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 128.0, 312.0, 50.0, 62.0 ],
-					"presentation_linecount" : 3,
+					"patching_rect" : [ 128.0, 312.0, 50.0, 64.0 ],
+					"presentation_linecount" : 4,
 					"presentation_rect" : [ 128.0, 312.0, 50.0, 62.0 ],
 					"style" : "",
-					"text" : "swap_target pitch 1"
+					"text" : "swap_target Duration 1"
 				}
 
 			}
@@ -96,6 +96,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"id" : "obj-11",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -116,14 +117,15 @@
 
 					}
 ,
-					"text" : "duration",
-					"texton" : "duration",
+					"text" : "Duration",
+					"texton" : "Duration",
 					"varname" : "live.text[2]"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"id" : "obj-10",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -144,14 +146,15 @@
 
 					}
 ,
-					"text" : "velocity",
-					"texton" : "velocity",
+					"text" : "Velocity",
+					"texton" : "Velocity",
 					"varname" : "live.text[1]"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"id" : "obj-7",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -172,8 +175,8 @@
 
 					}
 ,
-					"text" : "pitch",
-					"texton" : "pitch",
+					"text" : "Pitch",
+					"texton" : "Pitch",
 					"varname" : "live.text"
 				}
 
@@ -932,6 +935,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-156",
 					"maxclass" : "live.text",
@@ -964,6 +968,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-110",
 					"maxclass" : "live.text",
@@ -1058,6 +1063,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-44",
 					"maxclass" : "live.text",
@@ -1378,12 +1384,12 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
+			"obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
+			"obj-7" : [ "live.text", "live.text", 0 ],
+			"obj-11" : [ "live.text[13]", "live.text", 0 ],
 			"obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
 			"obj-110" : [ "live.text[16]", "live.text[6]", 0 ],
-			"obj-11" : [ "live.text[13]", "live.text", 0 ],
-			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
-			"obj-7" : [ "live.text", "live.text", 0 ],
-			"obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
 			"obj-10" : [ "live.text[1]", "live.text", 0 ]
 		}
 ,

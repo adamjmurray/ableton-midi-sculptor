@@ -21,7 +21,7 @@ export function clipchange() {
  - amount is from 0 to 127 for velocity, or a positive number in beats for start/duration
  */
 export function slide_range(property, amount) {
-  controller.setSlideRange(property, amount)
+  controller.setSlideRange(property.toLowerCase(), amount)
 }
 
 export function slide_edges(behavior) {
@@ -33,7 +33,7 @@ export function slide_anchor(anchor) {
 }
 
 export function slide_shift(property, amount) {
-  controller.shift(property, amount)
+  controller.shift(property.toLowerCase(), amount)
 }
 
 /**
@@ -42,7 +42,7 @@ export function slide_shift(property, amount) {
  - amount should be from -1.0 to 1.0
  */
 export function slide_spread(property, amount) {
-  controller.spread(property, amount)
+  controller.spread(property.toLowerCase(), amount)
 }
 
 /**
@@ -53,11 +53,11 @@ export function slide_spread(property, amount) {
  random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
  */
 export function slide_random(property, amountX, amountY) {
-  controller.randomSlide(property, amountX, amountY)
+  controller.randomSlide(property.toLowerCase(), amountX, amountY)
 }
 
 export function swap_target(property, enabled) {
-  controller.swapTarget(property, enabled)
+  controller.swapTarget(property.toLowerCase(), enabled)
 }
 
 export function rotate(amount) {
@@ -85,10 +85,11 @@ export function swap_random(amountX, amountY) {
 }
 
 export function set_property(property) {
-  controller.setProperty(property)
+  controller.setProperty(property.toLowerCase())
 }
 
 export function set_value(value) {
+  if (typeof value === 'string') value = value.toLowerCase()
   controller.setValue(value)
 }
 
@@ -101,7 +102,7 @@ export function set_random(amountX, amountY) {
 }
 
 export function split_type(type, amount1, amount2) {
-  controller.setSplitType(type, amount1, amount2)
+  controller.setSplitType(type.toLowerCase(), amount1, amount2)
 }
 
 export function split_gate(amount) {
@@ -109,7 +110,7 @@ export function split_gate(amount) {
 }
 
 export function split_envelope(type) {
-  controller.splitEnvelope = type
+  controller.splitEnvelope = type.toLowerCase()
 }
 
 export function split() {

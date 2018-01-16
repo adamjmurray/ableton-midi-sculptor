@@ -14,11 +14,11 @@
   - Some numboxes get "stuck" (usually on the first value). Check the number of steps in the inspector. It's probably too high
   - Use default Live 10 font size and rely on scaling to make it readable
   - Persist scaling setting in Live set (or can we figure it out from the Live API? scaling automatically would be nice)
-  - Improve window sizing (too much space on right and bottom)
+  - Improve window sizing in LIve 10
   - Don't forget to re-enable the "choose midi clip" overlay
-  - control labels should be capitalized (compare with built in devices)
   - test color schemes in Live 9 and 10
     - the device panel (not window) button colors need improvement in Live 10
+  - The envelope options in split might be better as icons
 
 Misc
   - More tests

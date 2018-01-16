@@ -390,8 +390,8 @@
 
 					}
 ,
-					"text" : "triplet",
-					"texton" : "triplet",
+					"text" : "Triplet",
+					"texton" : "Triplet",
 					"varname" : "live.text[9]"
 				}
 
@@ -421,7 +421,7 @@
 
 					}
 ,
-					"text" : "triplet",
+					"text" : "Triplet",
 					"texton" : "triplet",
 					"varname" : "live.text[8]"
 				}
@@ -599,19 +599,19 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-11" : [ "velocity range[5]", "velrange", 0 ],
-			"obj-132" : [ "velocity range[16]", "velrange", 0 ],
-			"obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
-			"obj-135" : [ "velocity range[17]", "velrange", 0 ],
 			"obj-50" : [ "velocity range[7]", "velrange", 0 ],
-			"obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-135" : [ "velocity range[17]", "velrange", 0 ],
 			"obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-131" : [ "live.menu[10]", "live.menu", 0 ]
+			"obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-134" : [ "live.menu[11]", "live.menu", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "covert-to-beats.maxpat",
-				"bootpath" : "D:/workspace/ableton-midi-sculptor/sculptor-device",
+				"bootpath" : "D:/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -639,8 +639,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
