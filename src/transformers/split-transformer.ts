@@ -3,7 +3,7 @@ import Note from '../note'
 import Clip from '../clip'
 import { log } from '../logger'
 
-export type SplitType = 'time' | 'note' | 'euclid' | 'exp'
+export type SplitType = 'time' | 'note' | 'euclid' | 'halves'
 export type SplitEnvelopeType = 'none' | 'fade-out' | 'fade-in' | 'ramp-up' | 'ramp-down'
 
 const truncated = (notes: Note[]): Note[] => {
@@ -65,7 +65,7 @@ const splitEuclid = (oldNote: Note, pulses: number, total: number, maxNotes: num
   return notes
 }
 
-const splitExponentially = (oldNote: Note, notesPerDivision: number, divisions: number, maxNotes: number): Note[] => {
+const splitHalves = (oldNote: Note, notesPerDivision: number, divisions: number, maxNotes: number): Note[] => {
   const notes: Note[] = []
   let start = oldNote.start
   for (let d = 0; d < divisions; d++) {
@@ -111,11 +111,11 @@ export default class SplitTransformer extends Transformer {
 
   private previousSplitNotes: Note[] = []
   private previousOldNotes: ReadonlyArray<Note> = []
-  private splitType = 'note'
+  private splitType: SplitType = 'note'
   private time = 1
   private number = 2
   private euclid = [1, 1] // [pulses, total]
-  private exponential = [4, 4] // [notesBeforeDivision, divisions]
+  private halves = [4, 4] // [notesBeforeDivision, divisions]
   private start = 0
   private end = 1
   gate = 1
@@ -134,8 +134,8 @@ export default class SplitTransformer extends Transformer {
       this.number = amount1
     } else if (type === 'euclid') {
       this.euclid = [amount1, amount2]
-    } else if (type === 'exp') {
-      this.exponential = [amount1, amount2]
+    } else if (type === 'halves') {
+      this.halves = [amount1, amount2]
     }
   }
 
@@ -165,13 +165,13 @@ export default class SplitTransformer extends Transformer {
   }
 
   split(): Note[] {
-    const { splitType, time, number, euclid: [pulses, total], exponential: [notesBeforeDivision, divisions] } = this
+    const { splitType, time, number, euclid: [pulses, total], halves: [notesBeforeDivision, divisions] } = this
     switch (splitType) {
       case 'time': return this.splitWith((note, maxNotes) => splitInTime(note, time, maxNotes))
       case 'note': return this.splitWith((note, maxNotes) => splitInto(note, number, maxNotes))
       case 'euclid': return this.splitWith((note, maxNotes) => splitEuclid(note, pulses, total, maxNotes))
-      case 'exp': return this.splitWith((note, maxNotes) => splitExponentially(note, notesBeforeDivision, divisions, maxNotes))
-      default: return this.newNotes
+      case 'halves': return this.splitWith((note, maxNotes) => splitHalves(note, notesBeforeDivision, divisions, maxNotes))
+      default: return this.oldNotes.map(note => note.clone())
     }
   }
 

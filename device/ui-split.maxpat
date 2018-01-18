@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 119.0, 194.0, 1000.0, 455.0 ],
+		"rect" : [ 219.0, 81.0, 1000.0, 455.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -245,7 +245,7 @@
 					"name" : "ui-split-into.maxpat",
 					"numinlets" : 2,
 					"numoutlets" : 1,
-					"offset" : [ 0.0, -30.0 ],
+					"offset" : [ 0.0, -90.0 ],
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 160.0, 208.0, 152.0, 24.0 ],
 					"presentation" : 1,
@@ -879,7 +879,7 @@
 							"parameter_longname" : "live.menu[6]",
 							"parameter_shortname" : "live.menu[5]",
 							"parameter_type" : 2,
-							"parameter_enum" : [ "Note", "Time", "Euclid", "Exp" ],
+							"parameter_enum" : [ "Note", "Time", "Euclid", "Halves" ],
 							"parameter_invisible" : 2
 						}
 
@@ -1090,18 +1090,18 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-5::obj-142" : [ "velocity range[18]", "velrange", 0 ],
-			"obj-5::obj-141" : [ "velocity range[12]", "velrange", 0 ],
+			"obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-25" : [ "velocity range[9]", "velrange", 0 ],
-			"obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
-			"obj-171" : [ "live.menu[16]", "live.menu[5]", 0 ],
-			"obj-5::obj-20" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
 			"obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-5::obj-20" : [ "velocity range[1]", "velrange", 0 ],
 			"obj-5::obj-21" : [ "velocity range[2]", "velrange", 0 ],
-			"obj-5::obj-144" : [ "velocity range[19]", "velrange", 0 ]
+			"obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
+			"obj-171" : [ "live.menu[16]", "live.menu[5]", 0 ],
+			"obj-5::obj-144" : [ "velocity range[19]", "velrange", 0 ],
+			"obj-5::obj-142" : [ "velocity range[18]", "velrange", 0 ],
+			"obj-5::obj-141" : [ "velocity range[12]", "velrange", 0 ],
+			"obj-62" : [ "live.text[10]", "live.text[6]", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
