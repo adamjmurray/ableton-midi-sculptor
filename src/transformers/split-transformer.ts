@@ -67,7 +67,9 @@ const splitEuclid = (oldNote: Note, pulses: number, total: number, maxNotes: num
 
 const splitHalves = (oldNote: Note, notesPerDivision: number, divisions: number, maxNotes: number): Note[] => {
   const notes: Note[] = []
-  let start = oldNote.start
+  const reversed = divisions < 0
+  let start = oldNote.start + (reversed ? oldNote.duration : 0)
+  divisions = Math.abs(divisions);
   for (let d = 0; d < divisions; d++) {
     let divisionDuration = oldNote.duration / Math.pow(2, d + 1)
     let numNotes = notesPerDivision
@@ -77,6 +79,7 @@ const splitHalves = (oldNote: Note, notesPerDivision: number, divisions: number,
       numNotes *= 2
     }
     const duration = divisionDuration / numNotes
+    if (reversed) start -= divisionDuration
     for (let n = 0; n < numNotes; n++) {
       if (notes.length >= maxNotes) return truncated(notes)
       const note = oldNote.clone()
@@ -84,7 +87,7 @@ const splitHalves = (oldNote: Note, notesPerDivision: number, divisions: number,
       note.start = start + duration * n
       notes.push(note)
     }
-    start += divisionDuration
+    if (!reversed) start += divisionDuration
   }
   return notes
 }
@@ -115,7 +118,7 @@ export default class SplitTransformer extends Transformer {
   private time = 1
   private number = 2
   private euclid = [1, 1] // [pulses, total]
-  private halves = [4, 4] // [notesBeforeDivision, divisions]
+  private halves = [1, 4] // [notesBeforeDivision, divisions]
   private start = 0
   private end = 1
   gate = 1

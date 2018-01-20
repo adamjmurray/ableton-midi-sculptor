@@ -1,7 +1,6 @@
 - Split
-  - reverse feature for split halves
   - BUG: tilting and then changing gate doesn't "replit"
-  - BUG: changing exp after a split didn't resplit (creating way too many notes)
+  - BUG: changing halves after a split didn't resplit (creating way too many notes)
   - Make the split param auto resplit (like gate)?
   - euclid split type:
     - want a way to control the phase (AKA rotation). 3rd arg?
@@ -9,7 +8,8 @@
       do that if we just performed a euclid split
   - "tilt" slider:
     - should adjust the duration of notes, and maintain the gate as much as possible
-    - needs some fine tuning, doesn't seem symmetrical, backwards? it's ok in one direction , maybe just apply the algorithm "in reverse" for the other?
+    - needs some fine tuning, doesn't seem symmetrical, backwards? it's ok in one direction ,
+      maybe just apply the algorithm "in reverse" for the other?
 
 - GUI
   - Add annotations for all controls (set Set UI)

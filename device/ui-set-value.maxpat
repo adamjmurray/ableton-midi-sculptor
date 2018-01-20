@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 382.0, 88.0, 525.0, 476.0 ],
+		"rect" : [ 382.0, 88.0, 889.0, 525.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -43,9 +43,9 @@
 					"numinlets" : 6,
 					"numoutlets" : 6,
 					"outlettype" : [ "", "", "", "", "", "" ],
-					"patching_rect" : [ 307.75, 75.0, 210.0, 22.0 ],
+					"patching_rect" : [ 307.75, 75.0, 219.0, 22.0 ],
 					"style" : "",
-					"text" : "route note start pitch velocity duration"
+					"text" : "route Note Start Pitch Velocity Duration"
 				}
 
 			}
@@ -593,15 +593,15 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-194" : [ "velocity range[23]", "velrange", 0 ],
 			"obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
 			"obj-2" : [ "live.menu[1]", "live.menu", 0 ],
-			"obj-3" : [ "velocity range[1]", "velrange", 0 ],
+			"obj-192" : [ "velocity range[22]", "velrange", 0 ],
+			"obj-194" : [ "velocity range[23]", "velrange", 0 ],
+			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
 			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
 			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
-			"obj-192" : [ "velocity range[22]", "velrange", 0 ]
+			"obj-3" : [ "velocity range[1]", "velrange", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
