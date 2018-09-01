@@ -38,12 +38,12 @@ const SLIDABLE_PROPERTIES = Object.values(SlidableProperty)
 
 class SlidablePropertyMetadata {
   range: number
-  min: number
-  midpoint: number
-  max: number
-  largestDeltaFromMin: number
-  largestDeltaFromMidpoint: number
-  largestDeltaFromMax: number
+  min: number = 0
+  midpoint: number = 0
+  max: number = 0
+  largestDeltaFromMin: number = 0
+  largestDeltaFromMidpoint: number = 0
+  largestDeltaFromMax: number = 0
   constructor(defaultRange: number) {
     this.range = defaultRange
   }

@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "description": "The **Ableton MIDI Clip Variator**\r is a [Max for Live device](http://ableton.com/maxforlive)\r for [Ableton Live](http://ableton.com/live/)\r that makes it easy to create variations of MIDI clips with tools to modify velocity and timing.",
   "main": "midi-clip-variator.js",
-  "dependencies": {
-    "@types/mocha": "^2.2.46",
-    "@types/node": "^9.3.0",
-    "mocha": "^4.1.0",
-    "rollup": "^0.54.0",
-    "rollup-plugin-cleanup": "^2.0.0",
-    "typescript": "^2.6.2"
+  "dependencies": {},
+  "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.9.4",
+    "mocha": "^5.2.0",
+    "rollup": "^0.65.0",
+    "rollup-plugin-cleanup": "^3.0.0",
+    "typescript": "^3.0.3"
   },
-  "devDependencies": {},
   "scripts": {
     "clean": "rm -rf build && rm -f device/sculptor.js",
     "compile": "tsc && cp src/main.js build/main.js && cp -r src/tests/. build/tests",

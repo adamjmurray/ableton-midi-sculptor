@@ -31,11 +31,11 @@ export default class Note {
 
   static get MIN_DURATION() { return 1 / 256 }
 
-  pitch: number
-  start: number
-  velocity: number
-  duration: number
-  muted: boolean
+  pitch: number = 0
+  start: number = 0
+  velocity: number = 0
+  duration: number = 0
+  muted: boolean = true
 
   constructor(options: NoteOptions = {}) {
     Object.assign(this, DEFAULT_NOTE_OPTIONS, options)

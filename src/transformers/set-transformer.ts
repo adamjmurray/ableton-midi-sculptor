@@ -7,8 +7,8 @@ export type SettableValue = 'deleted' | 'muted' | 'unmuted'
 
 export default class SetTransformer extends Transformer {
 
-  property: SettableProperty
-  value: SettableValue
+  property: SettableProperty = 'note'
+  value: SettableValue = 'muted'
 
   set notes(notes: Note[]) {
     super.setNotes(notes)
