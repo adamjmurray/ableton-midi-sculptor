@@ -6,6 +6,7 @@ import SwapTransformer from './transformers/SwapTransformer';
 import SplitTransformer from './transformers/SplitTransformer';
 
 export default class Controller {
+
   constructor() {
     this.isSynced = false;
     this.selectedNotes = [];
@@ -21,8 +22,10 @@ export default class Controller {
 
   sync() {
     if (this.isSynced) return true;
+
     const selectedClip = this.selectedClip = this.selectedClip || new Clip(SELECTED_CLIP_PATH);
     if (!selectedClip.isMidi) return false;
+
     this.appView = this.appView || new AppView();
     this.appView.showClipDetailView();
     let selectedNotes = selectedClip.selectedNotes;
@@ -46,6 +49,7 @@ export default class Controller {
     if (!this.sync()) return;
     if (!this.selectedClip) return;
     if (!this.selectedNotes.length) return;
+
     const notes = transform();
     if (notes) this.selectedClip.replaceSelectedNotes(notes);
   }
@@ -163,5 +167,4 @@ export default class Controller {
   splitTilt(amount) {
     this.transformNotes(() => this.splitTransformer.splitTilt(amount));
   }
-
 }

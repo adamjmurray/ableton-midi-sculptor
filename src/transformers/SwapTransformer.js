@@ -58,11 +58,10 @@ export default class SwapTransformer extends Transformer {
   reverse() {
     return this.swap((index, size) => size - index - 1);
   }
+
   /**
    * Divide the note list into 2 halves and then interleave the halves together (like a zipper)
    */
-
-
   zip() {
     return this.swap((index, size) => {
       const middle = Math.floor(size / 2); // if (size % 2 === 1 && index === size - 1) return index // last element in an odd-length array, leave it alone
@@ -92,5 +91,4 @@ export default class SwapTransformer extends Transformer {
     });
     return swappedNotes;
   }
-
 }

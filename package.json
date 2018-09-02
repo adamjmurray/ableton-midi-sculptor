@@ -2,7 +2,7 @@
   "name": "ableton-midi-sculptor",
   "version": "1.0.0",
   "description": "Ableton MIDI Sculptor is a[Max for Live device for Ableton Live that makes it easy to create variations of MIDI clips with tools to modify velocity and timing.",
-  "main": "midi-clip-variator.js",
+  "main": "src/index.js",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.0.0",

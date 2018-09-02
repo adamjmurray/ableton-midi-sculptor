@@ -1,11 +1,3 @@
-const DEFAULT_NOTE_OPTIONS = {
-  pitch: 60,
-  start: 0,
-  velocity: 100,
-  duration: 1,
-  muted: false
-};
-
 const fuzzyEquals = (n1, n2, delta = 0.001) => Math.abs(n1 - n2) < delta;
 
 export default class Note {
@@ -14,12 +6,13 @@ export default class Note {
   }
 
   constructor(options = {}) {
-    Object.assign(this, DEFAULT_NOTE_OPTIONS, options);
-    this.pitch = 0
-    this.start = 0
-    this.velocity = 0
-    this.duration = 0
-    this.muted = false
+    Object.assign(this, {
+      pitch: 60,
+      start: 0,
+      velocity: 100,
+      duration: 1,
+      muted: false
+    }, options);
   }
 
   get valid() {
@@ -54,11 +47,10 @@ export default class Note {
   }
 
   equals(note, ignoreDuration = false) {
-    return this.pitch === note.pitch && this.velocity === note.velocity && (ignoreDuration || fuzzyEquals(this.duration, note.duration)) && fuzzyEquals(this.start, note.start) && this.muted === note.muted;
+    return this.pitch === note.pitch && this.velocity === note.velocity && fuzzyEquals(this.start, note.start) && (ignoreDuration || fuzzyEquals(this.duration, note.duration)) && this.muted === note.muted;
   }
 
   clone() {
     return new Note(this.toJSON());
   }
-
 }

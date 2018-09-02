@@ -14,7 +14,6 @@ function rotateOrReflect(notes, operation, clip) {
       note.duration = operation(relativeDuration, clip.length) + Note.MIN_DURATION;
     }
   }
-
   return notes;
 }
 
@@ -23,7 +22,6 @@ export const ANCHOR = Object.freeze({
   MIDPOINT: 'mid',
   MAX: 'max',
 });
-
 
 class SlidablePropertyMetadata {
   constructor(defaultRange) {
@@ -44,11 +42,11 @@ class SlidablePropertiesMetadata {
     this.velocity = new SlidablePropertyMetadata(64);
     this.duration = new SlidablePropertyMetadata(1);
   }
-} // NOTE: All EdgeTransformers destructively modify the Notes for efficiency.
+}
+// NOTE: All EdgeTransformers destructively modify the Notes for efficiency.
 // The Slider transformer keeps a separate copy of the original notes and regenerates modified notes
 // on each transformation, so we can safely modify here before serialization.
 // The return value still needs to be used, because the note list could be filtered.
-
 
 class EdgeTransformer {
   clip(notes, clip) {
@@ -81,10 +79,8 @@ class EdgeTransformer {
     for (const note of notes) {
       note.velocity = Math.min(127, note.velocity);
     }
-
     return notes.filter(note => note.valid);
   }
-
 }
 
 const edgeTransformer = new EdgeTransformer();
@@ -148,19 +144,16 @@ export default class SlideTransformer extends Transformer {
    - property is velocity, start, duration
    - amount should be from -1.0 to 1.0
    */
-
-
   shift(property, amount) {
     amount *= this.metadata[property].range;
     return this.transform(property, value => value + amount);
   }
+
   /**
    Spread the notes' property values towards or away from the midpoint value.
    - property is velocity, start, duration
    - amount should be from -1.0 to 1.0
   */
-
-
   spread(property, amount) {
     const metadata = this.metadata[property];
     let spreadPoint;
@@ -194,8 +187,6 @@ export default class SlideTransformer extends Transformer {
    The randomization behavior is consistent until the next bang/reset, in other words:
    random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
   */
-
-
   randomize2D(property, amountX, amountY) {
     const range = this.metadata[property].range; // We halve the range because two random values are added, which would have a max of range + range
 
@@ -203,5 +194,4 @@ export default class SlideTransformer extends Transformer {
     amountY *= range / 2;
     return this.transform(property, (value, index) => value + this.bipolarRandom1[index] * amountX + this.bipolarRandom2[index] * amountY);
   }
-
 }

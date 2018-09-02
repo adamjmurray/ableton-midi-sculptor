@@ -8,7 +8,6 @@ const truncated = notes => {
 
 const splitInTime = (oldNote, timeBetweenNotes, maxNotes) => {
   const notes = [];
-
   for (let t = 0; t < oldNote.duration; t += timeBetweenNotes) {
     if (notes.length >= maxNotes) return truncated(notes);
     const note = oldNote.clone();
@@ -23,7 +22,6 @@ const splitInTime = (oldNote, timeBetweenNotes, maxNotes) => {
 
     notes.push(note);
   }
-
   return notes;
 };
 
@@ -262,5 +260,4 @@ export default class SplitTransformer extends Transformer {
     });
     return newNotes;
   }
-
 }

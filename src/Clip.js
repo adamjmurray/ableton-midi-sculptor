@@ -12,15 +12,15 @@ export default class Clip {
   }
 
   desync() {
-    this._exists = undefined;
-    this._isMidi = undefined;
-    this._length = undefined;
-    this._start = undefined;
-    this._end = undefined;
+    this._exists = null;
+    this._isMidi = null;
+    this._length = null;
+    this._start = null;
+    this._end = null;
   }
 
   get exists() {
-    if (this._exists === undefined) {
+    if (this._exists == null) {
       this._exists = Boolean(this.api.id !== '0');
     }
 
@@ -28,37 +28,32 @@ export default class Clip {
   }
 
   get isMidi() {
-    if (!this.exists) return false;
-
-    if (this._isMidi === undefined) {
+    if (!this._exists) return false;
+    if (this._isMidi == null) {
       const value = this.api.get('is_midi_clip');
       this._isMidi = Boolean(value instanceof Array ? value[0] : value); // api quirk
     }
-
     return this._isMidi;
   }
 
   get length() {
-    if (this._length === undefined) {
+    if (this._length == null) {
       this._length = Number(this.api.get('length'));
     }
-
     return this._length;
   }
 
   get start() {
-    if (this._start === undefined) {
+    if (this._start == null) {
       this._start = Number(this.api.get('loop_start'));
     }
-
     return this._start;
   }
 
   get end() {
-    if (this._end === undefined) {
+    if (this._end == null) {
       this._end = Number(this.api.get('loop_end'));
     }
-
     return this._end;
   }
 
@@ -70,7 +65,6 @@ export default class Clip {
     "note" pitch start duration velocity muted
     ...
     "done" */
-
     if (!(data instanceof Array)) return [];
     const notes = [];
 
@@ -84,7 +78,6 @@ export default class Clip {
         muted: Boolean(data[i + 5])
       }));
     }
-
     notes.sort((n1, n2) => n1.start - n2.start || n1.pitch - n2.pitch);
     return notes;
   }
@@ -99,11 +92,9 @@ export default class Clip {
       console.log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`);
       notes = notes.slice(0, Clip.MAX_NOTES);
     }
-
     this.api.call('replace_selected_notes');
     this.api.call('notes', notes.length);
     notes.forEach(note => this.api.call('note', ...note.serialize()));
     this.api.call('done');
   }
-
 }

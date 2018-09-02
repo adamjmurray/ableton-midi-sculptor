@@ -1,4 +1,5 @@
 import Transformer from './Transformer';
+
 export default class SetTransformer extends Transformer {
 
   constructor() {
@@ -46,5 +47,4 @@ export default class SetTransformer extends Transformer {
       }
     }).filter(note => note);
   }
-
 }
