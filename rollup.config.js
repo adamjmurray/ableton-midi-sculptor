@@ -8,7 +8,7 @@ export default {
   },
   plugins: [
     typescript({
-      typescript: require('typescript')
+      typescript: require('typescript') // use the version of typescript from package.json (not the one bundled with the plugin)
     }),
     { renderChunk: code => code.replace(/\nexport.*/, '') }, // remove top-level exports
   ],

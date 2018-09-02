@@ -16,16 +16,15 @@
     "@types/node": "^10.9.4",
     "mocha": "^5.2.0",
     "rollup": "^0.65.0",
-    "rollup-plugin-babel": "^4.0.2",
     "rollup-plugin-typescript": "^0.8.1",
-    "ts-node": "^7.0.1",
     "typescript": "^3.0.3"
   },
   "scripts": {
     "clean": "rm -f device/sculptor.js",
-    "build": "rollup -c",
+    "typecheck": "npx tsc",
+    "build": "npm run typecheck && rollup -c",
     "dev": "rollup -w -c",
-    "test": "npx mocha -c --file tests/setup.js 'tests/**/*test.ts'",
+    "test": "npm run typecheck && npx mocha -c --file tests/setup.js 'tests/**/*test.ts'",
     "retest": "npx mocha -c -w --file tests/setup.js --watch-extensions ts 'tests/**/*test.ts'"
   },
   "repository": {
