@@ -1,11 +1,11 @@
 import AppView from './AppView';
 import Clip from './Clip';
 import Controller from './Controller';
-import Note, { NoteJSON, NoteOptions } from './Note';
-import SetTransformer, { SettableProperty, SettableValue } from './transformers/SetTransformer';
-import SlideTransformer, { SpreadAnchorType, SlidableProperty } from './transformers/SlideTransformer';
-import SplitTransformer, { SplitType, SplitEnvelopeType } from './transformers/SplitTransformer';
-import SwapTransformer, { SwappableProperty } from './transformers/SwapTransformer';
+import Note from './Note';
+import SetTransformer from './transformers/SetTransformer';
+import SlideTransformer, { ANCHOR } from './transformers/SlideTransformer';
+import SplitTransformer from './transformers/SplitTransformer';
+import SwapTransformer from './transformers/SwapTransformer';
 import Transformer from './transformers/Transformer';
 import { mod, reflectedMod } from './utils';
 
@@ -14,20 +14,10 @@ export {
   Clip,
   Controller,
   Note,
-  NoteJSON,
-  NoteOptions,
   SetTransformer,
-  SettableProperty,
-  SettableValue,
-  SlideTransformer,
-  SpreadAnchorType,
-  SlidableProperty,
+  SlideTransformer, ANCHOR,
   SplitTransformer,
-  SplitType,
-  SplitEnvelopeType,
   SwapTransformer,
-  SwappableProperty,
   Transformer,
-  mod,
-  reflectedMod,
+  mod, reflectedMod,
 };

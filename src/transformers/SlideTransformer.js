@@ -18,24 +18,12 @@ function rotateOrReflect(notes, operation, clip) {
   return notes;
 }
 
-export let SpreadAnchorType;
+export const ANCHOR = Object.freeze({
+  MIN: 'min',
+  MIDPOINT: 'mid',
+  MAX: 'max',
+});
 
-(function(SpreadAnchorType) {
-  SpreadAnchorType["MIN"] = "min";
-  SpreadAnchorType["MIDPOINT"] = "mid";
-  SpreadAnchorType["MAX"] = "max";
-})(SpreadAnchorType || (SpreadAnchorType = {}));
-
-export let SlidableProperty;
-
-(function(SlidableProperty) {
-  SlidableProperty["START"] = "start";
-  SlidableProperty["PITCH"] = "pitch";
-  SlidableProperty["VELOCITY"] = "velocity";
-  SlidableProperty["DURATION"] = "duration";
-})(SlidableProperty || (SlidableProperty = {}));
-
-const SLIDABLE_PROPERTIES = Object.values(SlidableProperty);
 
 class SlidablePropertyMetadata {
   constructor(defaultRange) {
@@ -105,13 +93,13 @@ export default class SlideTransformer extends Transformer {
     super();
     this.metadata = new SlidablePropertiesMetadata();
     this.edgeTransformation = edgeTransformer.clip;
-    this.anchor = SpreadAnchorType.MIDPOINT;
+    this.anchor = ANCHOR.MIDDLE;
   }
 
   set notes(notes) {
     super.setNotes(notes);
 
-    for (const property of SLIDABLE_PROPERTIES) {
+    for (const property of ['start', 'pitch', 'velocity', 'duration']) {
       let values = notes.map(note => note.get(property));
       let min = Math.min.apply(null, values);
       let max = Math.max.apply(null, values);
@@ -179,17 +167,17 @@ export default class SlideTransformer extends Transformer {
     let largestDelta = 0;
 
     switch (this.anchor) {
-      case SpreadAnchorType.MIN:
+      case ANCHOR.MIN:
         spreadPoint = metadata.min;
         largestDelta = metadata.largestDeltaFromMin;
         break;
 
-      case SpreadAnchorType.MIDPOINT:
+      case ANCHOR.MIDPOINT:
         spreadPoint = metadata.midpoint;
         largestDelta = metadata.largestDeltaFromMidpoint;
         break;
 
-      case SpreadAnchorType.MAX:
+      case ANCHOR.MAX:
         spreadPoint = metadata.max;
         largestDelta = metadata.largestDeltaFromMax;
         break;

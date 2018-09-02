@@ -1,11 +1,9 @@
 import AppView from './AppView';
 import Clip, { SELECTED_CLIP_PATH } from './Clip';
-import SlideTransformer, { SlidableProperty } from './transformers/SlideTransformer';
+import SlideTransformer from './transformers/SlideTransformer';
 import SetTransformer from './transformers/SetTransformer';
 import SwapTransformer from './transformers/SwapTransformer';
 import SplitTransformer from './transformers/SplitTransformer';
-
-export { SlidableProperty };
 
 export default class Controller {
   constructor() {
