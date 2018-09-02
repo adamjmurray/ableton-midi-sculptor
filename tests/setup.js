@@ -1,12 +1,9 @@
-require("@babel/register")({
-  extensions: [".ts"],
-});
-
 if (typeof post === 'undefined') {
-  post = console.log // Fallback when testing in Node.js
+  global.post = console.log // Fallback when testing in Node.js
 }
+
 if (typeof error === 'undefined') {
-  error = console.error // Fallback when testing in Node.js
+  global.error = console.error // Fallback when testing in Node.js
 }
 
 let getHandler
@@ -24,5 +21,5 @@ if (typeof LiveAPI === 'undefined') {
 
 beforeEach(() => {
   getHandler = null
-  callHandler = {}
+  callHandlers = {}
 })

@@ -1,4 +1,4 @@
-import typescript from 'rollup-plugin-typescript';
+import babel from 'rollup-plugin-babel';
 
 export default {
   input: 'src/main.js',
@@ -7,9 +7,7 @@ export default {
     format: 'es',
   },
   plugins: [
-    typescript({
-      typescript: require('typescript') // use the version of typescript from package.json (not the one bundled with the plugin)
-    }),
+    babel(),
     { renderChunk: code => code.replace(/\nexport.*/, '') }, // remove top-level exports
   ],
 };

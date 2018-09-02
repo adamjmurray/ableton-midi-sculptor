@@ -5,27 +5,19 @@
   "main": "midi-clip-variator.js",
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
-    "@babel/preset-typescript": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.9.4",
     "mocha": "^5.2.0",
     "rollup": "^0.65.0",
-    "rollup-plugin-typescript": "^0.8.1",
-    "typescript": "^3.0.3"
+    "rollup-plugin-babel": "^4.0.2"
   },
   "scripts": {
     "clean": "rm -f device/sculptor.js",
-    "typecheck": "npx tsc",
-    "build": "npm run typecheck && rollup -c",
+    "build": "rollup -c",
     "dev": "rollup -w -c",
-    "test": "npm run typecheck && npx mocha -c --file tests/setup.js 'tests/**/*test.ts'",
-    "retest": "npx mocha -c -w --file tests/setup.js --watch-extensions ts 'tests/**/*test.ts'"
+    "test": "npx mocha -c -r @babel/register --file tests/setup.js 'tests/**/*test.js'",
+    "tdd": "npx mocha -c -R min -w -r @babel/register --file tests/setup.js 'tests/**/*test.js'"
   },
   "repository": {
     "type": "git",
