@@ -1,25 +1,34 @@
-if (typeof post === 'undefined') {
-  global.post = console.log // Fallback when testing in Node.js
-}
+let properties = {};
+let functions = {};
 
-if (typeof error === 'undefined') {
-  global.error = console.error // Fallback when testing in Node.js
-}
-
-let getHandler
-let callHandlers = {}
-
-if (typeof LiveAPI === 'undefined') {
-  global.LiveAPI = class LiveAPI {
-    static handleGet(handler) { getHandler = handler }
-    static handleCall(functionName, handler) { callHandlers[functionName] = handler }
-    constructor(path) { this.patch = path }
-    get(property) { return getHandler && getHandler(property) }
-    call(method) { return callHandlers[method] && callHandlers[method].apply(null, Array.prototype.slice.call(arguments)) }
+class MockLiveAPI {
+  constructor(path) {
+    this.path = path;
   }
+
+  static reset() {
+    properties = {};
+    functions = {};
+  }
+
+  static mockProperty(name, value) {
+    properties[name] = value;
+  }
+
+  static mockCall(name, fn) {
+    functions[name] = fn;
+  }
+
+  get(name) {
+    return properties[name];
+  }
+
+  call(name, ...args) {
+    const fn = functions[name];
+    return fn && fn.apply(null, args);
+  };
 }
 
-beforeEach(() => {
-  getHandler = null
-  callHandlers = {}
-})
+beforeEach(() => MockLiveAPI.reset());
+
+global.LiveAPI = MockLiveAPI;

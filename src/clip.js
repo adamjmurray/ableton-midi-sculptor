@@ -1,5 +1,4 @@
 import Note from './note';
-import { log } from './logger';
 
 export const SELECTED_CLIP_PATH = 'live_set view detail_clip';
 
@@ -97,7 +96,7 @@ export default class Clip {
 
   replaceSelectedNotes(notes) {
     if (notes.length > Clip.MAX_NOTES) {
-      log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`);
+      console.log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`);
       notes = notes.slice(0, Clip.MAX_NOTES);
     }
 

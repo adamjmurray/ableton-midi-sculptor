@@ -1,3 +1,24 @@
+console = {
+  log(...values) {
+    values.forEach(message => {
+      if (message && message.toString) {
+        var s = message.toString();
+        if (s.indexOf("[object ") >= 0) {
+          s = JSON.stringify(message);
+        }
+        post(s);
+      }
+      else if (message === null) {
+        post("<null>");
+      }
+      else {
+        post(message);
+      }
+    });
+    post("\n");
+  }
+}
+
 // Object.assign()
 if (typeof Object.assign != 'function') {
   // Must be writable: true, enumerable: false, configurable: true
@@ -55,7 +76,7 @@ if (typeof Object.values != 'function') {
 
 
 if (!String.prototype.includes) {
-  String.prototype.includes = function (search, start) {
+  String.prototype.includes = function(search, start) {
     'use strict';
 
     if (typeof start !== 'number') {
@@ -71,7 +92,7 @@ if (!String.prototype.includes) {
 }
 
 if (!Array.prototype.find) {
-  Array.prototype.find = function (predicate, thisArg) {
+  Array.prototype.find = function(predicate, thisArg) {
     thisArg = thisArg || this;
 
     for (var i = 0; i < this.length; i++) {

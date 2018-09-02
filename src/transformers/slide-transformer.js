@@ -1,6 +1,6 @@
 import Transformer from './transformer';
 import Note from '../note';
-import { mod, reflectedMod } from '../utils'; // import { log } from '../logger'
+import { mod, reflectedMod } from '../utils';
 
 function rotateOrReflect(notes, operation, clip) {
   for (const note of notes) {
@@ -20,7 +20,7 @@ function rotateOrReflect(notes, operation, clip) {
 
 export let SpreadAnchorType;
 
-(function (SpreadAnchorType) {
+(function(SpreadAnchorType) {
   SpreadAnchorType["MIN"] = "min";
   SpreadAnchorType["MIDPOINT"] = "mid";
   SpreadAnchorType["MAX"] = "max";
@@ -28,7 +28,7 @@ export let SpreadAnchorType;
 
 export let SlidableProperty;
 
-(function (SlidableProperty) {
+(function(SlidableProperty) {
   SlidableProperty["START"] = "start";
   SlidableProperty["PITCH"] = "pitch";
   SlidableProperty["VELOCITY"] = "velocity";

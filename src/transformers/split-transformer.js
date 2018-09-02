@@ -1,9 +1,8 @@
 import Transformer from './transformer';
 import Clip from '../clip';
-import { log } from '../logger';
 
 const truncated = notes => {
-  log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`);
+  console.log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`);
   return notes;
 };
 

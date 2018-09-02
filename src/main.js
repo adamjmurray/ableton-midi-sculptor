@@ -1,8 +1,7 @@
 import './polyfills'
-import { log } from './logger'
 import Controller from './controller'
-log("___________________________________________________")
-log("Reload:", new Date())
+console.log("___________________________________________________")
+console.log("Reload:", new Date())
 
 var controller = new Controller()
 

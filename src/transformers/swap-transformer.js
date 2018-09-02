@@ -1,5 +1,5 @@
 import Transformer from './transformer';
-import { mod } from '../utils'; // import { log } from '../logger'
+import { mod } from '../utils';
 
 export default class SwapTransformer extends Transformer {
   constructor() {

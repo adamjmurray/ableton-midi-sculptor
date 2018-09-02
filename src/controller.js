@@ -3,7 +3,7 @@ import Clip, { SELECTED_CLIP_PATH } from './clip';
 import SlideTransformer, { SlidableProperty } from './transformers/slide-transformer';
 import SetTransformer from './transformers/set-transformer';
 import SwapTransformer from './transformers/swap-transformer';
-import SplitTransformer from './transformers/split-transformer'; // import { log } from './logger'
+import SplitTransformer from './transformers/split-transformer';
 
 export { SlidableProperty };
 
