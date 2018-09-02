@@ -1,4 +1,4 @@
-import Note from './note';
+import Note from './Note';
 
 export const SELECTED_CLIP_PATH = 'live_set view detail_clip';
 

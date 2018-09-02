@@ -1,9 +1,9 @@
-import AppView from './app-view';
-import Clip, { SELECTED_CLIP_PATH } from './clip';
-import SlideTransformer, { SlidableProperty } from './transformers/slide-transformer';
-import SetTransformer from './transformers/set-transformer';
-import SwapTransformer from './transformers/swap-transformer';
-import SplitTransformer from './transformers/split-transformer';
+import AppView from './AppView';
+import Clip, { SELECTED_CLIP_PATH } from './Clip';
+import SlideTransformer, { SlidableProperty } from './transformers/SlideTransformer';
+import SetTransformer from './transformers/SetTransformer';
+import SwapTransformer from './transformers/SwapTransformer';
+import SplitTransformer from './transformers/SplitTransformer';
 
 export { SlidableProperty };
 

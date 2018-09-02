@@ -1,5 +1,5 @@
 import './polyfills'
-import Controller from './controller'
+import Controller from './Controller'
 console.log("___________________________________________________")
 console.log("Reload:", new Date())
 

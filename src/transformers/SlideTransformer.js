@@ -1,5 +1,5 @@
-import Transformer from './transformer';
-import Note from '../note';
+import Transformer from './Transformer';
+import Note from '../Note';
 import { mod, reflectedMod } from '../utils';
 
 function rotateOrReflect(notes, operation, clip) {

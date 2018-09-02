@@ -1,4 +1,4 @@
-import Transformer from './transformer';
+import Transformer from './Transformer';
 export default class SetTransformer extends Transformer {
 
   constructor() {

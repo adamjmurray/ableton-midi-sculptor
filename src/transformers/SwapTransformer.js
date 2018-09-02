@@ -1,4 +1,4 @@
-import Transformer from './transformer';
+import Transformer from './Transformer';
 import { mod } from '../utils';
 
 export default class SwapTransformer extends Transformer {
