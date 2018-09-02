@@ -1,5 +1,5 @@
-const assert = require('assert')
-import { mod, reflectedMod } from '../utils'
+import assert from 'assert'
+import { mod, reflectedMod } from '../src'
 
 describe('utils', () => {
 

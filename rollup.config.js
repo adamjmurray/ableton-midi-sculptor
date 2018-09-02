@@ -1,12 +1,15 @@
-import cleanup from 'rollup-plugin-cleanup'
+import typescript from 'rollup-plugin-typescript';
 
 export default {
-  input: 'build/main.js',
+  input: 'src/main.js',
   output: {
     file: 'device/sculptor.js',
     format: 'es',
   },
   plugins: [
-    cleanup(), // remove comments and extra whitespace (but keeps the code formatting)
+    typescript({
+      typescript: require('typescript')
+    }),
+    { renderChunk: code => code.replace(/\nexport.*/, '') }, // remove top-level exports
   ],
 };

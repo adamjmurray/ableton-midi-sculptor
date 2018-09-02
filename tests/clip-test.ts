@@ -1,6 +1,5 @@
-const assert = require('assert')
-import Clip from '../clip'
-import Note from '../note'
+import assert from 'assert'
+import { Clip, Note } from '../src'
 
 function makeNotes(...values: number[]): Note[] {
   return values.map(val => new Note({ start: val, pitch: val, velocity: val, duration: val }))

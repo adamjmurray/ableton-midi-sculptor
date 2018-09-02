@@ -1,6 +1,5 @@
-const assert = require('assert')
-import Note from '../note'
-import SwapTransformer from '../transformers/swap-transformer'
+import assert from 'assert'
+import { Note, SwapTransformer } from '../../src'
 
 describe('SwapTransformer', () => {
   let notes: Note[]

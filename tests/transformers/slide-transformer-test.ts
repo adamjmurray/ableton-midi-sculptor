@@ -1,6 +1,5 @@
-const assert = require('assert')
-import Note from '../note'
-import SlideTransformer, { SpreadAnchorType, SlidableProperty } from '../transformers/slide-transformer'
+import assert from 'assert'
+import { Note, SlideTransformer, SpreadAnchorType, SlidableProperty } from '../../src'
 
 describe('SlideTransformer', () => {
 

@@ -1,7 +1,5 @@
-const assert = require('assert')
-import Note, { NoteOptions } from '../note'
-import Clip from '../clip'
-import SplitTransformer from '../transformers/split-transformer'
+import assert from 'assert'
+import { Clip, Note, NoteOptions, SplitTransformer } from '../../src'
 
 const n = (opts: NoteOptions) => new Note(opts)
 
@@ -24,7 +22,7 @@ describe('SplitTransformer', () => {
         splitTransformer.gate = 1
         splitTransformer.setSplitType('note', 11)
         splitTransformer.notes = [new Note({ start: 0, duration: 3 })]
-        const expected: Note[] = new Array(11).fill()
+        const expected: Note[] = new Array(11).fill(0)
           .map((_: any, index: number) => n({ start: 3 / 11 * index, duration: 3 / 11 }))
         assert.deepEqual(splitTransformer.split(), expected)
       })
