@@ -3,7 +3,7 @@ import Controller from './Controller'
 console.log("___________________________________________________")
 console.log("Reload:", new Date())
 
-var controller = new Controller()
+const controller = new Controller()
 
 export function desync() {
   controller.desync()

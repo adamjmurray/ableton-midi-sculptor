@@ -1,18 +1,10 @@
 import assert from 'assert';
-import { Clip, Note } from '../src';
-
-function makeNotes() {
-  var values = [];
-  for (var _i = 0; _i < arguments.length; _i++) {
-    values[_i] = arguments[_i];
-  }
-  return values.map(function(val) { return new Note({ start: val, pitch: val, velocity: val, duration: val }); });
-}
+import { Clip } from '../src';
+import { makeNotes } from './helpers';
 
 function returnNotes(notes) {
-  var apiNotes = ['notes', notes.length];
-  for (var _i = 0, notes_1 = notes; _i < notes_1.length; _i++) {
-    var note = notes_1[_i];
+  const apiNotes = ['notes', notes.length];
+  for (const note of notes) {
     apiNotes.push('note', note.pitch, note.start, note.duration, note.velocity, note.muted ? 1 : 0);
   }
   apiNotes.push('done');
@@ -20,9 +12,8 @@ function returnNotes(notes) {
 }
 
 describe('Clip', () => {
-
-  var clip;
-  beforeEach(() => clip = new Clip(Clip.SELECTED_CLIP_PATH));
+  let clip;
+  beforeEach(() => clip = Clip.getSelectedClip());
 
   describe('selectedNotes', () => {
     it('returns the notes in the clip in sorted order (by time, pitch)', () => {

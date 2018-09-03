@@ -11,6 +11,10 @@ export default class Clip {
     this.api = new LiveAPI(path);
   }
 
+  static getSelectedClip() {
+    return new Clip(SELECTED_CLIP_PATH);
+  }
+
   desync() {
     this._exists = null;
     this._isMidi = null;
@@ -20,15 +24,11 @@ export default class Clip {
   }
 
   get exists() {
-    if (this._exists == null) {
-      this._exists = Boolean(this.api.id !== '0');
-    }
-
-    return this._exists;
+    return this._exists = this._exists || this.api.id !== '0';
   }
 
   get isMidi() {
-    if (!this._exists) return false;
+    if (!this.exists) return false;
     if (this._isMidi == null) {
       const value = this.api.get('is_midi_clip');
       this._isMidi = Boolean(value instanceof Array ? value[0] : value); // api quirk
@@ -37,24 +37,15 @@ export default class Clip {
   }
 
   get length() {
-    if (this._length == null) {
-      this._length = Number(this.api.get('length'));
-    }
-    return this._length;
+    return this._length = this._length || Number(this.api.get('length'));
   }
 
   get start() {
-    if (this._start == null) {
-      this._start = Number(this.api.get('loop_start'));
-    }
-    return this._start;
+    return this._start = this._start || Number(this.api.get('loop_start'));
   }
 
   get end() {
-    if (this._end == null) {
-      this._end = Number(this.api.get('loop_end'));
-    }
-    return this._end;
+    return this._end = this._end || Number(this.api.get('loop_end'));
   }
 
   get selectedNotes() {

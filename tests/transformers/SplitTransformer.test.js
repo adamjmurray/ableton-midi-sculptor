@@ -1,11 +1,8 @@
 import assert from 'assert';
 import { Clip, Note, SplitTransformer } from '../../src';
 
-const n = opts => new Note(opts);
-
 describe('SplitTransformer', () => {
-
-  var splitTransformer;
+  let splitTransformer;
   beforeEach(() => {
     splitTransformer = new SplitTransformer();
   });
@@ -16,7 +13,10 @@ describe('SplitTransformer', () => {
         splitTransformer.gate = 1;
         splitTransformer.setSplitType('note', 2);
         splitTransformer.notes = [new Note({ start: 0, duration: 1 })];
-        var expected = [n({ start: 0, duration: 0.5 }), n({ start: 0.5, duration: 0.5 })];
+        const expected = [
+          new Note({ start: 0, duration: 0.5 }),
+          new Note({ start: 0.5, duration: 0.5 })
+        ];
         assert.deepEqual(splitTransformer.split(), expected);
       });
 
@@ -24,8 +24,10 @@ describe('SplitTransformer', () => {
         splitTransformer.gate = 1;
         splitTransformer.setSplitType('note', 11);
         splitTransformer.notes = [new Note({ start: 0, duration: 3 })];
-        var expected = new Array(11).fill(0)
-          .map(function(_, index) { return n({ start: 3 / 11 * index, duration: 3 / 11 }); });
+        const expected = new Array(11).fill(0)
+          .map((_, index) =>
+            new Note({ start: 3 / 11 * index, duration: 3 / 11 })
+          );
         assert.deepEqual(splitTransformer.split(), expected);
       });
 

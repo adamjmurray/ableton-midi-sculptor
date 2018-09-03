@@ -1,5 +1,5 @@
 import AppView from './AppView';
-import Clip, { SELECTED_CLIP_PATH } from './Clip';
+import Clip from './Clip';
 import SlideTransformer from './transformers/SlideTransformer';
 import SetTransformer from './transformers/SetTransformer';
 import SwapTransformer from './transformers/SwapTransformer';
@@ -14,16 +14,13 @@ export default class Controller {
     this.setTransformer = new SetTransformer();
     this.swapTransformer = new SwapTransformer();
     this.splitTransformer = new SplitTransformer();
-  }
-
-  get transformers() {
-    return [this.slideTransformer, this.setTransformer, this.swapTransformer, this.splitTransformer];
+    this.transformers = [this.slideTransformer, this.setTransformer, this.swapTransformer, this.splitTransformer];
   }
 
   sync() {
     if (this.isSynced) return true;
 
-    const selectedClip = this.selectedClip = this.selectedClip || new Clip(SELECTED_CLIP_PATH);
+    const selectedClip = this.selectedClip = this.selectedClip || Clip.getSelectedClip();
     if (!selectedClip.isMidi) return false;
 
     this.appView = this.appView || new AppView();
