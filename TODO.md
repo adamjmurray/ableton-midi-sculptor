@@ -11,7 +11,6 @@
       maybe just apply the algorithm "in reverse" for the other?
 
 - GUI
-  - Can't see which tab is selected
   - Add annotations for all controls (set Set UI)
   - Use default Live 10 font size and rely on scaling to make it readable
   - Persist scaling setting in Live set (or can we figure it out from the Live API? scaling automatically would be nice)
