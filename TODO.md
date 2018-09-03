@@ -1,17 +1,17 @@
 - Split
   - BUG: tilting and then changing gate doesn't "resplit"
   - BUG: changing halves after a split didn't resplit (creating way too many notes)
-  - Make the split param auto resplit (like gate)?
+  - Make the split ("Into") param auto resplit (like gate)? Also the reverse feature for halves
   - euclid split type:
-    - want a way to control the phase (AKA rotation). 3rd arg?
-    - it would be nice to turn a knob after the split occurs (resplit behavior should help?) BUT, we should only
-      do that if we just performed a euclid split
+    - want a way to control the phase (AKA rotation). 3rd arg? (use swap transformer logic if possible)
+    - Reverse?
   - "tilt" slider:
     - should adjust the duration of notes, and maintain the gate as much as possible
     - needs some fine tuning, doesn't seem symmetrical, backwards? it's ok in one direction ,
       maybe just apply the algorithm "in reverse" for the other?
 
 - GUI
+  - Can't see which tab is selected
   - Add annotations for all controls (set Set UI)
   - Use default Live 10 font size and rely on scaling to make it readable
   - Persist scaling setting in Live set (or can we figure it out from the Live API? scaling automatically would be nice)

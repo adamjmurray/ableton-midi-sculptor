@@ -128,6 +128,12 @@ export default class SlideTransformer extends Transformer {
     this.anchor = anchor;
   }
 
+  /**
+    Set maximum change in value for the given property.
+    The range value for each property applies to its average, spread, and random operations.
+    - property is velocity, start, duration
+    - amount is from 0 to 127 for pitch and velocity, or a positive number in beats for start/duration
+  */
   setRange(property, amount) {
     this.metadata[property].range = amount;
   }

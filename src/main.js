@@ -1,121 +1,47 @@
 import './polyfills'
 import Controller from './Controller'
+
+const c = new Controller()
+
 console.log("___________________________________________________")
 console.log("Reload:", new Date())
 
-const controller = new Controller()
+//************************************************************** */
+// The interface for Max:
 
-export function desync() {
-  controller.desync()
-}
+export const desync = c.desync.bind(c);
+export const clipchange = c.onClipChange.bind(c);
 
-export function clipchange() {
-  controller.onClipChange()
-}
+// Slide
+export const slide_shift = c.slideShift.bind(c);
+export const slide_spread = c.slideSpread.bind(c);
+export const slide_random = c.slideRandomly.bind(c);
 
-/**
- Set maximum change in value for the given property.
- The range value for each property applies to its average, spread, and random operations.
- - property is velocity, start, duration
- - amount is from 0 to 127 for velocity, or a positive number in beats for start/duration
- */
-export function slide_range(property, amount) {
-  controller.setSlideRange(property.toLowerCase(), amount)
-}
+export const slide_anchor = c.setSlideAnchor.bind(c);
+export const slide_edges = c.setSlideEdgeBehavior.bind(c);
+export const slide_range = c.setSlideRange.bind(c);
 
-export function slide_edges(behavior) {
-  controller.slideEdgeBehavior = behavior
-}
+// Swap
+export const reverse = c.swapReverse.bind(c);
+export const rotate = c.swapRotate.bind(c);
+export const swap_pairs = c.swapPairs.bind(c);
+export const swap_random = c.swapRandomly.bind(c);
+export const unzip = c.swapUnzip.bind(c);
+export const zip = c.swapZip.bind(c);
 
-export function slide_anchor(anchor) {
-  controller.spreadAnchor = anchor
-}
+export const swap_target = c.setSwapTarget.bind(c);
 
-export function slide_shift(property, amount) {
-  controller.shift(property.toLowerCase(), amount)
-}
+// Set
+export const set_all = c.setAll.bind(c);
+export const set_random = c.setRandomly.bind(c);
 
-/**
- Spread the notes' property values towards or away from the midpoint value.
- - property is velocity, start, duration
- - amount should be from -1.0 to 1.0
- */
-export function slide_spread(property, amount) {
-  controller.spread(property.toLowerCase(), amount)
-}
+export const set_property = c.setSettableProperty.bind(c);
+export const set_value = c.setSettableValue.bind(c);
 
-/**
- 2-D randomization for the notes' property value.
- - property is velocity, start, duration
- - amountX and amountY should be from -1.0 to 1.0
- The randomization behavior is consistent until the next bang/reset, in other words:
- random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
- */
-export function slide_random(property, amountX, amountY) {
-  controller.randomSlide(property.toLowerCase(), amountX, amountY)
-}
+// Split
+export const split = c.split.bind(c);
 
-export function swap_target(property, enabled) {
-  controller.swapTarget(property.toLowerCase(), enabled)
-}
-
-export function rotate(amount) {
-  controller.rotate(amount)
-}
-
-export function swap_pairs() {
-  controller.swapPairs()
-}
-
-export function reverse() {
-  controller.reverse()
-}
-
-export function zip() {
-  controller.zip()
-}
-
-export function unzip() {
-  controller.unzip()
-}
-
-export function swap_random(amountX, amountY) {
-  controller.randomSwap(amountX, amountY)
-}
-
-export function set_property(property) {
-  controller.setProperty(property.toLowerCase())
-}
-
-export function set_value(value) {
-  if (typeof value === 'string') value = value.toLowerCase()
-  controller.setValue(value)
-}
-
-export function set_all() {
-  controller.setAll()
-}
-
-export function set_random(amountX, amountY) {
-  controller.randomSetValues(amountX, amountY)
-}
-
-export function split_type(type, amount1, amount2) {
-  controller.setSplitType(type.toLowerCase(), amount1, amount2)
-}
-
-export function split_gate(amount) {
-  controller.splitGate = amount
-}
-
-export function split_envelope(type) {
-  controller.splitEnvelope = type.toLowerCase()
-}
-
-export function split() {
-  controller.split()
-}
-
-export function split_tilt(amount) {
-  controller.splitTilt(amount)
-}
+export const split_envelope = c.setSplitEnvelope.bind(c);
+export const split_gate = c.setSplitGate.bind(c);
+export const split_tilt = c.setSplitTilt.bind(c);
+export const split_type = c.setSplitType.bind(c);

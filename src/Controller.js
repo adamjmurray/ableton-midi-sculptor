@@ -77,34 +77,34 @@ export default class Controller {
 
 
   setSlideRange(property, amount) {
-    this.slideTransformer.setRange(property, amount);
+    this.slideTransformer.setRange(property.toLowerCase(), amount);
   }
 
-  set slideEdgeBehavior(behavior) {
-    this.slideTransformer.edgeBehavior = behavior;
+  setSlideEdgeBehavior(behavior) {
+    this.slideTransformer.edgeBehavior = behavior.toLowerCase();
   }
 
-  set spreadAnchor(anchor) {
-    this.slideTransformer.spreadAnchor = anchor;
+  setSlideAnchor(anchor) {
+    this.slideTransformer.spreadAnchor = anchor.toLowerCase();;
   }
 
-  randomSlide(property, amountX, amountY) {
-    this.transformNotes(() => this.slideTransformer.randomize2D(property, amountX, amountY));
+  slideRandomly(property, amountX, amountY) {
+    this.transformNotes(() => this.slideTransformer.randomize2D(property.toLowerCase(), amountX, amountY));
   }
 
-  shift(property, amount) {
-    this.transformNotes(() => this.slideTransformer.shift(property, amount));
+  slideShift(property, amount) {
+    this.transformNotes(() => this.slideTransformer.shift(property.toLowerCase(), amount));
   }
 
-  spread(property, amount) {
-    this.transformNotes(() => this.slideTransformer.spread(property, amount));
+  slideSpread(property, amount) {
+    this.transformNotes(() => this.slideTransformer.spread(property.toLowerCase(), amount));
   }
 
-  swapTarget(target, enabled) {
-    this.swapTransformer.target(target, enabled);
+  setSwapTarget(property, enabled) {
+    this.swapTransformer.target(property.toLowerCase(), enabled);
   }
 
-  rotate(amount) {
+  swapRotate(amount) {
     this.transformNotes(() => this.swapTransformer.rotate(amount));
   }
 
@@ -112,56 +112,56 @@ export default class Controller {
     this.transformNotes(() => this.swapTransformer.swapPairs());
   }
 
-  reverse() {
+  swapReverse() {
     this.transformNotes(() => this.swapTransformer.reverse());
   }
 
-  zip() {
+  swapZip() {
     this.transformNotes(() => this.swapTransformer.zip());
   }
 
-  unzip() {
+  swapUnzip() {
     this.transformNotes(() => this.swapTransformer.unzip());
   }
 
-  randomSwap(amountX, amountY) {
+  swapRandomly(amountX, amountY) {
     this.transformNotes(() => this.swapTransformer.randomize2D(amountX, amountY));
   }
 
-  setProperty(property) {
-    this.setTransformer.property = property;
+  setSettableProperty(property) {
+    this.setTransformer.property = property.toLowerCase();
   }
 
-  setValue(value) {
-    this.setTransformer.value = value;
+  setSettableValue(value) {
+    this.setTransformer.value = (typeof value === 'string') ? value.toLowerCase() : value;
   }
 
   setAll() {
     this.transformNotes(() => this.setTransformer.setAll());
   }
 
-  randomSetValues(amountX, amountY) {
+  setRandomly(amountX, amountY) {
     this.transformNotes(() => this.setTransformer.randomize2D(amountX, amountY));
   }
 
   setSplitType(type, amount1, amount2) {
-    this.splitTransformer.setSplitType(type, amount1, amount2);
+    this.splitTransformer.setSplitType(type.toLowerCase(), amount1, amount2);
   }
 
-  set splitGate(amount) {
+  setSplitGate(amount) {
     this.splitTransformer.gate = amount;
     this.transformNotes(() => this.splitTransformer.isResplit() ? this.splitTransformer.split() : null);
   }
 
-  set splitEnvelope(type) {
-    this.splitTransformer.envelope = type;
+  setSplitEnvelope(type) {
+    this.splitTransformer.envelope = type.toLowerCase();
   }
 
   split() {
     this.transformNotes(() => this.splitTransformer.split());
   }
 
-  splitTilt(amount) {
+  setSplitTilt(amount) {
     this.transformNotes(() => this.splitTransformer.splitTilt(amount));
   }
 }
