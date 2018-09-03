@@ -17,7 +17,6 @@
   - Persist scaling setting in Live set (or can we figure it out from the Live API? scaling automatically would be nice)
   - Improve window sizing in Live 10
   - Don't forget to re-enable the "choose midi clip" overlay
-  - Improve color scheme - the device panel (not window) button colors need improvement in Live 10
 
 Misc
   - More tests
