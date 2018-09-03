@@ -1,5 +1,8 @@
 {
   "presets": [
     "@babel/env"
+  ],
+  "plugins": [
+    "transform-for-of-as-array"
   ]
 }
