@@ -15,7 +15,7 @@ Development Process
 6. Open the Max console. You'll see a console message when the code is rebuilt.
 7. Run `npm run build:watch` to automatically build changes to the code.
 8. Click "Show containing project" in the Max editor toolbar. From here you can open and edit any patcher in the device.
-9. To debug, import logger.ts (e.g. `import { log } from './logger'`), and `log("message")` to log to the Max console.
+9. Use `console.log()` to print to the Max console for debugging.
 
 Pre-commit
 1. `npm run test` - All tests must pass.
