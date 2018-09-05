@@ -10,12 +10,13 @@
     - needs some fine tuning, doesn't seem symmetrical, backwards? it's ok in one direction ,
       maybe just apply the algorithm "in reverse" for the other?
 
+- Bugs
+  - Edge clip for slide start time has a max start time of the clip end time (so the note is silent because it's past the end of the clip)
+    Maybe we can set the max to the clip end minus a small delta
+
 - GUI
   - Add annotations for all controls (set Set UI)
-  - Use default Live 10 font size and rely on scaling to make it readable
   - Persist scaling setting in Live set (or can we figure it out from the Live API? scaling automatically would be nice)
-  - Improve window sizing in Live 10
-  - Don't forget to re-enable the "choose midi clip" overlay
 
 Misc
   - More tests
@@ -26,5 +27,4 @@ Misc
     - pitch sliding
     - shuffle bug fix (all notes same value - notes disappear)
     - check for updates
-  - Edge clip for slide start time has a max start time of the clip end time (so the note is silent because it's past the end of the clip)
-    Maybe we can set the max to the clip end minus a small delta
+

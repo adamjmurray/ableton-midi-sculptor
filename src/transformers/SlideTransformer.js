@@ -84,6 +84,7 @@ class EdgeTransformer {
 }
 
 const edgeTransformer = new EdgeTransformer();
+
 export default class SlideTransformer extends Transformer {
   constructor() {
     super();

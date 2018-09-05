@@ -6,7 +6,13 @@ export function makeNotes(...values) {
   );
 }
 
+// "Map" notes by destructively modifying clones in a forEach
+export function mapNotes(notes, map) {
+  const mapped = cloneAll(notes);
+  mapped.forEach(map);
+  return mapped;
+}
+
 export function cloneAll(cloneables) {
   return cloneables.map(c => c.clone());
 }
-
