@@ -53,13 +53,13 @@ class EdgeTransformer {
     for (const note of notes) {
       note.pitch = Math.max(0, Math.min(127, note.pitch));
       note.velocity = Math.max(0, Math.min(127, note.velocity));
-
       if (clip) {
-        note.start = Math.max(clip.start, Math.min(clip.end, note.start));
+        // We use clip.end - Note.MIN_DURATION as the max start time so the note will be audible
+        // Otherwise if it starts exactly at the end of the clip, it will not play.
+        note.start = Math.max(clip.start, Math.min(clip.end - Note.MIN_DURATION, note.start));
         note.duration = Math.max(Note.MIN_DURATION, Math.min(clip.length, note.duration));
       }
     }
-
     return notes;
   }
 
@@ -68,7 +68,15 @@ class EdgeTransformer {
   }
 
   reflect(notes, clip) {
-    return rotateOrReflect(notes, reflectedMod, clip);
+    rotateOrReflect(notes, reflectedMod, clip);
+    if (clip) {
+      for (const note of notes) {
+        // We use clip.end - Note.MIN_DURATION as the max start time so the note will be audible
+        // Otherwise if it starts exactly at the end of the clip, it will not play.
+        note.start = Math.min(clip.end - Note.MIN_DURATION, note.start);
+      }
+    }
+    return notes;
   }
 
   remove(notes) {

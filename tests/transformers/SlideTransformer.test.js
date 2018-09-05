@@ -252,9 +252,8 @@ describe('SlideTransformer', () => {
           slideTransformer.setRange('start', 9);
           assert.deepStrictEqual(
             slideTransformer.shift('start', 1.0),
-            // TODO: getting values of 20 here is a bug: the note won't play because it's at the exact endpoint of the clip
-            // We need to subtract a small amount from clip.end
-            mapNotes(notes, (note, index) => note.start = index === 0 ? 19 : 20)
+            // MIN_DURATION is subtracted from the end of the clip so the note will be audible
+            mapNotes(notes, (note, index) => note.start = index === 0 ? 19 : 20 - Note.MIN_DURATION)
           );
         });
 
@@ -312,9 +311,7 @@ describe('SlideTransformer', () => {
               switch (index) {
                 case 0: return note.start = 18;
                 case 1: return note.start = 19;
-                // TODO: getting values of 20 here is a bug: the note won't play because it's at the exact endpoint of the clip
-                // We need to subtract a small amount from clip.end
-                case 2: return note.start = 20;
+                case 2: return note.start = 20 - Note.MIN_DURATION; // MIN_DURATION is subtracted so the note is audible
                 case 3: return note.start = 19;
               }
             })
