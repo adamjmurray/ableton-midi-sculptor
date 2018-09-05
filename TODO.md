@@ -14,8 +14,9 @@
   - Add annotations for all controls (set Set UI)
   - Persist scaling setting in Live set (or can we figure it out from the Live API? scaling automatically would be nice)
 
-Misc
+- Misc
   - More tests
+  - Update README
   - Check for updates feature (hit a 'latest version' text file on github master) - Document release process in README or DEVELOPERS.md
     - Try using the maxurl object
     - Probably need to develop this with the midi clip variator (since it's a public repo)
