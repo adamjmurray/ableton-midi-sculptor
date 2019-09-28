@@ -28,13 +28,12 @@ export default class Transformer {
       this.bipolarRandom2[index] = 2 * Math.random() - 1;
     });
   }
+
   /**
    * With the 8 random numbers (from 0 to 1), use one pair for each quadrant in the (-1,-1) to (1,1) cartesian coordinate space
    * From the 2 given (x,y) (which should be from -1 to 1), return true if amount x,y exceeds the random x,y for that quadrant.
    * This algorithm is suitable for determining when an on/off operation (such as set or swap) should occur from the x-y pad input
    */
-
-
   isInRandomBounds(x, y, noteIndex) {
     if (x > 0) {
       if (y > 0) {
