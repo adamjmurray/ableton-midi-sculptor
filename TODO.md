@@ -1,3 +1,23 @@
+1.0
+- Hide Split panel, it needs too much more work
+- Make Slide's bottom row of buttons same height
+- Cleanup panel widths
+- Cleanup layouts for swap and set
+- Add annotations for all controls
+- Persist scaling setting in Live set
+  - Update README
+  - Change license to be less permissive? No commercial derivatives?
+- Back port some things to the MIDI clip variator
+  - ! Probably not doing this. Just update the README in that repo to point here
+  - pitch sliding
+  - shuffle bug fix (all notes same value - notes disappear)
+  - check for updates
+
+Future
+- Slide
+  - Add tilt feature. Unlike drawing a straight line in Ableton's velocity panel, this will maintain the ratios between notes
+- Swap
+  - Maybe implement grouping (time based and note number based) in the swap transformer
 - Split
   - BUG: tilting and then changing gate doesn't "resplit"
   - BUG: changing halves after a split didn't resplit (creating way too many notes)
@@ -10,22 +30,9 @@
     - should adjust the duration of notes, and maintain the gate as much as possible
     - needs some fine tuning, doesn't seem symmetrical, backwards? it's ok in one direction ,
       maybe just apply the algorithm "in reverse" for the other direction?
-
-
-- GUI
-  - Add annotations for all controls (set Set UI)
-  - Persist scaling setting in Live set
-
 - Misc
-  - More tests
-  - Update README
-  - Change license to be less permissive? No commercial derivatives?
+  - More tests.
+    - Get the controller under test
   - Check for updates feature (hit a 'latest version' text file on github master) - Document release process in README or DEVELOPERS.md
     - Try using the maxurl object
     - Probably need to develop this with the midi clip variator (since it's a public repo)
-  - Back port some things to the MIDI clip variator
-    - pitch sliding
-    - shuffle bug fix (all notes same value - notes disappear)
-    - check for updates
-  - Maybe implement grouping (time based and note number based) in the swap transformer
-
