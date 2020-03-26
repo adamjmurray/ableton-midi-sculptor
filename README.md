@@ -2,6 +2,8 @@ Work in progress!
 
 # Ableton MIDI Sculptor
 
+![Node.js CI](https://github.com/adamjmurray/ableton-midi-sculptor/workflows/Node.js%20CI/badge.svg)
+
 The **Ableton MIDI Clip Sculptor**
 is a [Max for Live device](http://ableton.com/maxforlive)
 for [Ableton Live](http://ableton.com/live/)
