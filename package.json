@@ -14,10 +14,12 @@
     "rollup-plugin-babel": "^4.4.0"
   },
   "scripts": {
+    "build": "npx rollup -c",
+    "ci": "npm run clean && npm run test-strict && npm run build",
     "clean": "rm -f device/sculptor.js",
-    "build": "rollup -c",
-    "dev": "rollup -w -c",
+    "dev": "npx rollup -w -c",
     "test": "npx mocha -c -r @babel/register --file tests/setup.js 'tests/**/*test.js'",
+    "test-strict": "npx mocha --forbid-only -c -r @babel/register --file tests/setup.js 'tests/**/*test.js'",
     "tdd": "npx mocha -c -R min -w -r @babel/register --file tests/setup.js 'tests/**/*test.js'"
   },
   "repository": {
