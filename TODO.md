@@ -4,9 +4,8 @@
 - Cleanup panel widths
 - Cleanup layouts for swap and set
 - Add annotations for all controls
-- Persist scaling setting in Live set
-  - Update README
-  - Change license to be less permissive? No commercial derivatives?
+- Update README
+- Change license to be less permissive? No commercial derivatives?
 - Back port some things to the MIDI clip variator
   - ! Probably not doing this. Just update the README in that repo to point here
   - pitch sliding
