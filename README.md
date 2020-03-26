@@ -1,3 +1,5 @@
+Work in progress!
+
 # Ableton MIDI Sculptor
 
 The **Ableton MIDI Clip Sculptor**
