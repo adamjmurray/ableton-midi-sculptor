@@ -1,5 +1,4 @@
 1.0
-- Hide Split panel, it needs too much more work
 - Make Slide's bottom row of buttons same height
 - Cleanup panel widths
 - Cleanup layouts for swap and set
@@ -18,6 +17,7 @@ Future
 - Swap
   - Maybe implement grouping (time based and note number based) in the swap transformer
 - Split
+  - Restore the tab (add 'slide' back to the live.tab's range/enum)
   - BUG: tilting and then changing gate doesn't "resplit"
   - BUG: changing halves after a split didn't resplit (creating way too many notes)
   - BUG: Randomized swap can result in duplicate notes (when one note is randomly selected and then set to the values of a note that is not randomly selected), so it's not actually swapping.
