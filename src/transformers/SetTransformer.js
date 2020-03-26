@@ -45,6 +45,6 @@ export default class SetTransformer extends Transformer {
       } else {
         return this.oldNotes[index];
       }
-    }).filter(note => note);
+    }).filter(note => note != null);
   }
 }

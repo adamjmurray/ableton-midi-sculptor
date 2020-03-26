@@ -29,9 +29,6 @@ class SlidablePropertyMetadata {
     this.min = 0;
     this.midpoint = 0;
     this.max = 0;
-    this.largestDeltaFromMin = 0;
-    this.largestDeltaFromMidpoint = 0;
-    this.largestDeltaFromMax = 0;
   }
 }
 
@@ -106,26 +103,15 @@ export default class SlideTransformer extends Transformer {
 
     for (const property of ['start', 'pitch', 'velocity', 'duration']) {
       let values = notes.map(note => note.get(property));
+
       let min = Math.min.apply(null, values);
       let max = Math.max.apply(null, values);
       let midpoint = (max + min) / 2;
-      let largestDeltaFromMin = 0;
-      let largestDeltaFromMidpoint = 0;
-      let largestDeltaFromMax = 0;
-
-      for (const note of notes) {
-        largestDeltaFromMin = Math.max(largestDeltaFromMin, Math.abs(min - note.get(property)));
-        largestDeltaFromMidpoint = Math.max(largestDeltaFromMidpoint, Math.abs(midpoint - note.get(property)));
-        largestDeltaFromMax = Math.max(largestDeltaFromMax, Math.abs(max - note.get(property)));
-      }
 
       const propertyMetadata = this.metadata[property];
       propertyMetadata.min = min;
       propertyMetadata.midpoint = midpoint;
       propertyMetadata.max = max;
-      propertyMetadata.largestDeltaFromMin = largestDeltaFromMin;
-      propertyMetadata.largestDeltaFromMidpoint = largestDeltaFromMidpoint;
-      propertyMetadata.largestDeltaFromMax = largestDeltaFromMax;
     }
   }
 
@@ -170,30 +156,30 @@ export default class SlideTransformer extends Transformer {
    - amount should be from -1.0 to 1.0
   */
   spread(property, amount) {
-    const metadata = this.metadata[property];
+    const { max, min, midpoint, range } = this.metadata[property];
     let spreadPoint;
     let largestDelta = 0;
 
     switch (this.anchor) {
       case ANCHOR.MIN:
-        spreadPoint = metadata.min;
-        largestDelta = metadata.largestDeltaFromMin;
+        spreadPoint = min;
+        largestDelta = max - min;
         break;
 
       case ANCHOR.MIDPOINT:
-        spreadPoint = metadata.midpoint;
-        largestDelta = metadata.largestDeltaFromMidpoint;
+        spreadPoint = midpoint;
+        largestDelta = midpoint - min;
         break;
 
       case ANCHOR.MAX:
-        spreadPoint = metadata.max;
-        largestDelta = metadata.largestDeltaFromMax;
+        spreadPoint = max;
+        largestDelta = max - min;
         break;
     }
 
     if (largestDelta === 0) return this.newNotes;
-    amount = amount * metadata.range;
-    return this.transform(property, value => value + amount * (value - spreadPoint) / largestDelta);
+
+    return this.transform(property, value => value + amount * range * (value - spreadPoint) / largestDelta);
   }
   /**
    2-D randomization for the notes' property value.
