@@ -1,6 +1,4 @@
 1.0
-- Make Slide's bottom row of buttons same height
-- Cleanup panel widths
 - Cleanup layouts for swap and set
 - Add annotations for all controls
 - Update README
@@ -30,6 +28,7 @@ Future
     - needs some fine tuning, doesn't seem symmetrical, backwards? it's ok in one direction ,
       maybe just apply the algorithm "in reverse" for the other direction?
 - Misc
+  - Show number of notes selected. Maybe show warning when only 1 is selected.
   - More tests.
     - Get the controller under test
   - Check for updates feature (hit a 'latest version' text file on github master) - Document release process in README or DEVELOPERS.md

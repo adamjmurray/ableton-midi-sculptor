@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1764.0, 560.0, 417.0, 652.0 ],
+		"rect" : [ 1020.0, 544.0, 417.0, 669.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 1056.0, 353.0, 150.0, 34.0 ],
-					"presentation_linecount" : 2,
 					"text" : "zoom doesn't work when nogrow is enabled"
 				}
 
@@ -71,7 +70,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 850.0, 401.0, 127.0, 36.0 ],
-					"presentation_linecount" : 2,
 					"text" : "window flags nogrow, window exec"
 				}
 
@@ -85,7 +83,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1032.0, 401.0, 115.0, 36.0 ],
-					"presentation_linecount" : 2,
 					"text" : "window flags grow, window exec"
 				}
 
@@ -104,18 +101,19 @@
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial Bold",
+					"fontname" : "Ableton Sans",
 					"fontsize" : 24.0,
 					"id" : "obj-21",
 					"linecount" : 3,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 328.865295000000003, 145.0, 86.0, 89.0 ],
+					"patching_rect" : [ 328.865295000000003, 145.0, 83.0, 93.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 28.5, 101.875, 210.0, 34.0 ],
+					"presentation_rect" : [ 18.5, 105.5, 207.0, 35.0 ],
 					"text" : "Select a MIDI clip",
-					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"textjustification" : 1
 				}
 
 			}
@@ -131,7 +129,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 305.950012000000015, 141.0, 92.0, 79.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ -0.75, 0.375, 292.0, 255.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 255.0, 246.0 ],
 					"proportion" : 0.292271,
 					"rounded" : 0
 				}
@@ -168,8 +166,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 990.232055999999943, 79.5, 31.0, 22.0 ],
-					"text" : "250"
+					"patching_rect" : [ 990.232055999999943, 79.5, 29.5, 22.0 ],
+					"text" : "238"
 				}
 
 			}
@@ -180,8 +178,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 872.232055999999943, 69.0, 31.0, 22.0 ],
-					"text" : "285"
+					"patching_rect" : [ 872.232055999999943, 69.0, 29.5, 22.0 ],
+					"text" : "244"
 				}
 
 			}
@@ -710,7 +708,7 @@
 					"offset" : [ 0.0, 0.0 ],
 					"patching_rect" : [ 36.0, 246.0, 165.0, 184.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 18.0, 36.25, 241.0, 187.0 ],
+					"presentation_rect" : [ 15.0, 34.25, 214.0, 189.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -726,9 +724,9 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 139.0, 116.0, 128.0, 128.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 14.0, 29.375, 249.0, 192.625 ],
+					"presentation_rect" : [ 10.0, 29.375, 223.0, 198.0 ],
 					"proportion" : 0.39,
-					"rounded" : 0
+					"rounded" : 4
 				}
 
 			}
@@ -788,8 +786,9 @@
 					"activebgoncolor" : [ 0.427451, 0.843137, 1.0, 1.0 ],
 					"bordercolor" : [ 0.862745, 0.870588, 0.878431, 0.0 ],
 					"focusbordercolor" : [ 0.862745, 0.870588, 0.878431, 0.0 ],
-					"fontface" : 3,
-					"fontsize" : 12.0,
+					"fontface" : 1,
+					"fontname" : "Ableton Sans",
+					"fontsize" : 11.0,
 					"id" : "obj-20",
 					"maxclass" : "live.tab",
 					"num_lines_patching" : 1,
@@ -800,18 +799,18 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 36.0, 54.0, 213.0, 26.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 11.0, 2.375, 245.0, 23.0 ],
+					"presentation_rect" : [ 8.0, 2.375, 227.0, 23.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_longname" : "live.tab[3]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 2,
 							"parameter_initial" : [ 0 ],
 							"parameter_shortname" : "live.tab",
 							"parameter_enum" : [ "slide", "swap", "set" ],
 							"parameter_type" : 2,
-							"parameter_unitstyle" : 0
+							"parameter_unitstyle" : 0,
+							"parameter_longname" : "live.tab[3]",
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
+							"parameter_mmax" : 2
 						}
 
 					}
@@ -937,7 +936,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 516.315307999999959, 23.5, 61.0, 34.0 ],
-					"presentation_linecount" : 2,
 					"text" : "open this window"
 				}
 
@@ -953,7 +951,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 503.981934000000024, 302.5, 147.0, 77.0 ],
-					"presentation_linecount" : 5,
 					"text" : "window flags nomenu, window flags float, window size $1 $2 $3 $4, window flags nogrow, window exec, front"
 				}
 
@@ -997,7 +994,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 116.0, 92.0, 128.0, 128.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 7.0, 23.0, 263.299987999999985, 204.0 ],
+					"presentation_rect" : [ 4.0, 23.0, 235.0, 210.0 ],
 					"proportion" : 0.39
 				}
 
@@ -1378,59 +1375,59 @@
  ],
 		"parameters" : 		{
 			"obj-1::obj-11::obj-5::obj-144" : [ "velocity range[19]", "velrange", 0 ],
-			"obj-1::obj-10::obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-35" : [ "live.tab[1]", "live.tab", 0 ],
+			"obj-1::obj-11::obj-5::obj-27" : [ "live.text[3]", "live.text[2]", 0 ],
+			"obj-1::obj-3::obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
 			"obj-1::obj-11::obj-5::obj-142" : [ "velocity range[18]", "velrange", 0 ],
-			"obj-1::obj-3::obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
-			"obj-1::obj-10::obj-4::obj-3" : [ "velocity range[10]", "velrange", 0 ],
-			"obj-1::obj-10::obj-4::obj-197" : [ "live.menu[2]", "live.menu", 0 ],
+			"obj-20" : [ "live.tab[3]", "live.tab", 0 ],
+			"obj-1::obj-3::obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
+			"obj-1::obj-11::obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-1::obj-11::obj-5::obj-141" : [ "velocity range[12]", "velrange", 0 ],
+			"obj-1::obj-3::obj-7" : [ "live.text[16]", "live.text", 0 ],
+			"obj-1::obj-3::obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
 			"obj-1::obj-10::obj-4::obj-199" : [ "live.text[2]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-1::obj-8::obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-42" : [ "live.menu[22]", "live.menu[1]", 0 ],
+			"obj-1::obj-8::obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
+			"obj-1::obj-8::obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
+			"obj-1::obj-10::obj-4::obj-3" : [ "velocity range[10]", "velrange", 0 ],
+			"obj-1::obj-11::obj-2" : [ "live.tab[2]", "live.tab", 0 ],
+			"obj-1::obj-11::obj-5::obj-20" : [ "velocity range[1]", "velrange", 0 ],
+			"obj-1::obj-8::obj-22" : [ "live.tab", "live.tab", 0 ],
+			"obj-1::obj-10::obj-4::obj-197" : [ "live.menu[2]", "live.menu", 0 ],
+			"obj-1::obj-11::obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-1::obj-11::obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-1::obj-10::obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
 			"obj-1::obj-10::obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ],
-			"obj-1::obj-10::obj-11" : [ "live.text", "live.text", 0 ],
-			"obj-1::obj-8::obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-1::obj-8::obj-42" : [ "live.menu[22]", "live.menu[1]", 0 ],
-			"obj-1::obj-8::obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
-			"obj-1::obj-10::obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
-			"obj-1::obj-10::obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
-			"obj-1::obj-8::obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
-			"obj-20" : [ "live.tab[3]", "live.tab", 0 ],
-			"obj-1::obj-8::obj-35" : [ "live.tab[1]", "live.tab", 0 ],
-			"obj-1::obj-10::obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
 			"obj-1::obj-11::obj-25" : [ "velocity range[9]", "velrange", 0 ],
-			"obj-1::obj-11::obj-5::obj-20" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-1::obj-11::obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
 			"obj-1::obj-11::obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
-			"obj-1::obj-11::obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-1::obj-11::obj-2" : [ "live.tab[2]", "live.tab", 0 ],
-			"obj-1::obj-3::obj-10" : [ "live.text[15]", "live.text", 0 ],
-			"obj-1::obj-3::obj-11" : [ "live.text[13]", "live.text", 0 ],
-			"obj-1::obj-3::obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
-			"obj-1::obj-3::obj-110" : [ "live.text[17]", "live.text[6]", 0 ],
-			"obj-1::obj-11::obj-5::obj-27" : [ "live.text[3]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-1::obj-10::obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
+			"obj-1::obj-10::obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
+			"obj-1::obj-10::obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
+			"obj-1::obj-8::obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
 			"obj-1::obj-11::obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
+			"obj-1::obj-3::obj-10" : [ "live.text[15]", "live.text", 0 ],
 			"obj-1::obj-11::obj-5::obj-21" : [ "velocity range[2]", "velrange", 0 ],
-			"obj-1::obj-3::obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
-			"obj-1::obj-8::obj-22" : [ "live.tab", "live.tab", 0 ],
-			"obj-1::obj-8::obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-1::obj-11::obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
-			"obj-1::obj-3::obj-7" : [ "live.text[16]", "live.text", 0 ],
-			"obj-1::obj-8::obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
-			"obj-1::obj-8::obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
-			"obj-1::obj-8::obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
-			"obj-1::obj-8::obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-1::obj-3::obj-11" : [ "live.text[13]", "live.text", 0 ],
 			"obj-1::obj-10::obj-4::obj-198" : [ "velocity range[3]", "velrange", 0 ],
+			"obj-1::obj-10::obj-11" : [ "live.text", "live.text", 0 ],
+			"obj-1::obj-3::obj-110" : [ "live.text[17]", "live.text[6]", 0 ],
+			"obj-1::obj-10::obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-1::obj-10::obj-4::obj-3" : 				{
-					"parameter_longname" : "velocity range[10]"
+				"obj-1::obj-11::obj-5::obj-27" : 				{
+					"parameter_longname" : "live.text[3]"
 				}
 ,
-				"obj-1::obj-10::obj-4::obj-197" : 				{
-					"parameter_longname" : "live.menu[2]"
+				"obj-1::obj-3::obj-7" : 				{
+					"parameter_longname" : "live.text[16]"
 				}
 ,
 				"obj-1::obj-10::obj-4::obj-199" : 				{
@@ -1441,28 +1438,28 @@
 					"parameter_longname" : "live.menu[22]"
 				}
 ,
+				"obj-1::obj-10::obj-4::obj-3" : 				{
+					"parameter_longname" : "velocity range[10]"
+				}
+,
 				"obj-1::obj-11::obj-2" : 				{
 					"parameter_longname" : "live.tab[2]"
+				}
+,
+				"obj-1::obj-10::obj-4::obj-197" : 				{
+					"parameter_longname" : "live.menu[2]"
 				}
 ,
 				"obj-1::obj-3::obj-10" : 				{
 					"parameter_longname" : "live.text[15]"
 				}
 ,
-				"obj-1::obj-3::obj-110" : 				{
-					"parameter_longname" : "live.text[17]"
-				}
-,
-				"obj-1::obj-11::obj-5::obj-27" : 				{
-					"parameter_longname" : "live.text[3]"
-				}
-,
-				"obj-1::obj-3::obj-7" : 				{
-					"parameter_longname" : "live.text[16]"
-				}
-,
 				"obj-1::obj-10::obj-4::obj-198" : 				{
 					"parameter_longname" : "velocity range[3]"
+				}
+,
+				"obj-1::obj-3::obj-110" : 				{
+					"parameter_longname" : "live.text[17]"
 				}
 
 			}
@@ -1646,8 +1643,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
