@@ -28,6 +28,7 @@ Future
     - needs some fine tuning, doesn't seem symmetrical, backwards? it's ok in one direction ,
       maybe just apply the algorithm "in reverse" for the other direction?
 - Misc
+  - Help window (semi-implemented, currently hidden)
   - Show number of notes selected. Maybe show warning when only 1 is selected.
   - More tests.
     - Get the controller under test
