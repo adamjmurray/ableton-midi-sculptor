@@ -229,17 +229,17 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 455.0, 62.0, 49.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 34.5, 89.0, 36.0, 15.0 ],
+					"presentation_rect" : [ 34.5, 90.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_initial" : [ 2.0 ],
-							"parameter_shortname" : "live.menu",
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_type" : 2,
 							"parameter_longname" : "live.menu[11]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 7
+							"parameter_mmax" : 7,
+							"parameter_initial" : [ 2.0 ],
+							"parameter_shortname" : "live.menu"
 						}
 
 					}
@@ -261,16 +261,16 @@
 					"presentation_rect" : [ 0.0, 90.0, 27.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_initial" : [ 1.0 ],
-							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[17]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 128.0
+							"parameter_mmax" : 128.0,
+							"parameter_initial" : [ 1.0 ],
+							"parameter_speedlim" : 5.0,
+							"parameter_shortname" : "velrange"
 						}
 
 					}
@@ -292,14 +292,14 @@
 					"presentation_rect" : [ 34.5, 0.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_initial" : [ 2.0 ],
-							"parameter_shortname" : "live.menu",
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_type" : 2,
 							"parameter_longname" : "live.menu[10]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 7
+							"parameter_mmax" : 7,
+							"parameter_initial" : [ 2.0 ],
+							"parameter_shortname" : "live.menu"
 						}
 
 					}
@@ -321,16 +321,16 @@
 					"presentation_rect" : [ 0.0, 0.0, 27.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_initial" : [ 1.0 ],
-							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[16]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 128.0
+							"parameter_mmax" : 128.0,
+							"parameter_initial" : [ 1.0 ],
+							"parameter_speedlim" : 5.0,
+							"parameter_shortname" : "velrange"
 						}
 
 					}
@@ -349,15 +349,15 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 510.5, 62.0, 39.0, 17.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 73.0, 89.0, 39.0, 15.0 ],
+					"presentation_rect" : [ 73.0, 90.0, 39.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_shortname" : "live.text[2]",
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
 							"parameter_longname" : "live.text[14]",
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 1
+							"parameter_mmax" : 1,
+							"parameter_shortname" : "live.text[2]"
 						}
 
 					}
@@ -381,12 +381,12 @@
 					"presentation_rect" : [ 73.0, 0.0, 39.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_shortname" : "live.text[2]",
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
 							"parameter_longname" : "live.text[11]",
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 1
+							"parameter_mmax" : 1,
+							"parameter_shortname" : "live.text[2]"
 						}
 
 					}
@@ -410,15 +410,15 @@
 					"presentation_rect" : [ 0.0, 30.0, 41.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_initial" : [ 12 ],
-							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[7]",
 							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_initial" : [ 12 ],
+							"parameter_speedlim" : 5.0,
+							"parameter_shortname" : "velrange"
 						}
 
 					}
@@ -440,15 +440,15 @@
 					"presentation_rect" : [ 0.0, 60.0, 41.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_initial" : [ 64.0 ],
-							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[5]",
 							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2
+							"parameter_invisible" : 2,
+							"parameter_initial" : [ 64.0 ],
+							"parameter_speedlim" : 5.0,
+							"parameter_shortname" : "velrange"
 						}
 
 					}
@@ -565,14 +565,14 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-132" : [ "velocity range[16]", "velrange", 0 ],
 			"obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
-			"obj-50" : [ "velocity range[7]", "velrange", 0 ],
 			"obj-135" : [ "velocity range[17]", "velrange", 0 ],
-			"obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-131" : [ "live.menu[10]", "live.menu", 0 ],
 			"obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-50" : [ "velocity range[7]", "velrange", 0 ],
 			"parameterbanks" : 			{
 
 			}
