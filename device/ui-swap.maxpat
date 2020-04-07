@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 67.0, 87.0, 674.0, 567.0 ],
+		"rect" : [ 889.0, 464.0, 674.0, 567.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -58,7 +58,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 128.0, 312.0, 50.0, 50.0 ],
-					"presentation_linecount" : 3,
 					"text" : "swap_target Pitch 1"
 				}
 
@@ -89,6 +88,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "When enabled, note durations will be affected by the swap operation.",
+					"annotation_name" : "Swap Duration",
 					"id" : "obj-11",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -102,6 +103,7 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Swap Duration",
 							"parameter_longname" : "live.text[13]",
 							"parameter_mmax" : 1,
 							"parameter_shortname" : "live.text"
@@ -117,6 +119,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "When enabled, the velocity will be affected by the swap operation.",
+					"annotation_name" : "Swap Velocity",
 					"id" : "obj-10",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -130,6 +134,7 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Swap Velocity",
 							"parameter_longname" : "live.text[1]",
 							"parameter_mmax" : 1,
 							"parameter_shortname" : "live.text"
@@ -145,6 +150,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "When enabled, the pitch will be affected by the swap operation.",
+					"annotation_name" : "Swap Pitch",
 					"id" : "obj-7",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -158,6 +165,7 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Swap Pitch",
 							"parameter_longname" : "live.text",
 							"parameter_mmax" : 1,
 							"parameter_shortname" : "live.text"
@@ -858,6 +866,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Swap the enabled note properties between consecutive selected notes.",
+					"annotation_name" : "Swap Consecutive Pairs",
 					"id" : "obj-156",
 					"maxclass" : "live.text",
 					"mode" : 0,
@@ -872,6 +882,7 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Swap Consecutive Pairs",
 							"parameter_longname" : "live.text[20]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
@@ -889,6 +900,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Swap the enabled note properties between selected notes using a \"zipper\" pattern: The list of values is split into halves and the two halves are interleaved.",
+					"annotation_name" : "Zipper Swap",
 					"id" : "obj-110",
 					"maxclass" : "live.text",
 					"mode" : 0,
@@ -903,6 +916,7 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Zipper Swap",
 							"parameter_longname" : "live.text[16]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
@@ -920,6 +934,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Rotate the enabled note properties through the selected notes.",
 					"bgcolor" : [ 0.078431, 0.078431, 0.078431, 1.0 ],
 					"contdata" : 1,
 					"id" : "obj-92",
@@ -932,12 +947,14 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 137.0, 37.0, 29.0, 121.0 ],
 					"slidercolor" : [ 1.0, 0.709804, 0.196078, 1.0 ],
-					"thickness" : 3
+					"thickness" : 3,
+					"varname" : "Rotate"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Randomly swaps the enabled note properties between selected notes. The randomization is consistent until you release the mouse, so you can scrub for sweet spots. Once the mouse is released it will re-randomize.",
 					"bgcolor" : [ 0.078431, 0.078431, 0.078431, 1.0 ],
 					"bottommargin" : 1,
 					"bottomvalue" : -100,
@@ -958,7 +975,8 @@
 					"rightvalue" : 100,
 					"scaleknob" : 1,
 					"topmargin" : 1,
-					"topvalue" : 100
+					"topvalue" : 100,
+					"varname" : "Random Swap"
 				}
 
 			}
@@ -978,6 +996,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Reverse the enabled note properties with the selected notes.",
+					"annotation_name" : "Reverse",
 					"id" : "obj-44",
 					"maxclass" : "live.text",
 					"mode" : 0,
@@ -992,6 +1012,7 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Reverse",
 							"parameter_longname" : "live.text[6]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
@@ -1299,8 +1320,8 @@
 			"obj-7" : [ "live.text", "live.text", 0 ],
 			"obj-11" : [ "live.text[13]", "live.text", 0 ],
 			"obj-10" : [ "live.text[1]", "live.text", 0 ],
-			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
 			"obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
+			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
 			"obj-110" : [ "live.text[16]", "live.text[6]", 0 ],
 			"parameterbanks" : 			{
 
