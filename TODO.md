@@ -1,7 +1,5 @@
 1.0
 - Cleanup layouts for swap and set
-- Add annotations for all controls
-  - set
 - Update README
 - Change license to be less permissive? No commercial derivatives?
 - Back port some things to the MIDI clip variator

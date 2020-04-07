@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 614.0, 591.0, 714.0, 601.0 ],
+		"rect" : [ 1350.0, 632.0, 714.0, 601.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -38,6 +38,20 @@
 		"style" : "",
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-28",
+					"maxclass" : "live.comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 343.0, 255.0, 151.0, 18.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 68.5, 0.0, 24.0, 18.0 ],
+					"text" : "to",
+					"textjustification" : 1
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "live.comment",
@@ -83,7 +97,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 272.0, 180.5, 72.0, 34.0 ],
-					"presentation_linecount" : 2,
 					"text" : "\"start time\" => start"
 				}
 
@@ -202,6 +215,7 @@
 , 			{
 				"box" : 				{
 					"annotation" : "Set all selected notes to the choosen value.",
+					"annotation_name" : "Set All",
 					"id" : "obj-11",
 					"maxclass" : "live.text",
 					"mode" : 0,
@@ -216,12 +230,13 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
-							"parameter_longname" : "live.text",
+							"parameter_annotation_name" : "Set All",
+							"parameter_longname" : "Set All",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 1,
 							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.text"
+							"parameter_shortname" : "Set All"
 						}
 
 					}
@@ -747,7 +762,8 @@
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "The target to be set to the value choosen to the right. Notes can be deleted, muted, or unmuted. Start time, pitch, velocity, and duration can be set to any value.",
+					"annotation" : "The note property to set to the value choosen to the right. Notes can be deleted, muted, or unmuted. Start time, pitch, velocity, and duration can be set to any value.",
+					"annotation_name" : "Note Property",
 					"id" : "obj-179",
 					"maxclass" : "live.menu",
 					"numinlets" : 1,
@@ -756,15 +772,16 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 104.0, 151.0, 96.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 72.0, 15.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 64.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "Note", "Start Time", "Pitch", "Velocity", "Duration" ],
 							"parameter_type" : 2,
-							"parameter_longname" : "live.menu[18]",
+							"parameter_annotation_name" : "Note Property",
+							"parameter_longname" : "Note Property",
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 4,
-							"parameter_shortname" : "live.menu[1]"
+							"parameter_shortname" : "Note Property"
 						}
 
 					}
@@ -775,7 +792,7 @@
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "Set a random subset of the selected notes to the choosen value.",
+					"annotation" : "Set a random subset of the selected notes to the choosen value. The randomizaton is consistent until you lift the mouse, so you can scrub for sweet spots. Once you lift the mouse, it is re-randomized.",
 					"bgcolor" : [ 0.078431, 0.078431, 0.078431, 1.0 ],
 					"bottommargin" : 1,
 					"bottomvalue" : -100,
@@ -972,18 +989,36 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
 			"obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
-			"obj-11" : [ "live.text", "live.text", 0 ],
+			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
 			"obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
-			"obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
 			"obj-4::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-11" : [ "Set All", "Set All", 0 ],
 			"obj-4::obj-3" : [ "velocity range[1]", "velrange", 0 ],
+			"obj-179" : [ "Note Property", "Note Property", 0 ],
 			"obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
 			"obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
 			"obj-4::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"parameterbanks" : 			{
+
+			}
+,
+			"parameter_overrides" : 			{
+				"obj-4::obj-192" : 				{
+					"parameter_longname" : "velocity range[22]",
+					"parameter_shortname" : "velrange"
+				}
+,
+				"obj-4::obj-194" : 				{
+					"parameter_longname" : "velocity range[23]",
+					"parameter_shortname" : "velrange"
+				}
+,
+				"obj-4::obj-201" : 				{
+					"parameter_longname" : "live.menu[21]",
+					"parameter_shortname" : "live.menu[1]"
+				}
 
 			}
 

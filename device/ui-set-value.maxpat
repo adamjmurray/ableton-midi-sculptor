@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 382.0, 88.0, 889.0, 525.0 ],
+		"rect" : [ 466.0, 324.0, 889.0, 525.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -132,7 +132,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 671.516845999999987, 202.0, 150.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 25.883178999999998, 118.474975999999998, 17.0, 18.0 ],
+					"presentation_rect" : [ 25.0, 119.0, 17.0, 18.0 ],
 					"text" : "/",
 					"textjustification" : 0
 				}
@@ -140,7 +140,8 @@
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "The duration unit. 4 is quarter note, 8 is 8th note, etc.",
+					"annotation" : "The duration to set.\n\nThis value is the type of note: 4 is a quarter note, 8 is an eighth note, 16 is a 16th note, etc. This duration is multiplied by the previous value. So if this box shows 4 and the one to the left shows 3, that's 3 quarter notes from the start of the clip.",
+					"annotation_name" : "Set Duration",
 					"id" : "obj-2",
 					"maxclass" : "live.menu",
 					"numinlets" : 1,
@@ -149,11 +150,12 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 690.699951000000056, 206.0, 49.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 36.766356999999999, 120.0, 36.0, 15.0 ],
+					"presentation_rect" : [ 35.0, 120.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Set Duration",
 							"parameter_longname" : "live.menu[1]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
@@ -170,7 +172,8 @@
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "The duration to be set. Depends on the unit choosen to the right.",
+					"annotation" : "The duration to set.\n\nThis value is multipled by the duration set by the next value, where /4 is a quarter note, /8 is an eighth note, etc. So if this box shows 3 and the one to the right shows 4, that's 3 quarter notes from the start of the measure.",
+					"annotation_name" : "Set Duration",
 					"id" : "obj-3",
 					"maxclass" : "live.numbox",
 					"numinlets" : 1,
@@ -184,6 +187,7 @@
 						"valueof" : 						{
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Set Duration",
 							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[1]",
 							"parameter_initial_enable" : 1,
@@ -202,7 +206,8 @@
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "Changes the duration unit to a triplet (2/3 the normal value).",
+					"annotation" : "The duration to set.\n\nThis toggles triplet time.",
+					"annotation_name" : "Set Duration",
 					"id" : "obj-4",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -211,11 +216,12 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 738.449951000000056, 206.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 76.516356999999999, 120.0, 37.5, 17.0 ],
+					"presentation_rect" : [ 73.0, 120.0, 39.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Set Duration",
 							"parameter_longname" : "live.text[1]",
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 1,
@@ -226,13 +232,14 @@
 ,
 					"text" : "Triplet",
 					"texton" : "Triplet",
-					"varname" : "live.text[1]"
+					"varname" : "Set"
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"annotation" : "Delete, mute, or unmute notes.",
+					"annotation_name" : "Mute or Delete Notes",
 					"id" : "obj-201",
 					"maxclass" : "live.menu",
 					"numinlets" : 1,
@@ -246,10 +253,11 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "Deleted", "Muted", "Unmuted" ],
 							"parameter_type" : 2,
-							"parameter_longname" : "live.menu[21]",
+							"parameter_annotation_name" : "Mute or Delete Notes",
+							"parameter_longname" : "Mute or Delete Notes",
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 2,
-							"parameter_shortname" : "live.menu[1]"
+							"parameter_shortname" : "Mute or Delete Notes"
 						}
 
 					}
@@ -266,7 +274,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 240.816894999999988, 198.0, 150.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 25.883178999999998, 28.474976000000002, 17.0, 18.0 ],
+					"presentation_rect" : [ 25.0, 29.0, 17.0, 18.0 ],
 					"text" : "/",
 					"textjustification" : 0
 				}
@@ -274,7 +282,8 @@
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "The start time unit. 4 is quarter note, 8 is 8th note, etc.",
+					"annotation" : "The start time to set.\n\nThis value is the type of note: 4 is a quarter note, 8 is an eighth note, 16 is a 16th note, etc. This duration is multiplied by the previous value. So if this box shows 4 and the one to the left shows 3, that's 3 quarter notes from the start of the clip.",
+					"annotation_name" : "Set Start Time",
 					"id" : "obj-197",
 					"maxclass" : "live.menu",
 					"numinlets" : 1,
@@ -283,11 +292,12 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 260.0, 202.0, 49.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 36.766356999999999, 30.0, 36.0, 15.0 ],
+					"presentation_rect" : [ 35.0, 30.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Set Start Time",
 							"parameter_longname" : "live.menu[20]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
@@ -304,7 +314,8 @@
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "The start time to be set. Depends on the unit choosen to the right.",
+					"annotation" : "The start time to set.\n\nThis value is multipled by the duration set by the next value, where /4 is a quarter note, /8 is an eighth note, etc. So if this box shows 3 and the one to the right shows 4, that's 3 quarter notes from the start of the clip.",
+					"annotation_name" : "Set Start Time",
 					"id" : "obj-198",
 					"maxclass" : "live.numbox",
 					"numinlets" : 1,
@@ -318,6 +329,7 @@
 						"valueof" : 						{
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Set Start Time",
 							"parameter_longname" : "velocity range[24]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
@@ -336,7 +348,8 @@
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "Changes the start time unit to a triplet (2/3 the normal value).",
+					"annotation" : "The start time to set.\n\nThis toggles triplet time.",
+					"annotation_name" : "Set Start Time",
 					"id" : "obj-199",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -345,11 +358,12 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 307.75, 202.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 76.516356999999999, 30.0, 37.5, 17.0 ],
+					"presentation_rect" : [ 73.0, 30.0, 39.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Set Start Time",
 							"parameter_longname" : "live.text[23]",
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 1,
@@ -360,13 +374,14 @@
 ,
 					"text" : "Triplet",
 					"texton" : "Triplet",
-					"varname" : "live.text[18]"
+					"varname" : "Set Start Time"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "The pitch to be set.",
+					"annotation" : "The pitch to set.",
+					"annotation_name" : "Set Pitch",
 					"id" : "obj-194",
 					"maxclass" : "live.numbox",
 					"numinlets" : 1,
@@ -380,24 +395,26 @@
 						"valueof" : 						{
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 8,
+							"parameter_annotation_name" : "Set Pitch",
 							"parameter_mmin" : 1.0,
-							"parameter_longname" : "velocity range[23]",
+							"parameter_longname" : "Set Pitch",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_initial" : [ 64.0 ],
 							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange"
+							"parameter_shortname" : "Set Pitch"
 						}
 
 					}
 ,
-					"varname" : "velrange[14]"
+					"varname" : "Set Pitch"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "The velocity to be set.",
+					"annotation" : "The velocity to set.",
+					"annotation_name" : "Set Velocity",
 					"id" : "obj-192",
 					"maxclass" : "live.numbox",
 					"numinlets" : 1,
@@ -411,13 +428,14 @@
 						"valueof" : 						{
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Set Velocity",
 							"parameter_mmin" : 1.0,
-							"parameter_longname" : "velocity range[22]",
+							"parameter_longname" : "Set Velocity",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_initial" : [ 64.0 ],
 							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange"
+							"parameter_shortname" : "Set Velocity"
 						}
 
 					}
@@ -555,14 +573,14 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-192" : [ "velocity range[22]", "velrange", 0 ],
 			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-192" : [ "Set Velocity", "Set Velocity", 0 ],
 			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
 			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-2" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-201" : [ "Mute or Delete Notes", "Mute or Delete Notes", 0 ],
+			"obj-194" : [ "Set Pitch", "Set Pitch", 0 ],
 			"obj-3" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-194" : [ "velocity range[23]", "velrange", 0 ],
-			"obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
 			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"parameterbanks" : 			{
 

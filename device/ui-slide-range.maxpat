@@ -45,7 +45,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 25.450012000000001, -1.0, 150.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 24.450012000000001, -1.0, 17.0, 18.0 ],
+					"presentation_rect" : [ 25.0, -1.0, 17.0, 18.0 ],
 					"text" : "/",
 					"textjustification" : 0
 				}
@@ -59,7 +59,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 29.0, 121.0, 150.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 24.450012000000001, 90.0, 17.0, 18.0 ],
+					"presentation_rect" : [ 25.0, 89.0, 17.0, 18.0 ],
 					"text" : "/",
 					"textjustification" : 0
 				}
@@ -231,7 +231,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 455.0, 62.0, 49.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 34.5, 90.0, 36.0, 15.0 ],
+					"presentation_rect" : [ 35.0, 90.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
@@ -297,7 +297,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 73.0, 62.0, 49.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 34.5, 0.0, 36.0, 15.0 ],
+					"presentation_rect" : [ 35.0, 0.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
@@ -595,8 +595,8 @@
 			"obj-131" : [ "live.menu[10]", "live.menu", 0 ],
 			"obj-132" : [ "velocity range[16]", "velrange", 0 ],
 			"obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
-			"obj-50" : [ "pitchrange", "pitchrange", 0 ],
 			"obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-50" : [ "pitchrange", "pitchrange", 0 ],
 			"parameterbanks" : 			{
 
 			}
