@@ -17,6 +17,14 @@ export default class Controller {
     this.transformers = [this.slideTransformer, this.setTransformer, this.swapTransformer, this.splitTransformer];
   }
 
+  /* This function does several things to prepare for transforming notes:
+     - Get the selected clip. If no clip is selected or it's not a MIDI clip, fail to sync.
+     - Show the detail view (MIDI note editor) for the selected clip.
+     - Get the selected notes. If no notes are selected, select all the notes and use those.
+     - Update all the transformers with the selected clip and notes. This is a relatively
+       expensive operation so we only do it once per sync, for performance.
+     - Cache the synced state until desync() is called, for performance.
+  */
   sync() {
     if (this.isSynced) return true;
 
@@ -25,12 +33,11 @@ export default class Controller {
 
     this.appView = this.appView || new AppView();
     this.appView.showClipDetailView();
-    let selectedNotes = selectedClip.selectedNotes;
 
+    let selectedNotes = selectedClip.selectedNotes;
     if (selectedNotes.length === 0) {
       selectedNotes = selectedClip.selectAllNotes();
     }
-
     this.selectedNotes = selectedNotes;
 
     for (const transformer of this.transformers) {
@@ -50,6 +57,7 @@ export default class Controller {
     const notes = transform();
     if (notes) this.selectedClip.replaceSelectedNotes(notes);
   }
+
   /**
    * Reset note data and generate new random seeds.
    * Use this when:
@@ -57,8 +65,6 @@ export default class Controller {
    * - the user is done using a MIDI Clip Variator control to modify the clip
    * - the clip's note selection changes
    */
-
-
   desync() {
     // This can get called a lot, so we defer the actual syncing until the next operation is performed
     this.isSynced = false;
