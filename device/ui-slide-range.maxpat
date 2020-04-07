@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 177.0, 698.0, 604.0, 378.0 ],
+		"rect" : [ 1020.0, 695.0, 604.0, 442.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -221,6 +221,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The maximum change in duration with each use of the controls below.\n\nThis value is the type of note: 4 is a quarter note, 8 is an eighth note, 16 is a 16th note, etc. This duration is multiplied by the previous value. So if this box shows 4 and the one to the left shows 3, that's 3 quarter notes.",
+					"annotation_name" : "Duration Range",
 					"id" : "obj-134",
 					"maxclass" : "live.menu",
 					"numinlets" : 1,
@@ -234,6 +236,7 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Duration Range",
 							"parameter_longname" : "live.menu[11]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
@@ -250,6 +253,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The maximum change in duration with each use of the controls below.\n\nThis value is multipled by the duration set by the next value, where /4 is a quarter note, /8 is an eighth note, etc. So if this box shows 3 and the one to the right shows 4, that's 3 quarter notes.",
+					"annotation_name" : "Duration Range",
 					"id" : "obj-135",
 					"maxclass" : "live.numbox",
 					"numinlets" : 1,
@@ -263,6 +268,7 @@
 						"valueof" : 						{
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Duration Range",
 							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[17]",
 							"parameter_initial_enable" : 1,
@@ -281,6 +287,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The maximum change in start time with each use of the controls below.\n\nThis value is the type of note: 4 is a quarter note, 8 is an eighth note, 16 is a 16th note, etc. This duration is multiplied by the previous value. So if this box shows 4 and the one to the left shows 3, that's 3 quarter notes.",
+					"annotation_name" : "Start Time Range",
 					"id" : "obj-131",
 					"maxclass" : "live.menu",
 					"numinlets" : 1,
@@ -294,6 +302,7 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Start Time Range",
 							"parameter_longname" : "live.menu[10]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
@@ -310,6 +319,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The maximum change in start time with each use of the controls below.\n\nThis value is multipled by the duration set by the next value, where /4 is a quarter note, /8 is an eighth note, etc. So if this box shows 3 and the one to the right shows 4, that's 3 quarter notes.",
+					"annotation_name" : "Start Time Range",
 					"id" : "obj-132",
 					"maxclass" : "live.numbox",
 					"numinlets" : 1,
@@ -323,6 +334,7 @@
 						"valueof" : 						{
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Start Time Range",
 							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[16]",
 							"parameter_initial_enable" : 1,
@@ -341,6 +353,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The maximum change in duration with each use of the controls below.\n\nThis toggles triplet time.",
+					"annotation_name" : "Duration Range",
 					"id" : "obj-107",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -354,6 +368,7 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Duration Range",
 							"parameter_longname" : "live.text[14]",
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 1,
@@ -370,6 +385,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The maximum change in start time with each use of the controls below.\n\nThis toggles triplet time.",
+					"annotation_name" : "Start Time Range",
 					"id" : "obj-98",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -383,6 +400,7 @@
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Start Time Range",
 							"parameter_longname" : "live.text[11]",
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 1,
@@ -399,6 +417,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The maximum change in pitch with each use of the controls below.",
+					"annotation_name" : "Pitch Range",
 					"id" : "obj-50",
 					"maxclass" : "live.numbox",
 					"numinlets" : 1,
@@ -412,13 +432,14 @@
 						"valueof" : 						{
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Pitch Range",
 							"parameter_mmin" : 1.0,
-							"parameter_longname" : "velocity range[7]",
+							"parameter_longname" : "pitchrange",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_initial" : [ 12 ],
 							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange"
+							"parameter_shortname" : "pitchrange"
 						}
 
 					}
@@ -429,6 +450,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The maximum change in velocity with each use of the controls below.",
+					"annotation_name" : "Velocity Range",
 					"id" : "obj-11",
 					"maxclass" : "live.numbox",
 					"numinlets" : 1,
@@ -442,6 +465,7 @@
 						"valueof" : 						{
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Velocity Range",
 							"parameter_mmin" : 1.0,
 							"parameter_longname" : "velocity range[5]",
 							"parameter_initial_enable" : 1,
@@ -571,8 +595,8 @@
 			"obj-131" : [ "live.menu[10]", "live.menu", 0 ],
 			"obj-132" : [ "velocity range[16]", "velrange", 0 ],
 			"obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-50" : [ "pitchrange", "pitchrange", 0 ],
 			"obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-50" : [ "velocity range[7]", "velrange", 0 ],
 			"parameterbanks" : 			{
 
 			}

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1071.0, 560.0, 1095.0, 644.0 ],
+		"rect" : [ 554.0, 541.0, 1095.0, 644.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -95,6 +95,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "When using the spread slider, these options determine which note will remain anchored and not change:\n• minimum value\n• midpoint value (note: may not fall on an actual note)\n• maximum value",
+					"annotation_name" : "Spread Anchor Options",
 					"id" : "obj-35",
 					"maxclass" : "live.tab",
 					"multiline" : 0,
@@ -110,13 +112,14 @@
 					"presentation_rect" : [ 139.0, 166.0, 74.0, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_shortname" : "live.tab",
 							"parameter_enum" : [ "min", "mid", "max" ],
 							"parameter_type" : 2,
 							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Spread Anchor Options",
 							"parameter_longname" : "live.tab[1]",
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 2
+							"parameter_mmax" : 2,
+							"parameter_shortname" : "live.tab"
 						}
 
 					}
@@ -128,6 +131,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Determines what to do when a note property reaches the min or max value:\n• Clip: stay at the min/max\n• Reflect: move in the opposite direction\n• Wrap: loop from max back to min\n• Keep going: start times go past the edge of clips and notes with invalid pitches or negative velocity/duration are deleted.\nEdge behavior applies to all operations in this Slide tool.",
+					"annotation_name" : "Edge Behavior",
 					"id" : "obj-22",
 					"maxclass" : "live.tab",
 					"multiline" : 0,
@@ -143,13 +148,14 @@
 					"presentation_rect" : [ 0.0, 166.0, 100.0, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_shortname" : "live.tab",
 							"parameter_enum" : [ "clip", "reflect", "rotate", "remove" ],
 							"parameter_type" : 2,
 							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Edge Behavior",
 							"parameter_longname" : "live.tab",
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 3
+							"parameter_mmax" : 3,
+							"parameter_shortname" : "live.tab"
 						}
 
 					}
@@ -981,6 +987,8 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "The note property to edit.",
+					"annotation_name" : "Note Property",
 					"id" : "obj-42",
 					"maxclass" : "live.menu",
 					"numinlets" : 1,
@@ -992,12 +1000,13 @@
 					"presentation_rect" : [ 0.0, 0.0, 64.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_shortname" : "live.menu[1]",
 							"parameter_enum" : [ "Start Time", "Pitch", "Velocity", "Duration" ],
 							"parameter_type" : 2,
+							"parameter_annotation_name" : "Note Property",
 							"parameter_longname" : "live.menu[1]",
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 3
+							"parameter_mmax" : 3,
+							"parameter_shortname" : "live.menu[1]"
 						}
 
 					}
@@ -1008,6 +1017,7 @@
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Change the choosen note property of the selected notes by spreading the values away from each other, or closer together. For example, this can be used to create a larger or smaller range of velocity values, like a \"velocity compressor\". \n\nSee the 3 icons below for anchoring options.",
 					"bgcolor" : [ 0.078431, 0.078431, 0.078431, 1.0 ],
 					"contdata" : 1,
 					"id" : "obj-41",
@@ -1020,12 +1030,14 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 182.0, 37.0, 29.0, 121.0 ],
 					"slidercolor" : [ 1.0, 0.709804, 0.196078, 1.0 ],
-					"thickness" : 3
+					"thickness" : 3,
+					"varname" : "Spread"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Randomly change the choosen note property of the selected notes. Each quadrant has its own randomized values scaled by distance from the origin, so the maximum change happens at the corners. The values remain consistent until you release the mouse, so you can scrub for sweet spots. After you release the mouse, it will re-randomize.",
 					"bgcolor" : [ 0.078431, 0.078431, 0.078431, 1.0 ],
 					"bottommargin" : 1,
 					"bottomvalue" : -100,
@@ -1046,12 +1058,14 @@
 					"rightvalue" : 100,
 					"scaleknob" : 1,
 					"topmargin" : 1,
-					"topvalue" : 100
+					"topvalue" : 100,
+					"varname" : "Randomize"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "Change the choosen note property of the selected notes in the positive or negative direction.",
 					"bgcolor" : [ 0.078431, 0.078431, 0.078431, 1.0 ],
 					"contdata" : 1,
 					"id" : "obj-63",
@@ -1064,7 +1078,8 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 1.0, 37.0, 29.0, 121.0 ],
 					"slidercolor" : [ 1.0, 0.709804, 0.196078, 1.0 ],
-					"thickness" : 3
+					"thickness" : 3,
+					"varname" : "Shift"
 				}
 
 			}
@@ -1394,18 +1409,26 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
-			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
 			"obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
-			"obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
 			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
-			"obj-22" : [ "live.tab", "live.tab", 0 ],
-			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
-			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
 			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
+			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
+			"obj-22" : [ "live.tab", "live.tab", 0 ],
+			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
 			"parameterbanks" : 			{
+
+			}
+,
+			"parameter_overrides" : 			{
+				"obj-11::obj-50" : 				{
+					"parameter_longname" : "velocity range[7]",
+					"parameter_shortname" : "velrange"
+				}
 
 			}
 
