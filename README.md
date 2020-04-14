@@ -1,6 +1,6 @@
 # Ableton MIDI Sculptor
 
-The **Ableton MIDI Clip Sculptor**
+The **Ableton MIDI Sculptor**
 is a [Max for Live device](http://ableton.com/maxforlive)
 for [Ableton Live](http://ableton.com/live/)
 that makes it easy to create variations of MIDI clips with tools to modify pitch, velocity, and timing.
