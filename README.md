@@ -82,6 +82,11 @@ There are **3 sculpting tools**.
 * Set the choosen note property to the choosen value value on **all the selected notes**
 
 
+## Feature Requests and Bug Reports
+
+Please file a github issue: https://github.com/adamjmurray/ableton-midi-sculptor/issues
+
+
 ## About
 
 Designed and developed by [Adam Murray](https://github.com/adamjmurray).
