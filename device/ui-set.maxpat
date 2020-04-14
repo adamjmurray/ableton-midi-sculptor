@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1350.0, 632.0, 714.0, 601.0 ],
+		"rect" : [ -2.0, 254.0, 714.0, 601.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 343.0, 255.0, 151.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 68.5, 0.0, 24.0, 18.0 ],
+					"presentation_rect" : [ 68.5, -1.0, 24.0, 18.0 ],
 					"text" : "to",
 					"textjustification" : 1
 				}
@@ -59,7 +59,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 296.0, 168.0, 150.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 28.5, 27.474976000000002, 64.0, 18.0 ],
+					"presentation_rect" : [ 77.5, 20.0, 57.0, 18.0 ],
 					"text" : "Randomize",
 					"textjustification" : 1
 				}
@@ -159,7 +159,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 574.0, 216.0, 9.0, 50.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 100.875, 121.0, 9.25 ]
+					"presentation_rect" : [ 43.0, 97.0, 121.0, 9.25 ]
 				}
 
 			}
@@ -172,7 +172,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 584.0, 216.0, 9.0, 50.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 60.0, 41.0, 5.0, 121.0 ]
+					"presentation_rect" : [ 105.0, 37.0, 5.0, 121.0 ]
 				}
 
 			}
@@ -225,7 +225,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 360.0, 236.5, 49.0, 25.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 142.5, 90.9375, 47.5, 21.125 ],
+					"presentation_rect" : [ 171.0, 86.9375, 40.0, 21.125 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
@@ -487,7 +487,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 104.0, 271.0, 99.0, 22.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 99.383178999999998, 0.0, 145.616820999999987, 24.0 ],
+					"presentation_rect" : [ 100.383178999999998, 0.0, 145.616821000000016, 18.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -808,7 +808,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 464.0, 216.0, 103.0, 50.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 41.0, 121.0, 121.0 ],
+					"presentation_rect" : [ 45.0, 37.0, 121.0, 121.0 ],
 					"rightmargin" : 1,
 					"rightvalue" : 100,
 					"scaleknob" : 1,
@@ -989,25 +989,25 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
-			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
-			"obj-4::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ],
-			"obj-11" : [ "Set All", "Set All", 0 ],
-			"obj-4::obj-3" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-179" : [ "Note Property", "Note Property", 0 ],
-			"obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
 			"obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
+			"obj-11" : [ "Set All", "Set All", 0 ],
+			"obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
+			"obj-179" : [ "Note Property", "Note Property", 0 ],
+			"obj-4::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-4::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-4::obj-3" : [ "velocity range[1]", "velrange", 0 ],
+			"obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-4::obj-192" : 				{
-					"parameter_longname" : "velocity range[22]",
-					"parameter_shortname" : "velrange"
+				"obj-4::obj-201" : 				{
+					"parameter_longname" : "live.menu[21]",
+					"parameter_shortname" : "live.menu[1]"
 				}
 ,
 				"obj-4::obj-194" : 				{
@@ -1015,9 +1015,9 @@
 					"parameter_shortname" : "velrange"
 				}
 ,
-				"obj-4::obj-201" : 				{
-					"parameter_longname" : "live.menu[21]",
-					"parameter_shortname" : "live.menu[1]"
+				"obj-4::obj-192" : 				{
+					"parameter_longname" : "velocity range[22]",
+					"parameter_shortname" : "velrange"
 				}
 
 			}

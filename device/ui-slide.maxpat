@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 554.0, 541.0, 1095.0, 644.0 ],
+		"rect" : [ 427.0, 522.0, 1095.0, 644.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -198,7 +198,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 286.5, 280.0, 5.0, 100.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 43.0, 96.75, 121.0, 9.25 ]
+					"presentation_rect" : [ 43.0, 97.0, 121.0, 9.25 ]
 				}
 
 			}
@@ -211,7 +211,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 304.0, 280.0, 5.0, 100.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 104.5, 37.0, 5.0, 121.0 ]
+					"presentation_rect" : [ 105.0, 37.0, 5.0, 121.0 ]
 				}
 
 			}
@@ -1409,17 +1409,17 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
-			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
-			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
-			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
-			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
-			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
 			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
+			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
 			"obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
+			"obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
 			"obj-22" : [ "live.tab", "live.tab", 0 ],
 			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
+			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
+			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
 			"parameterbanks" : 			{
 
 			}

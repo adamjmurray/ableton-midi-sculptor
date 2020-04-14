@@ -1,12 +1,7 @@
 1.0
-- Cleanup layouts for swap and set
-- yellow circle is not centered in randomize x-y's
+- Make a video?
 - Update README
-- Back port some things to the MIDI clip variator
-  - ! Probably not doing this. Just update the README in that repo to point here
-  - pitch sliding
-  - shuffle bug fix (all notes same value - notes disappear)
-  - check for updates
+- Update MIDI clip variator README to point here
 
 Future
 - Slide
