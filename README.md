@@ -10,9 +10,11 @@ that makes it easy to create variations of MIDI clips with tools to modify pitch
 
 ## Installation and Usage
 
-1. [Download](TODO: from where?) and unzip in the location of your choice
-2. Drag the ableton-midi-sculptor.amxd device into any MIDI track
-3. Click the help button for usage instructions
+1. [Download Sculptor.amxd v1.0](./releases/1.0/Sculptor.amxd?raw=true)
+2. Drag the `Sculptor.amxd` device onto any MIDI track
+3. Click the "Sculpting Tools" button to open the main UI in a window
+4. Adjust the zoom level as desired
+5. Open Live's Info View and hover over any control for documentation
 
 
 ## Features
