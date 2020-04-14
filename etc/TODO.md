@@ -1,8 +1,3 @@
-1.0
-- Make a video?
-- Update README
-- Update MIDI clip variator README to point here
-
 Future
 - Slide
   - Add tilt feature. Unlike drawing a straight line in Ableton's velocity panel, this will maintain the ratios between notes
