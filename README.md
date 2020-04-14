@@ -1,5 +1,3 @@
-Work in progress!
-
 # Ableton MIDI Sculptor
 
 ![Node.js CI](https://github.com/adamjmurray/ableton-midi-sculptor/workflows/Node.js%20CI/badge.svg)
@@ -62,6 +60,6 @@ TODO: Screenshot
 
 Designed and developed by [Adam Murray](https://github.com/adamjmurray).
 
-Released under a [permissive free software license](https://github.com/adamjmurray/ableton-midi-sculptor/blob/master/LICENSE.txt)
+Released under the [GNU General Public License v3.0](https://github.com/adamjmurray/ableton-midi-sculptor/blob/master/LICENSE.txt).
 
 Built with [Max](http://cycling74.com/products/max/) and JavaScript.

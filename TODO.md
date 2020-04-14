@@ -2,7 +2,6 @@
 - Cleanup layouts for swap and set
 - yellow circle is not centered in randomize x-y's
 - Update README
-- Change license to be less permissive? No commercial derivatives?
 - Back port some things to the MIDI clip variator
   - ! Probably not doing this. Just update the README in that repo to point here
   - pitch sliding
@@ -31,7 +30,6 @@ Future
   - Help window (semi-implemented, currently hidden)
   - Show number of notes selected. Maybe show warning when only 1 is selected.
   - More tests.
-    - Get the controller under test
+    - Get the controller under test (integration tests)
   - Check for updates feature (hit a 'latest version' text file on github master) - Document release process in README or DEVELOPERS.md
     - Try using the maxurl object
-    - Probably need to develop this with the midi clip variator (since it's a public repo)
