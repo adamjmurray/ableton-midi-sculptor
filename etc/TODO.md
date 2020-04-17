@@ -1,4 +1,7 @@
-Future
+Bugs
+- Adding the device creates ~3 unnecessary undo history states
+
+Ideas
 - Slide
   - Add tilt feature. Unlike drawing a straight line in Ableton's velocity panel, this will maintain the ratios between notes
 - Swap
