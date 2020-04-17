@@ -109,17 +109,17 @@
 					"patching_rect" : [ 40.0, 376.0, 72.0, 24.0 ],
 					"pictures" : [ "icon-anchor-start.svg", "icon-anchor-mid.svg", "icon-anchor-end.svg" ],
 					"presentation" : 1,
-					"presentation_rect" : [ 139.0, 166.0, 74.0, 24.0 ],
+					"presentation_rect" : [ 139.0, 164.0, 74.0, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "min", "mid", "max" ],
-							"parameter_type" : 2,
-							"parameter_unitstyle" : 0,
 							"parameter_annotation_name" : "Spread Anchor Options",
 							"parameter_longname" : "live.tab[1]",
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 2,
-							"parameter_shortname" : "live.tab"
+							"parameter_shortname" : "live.tab",
+							"parameter_enum" : [ "min", "mid", "max" ],
+							"parameter_type" : 2,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -145,17 +145,17 @@
 					"patching_rect" : [ 136.0, 304.0, 100.0, 20.0 ],
 					"pictures" : [ "icon-clip.svg", "icon-reflect.svg", "icon-rotate.svg", "icon-remove.svg" ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 166.0, 100.0, 24.0 ],
+					"presentation_rect" : [ 0.0, 164.0, 100.0, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "clip", "reflect", "rotate", "remove" ],
-							"parameter_type" : 2,
-							"parameter_unitstyle" : 0,
 							"parameter_annotation_name" : "Edge Behavior",
 							"parameter_longname" : "live.tab",
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 3,
-							"parameter_shortname" : "live.tab"
+							"parameter_shortname" : "live.tab",
+							"parameter_enum" : [ "clip", "reflect", "rotate", "remove" ],
+							"parameter_type" : 2,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -1000,13 +1000,13 @@
 					"presentation_rect" : [ 0.0, 0.0, 64.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "Start Time", "Pitch", "Velocity", "Duration" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Note Property",
 							"parameter_longname" : "live.menu[1]",
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 3,
-							"parameter_shortname" : "live.menu[1]"
+							"parameter_shortname" : "live.menu[1]",
+							"parameter_enum" : [ "Start Time", "Pitch", "Velocity", "Duration" ],
+							"parameter_type" : 2
 						}
 
 					}
@@ -1409,17 +1409,17 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
-			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
-			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
-			"obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
 			"obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-22" : [ "live.tab", "live.tab", 0 ],
-			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
-			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
 			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
+			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
+			"obj-22" : [ "live.tab", "live.tab", 0 ],
+			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
 			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -1520,8 +1520,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",

@@ -18,6 +18,10 @@ Development Process
 Pre-commit
 1. `npm run test` - All tests must pass.
 
+Updating Screenshots
+1. Use zoom level 150%
+2. Crop out the window toolbar
+
 Releasing
 1. Edit the device
 2. Freeze the device
