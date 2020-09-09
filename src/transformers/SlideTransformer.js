@@ -95,7 +95,7 @@ export default class SlideTransformer extends Transformer {
     super();
     this.metadata = new SlidablePropertiesMetadata();
     this.edgeTransformation = edgeTransformer.clip;
-    this.anchor = ANCHOR.MIDDLE;
+    this.anchor = ANCHOR.MIDPOINT;
   }
 
   set notes(notes) {

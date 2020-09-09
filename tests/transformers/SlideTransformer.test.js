@@ -497,7 +497,7 @@ describe('SlideTransformer', () => {
           );
         });
 
-        it("removes notes shorter than ", () => {
+        it("removes notes shorter than the minimum allowed duration", () => {
           slideTransformer.setRange('duration', 10.999); // 11 - 10.999 will be < MIN_DURATION
           const actual = slideTransformer.shift('duration', -1.0);
           assert.strictEqual(actual.length, 2);
@@ -509,11 +509,61 @@ describe('SlideTransformer', () => {
   });
 
   describe('spread()', () => {
-    // TODO:
+    it('is idempotent', () => {
+      slideTransformer.setRange('pitch', 6);
+      const actual1 = slideTransformer.spread('pitch', 1);
+      const expected = mapNotes(notes, note => {
+        switch (note.pitch) {
+          case 10: return note.pitch = 4;
+          case 11: return note.pitch = 9;
+          case 12: return note.pitch = 14;
+          case 13: return note.pitch = 19;
+        }
+      });
+      assert.deepStrictEqual(actual1, expected);
+      const actual2 = slideTransformer.spread('pitch', 1);
+      assert.deepStrictEqual(actual2, expected);
+    });
 
-    // Maybe we don't need to retest every edge behavior since it should behave the same way
+    describe("spread('pitch', amount)", () => {
+      it('spreads pitches apart by the given range with a positive amount', () => {
+        slideTransformer.setRange('pitch', 12);
+        assert.deepStrictEqual(
+          slideTransformer.spread('pitch', 0.5),
+          mapNotes(notes, note => {
+            switch (note.pitch) {
+              case 10: return note.pitch = 4;
+              case 11: return note.pitch = 9;
+              case 12: return note.pitch = 14;
+              case 13: return note.pitch = 19;
+            }
+          })
+        );
+      });
 
-    // it('is idempotent', () => { });
+      it('squeezes pitches closer together with a negative amount', () => {
+        notes = makeNotes(4, 7, 10, 13);
+        slideTransformer.notes = notes;
+        slideTransformer.setRange('pitch', 12);
+        assert.deepStrictEqual(
+          slideTransformer.spread('pitch', -0.25),
+          mapNotes(notes, note => {
+            switch (note.pitch) {
+              case 4: return note.pitch = 7;
+              case 7: return note.pitch = 8;
+              case 10: return note.pitch = 9;
+              case 13: return note.pitch = 10;
+            }
+          })
+        );
+      });
+
+      // TODO
+      // tests for slideTransformer.spreadAnchor = ANCHOR.MIN/MIDPOINT/MAX
+      // spot check other note properties
+      // spot check edge behaviors
+      // implement "tie-breaker" mechanism for strumming and test that
+    });
   });
 
   describe('randomize2D()', () => {
