@@ -1,28 +1,16 @@
 name: Node.js CI
-
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
-
+on: [push, pull_request]
 jobs:
   build:
+    name: Node.js ${{ matrix.node-version }}
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [12.x, 13.x]
-
+        node-version: [12, 14]
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v2-beta
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build and test
-      run: |
-        npm ci
-        npm run ci
-      env:
-        CI: true
+    - run: npm ci
+    - run: npm run ci
