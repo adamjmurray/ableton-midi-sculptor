@@ -4,8 +4,12 @@ import { mod, reflectedMod } from '../utils';
 
 function rotateOrReflect(notes, operation, clip) {
   for (const note of notes) {
-    note.pitch = operation(note.pitch, 127);
-    note.velocity = operation(note.velocity, 127);
+    // For a normal mod(), we want to allow 127 and wrap 128 around to 0, so we need the "clampTo" to be 128
+    // reflectedMod() can return the "clampTo" value, so we want to set it to 127 in that case.
+    // Finally, we ensure the values are integers so mod() can't return values like 127.9
+    const clampTo = operation === mod ? 128 : 127;
+    note.pitch = operation(Math.round(note.pitch), clampTo);
+    note.velocity = operation(Math.round(note.velocity), clampTo);
 
     if (clip) {
       const relativeStart = note.start - clip.start;

@@ -3,6 +3,8 @@ Bugs
 
 Ideas
 - Slide
+  - "tie breaker" to do strumming
+  - Exponential spreading
   - Add tilt feature. Unlike drawing a straight line in Ableton's velocity panel, this will maintain the ratios between notes
 - Swap
   - Maybe implement grouping (time based and note number based) in the swap transformer
@@ -26,3 +28,4 @@ Ideas
     - Get the controller under test (integration tests)
   - Check for updates feature (hit a 'latest version' text file on github master) - Document release process in README or DEVELOPERS.md
     - Try using the maxurl object
+  - Rename edge behavior "clip" to "clamp"?

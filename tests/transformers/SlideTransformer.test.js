@@ -3,6 +3,7 @@ import { SlideTransformer, Note, ANCHOR } from '../../src';
 import { makeNotes, cloneAll, mapNotes } from '../helpers';
 
 describe('SlideTransformer', () => {
+  // TODO: delete the old setup code once all the tests are data driven
   let slideTransformer;
   let notes;
   let clip;
@@ -14,496 +15,531 @@ describe('SlideTransformer', () => {
     slideTransformer.clip = clip;
   });
 
-  describe('shift()', () => {
-    it('is idempotent', () => {
-      slideTransformer.setRange('pitch', 20);
-      const actual1 = slideTransformer.shift('pitch', 0.5);
-      const expected = mapNotes(notes, note => note.pitch += 10)
-      assert.deepStrictEqual(actual1, expected);
-      const actual2 = slideTransformer.shift('pitch', 0.5);
-      assert.deepStrictEqual(actual2, expected);
+  const defaultClip = { start: 0, end: 16 };
+
+  const testCases = {
+    shift: {
+      pitch: [
+        {
+          input: [10, 11, 12, 13],
+          range: 20,
+          amount: 0.5,
+          expected: [20, 21, 22, 23]
+        },
+        {
+          input: [10, 11, 12, 13],
+          range: 20,
+          amount: -0.25,
+          expected: [5, 6, 7, 8]
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'clip',
+          range: 116,
+          amount: 1,
+          expected: [126, 127, 127, 127],
+          description: 'clamps to a max pitch of 127',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'clip',
+          range: 12,
+          amount: -1,
+          expected: [0, 0, 0, 1],
+          description: 'clamps to a min pitch of 0'
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'reflect',
+          range: 116,
+          amount: 1,
+          expected: [126, 127, 126, 125],
+          description: 'reflects pitches above 127 to the negative direction',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'reflect',
+          range: 12,
+          amount: -1,
+          expected: [2, 1, 0, 1],
+          description: 'reflects pitches below 0 to the positive direction',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'remove',
+          range: 116,
+          amount: 1,
+          expected: [126, 127],
+          description: 'removes notes with pitches above 127',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'remove',
+          range: 12,
+          amount: -1,
+          expected: [0, 1],
+          description: 'removes notes with pitches below 0',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'rotate',
+          range: 116,
+          amount: 1,
+          expected: [126, 127, 0, 1],
+          description: 'wraps pitches around from 127 to 0 in the positive direction',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'rotate',
+          range: 12,
+          amount: -1,
+          expected: [126, 127, 0, 1],
+          description: 'wraps pitches around from 0 to 127 in the negative direction',
+        },
+      ],
+      //-----------------------------------------------------------------------
+      velocity: [
+        {
+          input: [10, 11, 12, 13],
+          range: 20,
+          amount: 0.5,
+          expected: [20, 21, 22, 23]
+        },
+        {
+          input: [10, 11, 12, 13],
+          range: 20,
+          amount: -0.25,
+          expected: [5, 6, 7, 8]
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'clip',
+          range: 116,
+          amount: 1,
+          expected: [126, 127, 127, 127],
+          description: 'clamps to a max velocity of 127',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'clip',
+          range: 12,
+          amount: -1,
+          expected: [0, 0, 0, 1],
+          description: 'clamps to a min velocity of 0'
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'reflect',
+          range: 116,
+          amount: 1,
+          expected: [126, 127, 126, 125],
+          description: 'reflects velocities above 127 to the negative direction',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'reflect',
+          range: 12,
+          amount: -1,
+          expected: [2, 1, 0, 1],
+          description: 'reflects velocities below 0 to the positive direction',
+        },
+        { // This is a special case to not remove notes that get "too loud", which felt very non-intuitive
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'remove',
+          range: 116,
+          amount: 1,
+          expected: [126, 127, 127, 127],
+          description: 'does not remove notes with velocities above 127 and just clamps them to 127',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'remove',
+          range: 12,
+          amount: -1,
+          expected: [0, 1],
+          description: 'removes notes with velocities below 0',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'rotate',
+          range: 116,
+          amount: 1,
+          expected: [126, 127, 0, 1],
+          description: 'wraps velocities around from 127 to 0 in the positive direction',
+        },
+        {
+          input: [10, 11, 12, 13],
+          edgeBehavior: 'rotate',
+          range: 12,
+          amount: -1,
+          expected: [126, 127, 0, 1],
+          description: 'wraps velocities around from 0 to 127 in the negative direction',
+        },
+      ],
+      //-----------------------------------------------------------------------
+      start: [
+        {
+          input: [5, 6, 7, 8],
+          range: 10,
+          amount: 0.5,
+          expected: [10, 11, 12, 13],
+        },
+        {
+          input: [5, 6, 7, 8],
+          range: 20,
+          amount: -0.25,
+          expected: [0, 1, 2, 3],
+        },
+        {
+          input: [0, 1, 2, 3],
+          clip: { start: 0, end: 8 },
+          edgeBehavior: 'clip',
+          range: 6,
+          amount: 1,
+          expected: [6, 7, (8 - Note.MIN_DURATION), (8 - Note.MIN_DURATION)],
+          description: 'clamps start time to the clip end minus a small amount (so the note can play)',
+        },
+        {
+          input: [4, 5, 6, 7],
+          clip: { start: 4, end: 12 },
+          edgeBehavior: 'clip',
+          range: 6,
+          amount: 1,
+          expected: [10, 11, (12 - Note.MIN_DURATION), (12 - Note.MIN_DURATION)],
+          description: 'clamps start time to the clip end minus a small amount (so the note can play)',
+        },
+        {
+          input: [1, 2, 3, 4],
+          clip: { start: 0, end: 8 },
+          edgeBehavior: 'clip',
+          range: 3,
+          amount: -1,
+          expected: [0, 0, 0, 1],
+          description: 'clamps start time to the clip start',
+        },
+        {
+          input: [5, 6, 7, 8],
+          clip: { start: 4, end: 12 },
+          edgeBehavior: 'clip',
+          range: 3,
+          amount: -1,
+          expected: [4, 4, 4, 5],
+          description: 'clamps start time to the clip start',
+        },
+        {
+          input: [0, 1, 2, 3],
+          clip: { start: 0, end: 8 },
+          edgeBehavior: 'rotate',
+          range: 6,
+          amount: 1,
+          expected: [6, 7, 0, 1],
+          description: 'wraps start times around from clip end to clip start',
+        },
+        {
+          input: [4, 5, 6, 7],
+          clip: { start: 4, end: 12 },
+          edgeBehavior: 'rotate',
+          range: 6,
+          amount: 1,
+          expected: [10, 11, 4, 5],
+          description: 'wraps start times around from clip end to clip start',
+        },
+        {
+          input: [0, 1, 2, 3],
+          clip: { start: 0, end: 8 },
+          edgeBehavior: 'rotate',
+          range: 2,
+          amount: -1,
+          expected: [6, 7, 0, 1],
+          description: 'wraps start times around from clip start to clip end',
+        },
+        {
+          input: [4, 5, 6, 7],
+          clip: { start: 4, end: 12 },
+          edgeBehavior: 'rotate',
+          range: 2,
+          amount: -1,
+          expected: [10, 11, 4, 5],
+          description: 'wraps start times around from clip end to clip start',
+        },
+        {
+          input: [0, 1, 2, 3],
+          clip: { start: 0, end: 8 },
+          edgeBehavior: 'reflect',
+          range: 7,
+          amount: 1,
+          expected: [7, 8 - Note.MIN_DURATION, 7, 6],
+          description: 'reflects start times after clip end to the negative direction, ensuring notes near the clip end will play',
+        },
+        {
+          input: [4, 5, 6, 7],
+          clip: { start: 0, end: 8 },
+          edgeBehavior: 'reflect',
+          range: 6,
+          amount: -1,
+          expected: [2, 1, 0, 1],
+          description: 'reflects start times before clip start to the positive direction',
+        },
+        {
+          input: [4, 5, 6, 7],
+          clip: { start: 4, end: 12 },
+          edgeBehavior: 'reflect',
+          range: 7,
+          amount: 1,
+          expected: [11, 12 - Note.MIN_DURATION, 11, 10],
+          description: 'reflects start times after clip end to the negative direction, ensuring notes near the clip end will play',
+        },
+        {
+          input: [5, 6, 7, 8],
+          clip: { start: 4, end: 12 },
+          edgeBehavior: 'reflect',
+          range: 3,
+          amount: -1,
+          expected: [6, 5, 4, 5],
+          description: 'reflects start times before clip start to the positive direction',
+        },
+        {
+          input: [0, 1, 2, 3],
+          clip: { start: 0, end: 8 },
+          edgeBehavior: 'remove',
+          range: 7,
+          amount: 1,
+          expected: [7, 8, 9, 10],
+          description: 'allows start times to go after clip end',
+        },
+        {
+          input: [0, 1, 2, 3],
+          clip: { start: 0, end: 8 },
+          edgeBehavior: 'remove',
+          range: 2,
+          amount: -1,
+          expected: [-2, -1, 0, 1],
+          description: 'allows start times to go before clip start',
+        },
+        {
+          input: [4, 5, 6, 7],
+          clip: { start: 4, end: 12 },
+          edgeBehavior: 'remove',
+          range: 7,
+          amount: 1,
+          expected: [11, 12, 13, 14],
+          description: 'allows start times to go after clip end',
+        },
+        {
+          input: [4, 5, 6, 7],
+          clip: { start: 4, end: 12 },
+          edgeBehavior: 'remove',
+          range: 2,
+          amount: -1,
+          expected: [2, 3, 4, 5],
+          description: 'allows start times to go before clip start',
+        },
+      ]
+    },
+    // TODO: tests for duration
+  };
+
+  function describeTest({ operation, noteProperty, range, amount, edgeBehavior, clip, description }) {
+    const baseDescription = description || `${operation}s the ${noteProperty} as expected`;
+    return `${baseDescription} for ${
+      Object.entries({ range, amount, edgeBehavior, clip })
+        .filter(([_, value]) => value != null)
+        .map(([name, value]) => `${name}=${JSON.stringify(value)}`)
+        .join(', ')}`;
+  }
+
+  function setupSlideTransformer({ input, noteProperty, range, edgeBehavior, clip }) {
+    const slideTransformer = new SlideTransformer();
+    slideTransformer.notes = input.map((value) => new Note({ [noteProperty]: value }));
+    slideTransformer.setRange(noteProperty, range);
+    if (edgeBehavior) {
+      slideTransformer.edgeBehavior = edgeBehavior;
+    }
+    const c = clip || defaultClip;
+    c.length = c.end - c.start;
+    slideTransformer.clip = c;
+    return slideTransformer;
+  }
+
+  Object.entries(testCases).forEach(([operation, testsForNoteProperty]) => {
+    Object.entries(testsForNoteProperty).forEach(([noteProperty, tests]) => {
+      describe(`${operation}('${noteProperty}', amount)`, () => {
+
+        it('is idempotent', () => {
+          const test = { operation, noteProperty, ...tests[0] };
+          const slideTransformer = setupSlideTransformer(test);
+          const inputNotes = test.input.map((value) => new Note({ [noteProperty]: value }));
+          const actualNotes1 = slideTransformer[operation](noteProperty, test.amount);
+          const actualNotes2 = slideTransformer[operation](noteProperty, tests.amount);
+          assert.notDeepStrictEqual(actualNotes1, inputNotes); // check that a transformation happpened
+          assert.deepStrictEqual(actualNotes1, actualNotes2);
+        });
+
+        tests.forEach((testParams) => {
+          const test = { operation, noteProperty, ...testParams };
+
+          it(describeTest(test), () => {
+            const slideTransformer = setupSlideTransformer(test);
+            const expectedNotes = test.expected.map((value) => new Note({ [noteProperty]: value }));
+            const actualNotes = slideTransformer[operation](noteProperty, test.amount);
+            assert.deepStrictEqual(
+              actualNotes,
+              expectedNotes,
+            );
+          });
+        });
+      });
+    });
+  });
+
+  describe("shift('duration', amount)", () => {
+    it('shifts durations by the given range and positive amount ratio', () => {
+      slideTransformer.setRange('duration', 4);
+      assert.deepStrictEqual(
+        slideTransformer.shift('duration', 0.5),
+        mapNotes(notes, note => note.duration += 2)
+      );
     });
 
-    describe("shift('pitch', amount)", () => {
-      it('shifts pitches by the given range and positive amount ratio', () => {
-        slideTransformer.setRange('pitch', 20);
+    it('shifts durations by the given range and negative amount ratio', () => {
+      slideTransformer.setRange('duration', 20);
+      assert.deepStrictEqual(
+        slideTransformer.shift('duration', -0.25),
+        mapNotes(notes, note => note.duration -= 5)
+      );
+    });
+
+    describe("edgeBehavior = 'clip'", () => {
+      beforeEach(() => slideTransformer.edgeBehavior = 'clip');
+
+      it("clamps durations to a max of the clip length", () => {
+        slideTransformer.setRange('duration', 5);
         assert.deepStrictEqual(
-          slideTransformer.shift('pitch', 0.5),
-          mapNotes(notes, note => note.pitch += 10)
+          slideTransformer.shift('duration', 1.0),
+          mapNotes(notes, (note, index) => note.duration = index === 0 ? 15 : 16)
         );
       });
 
-      it('shifts pitches by the given range and negative amount ratio', () => {
-        slideTransformer.setRange('pitch', 20);
+      it("clamps durations to a min of Note.MIN_DURATION", () => {
+        slideTransformer.setRange('duration', 12);
         assert.deepStrictEqual(
-          slideTransformer.shift('pitch', -0.25),
-          mapNotes(notes, note => note.pitch -= 5)
+          slideTransformer.shift('duration', -1.0),
+          mapNotes(notes, (note, index) => note.duration = index < 3 ? Note.MIN_DURATION : 1)
         );
-      });
-
-      describe("edgeBehavior = 'clip'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'clip');
-
-        it("clamps pitches to a max of 127", () => {
-          slideTransformer.setRange('pitch', 116);
-          assert.deepStrictEqual(
-            slideTransformer.shift('pitch', 1.0),
-            mapNotes(notes, (note, index) => note.pitch = index === 0 ? 126 : 127)
-          );
-        });
-
-        it("clamps pitches to a min of 0", () => {
-          slideTransformer.setRange('pitch', 12);
-          assert.deepStrictEqual(
-            slideTransformer.shift('pitch', -1.0),
-            mapNotes(notes, (note, index) => note.pitch = index < 3 ? 0 : 1)
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'rotate'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'rotate');
-
-        it("wraps pitches around from 127 to 0 in the positive direction", () => {
-          slideTransformer.setRange('pitch', 116);
-          assert.deepStrictEqual(
-            slideTransformer.shift('pitch', 1.0),
-            mapNotes(notes, note => note.pitch = (note.pitch + 116) % 127)
-          );
-        });
-
-        it("wraps pitches around from 0 to 127 in the negative direction", () => {
-          slideTransformer.setRange('pitch', 12);
-          assert.deepStrictEqual(
-            slideTransformer.shift('pitch', -1.0),
-            mapNotes(notes, (note) => note.pitch = (note.pitch + 127 - 12) % 127)
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'reflect'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'reflect');
-
-        it("reflects pitches above 127 to the negative direction", () => {
-          slideTransformer.setRange('pitch', 117);
-          assert.deepStrictEqual(
-            slideTransformer.shift('pitch', 1.0),
-            mapNotes(notes, (note, index) => note.pitch = 127 - index)
-          );
-        });
-
-        it("reflects pitches below 0 to the positive direction", () => {
-          slideTransformer.setRange('pitch', 13);
-          assert.deepStrictEqual(
-            slideTransformer.shift('pitch', -1.0),
-            mapNotes(notes, (note, index) => note.pitch = 3 - index)
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'remove'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'remove');
-
-        it("removes notes with pitches above 127", () => {
-          slideTransformer.setRange('pitch', 117);
-          assert.deepStrictEqual(
-            slideTransformer.shift('pitch', 1.0),
-            // The remaining note had all properties set to 10:
-            [new Note({ pitch: 127, start: 10, velocity: 10, duration: 10 })]
-          );
-        });
-
-        it("removes notes with pitches below 0", () => {
-          slideTransformer.setRange('pitch', 12);
-          assert.deepStrictEqual(
-            slideTransformer.shift('pitch', -1.0),
-            [ // The remaining notes had all properties set to 12 and 13:
-              new Note({ pitch: 0, start: 12, velocity: 12, duration: 12 }),
-              new Note({ pitch: 1, start: 13, velocity: 13, duration: 13 }),
-            ]
-          );
-        });
-      });
-    })
-
-    describe("shift('velocity', amount)", () => {
-      it('shifts velocities by the given range and positive amount ratio', () => {
-        slideTransformer.setRange('velocity', 20);
-        assert.deepStrictEqual(
-          slideTransformer.shift('velocity', 0.5),
-          mapNotes(notes, note => note.velocity += 10)
-        );
-      });
-
-      it('shifts velocities by the given range and negative amount ratio', () => {
-        slideTransformer.setRange('velocity', 20);
-        assert.deepStrictEqual(
-          slideTransformer.shift('velocity', -0.25),
-          mapNotes(notes, note => note.velocity -= 5)
-        );
-      });
-
-      describe("edgeBehavior = 'clip'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'clip');
-
-        it("clamps velocities to a max of 127", () => {
-          slideTransformer.setRange('velocity', 116);
-          assert.deepStrictEqual(
-            slideTransformer.shift('velocity', 1.0),
-            mapNotes(notes, (note, index) => note.velocity = index === 0 ? 126 : 127)
-          );
-        });
-
-        it("clamps velocities to a min of 0", () => {
-          slideTransformer.setRange('velocity', 12);
-          assert.deepStrictEqual(
-            slideTransformer.shift('velocity', -1.0),
-            mapNotes(notes, (note, index) => note.velocity = index < 3 ? 0 : 1)
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'rotate'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'rotate');
-
-        it("wraps velocities around from 127 to 0 in the positive direction", () => {
-          slideTransformer.setRange('velocity', 116);
-          assert.deepStrictEqual(
-            slideTransformer.shift('velocity', 1.0),
-            mapNotes(notes, note => note.velocity = (note.velocity + 116) % 127)
-          );
-        });
-
-        it("wraps velocities around from 0 to 127 in the negative direction", () => {
-          slideTransformer.setRange('velocity', 12);
-          assert.deepStrictEqual(
-            slideTransformer.shift('velocity', -1.0),
-            mapNotes(notes, (note) => note.velocity = (note.velocity + 127 - 12) % 127)
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'reflect'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'reflect');
-
-        it("reflects velocities above 127 to the negative direction", () => {
-          slideTransformer.setRange('velocity', 117);
-          assert.deepStrictEqual(
-            slideTransformer.shift('velocity', 1.0),
-            mapNotes(notes, (note, index) => note.velocity = 127 - index)
-          );
-        });
-
-        it("reflects velocities below 0 to the positive direction", () => {
-          slideTransformer.setRange('velocity', 13);
-          assert.deepStrictEqual(
-            slideTransformer.shift('velocity', -1.0),
-            mapNotes(notes, (note, index) => note.velocity = 3 - index)
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'remove'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'remove');
-
-        it("clamps velocities to a max of 127", () => {
-          // This is a special case to not remove notes that get "too loud", which felt very non-intuitive
-          slideTransformer.setRange('velocity', 116);
-          assert.deepStrictEqual(
-            slideTransformer.shift('velocity', 1.0),
-            mapNotes(notes, (note, index) => note.velocity = index === 0 ? 126 : 127)
-          );
-        });
-
-        it("removes notes with velocities below 0", () => {
-          slideTransformer.setRange('velocity', 12);
-          assert.deepStrictEqual(
-            slideTransformer.shift('velocity', -1.0),
-            [ // The remaining notes had all properties set to 12 and 13:
-              new Note({ velocity: 0, pitch: 12, start: 12, duration: 12 }),
-              new Note({ velocity: 1, pitch: 13, start: 13, duration: 13 }),
-            ]
-          );
-        });
       });
     });
 
-    describe("shift('start', amount)", () => {
-      it('shifts start times by the given range and positive amount ratio', () => {
-        slideTransformer.setRange('start', 10);
-        assert.deepStrictEqual(
-          slideTransformer.shift('start', 0.5),
-          mapNotes(notes, note => note.start += 5)
+    describe("edgeBehavior = 'rotate'", () => {
+      beforeEach(() => slideTransformer.edgeBehavior = 'rotate');
+
+      it("wraps durations around from MIN_DURATION+clip.length to MIN_DURATION in the positive direction", () => {
+        const offset = Note.MIN_DURATION + 0.001;
+        slideTransformer.setRange('duration', offset + 5);
+        const actual = slideTransformer.shift('duration', 1.0);
+        const expected = mapNotes(notes, (note, index) => {
+          switch (index) {
+            case 0: return note.duration = 15 + offset;
+            case 1: return note.duration = offset;
+            case 2: return note.duration = 1 + offset;
+            case 3: return note.duration = 2 + offset;
+          }
+        });
+        actual.forEach((note, index) =>
+          // Use note.equals() because it does a "fuzzy" comparison on floating point numbers:
+          assert(
+            note.equals(expected[index]),
+            `Expected ${note} to equal ${expected[index]}`
+          )
         );
       });
 
-      it('shifts start times by the given range and negative amount ratio', () => {
-        slideTransformer.setRange('start', 20);
-        assert.deepStrictEqual(
-          slideTransformer.shift('start', -0.25),
-          mapNotes(notes, note => note.start -= 5)
+      it("wraps durations around from MIN_DURATION to MIN_DURATION+clip.length in the negative direction", () => {
+        const offset = Note.MIN_DURATION + 0.001;
+        slideTransformer.setRange('duration', 12 - offset);
+        const actual = slideTransformer.shift('duration', -1.0);
+        const expected = mapNotes(notes, (note, index) => {
+          switch (index) {
+            case 0: return note.duration = 14 + offset;
+            case 1: return note.duration = 15 + offset;
+            case 2: return note.duration = offset;
+            case 3: return note.duration = 1 + offset;
+          }
+        });
+        actual.forEach((note, index) =>
+          // Use note.equals() because it does a "fuzzy" comparison on floating point numbers:
+          assert(
+            note.equals(expected[index]),
+            `Expected ${note} to equal ${expected[index]}`
+          )
         );
-      });
-
-      describe("edgeBehavior = 'clip'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'clip');
-
-        it("clamps start times to a max of the clip end time", () => {
-          slideTransformer.setRange('start', 9);
-          assert.deepStrictEqual(
-            slideTransformer.shift('start', 1.0),
-            // MIN_DURATION is subtracted from the end of the clip so the note will be audible
-            mapNotes(notes, (note, index) => note.start = index === 0 ? 19 : 20 - Note.MIN_DURATION)
-          );
-        });
-
-        it("clamps start times to a min of the clip start time", () => {
-          slideTransformer.setRange('start', 8);
-          assert.deepStrictEqual(
-            slideTransformer.shift('start', -1.0),
-            mapNotes(notes, (note, index) => note.start = index < 3 ? 4 : 5)
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'rotate'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'rotate');
-
-        it("wraps start times around from clip.end to clip.start in the positive direction", () => {
-          slideTransformer.setRange('start', 8);
-          assert.deepStrictEqual(
-            slideTransformer.shift('start', 1.0),
-            mapNotes(notes, (note, index) => {
-              switch (index) {
-                case 0: return note.start = 18;
-                case 1: return note.start = 19;
-                case 2: return note.start = 4;
-                case 3: return note.start = 5;
-              }
-            })
-          );
-        });
-
-        it("wraps start times around from clip.start to clip.end in the negative direction", () => {
-          slideTransformer.setRange('start', 8);
-          assert.deepStrictEqual(
-            slideTransformer.shift('start', -1.0),
-            mapNotes(notes, (note, index) => {
-              switch (index) {
-                case 0: return note.start = 18;
-                case 1: return note.start = 19;
-                case 2: return note.start = 4;
-                case 3: return note.start = 5;
-              }
-            })
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'reflect'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'reflect');
-
-        it("reflects start times after clip.end to the negative direction", () => {
-          slideTransformer.setRange('start', 8);
-          assert.deepStrictEqual(
-            slideTransformer.shift('start', 1.0),
-            mapNotes(notes, (note, index) => {
-              switch (index) {
-                case 0: return note.start = 18;
-                case 1: return note.start = 19;
-                case 2: return note.start = 20 - Note.MIN_DURATION; // MIN_DURATION is subtracted so the note is audible
-                case 3: return note.start = 19;
-              }
-            })
-          );
-        });
-
-        it("reflects start times before clip.start to the positive direction", () => {
-          slideTransformer.setRange('start', 8);
-          assert.deepStrictEqual(
-            slideTransformer.shift('start', -1.0),
-            mapNotes(notes, (note, index) => {
-              switch (index) {
-                case 0: return note.start = 6;
-                case 1: return note.start = 5;
-                case 2: return note.start = 4;
-                case 3: return note.start = 5;
-              }
-            })
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'remove'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'remove');
-
-        it("allows start times to go after clip.end", () => {
-          slideTransformer.setRange('start', 10);
-          assert.deepStrictEqual(
-            slideTransformer.shift('start', 1.0),
-            mapNotes(notes, note => note.start += 10)
-          );
-        });
-
-        it("allows start times to go before clip.start", () => {
-          slideTransformer.setRange('start', 20);
-          assert.deepStrictEqual(
-            slideTransformer.shift('start', -1.0),
-            mapNotes(notes, note => note.start -= 20)
-          );
-        });
       });
     });
 
-    describe("shift('duration', amount)", () => {
-      it('shifts durations by the given range and positive amount ratio', () => {
-        slideTransformer.setRange('duration', 4);
-        assert.deepStrictEqual(
-          slideTransformer.shift('duration', 0.5),
-          mapNotes(notes, note => note.duration += 2)
+    describe("edgeBehavior = 'reflect'", () => {
+      beforeEach(() => slideTransformer.edgeBehavior = 'reflect');
+
+      it("reflects durations above clip.length+Note.MIN_DURATION to the negative direction", () => {
+        const offset = Note.MIN_DURATION + 0.001;
+        const reflectedOffset = Note.MIN_DURATION - 0.001;
+        slideTransformer.setRange('duration', offset + 5);
+        const actual = slideTransformer.shift('duration', 1.0);
+        const expected = mapNotes(notes, (note, index) => {
+          switch (index) {
+            case 0: return note.duration = 15 + offset;
+            case 1: return note.duration = 16 + reflectedOffset;
+            case 2: return note.duration = 15 + reflectedOffset;
+            case 3: return note.duration = 14 + reflectedOffset;
+          }
+        });
+        actual.forEach((note, index) =>
+          // Use note.equals() because it does a "fuzzy" comparison on floating point numbers:
+          assert(
+            note.equals(expected[index]),
+            `Expected ${note} to equal ${expected[index]}`
+          )
         );
       });
 
-      it('shifts durations by the given range and negative amount ratio', () => {
+      it("reflects durations below Note.MIN_DURATION to the positive direction", () => {
+        const offset = Note.MIN_DURATION + 0.001;
+        const reflectedOffset = Note.MIN_DURATION - 0.001;
+        slideTransformer.setRange('duration', 12 - offset);
+        const actual = slideTransformer.shift('duration', -1.0);
+        const expected = mapNotes(notes, (note, index) => {
+          switch (index) {
+            case 0: return note.duration = 2 + reflectedOffset;
+            case 1: return note.duration = 1 + reflectedOffset;
+            case 2: return note.duration = offset;
+            case 3: return note.duration = 1 + offset;
+          }
+        });
+        actual.forEach((note, index) =>
+          // Use note.equals() because it does a "fuzzy" comparison on floating point numbers:
+          assert(
+            note.equals(expected[index]),
+            `Expected ${note} to equal ${expected[index]}`
+          )
+        );
+      });
+    });
+
+    describe("edgeBehavior = 'remove'", () => {
+      beforeEach(() => slideTransformer.edgeBehavior = 'remove');
+
+      it("imposes no max on durations", () => {
         slideTransformer.setRange('duration', 20);
         assert.deepStrictEqual(
-          slideTransformer.shift('duration', -0.25),
-          mapNotes(notes, note => note.duration -= 5)
+          slideTransformer.shift('duration', 1.0),
+          mapNotes(notes, note => note.duration += 20)
         );
       });
 
-      describe("edgeBehavior = 'clip'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'clip');
-
-        it("clamps durations to a max of the clip length", () => {
-          slideTransformer.setRange('duration', 5);
-          assert.deepStrictEqual(
-            slideTransformer.shift('duration', 1.0),
-            mapNotes(notes, (note, index) => note.duration = index === 0 ? 15 : 16)
-          );
-        });
-
-        it("clamps durations to a min of Note.MIN_DURATION", () => {
-          slideTransformer.setRange('duration', 12);
-          assert.deepStrictEqual(
-            slideTransformer.shift('duration', -1.0),
-            mapNotes(notes, (note, index) => note.duration = index < 3 ? Note.MIN_DURATION : 1)
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'rotate'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'rotate');
-
-        it("wraps durations around from MIN_DURATION+clip.length to MIN_DURATION in the positive direction", () => {
-          const offset = Note.MIN_DURATION + 0.001;
-          slideTransformer.setRange('duration', offset + 5);
-          const actual = slideTransformer.shift('duration', 1.0);
-          const expected = mapNotes(notes, (note, index) => {
-            switch (index) {
-              case 0: return note.duration = 15 + offset;
-              case 1: return note.duration = offset;
-              case 2: return note.duration = 1 + offset;
-              case 3: return note.duration = 2 + offset;
-            }
-          });
-          actual.forEach((note, index) =>
-            // Use note.equals() because it does a "fuzzy" comparison on floating point numbers:
-            assert(
-              note.equals(expected[index]),
-              `Expected ${note} to equal ${expected[index]}`
-            )
-          );
-        });
-
-        it("wraps durations around from MIN_DURATION to MIN_DURATION+clip.length in the negative direction", () => {
-          const offset = Note.MIN_DURATION + 0.001;
-          slideTransformer.setRange('duration', 12 - offset);
-          const actual = slideTransformer.shift('duration', -1.0);
-          const expected = mapNotes(notes, (note, index) => {
-            switch (index) {
-              case 0: return note.duration = 14 + offset;
-              case 1: return note.duration = 15 + offset;
-              case 2: return note.duration = offset;
-              case 3: return note.duration = 1 + offset;
-            }
-          });
-          actual.forEach((note, index) =>
-            // Use note.equals() because it does a "fuzzy" comparison on floating point numbers:
-            assert(
-              note.equals(expected[index]),
-              `Expected ${note} to equal ${expected[index]}`
-            )
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'reflect'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'reflect');
-
-        it("reflects durations above clip.length+Note.MIN_DURATION to the negative direction", () => {
-          const offset = Note.MIN_DURATION + 0.001;
-          const reflectedOffset = Note.MIN_DURATION - 0.001;
-          slideTransformer.setRange('duration', offset + 5);
-          const actual = slideTransformer.shift('duration', 1.0);
-          const expected = mapNotes(notes, (note, index) => {
-            switch (index) {
-              case 0: return note.duration = 15 + offset;
-              case 1: return note.duration = 16 + reflectedOffset;
-              case 2: return note.duration = 15 + reflectedOffset;
-              case 3: return note.duration = 14 + reflectedOffset;
-            }
-          });
-          actual.forEach((note, index) =>
-            // Use note.equals() because it does a "fuzzy" comparison on floating point numbers:
-            assert(
-              note.equals(expected[index]),
-              `Expected ${note} to equal ${expected[index]}`
-            )
-          );
-        });
-
-        it("reflects durations below Note.MIN_DURATION to the positive direction", () => {
-          const offset = Note.MIN_DURATION + 0.001;
-          const reflectedOffset = Note.MIN_DURATION - 0.001;
-          slideTransformer.setRange('duration', 12 - offset);
-          const actual = slideTransformer.shift('duration', -1.0);
-          const expected = mapNotes(notes, (note, index) => {
-            switch (index) {
-              case 0: return note.duration = 2 + reflectedOffset;
-              case 1: return note.duration = 1 + reflectedOffset;
-              case 2: return note.duration = offset;
-              case 3: return note.duration = 1 + offset;
-            }
-          });
-          actual.forEach((note, index) =>
-            // Use note.equals() because it does a "fuzzy" comparison on floating point numbers:
-            assert(
-              note.equals(expected[index]),
-              `Expected ${note} to equal ${expected[index]}`
-            )
-          );
-        });
-      });
-
-      describe("edgeBehavior = 'remove'", () => {
-        beforeEach(() => slideTransformer.edgeBehavior = 'remove');
-
-        it("imposes no max on durations", () => {
-          slideTransformer.setRange('duration', 20);
-          assert.deepStrictEqual(
-            slideTransformer.shift('duration', 1.0),
-            mapNotes(notes, note => note.duration += 20)
-          );
-        });
-
-        it("removes notes shorter than the minimum allowed duration", () => {
-          slideTransformer.setRange('duration', 10.999); // 11 - 10.999 will be < MIN_DURATION
-          const actual = slideTransformer.shift('duration', -1.0);
-          assert.strictEqual(actual.length, 2);
-          assert(actual[0].equals(new Note({ pitch: 12, velocity: 12, start: 12, duration: 1.001 })));
-          assert(actual[1].equals(new Note({ pitch: 13, velocity: 13, start: 13, duration: 2.001 })));
-        });
+      it("removes notes shorter than the minimum allowed duration", () => {
+        slideTransformer.setRange('duration', 10.999); // 11 - 10.999 will be < MIN_DURATION
+        const actual = slideTransformer.shift('duration', -1.0);
+        assert.strictEqual(actual.length, 2);
+        assert(actual[0].equals(new Note({ pitch: 12, velocity: 12, start: 12, duration: 1.001 })));
+        assert(actual[1].equals(new Note({ pitch: 13, velocity: 13, start: 13, duration: 2.001 })));
       });
     });
   });
