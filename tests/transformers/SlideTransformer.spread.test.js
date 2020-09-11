@@ -35,9 +35,39 @@ describe('SlideTransformer.spread', () => {
       // TODO: anchor behaviors, edge behaviors
     ],
     //==================================================================================================================
-    // TODO: start: [],
+    start: [
+      {
+        input: [10, 11, 12, 13],
+        clip: { start: 0, end: 32 },
+        range: 12,
+        amount: 0.5,
+        expected: [4, 9, 14, 19]
+      },
+      {
+        input: [4, 7, 10, 13],
+        range: 12,
+        amount: -0.25,
+        expected: [7, 8, 9, 10]
+      },
+      // TODO: anchor behaviors, edge behaviors
+    ],
     //==================================================================================================================
-    // TODO: duration: [],
+    duration: [
+      {
+        input: [10, 11, 12, 13],
+        clip: { start: 0, end: 32 },
+        range: 12,
+        amount: 0.5,
+        expected: [4, 9, 14, 19]
+      },
+      {
+        input: [4, 7, 10, 13],
+        range: 12,
+        amount: -0.25,
+        expected: [7, 8, 9, 10]
+      },
+      // TODO: anchor behaviors, edge behaviors
+    ],
 
     // TODO: test degenerate cases where no transformation happens? like amount 0 and complete wrap-around
     // TODO: test cases where note properties already start out of bounds (w.r.t. edge behavior, e.g. duration longer than clip.length)
