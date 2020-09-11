@@ -2,6 +2,7 @@ import AppView from './AppView';
 import Clip from './Clip';
 import Controller from './Controller';
 import Note from './Note';
+import EdgeBehavior from './transformers/EdgeBehavior';
 import SetTransformer from './transformers/SetTransformer';
 import SlideTransformer, { ANCHOR } from './transformers/SlideTransformer';
 import SplitTransformer from './transformers/SplitTransformer';
@@ -14,6 +15,7 @@ export {
   Clip,
   Controller,
   Note,
+  EdgeBehavior,
   SetTransformer,
   SlideTransformer, ANCHOR,
   SplitTransformer,
