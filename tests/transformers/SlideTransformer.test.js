@@ -1,20 +1,7 @@
 import assert from 'assert';
 import { SlideTransformer, Note, ANCHOR } from '../../src';
-import { makeNotes, cloneAll, mapNotes } from '../helpers';
 
 describe('SlideTransformer', () => {
-  // TODO: delete the old setup code once all the tests are data driven
-  let slideTransformer;
-  let notes;
-  let clip;
-  beforeEach(() => {
-    slideTransformer = new SlideTransformer();
-    notes = makeNotes(10, 11, 12, 13);
-    slideTransformer.notes = notes;
-    clip = { start: 4, end: 20, length: 16 };
-    slideTransformer.clip = clip;
-  });
-
   const defaultClip = { start: 0, end: 16 };
 
   const testCases = {
@@ -97,7 +84,7 @@ describe('SlideTransformer', () => {
           description: 'wraps pitches around from 0 to 127 in the negative direction',
         },
       ],
-      //-----------------------------------------------------------------------
+      //----------------------------------------------------------------------------------------------------------------
       velocity: [
         {
           input: [10, 11, 12, 13],
@@ -176,7 +163,7 @@ describe('SlideTransformer', () => {
           description: 'wraps velocities around from 0 to 127 in the negative direction',
         },
       ],
-      //-----------------------------------------------------------------------
+      //----------------------------------------------------------------------------------------------------------------
       start: [
         {
           input: [5, 6, 7, 8],
@@ -335,7 +322,7 @@ describe('SlideTransformer', () => {
           description: 'allows start times to go before clip start',
         },
       ],
-      //-----------------------------------------------------------------------
+      //----------------------------------------------------------------------------------------------------------------
       duration: [
         {
           input: [0.5, 1, 2],
@@ -463,13 +450,50 @@ describe('SlideTransformer', () => {
           expected: [Note.MIN_DURATION, 1],
           description: 'removes notes shorter than Note.MIN_DURATION',
         },
-        // TODO: spread
-        // TODO: remove old setup code
-        // TODO: degenerate cases where no transformation happens? like amount 0 and complete wrap-around
-        // TODO: cases where note properties already start out of bounds (w.r.t. edge behavior, e.g. duration longer than clip.length)
-        // TODO: split this test up into multiple files, probably need to refactor helpers
       ]
     },
+    //==================================================================================================================
+    spread: {
+      pitch: [
+        {
+          input: [10, 11, 12, 13],
+          range: 12,
+          amount: 0.5,
+          expected: [4, 9, 14, 19]
+        },
+        {
+          input: [4, 7, 10, 13],
+          range: 12,
+          amount: -0.25,
+          expected: [7, 8, 9, 10]
+        },
+        // TODO: anchor behaviors, edge behaviors
+      ],
+      //----------------------------------------------------------------------------------------------------------------
+      velocity: [
+        {
+          input: [10, 11, 12, 13],
+          range: 12,
+          amount: 0.5,
+          expected: [4, 9, 14, 19]
+        },
+        {
+          input: [4, 7, 10, 13],
+          range: 12,
+          amount: -0.25,
+          expected: [7, 8, 9, 10]
+        },
+        // TODO: anchor behaviors, edge behaviors
+      ],
+      //----------------------------------------------------------------------------------------------------------------
+      // TODO: start: [],
+      //----------------------------------------------------------------------------------------------------------------
+      // TODO: duration: [],
+    }
+    // TODO: test degenerate cases where no transformation happens? like amount 0 and complete wrap-around
+    // TODO: test cases where note properties already start out of bounds (w.r.t. edge behavior, e.g. duration longer than clip.length)
+    // TODO: split this test up into multiple files, probably need to refactor helpers
+    // TODO: test randomize2D()
   };
 
   function describeTest({ operation, noteProperty, range, amount, edgeBehavior, clip, description }) {
@@ -521,71 +545,5 @@ describe('SlideTransformer', () => {
         });
       });
     });
-  });
-
-  describe('spread()', () => {
-    it('is idempotent', () => {
-      slideTransformer.setRange('pitch', 6);
-      const actual1 = slideTransformer.spread('pitch', 1);
-      const expected = mapNotes(notes, note => {
-        switch (note.pitch) {
-          case 10: return note.pitch = 4;
-          case 11: return note.pitch = 9;
-          case 12: return note.pitch = 14;
-          case 13: return note.pitch = 19;
-        }
-      });
-      assert.deepStrictEqual(actual1, expected);
-      const actual2 = slideTransformer.spread('pitch', 1);
-      assert.deepStrictEqual(actual2, expected);
-    });
-
-    describe("spread('pitch', amount)", () => {
-      it('spreads pitches apart by the given range with a positive amount', () => {
-        slideTransformer.setRange('pitch', 12);
-        assert.deepStrictEqual(
-          slideTransformer.spread('pitch', 0.5),
-          mapNotes(notes, note => {
-            switch (note.pitch) {
-              case 10: return note.pitch = 4;
-              case 11: return note.pitch = 9;
-              case 12: return note.pitch = 14;
-              case 13: return note.pitch = 19;
-            }
-          })
-        );
-      });
-
-      it('squeezes pitches closer together with a negative amount', () => {
-        notes = makeNotes(4, 7, 10, 13);
-        slideTransformer.notes = notes;
-        slideTransformer.setRange('pitch', 12);
-        assert.deepStrictEqual(
-          slideTransformer.spread('pitch', -0.25),
-          mapNotes(notes, note => {
-            switch (note.pitch) {
-              case 4: return note.pitch = 7;
-              case 7: return note.pitch = 8;
-              case 10: return note.pitch = 9;
-              case 13: return note.pitch = 10;
-            }
-          })
-        );
-      });
-
-      // TODO
-      // tests for slideTransformer.spreadAnchor = ANCHOR.MIN/MIDPOINT/MAX
-      // spot check other note properties
-      // spot check edge behaviors
-      // implement "tie-breaker" mechanism for strumming and test that
-    });
-  });
-
-  describe('randomize2D()', () => {
-    // TODO:
-
-    // Maybe we don't need to retest every edge behavior since it should behave the same way
-
-    // it('is idempotent', () => { });
   });
 });
