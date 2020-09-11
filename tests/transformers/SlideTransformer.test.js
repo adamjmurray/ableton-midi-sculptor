@@ -376,27 +376,77 @@ describe('SlideTransformer', () => {
           description: 'clamps durations to a minimum of Note.MIN_DURATION',
         },
         {
-          input: [0.5, 1, 1 + Note.MIN_DURATION / 2, 1 + Note.MIN_DURATION, 1.5],
+          input: [0.5, 1, 1.5],
           clip: { start: 0, end: 2 }, // length == 2
           edgeBehavior: 'rotate',
           range: 1,
           amount: 1,
-          expected: [1.5, 2, 2 + Note.MIN_DURATION / 2, Note.MIN_DURATION, 0.5],
-          description: 'wraps durations around from clip.length+MIN_DURATION to MIN_DURATION in the positive direction',
+          expected: [1.5, Note.MIN_DURATION, 0.5],
+          description: 'wraps durations around from clip.length to 0 in the positive direction and ensures the Note.MIN_DURATION',
         },
-        // TODO: offset clip
         {
-          input: [0.5, 1, 1 + Note.MIN_DURATION / 2, 1 + Note.MIN_DURATION, 1.5],
+          input: [0.5, 1, 1.5],
+          clip: { start: 2, end: 4 }, // length == 2
+          edgeBehavior: 'rotate',
+          range: 1,
+          amount: 1,
+          expected: [1.5, Note.MIN_DURATION, 0.5],
+          description: 'wraps durations around from clip.length to 0 in the positive direction and ensures the Note.MIN_DURATION',
+        },
+        {
+          input: [1.5, 1, 0.5],
           clip: { start: 0, end: 2 }, // length == 2
           edgeBehavior: 'rotate',
           range: 1,
           amount: -1,
-          expected: [1.5, 2, 2 + Note.MIN_DURATION / 2, Note.MIN_DURATION, 0.5],
-          description: '"wraps durations around from MIN_DURATION to clip.length+MIN_DURATION in the negative direction',
+          expected: [0.5, Note.MIN_DURATION, 1.5],
+          description: 'wraps durations around from 0 to clip.length in the negative direction and ensures the Note.MIN_DURATION',
         },
-        // TODO: offset clip
-
-        // TODO: reflect
+        {
+          input: [1.5, 1, 0.5],
+          clip: { start: 2, end: 4 }, // length == 2
+          edgeBehavior: 'rotate',
+          range: 1,
+          amount: -1,
+          expected: [0.5, Note.MIN_DURATION, 1.5],
+          description: 'wraps durations around from 0 to clip.length in the negative direction and ensures the Note.MIN_DURATION',
+        },
+        {
+          input: [0.9, 1, 1.1, 2],
+          clip: { start: 0, end: 2 }, // length == 2
+          edgeBehavior: 'reflect',
+          range: 1,
+          amount: 1,
+          expected: [1.9, 2, 1.9, 1],
+          description: 'reflects durations above clip.length to the negative direction',
+        },
+        {
+          input: [0.9, 1, 1.1, 2],
+          clip: { start: 2, end: 4 }, // length == 2
+          edgeBehavior: 'reflect',
+          range: 1,
+          amount: 1,
+          expected: [1.9, 2, 1.9, 1],
+          description: 'reflects durations above clip.length to the negative direction',
+        },
+        {
+          input: [0.75, 1, 1.25, 2],
+          clip: { start: 0, end: 2 }, // length == 2
+          edgeBehavior: 'reflect',
+          range: 1,
+          amount: -1,
+          expected: [0.25, Note.MIN_DURATION, 0.25, 1],
+          description: 'reflects durations below 0 to the positive direction and ensures the Note.MIN_DURATION',
+        },
+        {
+          input: [0.75, 1, 1.25, 2],
+          clip: { start: 2, end: 4 }, // length == 2
+          edgeBehavior: 'reflect',
+          range: 1,
+          amount: -1,
+          expected: [0.25, Note.MIN_DURATION, 0.25, 1],
+          description: 'reflects durations below 0 to the positive direction and ensures the Note.MIN_DURATION',
+        },
         {
           input: [0.5, 1, 2],
           edgeBehavior: 'remove',
@@ -416,6 +466,7 @@ describe('SlideTransformer', () => {
         // TODO: spread
         // TODO: remove old setup code
         // TODO: degenerate cases where no transformation happens? like amount 0 and complete wrap-around
+        // TODO: cases where note properties already start out of bounds (w.r.t. edge behavior, e.g. duration longer than clip.length)
         // TODO: split this test up into multiple files, probably need to refactor helpers
       ]
     },
@@ -423,11 +474,10 @@ describe('SlideTransformer', () => {
 
   function describeTest({ operation, noteProperty, range, amount, edgeBehavior, clip, description }) {
     const baseDescription = description || `${operation}s the ${noteProperty} as expected`;
-    return `${baseDescription} for ${
-      Object.entries({ range, amount, edgeBehavior, clip })
-        .filter(([_, value]) => value != null)
-        .map(([name, value]) => `${name}=${JSON.stringify(value)}`)
-        .join(', ')}`;
+    return `${baseDescription} for ${Object.entries({ range, amount, edgeBehavior, clip })
+      .filter(([_, value]) => value != null)
+      .map(([name, value]) => `${name}=${JSON.stringify(value)}`)
+      .join(', ')}`;
   }
 
   function setupSlideTransformer({ input, noteProperty, range, edgeBehavior, clip }) {
@@ -469,57 +519,6 @@ describe('SlideTransformer', () => {
             );
           });
         });
-      });
-    });
-  });
-
-  describe("shift('duration', amount)", () => {
-
-    describe("edgeBehavior = 'reflect'", () => {
-      beforeEach(() => slideTransformer.edgeBehavior = 'reflect');
-
-      it("reflects durations above clip.length+Note.MIN_DURATION to the negative direction", () => {
-        const offset = Note.MIN_DURATION + 0.001;
-        const reflectedOffset = Note.MIN_DURATION - 0.001;
-        slideTransformer.setRange('duration', offset + 5);
-        const actual = slideTransformer.shift('duration', 1.0);
-        const expected = mapNotes(notes, (note, index) => {
-          switch (index) {
-            case 0: return note.duration = 15 + offset;
-            case 1: return note.duration = 16 + reflectedOffset;
-            case 2: return note.duration = 15 + reflectedOffset;
-            case 3: return note.duration = 14 + reflectedOffset;
-          }
-        });
-        actual.forEach((note, index) =>
-          // Use note.equals() because it does a "fuzzy" comparison on floating point numbers:
-          assert(
-            note.equals(expected[index]),
-            `Expected ${note} to equal ${expected[index]}`
-          )
-        );
-      });
-
-      it("reflects durations below Note.MIN_DURATION to the positive direction", () => {
-        const offset = Note.MIN_DURATION + 0.001;
-        const reflectedOffset = Note.MIN_DURATION - 0.001;
-        slideTransformer.setRange('duration', 12 - offset);
-        const actual = slideTransformer.shift('duration', -1.0);
-        const expected = mapNotes(notes, (note, index) => {
-          switch (index) {
-            case 0: return note.duration = 2 + reflectedOffset;
-            case 1: return note.duration = 1 + reflectedOffset;
-            case 2: return note.duration = offset;
-            case 3: return note.duration = 1 + offset;
-          }
-        });
-        actual.forEach((note, index) =>
-          // Use note.equals() because it does a "fuzzy" comparison on floating point numbers:
-          assert(
-            note.equals(expected[index]),
-            `Expected ${note} to equal ${expected[index]}`
-          )
-        );
       });
     });
   });

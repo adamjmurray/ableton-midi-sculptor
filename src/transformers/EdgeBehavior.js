@@ -54,8 +54,8 @@ const behaviors = {
     duration: (notes, clip) => {
       if (clip) {
         notes.forEach(note => {
-          const relativeDuration = note.duration - Note.MIN_DURATION;
-          note.duration = mod(relativeDuration, clip.length) + Note.MIN_DURATION;
+          note.duration = mod(note.duration, clip.length);
+          note.duration = Math.max(note.duration, Note.MIN_DURATION);
         });
       }
       return notes;
@@ -86,8 +86,8 @@ const behaviors = {
     duration: (notes, clip) => {
       if (clip) {
         notes.forEach(note => {
-          const relativeDuration = note.duration - Note.MIN_DURATION;
-          note.duration = reflectedMod(relativeDuration, clip.length) + Note.MIN_DURATION;
+          note.duration = reflectedMod(note.duration, clip.length);
+          note.duration = Math.max(note.duration, Note.MIN_DURATION);
         });
       }
       return notes;
