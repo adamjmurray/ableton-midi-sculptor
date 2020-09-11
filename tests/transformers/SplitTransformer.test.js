@@ -17,7 +17,7 @@ describe('SplitTransformer', () => {
           new Note({ start: 0, duration: 0.5 }),
           new Note({ start: 0.5, duration: 0.5 })
         ];
-        assert.deepEqual(splitTransformer.split(), expected);
+        assert.deepStrictEqual(splitTransformer.split(), expected);
       });
 
       it('splits the note into the given number of notes with minimal round-off error', () => {
@@ -28,7 +28,7 @@ describe('SplitTransformer', () => {
           .map((_, index) =>
             new Note({ start: 3 / 11 * index, duration: 3 / 11 })
           );
-        assert.deepEqual(splitTransformer.split(), expected);
+        assert.deepStrictEqual(splitTransformer.split(), expected);
       });
 
       it("doesn't split into more than Clip.MAX_NOTES", () => {

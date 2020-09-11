@@ -19,14 +19,14 @@ describe('SwapTransformer', () => {
       const expected = cloneAll(notes.slice(-1).concat(notes.slice(0, -1)));
       // rotating notes changes everything except the start time:
       expected.forEach((note, index) => note.start = notes[index].start);
-      assert.deepEqual(swapTransformer.rotate(1 / notes.length), expected);
+      assert.deepStrictEqual(swapTransformer.rotate(1 / notes.length), expected);
     });
 
     it('rotate backwards through the note list when given a negative percentage value', () => {
       const expected = cloneAll(notes.slice(1).concat(notes.slice(0, 1)));
       // rotating notes changes everything except the start time:
       expected.forEach((note, index) => note.start = notes[index].start);
-      assert.deepEqual(swapTransformer.rotate(-1 / notes.length), expected);
+      assert.deepStrictEqual(swapTransformer.rotate(-1 / notes.length), expected);
     });
 
     it('is idempotent', () => {
@@ -34,9 +34,9 @@ describe('SwapTransformer', () => {
       // rotating notes changes everything except the start time:
       expected.forEach((note, index) => note.start = notes[index].start);
       const actual1 = swapTransformer.rotate(1 / notes.length);
-      assert.deepEqual(actual1, expected);
+      assert.deepStrictEqual(actual1, expected);
       const actual2 = swapTransformer.rotate(1 / notes.length);
-      assert.deepEqual(actual2, expected);
+      assert.deepStrictEqual(actual2, expected);
     });
 
     it('can rotate more than one position', () => {
@@ -44,7 +44,7 @@ describe('SwapTransformer', () => {
       // rotating notes changes everything except the start time:
       expected.forEach((note, index) => note.start = notes[index].start);
       const actual = swapTransformer.rotate(3 / notes.length);
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
     });
 
     it('can rotate with a value > notes.length and wraps around', () => {
@@ -52,7 +52,7 @@ describe('SwapTransformer', () => {
       // rotating notes changes everything except the start time:
       expected.forEach((note, index) => note.start = notes[index].start);
       const actual = swapTransformer.rotate(1 + 3 / notes.length);
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
     });
 
     it('can rotate with a value < -notes.length and wraps around', () => {
@@ -60,7 +60,7 @@ describe('SwapTransformer', () => {
       // rotating notes changes everything except the start time:
       expected.forEach((note, index) => note.start = notes[index].start);
       const actual = swapTransformer.rotate(-1 - 3 / notes.length);
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
     });
   });
 });

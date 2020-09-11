@@ -18,7 +18,7 @@ describe('Clip', () => {
   describe('selectedNotes', () => {
     it('returns the notes in the clip in sorted order (by time, pitch)', () => {
       LiveAPI.mockCall('get_selected_notes', () => returnNotes(makeNotes(3, 2, 1)));
-      assert.deepEqual(makeNotes(1, 2, 3), clip.selectedNotes);
+      assert.deepStrictEqual(makeNotes(1, 2, 3), clip.selectedNotes);
     });
   });
 });
