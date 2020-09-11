@@ -1,5 +1,4 @@
-// TODO: use the utils version of this or just remove the logic entirely
-const fuzzyEquals = (n1, n2, delta = 0.001) => Math.abs(n1 - n2) < delta;
+import { fuzzyEquals } from './utils';
 
 export default class Note {
   static get MIN_DURATION() {
@@ -16,15 +15,10 @@ export default class Note {
     }, options);
   }
 
-  // get valid() {
-  //   return this.pitch >= 0 && this.pitch <= 127 && this.velocity >= 0 && this.velocity <= 127 && this.duration >= Note.MIN_DURATION;
-  // }
-
   // get and set numeric properties dynamically:
   get(property) {
     return this[property];
   }
-
   set(property, value) {
     this[property] = value;
   }

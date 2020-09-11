@@ -49,15 +49,14 @@ describe('utils', () => {
     });
 
     it('is true when the numbers are different but close in value', () => {
-      assert(fuzzyEquals(1, 1.00000001));
-      assert(fuzzyEquals(100000001 / 100000000, 1.00000001));
+      assert(fuzzyEquals(1, 1.0001));
+      assert(fuzzyEquals(10002 / 10000, 1.0001));
       assert(fuzzyEquals(2 / 3, 2 / 3 / Number.MAX_VALUE * Number.MAX_VALUE));
     });
 
     it('is false whent he numbers are different and not close in value', () => {
       assert(!fuzzyEquals(0, 1));
-      assert(!fuzzyEquals(0, 0.5));
-      assert(!fuzzyEquals(0, 0.000001));
+      assert(!fuzzyEquals(0, 0.01));
       assert(!fuzzyEquals(-1, 1));
       assert(!fuzzyEquals(0, NaN));
       assert(!fuzzyEquals(Number.MAX_VALUE, Infinity));

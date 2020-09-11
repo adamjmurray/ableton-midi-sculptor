@@ -2,14 +2,14 @@ export function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
-// TODO: rename to indicate this is a numeric fuzzy equals
-export function fuzzyEquals(float1, float2, delta = 0.000001) {
-  return Math.abs(float1 - float2) < delta || Object.is(float1, float2);
+// check if two numbers are almost equal to compensate for floating point round-off error
+export function fuzzyEquals(num1, num2, delta = 0.001) {
+  return Math.abs(num1 - num2) < delta || Object.is(num1, num2);
 }
 
 export function mod(dividend, divisor) {
   const remainder = dividend % divisor;
-  // the Math.abs() is to convert -0 to 0 when the divisor is negative:
+  // Math.abs() converts -0 to 0 when the divisor is negative:
   return remainder >= 0 ? Math.abs(remainder) : remainder + divisor;
 }
 
