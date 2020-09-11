@@ -1,3 +1,4 @@
+// TODO: use the utils version of this or just remove the logic entirely
 const fuzzyEquals = (n1, n2, delta = 0.001) => Math.abs(n1 - n2) < delta;
 
 export default class Note {
@@ -15,11 +16,11 @@ export default class Note {
     }, options);
   }
 
-  get valid() {
-    return this.pitch >= 0 && this.pitch <= 127 && this.velocity >= 0 && this.velocity <= 127 && this.duration >= Note.MIN_DURATION;
-  } // get and set numeric properties dynamically:
+  // get valid() {
+  //   return this.pitch >= 0 && this.pitch <= 127 && this.velocity >= 0 && this.velocity <= 127 && this.duration >= Note.MIN_DURATION;
+  // }
 
-
+  // get and set numeric properties dynamically:
   get(property) {
     return this[property];
   }

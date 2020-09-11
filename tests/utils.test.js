@@ -1,7 +1,78 @@
 import assert from 'assert';
-import { mod, reflectedMod, fuzzyEquals } from '../src';
+import { clamp, fuzzyEquals, mod, reflectedMod } from '../src';
 
 describe('utils', () => {
+  describe('clamp', () => {
+    it('does not change values between the given minimum and maximum (inclusive)', () => {
+      assert.strictEqual(clamp(0, 0, 3), 0);
+      assert.strictEqual(clamp(1, 0, 3), 1);
+      assert.strictEqual(clamp(2, 0, 3), 2);
+      assert.strictEqual(clamp(3, 0, 3), 3);
+      assert.strictEqual(clamp(1.5, 1.1, 1.6), 1.5);
+      assert.strictEqual(clamp(-3, -3, 3), -3);
+      assert.strictEqual(clamp(1, 1, 1), 1);
+    });
+
+    it('sets the value to the minimum when it is less than the minimum', () => {
+      assert.strictEqual(clamp(0, 1, 3), 1);
+      assert.strictEqual(clamp(0, 2, 3), 2);
+      assert.strictEqual(clamp(-1, 2, 3), 2);
+      assert.strictEqual(clamp(-2, -1, 3), -1);
+      assert.strictEqual(clamp(1.1, 1.2, 3), 1.2);
+    });
+
+    it('sets the value to the maximum when it is greater than the maximum', () => {
+      assert.strictEqual(clamp(5, 1, 3), 3);
+      assert.strictEqual(clamp(5, 1, 4), 4);
+      assert.strictEqual(clamp(0, -2, -1), -1);
+      assert.strictEqual(clamp(-1, -3, -2), -2);
+      assert.strictEqual(clamp(1.3, 1.1, 1.2), 1.2);
+    });
+  });
+
+  describe('fuzzyEquals', () => {
+    it('is true when the numbers are equal', () => {
+      assert(fuzzyEquals(0, 0));
+      assert(fuzzyEquals(1.5, 1.5));
+      assert(fuzzyEquals(-2 / 3, -2 / 3));
+      assert(fuzzyEquals(Number.MAX_VALUE, Number.MAX_VALUE));
+      assert(fuzzyEquals(Number.MAX_VALUE + 1, Number.MAX_VALUE + 1));
+    });
+
+    it('is true when both numbers are NaN', () => {
+      assert(fuzzyEquals(NaN, NaN));
+    });
+
+    it('is true when both numbers are Infinity', () => {
+      assert(fuzzyEquals(Infinity, Infinity));
+      assert(fuzzyEquals(-Infinity, -Infinity));
+    });
+
+    it('is true when the numbers are different but close in value', () => {
+      assert(fuzzyEquals(1, 1.00000001));
+      assert(fuzzyEquals(100000001 / 100000000, 1.00000001));
+      assert(fuzzyEquals(2 / 3, 2 / 3 / Number.MAX_VALUE * Number.MAX_VALUE));
+    });
+
+    it('is false whent he numbers are different and not close in value', () => {
+      assert(!fuzzyEquals(0, 1));
+      assert(!fuzzyEquals(0, 0.5));
+      assert(!fuzzyEquals(0, 0.000001));
+      assert(!fuzzyEquals(-1, 1));
+      assert(!fuzzyEquals(0, NaN));
+      assert(!fuzzyEquals(Number.MAX_VALUE, Infinity));
+      assert(!fuzzyEquals(Infinity, -Infinity));
+    });
+
+    it('allows the fuzziness to be controlled', () => {
+      assert(fuzzyEquals(0, 0.0999999999, 0.1));
+      assert(fuzzyEquals(0.0999999999, 0, 0.1));
+      assert(!fuzzyEquals(0, 0.1, 0.1));
+
+      assert(fuzzyEquals(1, 1, 0));
+      assert(!fuzzyEquals(1, 0.9999999999999, 0));
+    });
+  });
 
   describe('mod()', () => {
     it('behaves like the % operator for positive numbers and handles negative numbers with wrap-around to always return a postive value', () => {
@@ -334,50 +405,6 @@ describe('utils', () => {
           );
         });
       });
-    });
-  });
-
-  describe('fuzzyEquals', () => {
-    it('is true when the numbers are equal', () => {
-      assert(fuzzyEquals(0, 0));
-      assert(fuzzyEquals(1.5, 1.5));
-      assert(fuzzyEquals(-2 / 3, -2 / 3));
-      assert(fuzzyEquals(Number.MAX_VALUE, Number.MAX_VALUE));
-      assert(fuzzyEquals(Number.MAX_VALUE + 1, Number.MAX_VALUE + 1));
-    });
-
-    it('is true when both numbers are NaN', () => {
-      assert(fuzzyEquals(NaN, NaN));
-    });
-
-    it('is true when both numbers are Infinity', () => {
-      assert(fuzzyEquals(Infinity, Infinity));
-      assert(fuzzyEquals(-Infinity, -Infinity));
-    });
-
-    it('is true when the numbers are different but close in value', () => {
-      assert(fuzzyEquals(1, 1.00000001));
-      assert(fuzzyEquals(100000001 / 100000000, 1.00000001));
-      assert(fuzzyEquals(2 / 3, 2 / 3 / Number.MAX_VALUE * Number.MAX_VALUE));
-    });
-
-    it('is false whent he numbers are different and not close in value', () => {
-      assert(!fuzzyEquals(0, 1));
-      assert(!fuzzyEquals(0, 0.5));
-      assert(!fuzzyEquals(0, 0.000001));
-      assert(!fuzzyEquals(-1, 1));
-      assert(!fuzzyEquals(0, NaN));
-      assert(!fuzzyEquals(Number.MAX_VALUE, Infinity));
-      assert(!fuzzyEquals(Infinity, -Infinity));
-    });
-
-    it('allows the fuzziness to be controlled', () => {
-      assert(fuzzyEquals(0, 0.0999999999, 0.1));
-      assert(fuzzyEquals(0.0999999999, 0, 0.1));
-      assert(!fuzzyEquals(0, 0.1, 0.1));
-
-      assert(fuzzyEquals(1, 1, 0));
-      assert(!fuzzyEquals(1, 0.9999999999999, 0));
     });
   });
 });

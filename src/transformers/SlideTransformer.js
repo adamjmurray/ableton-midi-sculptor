@@ -1,25 +1,6 @@
 import Transformer from './Transformer';
 import Note from '../Note';
-import { mod, reflectedMod } from '../utils';
-
-function rotateOrReflect(notes, operation, clip) {
-  for (const note of notes) {
-    // For a normal mod(), we want to allow 127 and wrap 128 around to 0, so we need the "clampTo" to be 128
-    // reflectedMod() can return the "clampTo" value, so we want to set it to 127 in that case.
-    // Finally, we ensure the values are integers so mod() can't return values like 127.9
-    const clampTo = operation === mod ? 128 : 127;
-    note.pitch = operation(Math.round(note.pitch), clampTo);
-    note.velocity = operation(Math.round(note.velocity), clampTo);
-
-    if (clip) {
-      const relativeStart = note.start - clip.start;
-      const relativeDuration = note.duration - Note.MIN_DURATION;
-      note.start = operation(relativeStart, clip.length) + clip.start;
-      note.duration = operation(relativeDuration, clip.length) + Note.MIN_DURATION;
-    }
-  }
-  return notes;
-}
+import { clamp, mod, reflectedMod } from '../utils';
 
 export const ANCHOR = Object.freeze({
   MIN: 'min',
@@ -49,56 +30,120 @@ class SlidablePropertiesMetadata {
 // on each transformation, so we can safely modify here before serialization.
 // The return value still needs to be used, because the note list could be filtered.
 
-class EdgeTransformer {
-  clip(notes, clip) {
-    for (const note of notes) {
-      note.pitch = Math.max(0, Math.min(127, note.pitch));
-      note.velocity = Math.max(0, Math.min(127, note.velocity));
+const EdgeTransformer = {
+  clip: { // TODO: rename to clamp
+    pitch: notes => {
+      notes.forEach(note => note.pitch = clamp(note.pitch, 0, 127));
+      return notes;
+    },
+    velocity: notes => {
+      notes.forEach(note => note.velocity = clamp(note.velocity, 0, 127));
+      return notes;
+    },
+    start: (notes, clip) => {
       if (clip) {
-        // We use clip.end - Note.MIN_DURATION as the max start time so the note will be audible
+        // We use clip.end - Note.MIN_DURATION as the max start time so the note will be audible.
         // Otherwise if it starts exactly at the end of the clip, it will not play.
-        note.start = Math.max(clip.start, Math.min(clip.end - Note.MIN_DURATION, note.start));
-        note.duration = Math.max(Note.MIN_DURATION, Math.min(clip.length, note.duration));
+        const maxStart = clip.end - Note.MIN_DURATION;
+        notes.forEach(note => note.start = clamp(note.start, clip.start, maxStart));
       }
-    }
-    return notes;
-  }
-
-  rotate(notes, clip) {
-    return rotateOrReflect(notes, mod, clip);
-  }
-
-  reflect(notes, clip) {
-    rotateOrReflect(notes, reflectedMod, clip);
-    if (clip) {
-      for (const note of notes) {
-        // We use clip.end - Note.MIN_DURATION as the max start time so the note will be audible
-        // Otherwise if it starts exactly at the end of the clip, it will not play.
-        note.start = Math.min(clip.end - Note.MIN_DURATION, note.start);
+      return notes;
+    },
+    duration: (notes, clip) => {
+      if (clip) {
+        notes.forEach(note => note.duration = clamp(note.duration, Note.MIN_DURATION, clip.length));
       }
-    }
-    return notes;
-  }
+      return notes;
+    },
+  },
 
-  remove(notes) {
-    // This serializers avoids clipping to min/max values.
-    // When property values bcome invalid, the note is removed.
-    // The one exception is when velocity exceeds 127, it is clipped to 127
-    // (because it's undesirable to remove a note that gets "too loud")
-    for (const note of notes) {
-      note.velocity = Math.min(127, note.velocity);
-    }
-    return notes.filter(note => note.valid);
-  }
+  rotate: {
+    pitch: notes => {
+      notes.forEach(note => note.pitch = mod(note.pitch, 128));
+      return notes;
+    },
+    velocity: notes => {
+      notes.forEach(note => note.velocity = mod(note.velocity, 128));
+      return notes;
+    },
+    start: (notes, clip) => {
+      if (clip) {
+        notes.forEach(note => {
+          const relativeStart = note.start - clip.start;
+          note.start = mod(relativeStart, clip.length) + clip.start;
+        });
+      }
+      return notes;
+    },
+    duration: (notes, clip) => {
+      if (clip) {
+        notes.forEach(note => {
+          const relativeDuration = note.duration - Note.MIN_DURATION;
+          note.duration = mod(relativeDuration, clip.length) + Note.MIN_DURATION;
+        });
+      }
+      return notes;
+    },
+  },
+
+  reflect: {
+    pitch: notes => {
+      notes.forEach(note => note.pitch = reflectedMod(note.pitch, 127));
+      return notes;
+    },
+    velocity: notes => {
+      notes.forEach(note => note.velocity = reflectedMod(note.velocity, 127));
+      return notes;
+    },
+    start: (notes, clip) => {
+      if (clip) {
+        notes.forEach(note => {
+          const relativeStart = note.start - clip.start;
+          note.start = reflectedMod(relativeStart, clip.length) + clip.start;
+          // We use clip.end - Note.MIN_DURATION as the max start time so the note will be audible
+          // Otherwise if it starts exactly at the end of the clip, it will not play.
+          note.start = Math.min(note.start, clip.end - Note.MIN_DURATION);
+        });
+      }
+      return notes;
+    },
+    duration: (notes, clip) => {
+      if (clip) {
+        notes.forEach(note => {
+          const relativeDuration = note.duration - Note.MIN_DURATION;
+          note.duration = reflectedMod(relativeDuration, clip.length) + Note.MIN_DURATION;
+        });
+      }
+      return notes;
+    },
+  },
+
+  remove: {
+    pitch: notes => {
+      return notes.filter(note => note.pitch >= 0 && note.pitch <= 127);
+    },
+    velocity: notes => {
+      // Special exception: When velocity exceeds 127, it is clamped to 127
+      // because it's counterintuitive to remove a note that gets "too loud"
+      notes.forEach(note => note.velocity = Math.min(note.velocity, 127));
+      return notes.filter(note => note.velocity >= 0);
+    },
+    start: notes => {
+      // Let the notes go past the clip boundaries so they don't play.
+      // Don't actually remove them.
+      return notes;
+    },
+    duration: notes => {
+      return notes.filter(note => note.duration >= Note.MIN_DURATION);
+    },
+  },
 }
-
-const edgeTransformer = new EdgeTransformer();
 
 export default class SlideTransformer extends Transformer {
   constructor() {
     super();
     this.metadata = new SlidablePropertiesMetadata();
-    this.edgeTransformation = edgeTransformer.clip;
+    this.edgeTransformation = EdgeTransformer.clip;
     this.anchor = ANCHOR.MIDPOINT;
   }
 
@@ -120,7 +165,7 @@ export default class SlideTransformer extends Transformer {
   }
 
   set edgeBehavior(transformationType) {
-    this.edgeTransformation = edgeTransformer[transformationType];
+    this.edgeTransformation = EdgeTransformer[transformationType];
   }
 
   set spreadAnchor(anchor) {
@@ -142,7 +187,7 @@ export default class SlideTransformer extends Transformer {
       const oldNote = this.oldNotes[index];
       newNote.set(property, mapValue(oldNote.get(property), index));
     });
-    return this.edgeTransformation(this.newNotes, this.clip);
+    return this.edgeTransformation[property](this.newNotes, this.clip);
   }
   /**
    Shift all notes' property values by the same amount.

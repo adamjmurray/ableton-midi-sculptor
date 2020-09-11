@@ -7,7 +7,7 @@ import SlideTransformer, { ANCHOR } from './transformers/SlideTransformer';
 import SplitTransformer from './transformers/SplitTransformer';
 import SwapTransformer from './transformers/SwapTransformer';
 import Transformer from './transformers/Transformer';
-import { mod, reflectedMod, fuzzyEquals } from './utils';
+import { clamp, fuzzyEquals, mod, reflectedMod } from './utils';
 
 export {
   AppView,
@@ -19,5 +19,5 @@ export {
   SplitTransformer,
   SwapTransformer,
   Transformer,
-  mod, reflectedMod, fuzzyEquals
+  clamp, fuzzyEquals, mod, reflectedMod,
 };

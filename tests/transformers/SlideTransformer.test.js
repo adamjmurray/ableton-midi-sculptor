@@ -365,7 +365,6 @@ describe('SlideTransformer', () => {
           range: 1,
           amount: 1,
           expected: [1.5, 1.99, 2, 2],
-          onlyCompareNotePropertyBeingTested: true, // because the start times will be shifted to conform to the clip (TODO: is that really necessary behavior in this case?)
           description: 'clamps durations to a maximum of the clip length',
         },
         {
@@ -416,6 +415,8 @@ describe('SlideTransformer', () => {
         },
         // TODO: spread
         // TODO: remove old setup code
+        // TODO: degenerate cases where no transformation happens? like amount 0 and complete wrap-around
+        // TODO: split this test up into multiple files, probably need to refactor helpers
       ]
     },
   };
@@ -458,22 +459,14 @@ describe('SlideTransformer', () => {
 
         tests.forEach((testParams) => {
           const test = { operation, noteProperty, ...testParams };
-
           it(describeTest(test), () => {
             const slideTransformer = setupSlideTransformer(test);
             const expectedNotes = test.expected.map((value) => new Note({ [noteProperty]: value }));
             const actualNotes = slideTransformer[operation](noteProperty, test.amount);
-            if (test.onlyCompareNotePropertyBeingTested) {
-              assert.deepStrictEqual(
-                actualNotes.map(note => note.get(noteProperty)),
-                expectedNotes.map(note => note.get(noteProperty)),
-              );
-            } else {
-              assert.deepStrictEqual(
-                actualNotes,
-                expectedNotes,
-              );
-            }
+            assert.deepStrictEqual(
+              actualNotes,
+              expectedNotes,
+            );
           });
         });
       });
