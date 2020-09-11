@@ -34,7 +34,7 @@ describe('SlideTransformer', () => {
         },
         {
           input: [10, 11, 12, 13],
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 116,
           amount: 1,
           expected: [126, 127, 127, 127],
@@ -42,7 +42,7 @@ describe('SlideTransformer', () => {
         },
         {
           input: [10, 11, 12, 13],
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 12,
           amount: -1,
           expected: [0, 0, 0, 1],
@@ -113,7 +113,7 @@ describe('SlideTransformer', () => {
         },
         {
           input: [10, 11, 12, 13],
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 116,
           amount: 1,
           expected: [126, 127, 127, 127],
@@ -121,7 +121,7 @@ describe('SlideTransformer', () => {
         },
         {
           input: [10, 11, 12, 13],
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 12,
           amount: -1,
           expected: [0, 0, 0, 1],
@@ -193,7 +193,7 @@ describe('SlideTransformer', () => {
         {
           input: [0, 1, 2, 3],
           clip: { start: 0, end: 8 },
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 6,
           amount: 1,
           expected: [6, 7, (8 - Note.MIN_DURATION), (8 - Note.MIN_DURATION)],
@@ -202,7 +202,7 @@ describe('SlideTransformer', () => {
         {
           input: [4, 5, 6, 7],
           clip: { start: 4, end: 12 },
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 6,
           amount: 1,
           expected: [10, 11, (12 - Note.MIN_DURATION), (12 - Note.MIN_DURATION)],
@@ -211,7 +211,7 @@ describe('SlideTransformer', () => {
         {
           input: [1, 2, 3, 4],
           clip: { start: 0, end: 8 },
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 3,
           amount: -1,
           expected: [0, 0, 0, 1],
@@ -220,7 +220,7 @@ describe('SlideTransformer', () => {
         {
           input: [5, 6, 7, 8],
           clip: { start: 4, end: 12 },
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 3,
           amount: -1,
           expected: [4, 4, 4, 5],
@@ -352,7 +352,7 @@ describe('SlideTransformer', () => {
         {
           input: [0.5, 0.99, 1, 1.5],
           clip: { start: 0, end: 2 }, // length == 2
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 1,
           amount: 1,
           expected: [1.5, 1.99, 2, 2],
@@ -361,7 +361,7 @@ describe('SlideTransformer', () => {
         {
           input: [0.5, 0.99, 1, 1.5],
           clip: { start: 2, end: 4 }, // length == 2
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 1,
           amount: 1,
           expected: [1.5, 1.99, 2, 2],
@@ -369,7 +369,7 @@ describe('SlideTransformer', () => {
         },
         {
           input: [0.5, 1, 1.01, 1.5],
-          edgeBehavior: 'clip',
+          edgeBehavior: 'clamp',
           range: 1,
           amount: -1,
           expected: [Note.MIN_DURATION, Note.MIN_DURATION, (1.01 - 1), 0.5],

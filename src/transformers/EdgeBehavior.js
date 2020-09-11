@@ -116,7 +116,6 @@ const behaviors = {
 }
 
 export function applyEdgeBehavior(behavior, property, notes, clip) {
-  if (behavior === 'clip') behavior = 'clamp'; // TODO: finish renaming to clamp
   // TODO: can I use the existential operators?
   return behaviors[behavior] && behaviors[behavior][property] &&
     behaviors[behavior][property](notes, clip);

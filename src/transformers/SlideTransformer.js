@@ -29,7 +29,7 @@ export default class SlideTransformer extends Transformer {
   constructor() {
     super();
     this.metadata = new SlidablePropertiesMetadata();
-    this.edgeBehavior = 'clip';
+    this.edgeBehavior = 'clamp';
     this.spreadAnchor = ANCHOR.MIDPOINT;
   }
 

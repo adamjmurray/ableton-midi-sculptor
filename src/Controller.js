@@ -87,7 +87,12 @@ export default class Controller {
   }
 
   setSlideEdgeBehavior(behavior) {
-    this.slideTransformer.edgeBehavior = behavior.toLowerCase();
+    behavior = behavior.toLowerCase();
+    if (behavior === 'clip') {
+      console.log('TODO: change "clip" edge behavior to "clamp"'); // TODO: Change in Max device
+      behavior = 'clamp';
+    }
+    this.slideTransformer.edgeBehavior = behavior;
   }
 
   setSlideAnchor(anchor) {
