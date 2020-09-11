@@ -91,7 +91,7 @@ export default class Controller {
   }
 
   setSlideAnchor(anchor) {
-    this.slideTransformer.spreadAnchor = anchor.toLowerCase();;
+    this.slideTransformer.spreadAnchor = anchor.toLowerCase();
   }
 
   slideRandomly(property, amountX, amountY) {

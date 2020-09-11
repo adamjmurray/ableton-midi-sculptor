@@ -30,7 +30,7 @@ export default class SlideTransformer extends Transformer {
     super();
     this.metadata = new SlidablePropertiesMetadata();
     this.edgeBehavior = 'clip';
-    this.anchor = ANCHOR.MIDPOINT;
+    this.spreadAnchor = ANCHOR.MIDPOINT;
   }
 
   set notes(notes) {
@@ -48,11 +48,6 @@ export default class SlideTransformer extends Transformer {
       propertyMetadata.midpoint = midpoint;
       propertyMetadata.max = max;
     }
-  }
-
-  // TODO: this setter is unnecessary if things are named consistently
-  set spreadAnchor(anchor) {
-    this.anchor = anchor;
   }
 
   /**
@@ -92,7 +87,7 @@ export default class SlideTransformer extends Transformer {
     let spreadPoint;
     let largestDelta = 0;
 
-    switch (this.anchor) {
+    switch (this.spreadAnchor) {
       case ANCHOR.MIN:
         spreadPoint = min;
         largestDelta = max - min;
