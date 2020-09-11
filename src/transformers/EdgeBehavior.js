@@ -6,8 +6,8 @@ import { clamp, mod, reflectedMod } from '../utils';
 // on each transformation, so we can safely modify the given list of notes here.
 // The return value needs to be used by the Transformer, because the note list could be filtered.
 
-const EdgeBehavior = {
-  clip: { // TODO: rename to clamp
+const behaviors = {
+  clamp: {
     pitch: notes => {
       notes.forEach(note => note.pitch = clamp(note.pitch, 0, 127));
       return notes;
@@ -115,4 +115,9 @@ const EdgeBehavior = {
   },
 }
 
-export default EdgeBehavior;
+export function applyEdgeBehavior(behavior, property, notes, clip) {
+  if (behavior === 'clip') behavior = 'clamp'; // TODO: finish renaming to clamp
+  // TODO: can I use the existential operators?
+  return behaviors[behavior] && behaviors[behavior][property] &&
+    behaviors[behavior][property](notes, clip);
+}

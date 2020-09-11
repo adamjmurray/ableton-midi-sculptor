@@ -1,5 +1,5 @@
 import Transformer from './Transformer';
-import EdgeBehavior from './EdgeBehavior';
+import { applyEdgeBehavior } from './EdgeBehavior';
 
 export const ANCHOR = Object.freeze({
   MIN: 'min',
@@ -29,7 +29,7 @@ export default class SlideTransformer extends Transformer {
   constructor() {
     super();
     this.metadata = new SlidablePropertiesMetadata();
-    this.edgeTransform = EdgeBehavior.clip;
+    this.edgeBehavior = 'clip';
     this.anchor = ANCHOR.MIDPOINT;
   }
 
@@ -50,10 +50,7 @@ export default class SlideTransformer extends Transformer {
     }
   }
 
-  set edgeBehavior(behavior) {
-    this.edgeTransform = EdgeBehavior[behavior];
-  }
-
+  // TODO: this setter is unnecessary if things are named consistently
   set spreadAnchor(anchor) {
     this.anchor = anchor;
   }
@@ -73,7 +70,7 @@ export default class SlideTransformer extends Transformer {
       const oldNote = this.oldNotes[index];
       newNote.set(property, mapValue(oldNote.get(property), index));
     });
-    return this.edgeTransform[property](this.newNotes, this.clip);
+    return applyEdgeBehavior(this.edgeBehavior, property, this.newNotes, this.clip);
   }
   /**
    Shift all notes' property values by the same amount.
@@ -124,8 +121,8 @@ export default class SlideTransformer extends Transformer {
    random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
   */
   randomize2D(property, amountX, amountY) {
-    const range = this.metadata[property].range; // We halve the range because two random values are added, which would have a max of range + range
-
+    const range = this.metadata[property].range;
+    // We halve the range because two random values are added, which would have a max of range + range
     amountX *= range / 2;
     amountY *= range / 2;
     return this.transform(property, (value, index) => value + this.bipolarRandom1[index] * amountX + this.bipolarRandom2[index] * amountY);
