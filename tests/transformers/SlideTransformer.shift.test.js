@@ -8,13 +8,13 @@ describe('SlideTransformer.shift', () => {
         input: [10, 11, 12, 13],
         range: 20,
         amount: 0.5,
-        expected: [20, 21, 22, 23]
+        expected: [20, 21, 22, 23],
       },
       {
         input: [10, 11, 12, 13],
         range: 20,
         amount: -0.25,
-        expected: [5, 6, 7, 8]
+        expected: [5, 6, 7, 8],
       },
       {
         input: [10, 11, 12, 13],
@@ -87,13 +87,13 @@ describe('SlideTransformer.shift', () => {
         input: [10, 11, 12, 13],
         range: 20,
         amount: 0.5,
-        expected: [20, 21, 22, 23]
+        expected: [20, 21, 22, 23],
       },
       {
         input: [10, 11, 12, 13],
         range: 20,
         amount: -0.25,
-        expected: [5, 6, 7, 8]
+        expected: [5, 6, 7, 8],
       },
       {
         input: [10, 11, 12, 13],

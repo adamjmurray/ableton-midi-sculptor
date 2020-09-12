@@ -24,13 +24,13 @@ describe('SlideTransformer.spread', () => {
         input: [10, 11, 12, 13],
         range: 12,
         amount: 0.5,
-        expected: [4, 9, 14, 19]
+        expected: [4, 9, 14, 19],
       },
       {
         input: [4, 7, 10, 13],
         range: 12,
         amount: -0.25,
-        expected: [7, 8, 9, 10]
+        expected: [7, 8, 9, 10],
       },
       // TODO: anchor behaviors, edge behaviors
     ],
@@ -41,13 +41,13 @@ describe('SlideTransformer.spread', () => {
         clip: { start: 0, end: 32 },
         range: 12,
         amount: 0.5,
-        expected: [4, 9, 14, 19]
+        expected: [4, 9, 14, 19],
       },
       {
         input: [4, 7, 10, 13],
         range: 12,
         amount: -0.25,
-        expected: [7, 8, 9, 10]
+        expected: [7, 8, 9, 10],
       },
       // TODO: anchor behaviors, edge behaviors
     ],
@@ -58,13 +58,13 @@ describe('SlideTransformer.spread', () => {
         clip: { start: 0, end: 32 },
         range: 12,
         amount: 0.5,
-        expected: [4, 9, 14, 19]
+        expected: [4, 9, 14, 19],
       },
       {
         input: [4, 7, 10, 13],
         range: 12,
         amount: -0.25,
-        expected: [7, 8, 9, 10]
+        expected: [7, 8, 9, 10],
       },
       // TODO: anchor behaviors, edge behaviors
     ],
