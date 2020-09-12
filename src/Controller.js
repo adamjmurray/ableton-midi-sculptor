@@ -1,12 +1,11 @@
-import AppView from './AppView';
-import Clip from './Clip';
-import SlideTransformer from './transformers/SlideTransformer';
-import SetTransformer from './transformers/SetTransformer';
-import SwapTransformer from './transformers/SwapTransformer';
-import SplitTransformer from './transformers/SplitTransformer';
+import AppView from "./AppView";
+import Clip from "./Clip";
+import SlideTransformer from "./transformers/SlideTransformer";
+import SetTransformer from "./transformers/SetTransformer";
+import SwapTransformer from "./transformers/SwapTransformer";
+import SplitTransformer from "./transformers/SplitTransformer";
 
 export default class Controller {
-
   constructor() {
     this.isSynced = false;
     this.selectedNotes = [];
@@ -28,7 +27,7 @@ export default class Controller {
   sync() {
     if (this.isSynced) return true;
 
-    const selectedClip = this.selectedClip = this.selectedClip || Clip.getSelectedClip();
+    const selectedClip = (this.selectedClip = this.selectedClip || Clip.getSelectedClip());
     if (!selectedClip.isMidi) return false;
 
     this.appView = this.appView || new AppView();
@@ -81,16 +80,15 @@ export default class Controller {
    - amount is from 0 to 127 for velocity, or a positive number in beats for start/duration
    */
 
-
   setSlideRange(property, amount) {
     this.slideTransformer.setRange(property.toLowerCase(), amount);
   }
 
   setSlideEdgeBehavior(behavior) {
     behavior = behavior.toLowerCase();
-    if (behavior === 'clip') {
+    if (behavior === "clip") {
       console.log('TODO: change "clip" edge behavior to "clamp"'); // TODO: Change in Max device
-      behavior = 'clamp';
+      behavior = "clamp";
     }
     this.slideTransformer.edgeBehavior = behavior;
   }
@@ -144,7 +142,7 @@ export default class Controller {
   }
 
   setSettableValue(value) {
-    this.setTransformer.value = (typeof value === 'string') ? value.toLowerCase() : value;
+    this.setTransformer.value = typeof value === "string" ? value.toLowerCase() : value;
   }
 
   setAll() {
@@ -161,7 +159,7 @@ export default class Controller {
 
   setSplitGate(amount) {
     this.splitTransformer.gate = amount;
-    this.transformNotes(() => this.splitTransformer.isResplit() ? this.splitTransformer.split() : null);
+    this.transformNotes(() => (this.splitTransformer.isResplit() ? this.splitTransformer.split() : null));
   }
 
   setSplitEnvelope(type) {

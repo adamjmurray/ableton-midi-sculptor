@@ -1,11 +1,8 @@
-
-import assert from 'assert';
-import { SlideTransformer, Note } from '../src';
+import assert from "assert";
+import { SlideTransformer, Note } from "../src";
 
 export function makeNotes(...values) {
-  return values.map(val =>
-    new Note({ start: val, pitch: val, velocity: val, duration: val })
-  );
+  return values.map((val) => new Note({ start: val, pitch: val, velocity: val, duration: val }));
 }
 
 // "Map" notes by destructively modifying clones in a forEach
@@ -16,7 +13,7 @@ export function mapNotes(notes, map) {
 }
 
 export function cloneAll(cloneables) {
-  return cloneables.map(c => c.clone());
+  return cloneables.map((c) => c.clone());
 }
 
 export const defaultClip = Object.freeze({ start: 0, end: 16, length: 16 });
@@ -26,7 +23,7 @@ function describesSlideTransformerTest({ operation, noteProperty, range, amount,
   return `${baseDescription} for ${Object.entries({ range, amount, edgeBehavior, clip })
     .filter(([_, value]) => value != null)
     .map(([name, value]) => `${name}=${JSON.stringify(value)}`)
-    .join(', ')}`;
+    .join(", ")}`;
 }
 
 function setupSlideTransformer({ input, noteProperty, range, edgeBehavior, clip }) {
@@ -44,9 +41,8 @@ function setupSlideTransformer({ input, noteProperty, range, edgeBehavior, clip 
 
 export function runSlideTransformerTests(operation, testCases) {
   Object.entries(testCases).forEach(([noteProperty, tests]) => {
-
     describe(`${operation}('${noteProperty}', amount)`, () => {
-      it('is idempotent', () => {
+      it("is idempotent", () => {
         const test = { operation, noteProperty, ...tests[0] };
         const slideTransformer = setupSlideTransformer(test);
         const inputNotes = test.input.map((value) => new Note({ [noteProperty]: value }));
@@ -62,10 +58,7 @@ export function runSlideTransformerTests(operation, testCases) {
           const slideTransformer = setupSlideTransformer(test);
           const expectedNotes = test.expected.map((value) => new Note({ [noteProperty]: value }));
           const actualNotes = slideTransformer[operation](noteProperty, test.amount);
-          assert.deepStrictEqual(
-            actualNotes,
-            expectedNotes,
-          );
+          assert.deepStrictEqual(actualNotes, expectedNotes);
         });
       });
     });

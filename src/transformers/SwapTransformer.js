@@ -1,10 +1,10 @@
-import Transformer from './Transformer';
-import { mod } from '../utils';
+import Transformer from "./Transformer";
+import { mod } from "../utils";
 
 export default class SwapTransformer extends Transformer {
   constructor() {
     super();
-    this.targets = ['pitch', 'velocity', 'duration'];
+    this.targets = ["pitch", "velocity", "duration"];
   }
 
   set notes(notes) {
@@ -12,9 +12,7 @@ export default class SwapTransformer extends Transformer {
   }
 
   target(target, enabled) {
-    const {
-      targets
-    } = this;
+    const { targets } = this;
     const index = targets.indexOf(target);
 
     if (enabled) {
@@ -29,15 +27,11 @@ export default class SwapTransformer extends Transformer {
   }
 
   swap(mapIndex) {
-    const {
-      newNotes,
-      oldNotes,
-      targets
-    } = this;
+    const { newNotes, oldNotes, targets } = this;
     return newNotes.map((note, index) => {
       const mappedIndex = mapIndex(index, newNotes.length);
       const mappedNote = oldNotes[mappedIndex] || oldNotes[index];
-      targets.forEach(prop => note.set(prop, mappedNote.get(prop)));
+      targets.forEach((prop) => note.set(prop, mappedNote.get(prop)));
       return note;
     });
   } // TODO: now I need to adjust each algorithm below to respect groupings. I feel like it can be done generically...
@@ -45,14 +39,13 @@ export default class SwapTransformer extends Transformer {
   // So each of these functions needs to be refactored into a function (callback?) that takes a list of notes
   // and modifies them in place. We'll split newNotes and oldNotes based on the group settings
 
-
   rotate(amount) {
     amount = Math.round(amount * this.oldNotes.length);
     return this.swap((index, size) => mod(index - amount, size));
   }
 
   swapPairs() {
-    return this.swap(index => index % 2 == 0 ? index + 1 : index - 1);
+    return this.swap((index) => (index % 2 == 0 ? index + 1 : index - 1));
   }
 
   reverse() {

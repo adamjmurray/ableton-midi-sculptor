@@ -1,10 +1,10 @@
-import Transformer from './Transformer';
-import { applyEdgeBehavior } from './EdgeBehavior';
+import Transformer from "./Transformer";
+import { applyEdgeBehavior } from "./EdgeBehavior";
 
 export const ANCHOR = Object.freeze({
-  MIN: 'min',
-  MIDPOINT: 'mid',
-  MAX: 'max',
+  MIN: "min",
+  MIDPOINT: "mid",
+  MAX: "max",
 });
 
 class SlidablePropertyMetadata {
@@ -29,15 +29,15 @@ export default class SlideTransformer extends Transformer {
   constructor() {
     super();
     this.metadata = new SlidablePropertiesMetadata();
-    this.edgeBehavior = 'clamp';
+    this.edgeBehavior = "clamp";
     this.spreadAnchor = ANCHOR.MIDPOINT;
   }
 
   set notes(notes) {
     super.setNotes(notes);
 
-    for (const property of ['start', 'pitch', 'velocity', 'duration']) {
-      let values = notes.map(note => note.get(property));
+    for (const property of ["start", "pitch", "velocity", "duration"]) {
+      let values = notes.map((note) => note.get(property));
 
       let min = Math.min.apply(null, values);
       let max = Math.max.apply(null, values);
@@ -74,7 +74,7 @@ export default class SlideTransformer extends Transformer {
    */
   shift(property, amount) {
     amount *= this.metadata[property].range;
-    return this.transform(property, value => value + amount);
+    return this.transform(property, (value) => value + amount);
   }
 
   /**
@@ -106,7 +106,7 @@ export default class SlideTransformer extends Transformer {
 
     if (largestDelta === 0) return this.newNotes;
 
-    return this.transform(property, value => value + amount * range * (value - spreadPoint) / largestDelta);
+    return this.transform(property, (value) => value + (amount * range * (value - spreadPoint)) / largestDelta);
   }
   /**
    2-D randomization for the notes' property value.
@@ -120,6 +120,9 @@ export default class SlideTransformer extends Transformer {
     // We halve the range because two random values are added, which would have a max of range + range
     amountX *= range / 2;
     amountY *= range / 2;
-    return this.transform(property, (value, index) => value + this.bipolarRandom1[index] * amountX + this.bipolarRandom2[index] * amountY);
+    return this.transform(
+      property,
+      (value, index) => value + this.bipolarRandom1[index] * amountX + this.bipolarRandom2[index] * amountY
+    );
   }
 }

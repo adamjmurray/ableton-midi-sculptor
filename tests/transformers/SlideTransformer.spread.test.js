@@ -1,20 +1,20 @@
-import { Note } from '../../src';
-import { runSlideTransformerTests } from '../helpers';
+import { Note } from "../../src";
+import { runSlideTransformerTests } from "../helpers";
 
-describe('SlideTransformer.spread', () => {
-  runSlideTransformerTests('spread', {
+describe("SlideTransformer.spread", () => {
+  runSlideTransformerTests("spread", {
     pitch: [
       {
         input: [10, 11, 12, 13],
         range: 12,
         amount: 0.5,
-        expected: [4, 9, 14, 19]
+        expected: [4, 9, 14, 19],
       },
       {
         input: [4, 7, 10, 13],
         range: 12,
         amount: -0.25,
-        expected: [7, 8, 9, 10]
+        expected: [7, 8, 9, 10],
       },
       // TODO: anchor behaviors, edge behaviors
     ],

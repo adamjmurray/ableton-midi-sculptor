@@ -1,4 +1,4 @@
-const APP_VIEW_PATH = 'live_app view';
+const APP_VIEW_PATH = "live_app view";
 
 export default class AppView {
   constructor() {
@@ -6,6 +6,6 @@ export default class AppView {
   }
 
   showClipDetailView() {
-    this.api.call('show_view', 'Detail/Clip');
+    this.api.call("show_view", "Detail/Clip");
   }
 }

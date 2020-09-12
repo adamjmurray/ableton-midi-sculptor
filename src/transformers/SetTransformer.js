@@ -1,11 +1,10 @@
-import Transformer from './Transformer';
+import Transformer from "./Transformer";
 
 export default class SetTransformer extends Transformer {
-
   constructor() {
     super();
-    this.property = 'note';
-    this.value = 'muted';
+    this.property = "note";
+    this.value = "muted";
   }
 
   set notes(notes) {
@@ -14,20 +13,17 @@ export default class SetTransformer extends Transformer {
 
   setValue(note) {
     // Warning: This modifies the Note in place for efficiency
-    const {
-      property,
-      value
-    } = this;
+    const { property, value } = this;
 
-    if (property === 'note') {
-      if (value === 'deleted') {
+    if (property === "note") {
+      if (value === "deleted") {
         return null;
-      } else if (value === 'muted') {
+      } else if (value === "muted") {
         note.muted = true;
-      } else if (value === 'unmuted') {
+      } else if (value === "unmuted") {
         note.muted = false;
       }
-    } else if (typeof value === 'number') {
+    } else if (typeof value === "number") {
       note.set(property, value);
     }
 
@@ -35,16 +31,18 @@ export default class SetTransformer extends Transformer {
   }
 
   setAll() {
-    return this.newNotes.map(note => this.setValue(note)).filter(note => note);
+    return this.newNotes.map((note) => this.setValue(note)).filter((note) => note);
   }
 
   randomize2D(amountX, amountY) {
-    return this.newNotes.map((note, index) => {
-      if (this.isInRandomBounds(amountX, amountY, index)) {
-        return this.setValue(note);
-      } else {
-        return this.oldNotes[index];
-      }
-    }).filter(note => note != null);
+    return this.newNotes
+      .map((note, index) => {
+        if (this.isInRandomBounds(amountX, amountY, index)) {
+          return this.setValue(note);
+        } else {
+          return this.oldNotes[index];
+        }
+      })
+      .filter((note) => note != null);
   }
 }

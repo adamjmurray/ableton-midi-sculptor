@@ -26,5 +26,5 @@ export class MockLiveAPI {
   call(name, ...args) {
     const fn = functions[name];
     return fn && fn.apply(null, args);
-  };
+  }
 }

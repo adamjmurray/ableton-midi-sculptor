@@ -1,10 +1,10 @@
-import './polyfills'
-import Controller from './Controller'
+import "./polyfills";
+import Controller from "./Controller";
 
-const c = new Controller()
+const c = new Controller();
 
-console.log("___________________________________________________")
-console.log("Reload:", new Date())
+console.log("___________________________________________________");
+console.log("Reload:", new Date());
 
 //************************************************************** */
 // The interface for Max:
