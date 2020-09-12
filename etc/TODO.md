@@ -3,9 +3,18 @@ Bugs
 
 Ideas
 - Slide
-  - "tie breaker" to do strumming
-  - Exponential spreading
-  - Add tilt feature. Unlike drawing a straight line in Ableton's velocity panel, this will maintain the ratios between notes
+  - "Strum" mode (new drop down option)
+    - Changes start time based on pitch
+      - with anchor='start', the lowest note will not move and the highest note will move by the range. in between notes will be scaled by their position within the sorted list of pitches present (_not_ scaled by the pitch value to account for gaps in a chord)
+      - similarly, with anchor='end', the highest note will not move and 'mid' will not move the midpoint
+      - using "shift" will scale things linearly for a "straight" strum
+      - using "spread" will scale things exponentially (do we need to control "tension"?)
+      - the randomize will respect the anchor point behavior but randomize the actual value within the movable range for each note (which are still scaled by pitch? probably not?)
+  - "Fade" (crescendo/decrescendo) mode
+    - Changes velocity based on start time
+    - anchor='start' will keep the first note veloicty the same and move the last note by the range
+    - like "strum", "shift" is linear and "spread" is exponential
+  - Notes on "strum" and "fade": I think we want to control the exponential factor (the "tension") but I'm struggling with how to work that into the UI. It would be cool if the "spread" slider controlled this, but it would have to operate on the assumption the first and last note are already in the desired position. Which means it wouldn't do anything for notes with equal pitches (or velocities for "fade") unless you already applied "shift". That might be ok. In these modes, we could rename "spread" to "tension". I thought about introducing a tension dial at the bottom but it's kind of cramped.
 - Swap
   - Maybe implement grouping (time based and note number based) in the swap transformer
 - Split
