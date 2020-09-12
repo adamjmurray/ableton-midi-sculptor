@@ -116,6 +116,5 @@ const behaviors = {
 };
 
 export function applyEdgeBehavior(behavior, property, notes, clip) {
-  // TODO: can I use the existential operators?
-  return behaviors[behavior] && behaviors[behavior][property] && behaviors[behavior][property](notes, clip);
+  return behaviors[behavior]?.[property]?.(notes, clip);
 }
