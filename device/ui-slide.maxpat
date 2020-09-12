@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 1,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -112,14 +112,14 @@
 					"presentation_rect" : [ 139.0, 164.0, 74.0, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_annotation_name" : "Spread Anchor Options",
-							"parameter_longname" : "live.tab[1]",
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 2,
 							"parameter_shortname" : "live.tab",
 							"parameter_enum" : [ "min", "mid", "max" ],
 							"parameter_type" : 2,
-							"parameter_unitstyle" : 0
+							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Spread Anchor Options",
+							"parameter_longname" : "live.tab[1]",
+							"parameter_invisible" : 2,
+							"parameter_mmax" : 2
 						}
 
 					}
@@ -131,7 +131,7 @@
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "Determines what to do when a note property reaches the min or max value:\n• Clip: stay at the min/max\n• Reflect: move in the opposite direction\n• Wrap: loop from max back to min\n• Keep going: start times go past the edge of clips and notes with invalid pitches or negative velocity/duration are deleted.\nEdge behavior applies to all operations in this Slide tool.",
+					"annotation" : "Determines what to do when a note property reaches the min or max value:\n• Clamp: stay at the min/max\n• Reflect: move in the opposite direction\n• Wrap: loop from max back to min\n• Keep going: start times go past the edge of clips and notes with invalid pitches or negative velocity/duration are deleted.\nEdge behavior applies to all operations in this Slide tool.",
 					"annotation_name" : "Edge Behavior",
 					"id" : "obj-22",
 					"maxclass" : "live.tab",
@@ -148,14 +148,14 @@
 					"presentation_rect" : [ 0.0, 164.0, 100.0, 24.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.tab",
+							"parameter_enum" : [ "clamp", "reflect", "rotate", "remove" ],
+							"parameter_type" : 2,
+							"parameter_unitstyle" : 0,
 							"parameter_annotation_name" : "Edge Behavior",
 							"parameter_longname" : "live.tab",
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 3,
-							"parameter_shortname" : "live.tab",
-							"parameter_enum" : [ "clip", "reflect", "rotate", "remove" ],
-							"parameter_type" : 2,
-							"parameter_unitstyle" : 0
+							"parameter_mmax" : 3
 						}
 
 					}
@@ -227,7 +227,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -641,7 +641,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1000,13 +1000,13 @@
 					"presentation_rect" : [ 0.0, 0.0, 64.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.menu[1]",
+							"parameter_enum" : [ "Start Time", "Pitch", "Velocity", "Duration" ],
+							"parameter_type" : 2,
 							"parameter_annotation_name" : "Note Property",
 							"parameter_longname" : "live.menu[1]",
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 3,
-							"parameter_shortname" : "live.menu[1]",
-							"parameter_enum" : [ "Start Time", "Pitch", "Velocity", "Duration" ],
-							"parameter_type" : 2
+							"parameter_mmax" : 3
 						}
 
 					}
@@ -1409,17 +1409,17 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
-			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
-			"obj-22" : [ "live.tab", "live.tab", 0 ],
-			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
 			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
-			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
-			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
 			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-22" : [ "live.tab", "live.tab", 0 ],
+			"obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
 			"obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
+			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
 			"parameterbanks" : 			{
 
 			}

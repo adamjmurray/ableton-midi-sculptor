@@ -80,17 +80,13 @@ export default class Controller {
    - amount is from 0 to 127 for velocity, or a positive number in beats for start/duration
    */
 
+  // TODO: all these toLowerCase() calls should be unnecessary. Make the Max device match the code
   setSlideRange(property, amount) {
     this.slideTransformer.setRange(property.toLowerCase(), amount);
   }
 
   setSlideEdgeBehavior(behavior) {
-    behavior = behavior.toLowerCase();
-    if (behavior === "clip") {
-      console.log('TODO: change "clip" edge behavior to "clamp"'); // TODO: Change in Max device
-      behavior = "clamp";
-    }
-    this.slideTransformer.edgeBehavior = behavior;
+    this.slideTransformer.edgeBehavior = behavior.toLowerCase();
   }
 
   setSlideAnchor(anchor) {

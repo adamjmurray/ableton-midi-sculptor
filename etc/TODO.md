@@ -37,4 +37,3 @@ Ideas
     - Get the controller under test (integration tests)
   - Check for updates feature (hit a 'latest version' text file on github master) - Document release process in README or DEVELOPERS.md
     - Try using the maxurl object
-  - Rename edge behavior "clip" to "clamp"?

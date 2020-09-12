@@ -51,7 +51,7 @@ There are **3 sculpting tools**.
   * Every time you use the randomize X-Y pad, a new random value is choosen for each corner. You can "scrub" around looking for sweet spots. Once you let go of the mouse, new random values will be choosen.
 * **Spread** spreads the choosen note properties closer together or farther appart.
 * **Edge behavior** (the 4 buttons in the lower left) determines what happens when a note hits the minimum or maximum value:
-  * **Clip** holds the note property at its minimum/maximum value
+  * **Clamp** holds the note property at its minimum/maximum value
   * **Reflect** "bounces" off the edge and moves in the opposite direction
   * **Wrap** wraps around from the minimum to maximum value and vice versa
   * The "**keep going**" option lets notes move off the edge of the clip and removes notes with negative velocities or invalid pitches
