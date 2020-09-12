@@ -38,6 +38,12 @@ export const set_random = c.setRandomly.bind(c);
 export const set_property = c.setSettableProperty.bind(c);
 export const set_value = c.setSettableValue.bind(c);
 
+// Strum
+export const strum = c.strum.bind(c);
+
+export const strum_anchor = c.strumAnchor.bind(c);
+export const strum_range = c.strumRange.bind(c);
+
 // Split
 export const split = c.split.bind(c);
 

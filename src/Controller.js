@@ -3,6 +3,7 @@ import Clip from "./Clip";
 import SlideTransformer from "./transformers/SlideTransformer";
 import SetTransformer from "./transformers/SetTransformer";
 import SwapTransformer from "./transformers/SwapTransformer";
+import StrumTransformer from "./transformers/StrumTransformer";
 import SplitTransformer from "./transformers/SplitTransformer";
 
 export default class Controller {
@@ -12,6 +13,7 @@ export default class Controller {
     this.slideTransformer = new SlideTransformer();
     this.setTransformer = new SetTransformer();
     this.swapTransformer = new SwapTransformer();
+    this.strumTransformer = new StrumTransformer();
     this.splitTransformer = new SplitTransformer();
     this.transformers = [this.slideTransformer, this.setTransformer, this.swapTransformer, this.splitTransformer];
   }
@@ -145,6 +147,18 @@ export default class Controller {
 
   setRandomly(amountX, amountY) {
     this.transformNotes(() => this.setTransformer.randomize2D(amountX, amountY));
+  }
+
+  strum(amount) {
+    this.strumTrasnformer.strum(amount);
+  }
+
+  strumRange(range) {
+    this.strumTrasnformer.range = range;
+  }
+
+  strumAnchor(anchor) {
+    this.strumTrasnformer.anchor = anchor;
   }
 
   setSplitType(type, amount1, amount2) {
