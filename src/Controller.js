@@ -79,8 +79,6 @@ export default class Controller {
    - property is velocity, start, duration
    - amount is from 0 to 127 for velocity, or a positive number in beats for start/duration
    */
-
-  // TODO: all these toLowerCase() calls should be unnecessary. Make the Max device match the code
   setSlideRange(property, amount) {
     this.slideTransformer.setRange(property.toLowerCase(), amount);
   }
