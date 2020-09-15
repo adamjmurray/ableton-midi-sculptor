@@ -48,6 +48,9 @@ export default class SlideTransformer extends Transformer {
       propertyMetadata.midpoint = midpoint;
       propertyMetadata.max = max;
     }
+
+    this.sortedNotes = null;
+    this.sortedNewNotes = null;
   }
 
   /**
@@ -108,6 +111,43 @@ export default class SlideTransformer extends Transformer {
 
     return this.transform(property, (value) => value + (amount * range * (value - spreadPoint)) / largestDelta);
   }
+
+  strum(amount) {
+    if (!this.sortedNotes) {
+      // TODO: group all overlapping notes into chords
+      this.sortedNotes = Object.freeze(
+        this.oldNotes.map((note) => note.clone()).sort((a, b) => a.pitch - b.pitch || a.start - b.start)
+      );
+      this.sortedNewNotes = this.sortedNotes.map((note) => note.clone());
+    }
+    const { max, min, midpoint, range } = this.metadata.start;
+    let spreadPoint;
+    switch (this.spreadAnchor) {
+      case ANCHOR.MIN:
+        spreadPoint = min;
+        break;
+      case ANCHOR.MIDPOINT:
+        spreadPoint = midpoint;
+        break;
+      case ANCHOR.MAX:
+        spreadPoint = max;
+        break;
+    }
+
+    const total = this.oldNotes.length - 1;
+    this.sortedNewNotes.forEach((newNote, index) => {
+      const oldNote = this.sortedNotes[index];
+      // TODO: take anchor/spreadpoint into account
+      newNote.start = oldNote.start + (index / total) * range * amount;
+    });
+
+    // TODO: second phase
+    // - add tension (exponential) parameter
+    // - consider letting this "bend" the already strummed notes
+
+    return applyEdgeBehavior(this.edgeBehavior, "start", this.sortedNewNotes, this.clip);
+  }
+
   /**
    2-D randomization for the notes' property value.
    - property is velocity, start, duration

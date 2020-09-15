@@ -1,4 +1,3 @@
-import { Note } from "../../src";
 import { runSlideTransformerTests } from "../helpers";
 
 describe("SlideTransformer.spread", () => {
