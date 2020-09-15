@@ -32,6 +32,7 @@ export default class SlideTransformer extends Transformer {
     this.metadata = new SlidablePropertiesMetadata();
     this.edgeBehavior = "clamp";
     this.spreadAnchor = ANCHOR.MIDPOINT; // TODO: rename this to anchor
+    this.tension = 1;
   }
 
   set notes(notes) {
@@ -55,6 +56,8 @@ export default class SlideTransformer extends Transformer {
 
   get strumIndexForPitch() {
     if (!this._strumIndexForPitch) {
+      // Future enhancement: This could group by notes playing at the same time (group by chords) and
+      // index them separately, for consistent timing changes between each chord's top and bottom notes.
       const pitches = [];
       for (const note of this.oldNotes) {
         if (pitches.indexOf(note.pitch) < 0) {
@@ -136,21 +139,20 @@ export default class SlideTransformer extends Transformer {
       const index = indexForPitch[oldNote.pitch];
       switch (this.spreadAnchor) {
         case ANCHOR.MIN:
-          newNote.start = oldNote.start + (index / total) * range * amount;
+          newNote.start = oldNote.start + Math.pow(index / total, this.tension) * range * amount;
           break;
         case ANCHOR.MIDPOINT:
-          newNote.start = oldNote.start + ((index - total / 2) / total) * range * amount;
+          newNote.start = oldNote.start + (Math.pow(index / total, this.tension) - 1 / 2) * range * amount;
           break;
         case ANCHOR.MAX:
-          newNote.start = oldNote.start + ((total - index) / total) * range * amount;
+          newNote.start = oldNote.start + Math.pow((total - index) / total, this.tension) * range * amount;
           break;
       }
     });
 
     // TODO:
-    // - use this.tension (exponential) parameter
     // - add ability to lock end
-    // - add ability to affect the end time (and optionally lock start)
+    // - add ability to affect the end time (use spread slider), and optionally lock start
 
     return applyEdgeBehavior(this.edgeBehavior, "start", this.newNotes, this.clip);
   }
