@@ -96,7 +96,17 @@ export default class Controller {
   }
 
   slideShift(property, amount) {
-    this.transformNotes(() => this.slideTransformer.shift(property.toLowerCase(), amount));
+    const prop = property.toLowerCase();
+    if (prop === "strum") {
+      // strum shares the UI slider with shift
+      this.transformNotes(() => this.slideTransformer.strum(amount));
+    } else {
+      this.transformNotes(() => this.slideTransformer.shift(prop, amount));
+    }
+  }
+
+  setStrumTension(amount) {
+    this.slideTransformer.tension = amount;
   }
 
   slideSpread(property, amount) {

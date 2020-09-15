@@ -23,6 +23,7 @@ describe("SlideTransformer", () => {
       const expected = notes.map((note, idx) => new Note({ ...note.toJSON(), start: expectedStartTimes[idx] }));
       slideTransformer.notes = notes;
       slideTransformer.range = 1;
+      slideTransformer.spreadAnchor = "min";
       assert.deepStrictEqual(slideTransformer.strum(1), expected);
     });
 
@@ -35,6 +36,7 @@ describe("SlideTransformer", () => {
       const expected = notes.map((note) => new Note({ ...note.toJSON(), start: 0 }));
       slideTransformer.notes = notes;
       slideTransformer.range = 1;
+      slideTransformer.spreadAnchor = "min";
       assert.deepStrictEqual(slideTransformer.strum(-1), expected);
     });
   });

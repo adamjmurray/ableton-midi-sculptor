@@ -20,6 +20,7 @@ export const slide_random = c.slideRandomly.bind(c);
 export const slide_anchor = c.setSlideAnchor.bind(c);
 export const slide_edges = c.setSlideEdgeBehavior.bind(c);
 export const slide_range = c.setSlideRange.bind(c);
+export const strum_tension = c.setStrumTension.bind(c);
 
 // Swap
 export const reverse = c.swapReverse.bind(c);

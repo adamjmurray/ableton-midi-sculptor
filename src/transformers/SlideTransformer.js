@@ -22,6 +22,7 @@ class SlidablePropertiesMetadata {
     this.pitch = new SlidablePropertyMetadata(12);
     this.velocity = new SlidablePropertyMetadata(64);
     this.duration = new SlidablePropertyMetadata(1);
+    this.strum = new SlidablePropertyMetadata(1);
   }
 }
 
@@ -76,9 +77,6 @@ export default class SlideTransformer extends Transformer {
    - amount should be from -1.0 to 1.0
    */
   shift(property, amount) {
-    if (property === "strum") {
-      return this.strum(amount);
-    }
     amount *= this.metadata[property].range;
     return this.transform(property, (value) => value + amount);
   }
@@ -123,30 +121,27 @@ export default class SlideTransformer extends Transformer {
       );
       this.sortedNewNotes = this.sortedNotes.map((note) => note.clone());
     }
-    const { max, min, midpoint, range } = this.metadata.start;
-    let spreadPoint;
-    switch (this.spreadAnchor) {
-      case ANCHOR.MIN:
-        spreadPoint = min;
-        break;
-      case ANCHOR.MIDPOINT:
-        spreadPoint = midpoint;
-        break;
-      case ANCHOR.MAX:
-        spreadPoint = max;
-        break;
-    }
-
+    const { range } = this.metadata.strum;
     const total = this.oldNotes.length - 1;
     this.sortedNewNotes.forEach((newNote, index) => {
       const oldNote = this.sortedNotes[index];
-      // TODO: take anchor/spreadpoint into account
-      newNote.start = oldNote.start + (index / total) * range * amount;
+      switch (this.spreadAnchor) {
+        case ANCHOR.MIN:
+          newNote.start = oldNote.start + (index / total) * range * amount;
+          break;
+        case ANCHOR.MIDPOINT:
+          newNote.start = oldNote.start + ((index - total / 2) / total) * range * amount;
+          break;
+        case ANCHOR.MAX:
+          newNote.start = oldNote.start + ((total - index) / total) * range * amount;
+          break;
+      }
     });
 
-    // TODO: second phase
-    // - add tension (exponential) parameter
-    // - consider letting this "bend" the already strummed notes
+    // TODO:
+    // - use this.tension (exponential) parameter
+    // - add ability to lock end
+    // - add ability to affect the end time (and optionally lock start)
 
     return applyEdgeBehavior(this.edgeBehavior, "start", this.sortedNewNotes, this.clip);
   }
