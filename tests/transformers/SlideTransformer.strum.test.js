@@ -26,7 +26,7 @@ describe("SlideTransformer", () => {
       assert.deepStrictEqual(slideTransformer.strum(1), expected);
     });
 
-    it("can unstrum in the negative direction", () => {
+    it("can 'unstrum' in the negative direction", () => {
       const notes = makeNotes([
         { start: 0, pitch: 1 },
         { start: 0.5, pitch: 2 },

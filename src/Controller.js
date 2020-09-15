@@ -103,10 +103,6 @@ export default class Controller {
     this.transformNotes(() => this.slideTransformer.spread(property.toLowerCase(), amount));
   }
 
-  strum(amount) {
-    this.transformNotes(() => this.slideTransformer.strum(amount));
-  }
-
   setSwapTarget(property, enabled) {
     this.swapTransformer.target(property.toLowerCase(), enabled);
   }

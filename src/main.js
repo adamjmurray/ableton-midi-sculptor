@@ -16,7 +16,6 @@ export const clipchange = c.onClipChange.bind(c);
 export const slide_shift = c.slideShift.bind(c);
 export const slide_spread = c.slideSpread.bind(c);
 export const slide_random = c.slideRandomly.bind(c);
-export const strum = c.strum.bind(c);
 
 export const slide_anchor = c.setSlideAnchor.bind(c);
 export const slide_edges = c.setSlideEdgeBehavior.bind(c);

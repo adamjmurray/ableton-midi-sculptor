@@ -76,6 +76,9 @@ export default class SlideTransformer extends Transformer {
    - amount should be from -1.0 to 1.0
    */
   shift(property, amount) {
+    if (property === "strum") {
+      return this.strum(amount);
+    }
     amount *= this.metadata[property].range;
     return this.transform(property, (value) => value + amount);
   }

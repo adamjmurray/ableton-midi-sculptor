@@ -547,7 +547,7 @@
 					"name" : "ui-slide-range.maxpat",
 					"numinlets" : 1,
 					"numoutlets" : 1,
-					"offset" : [ 0.0, 0.0 ],
+					"offset" : [ 0.0, -120.0 ],
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 776.0, 409.5, 152.0, 17.0 ],
 					"presentation" : 1,
@@ -1001,12 +1001,12 @@
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_shortname" : "live.menu[1]",
-							"parameter_enum" : [ "Start Time", "Pitch", "Velocity", "Duration" ],
+							"parameter_enum" : [ "Start Time", "Pitch", "Velocity", "Duration", "Strum" ],
 							"parameter_type" : 2,
 							"parameter_annotation_name" : "Note Property",
 							"parameter_longname" : "live.menu[1]",
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 3
+							"parameter_mmax" : 4
 						}
 
 					}
@@ -1409,22 +1409,29 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
-			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
-			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
-			"obj-22" : [ "live.tab", "live.tab", 0 ],
-			"obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
 			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
+			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
 			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
+			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
 			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-11::obj-17" : [ "velocity range[1]", "velrange", 0 ],
+			"obj-11::obj-16" : [ "live.menu[2]", "live.menu", 0 ],
+			"obj-11::obj-23" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-22" : [ "live.tab", "live.tab", 0 ],
 			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
+			"obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
+			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
+			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
+				"obj-11::obj-16" : 				{
+					"parameter_longname" : "live.menu[2]"
+				}
+,
 				"obj-11::obj-50" : 				{
 					"parameter_longname" : "velocity range[7]",
 					"parameter_shortname" : "velrange"
