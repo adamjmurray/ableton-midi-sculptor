@@ -31,7 +31,7 @@ export default class SlideTransformer extends Transformer {
     super();
     this.metadata = new SlidablePropertiesMetadata();
     this.edgeBehavior = "clamp";
-    this.spreadAnchor = ANCHOR.MIDPOINT;
+    this.spreadAnchor = ANCHOR.MIDPOINT; // TODO: rename this to anchor
   }
 
   set notes(notes) {
@@ -50,8 +50,22 @@ export default class SlideTransformer extends Transformer {
       propertyMetadata.max = max;
     }
 
-    this.sortedNotes = null;
-    this.sortedNewNotes = null;
+    this._strumIndexForPitch = null;
+  }
+
+  get strumIndexForPitch() {
+    if (!this._strumIndexForPitch) {
+      const pitches = [];
+      for (const note of this.oldNotes) {
+        if (pitches.indexOf(note.pitch) < 0) {
+          pitches.push(note.pitch);
+        }
+      }
+      const indexForPitch = {};
+      pitches.sort().forEach((pitch, index) => (indexForPitch[pitch] = index));
+      this._strumIndexForPitch = indexForPitch;
+    }
+    return this._strumIndexForPitch;
   }
 
   /**
@@ -114,17 +128,12 @@ export default class SlideTransformer extends Transformer {
   }
 
   strum(amount) {
-    if (!this.sortedNotes) {
-      // TODO: group all overlapping notes into chords
-      this.sortedNotes = Object.freeze(
-        this.oldNotes.map((note) => note.clone()).sort((a, b) => a.pitch - b.pitch || a.start - b.start)
-      );
-      this.sortedNewNotes = this.sortedNotes.map((note) => note.clone());
-    }
     const { range } = this.metadata.strum;
-    const total = this.oldNotes.length - 1;
-    this.sortedNewNotes.forEach((newNote, index) => {
-      const oldNote = this.sortedNotes[index];
+    const indexForPitch = this.strumIndexForPitch;
+    const total = Object.keys(indexForPitch).length - 1;
+    this.newNotes.forEach((newNote, noteIndex) => {
+      const oldNote = this.oldNotes[noteIndex];
+      const index = indexForPitch[oldNote.pitch];
       switch (this.spreadAnchor) {
         case ANCHOR.MIN:
           newNote.start = oldNote.start + (index / total) * range * amount;
@@ -143,7 +152,7 @@ export default class SlideTransformer extends Transformer {
     // - add ability to lock end
     // - add ability to affect the end time (and optionally lock start)
 
-    return applyEdgeBehavior(this.edgeBehavior, "start", this.sortedNewNotes, this.clip);
+    return applyEdgeBehavior(this.edgeBehavior, "start", this.newNotes, this.clip);
   }
 
   /**
