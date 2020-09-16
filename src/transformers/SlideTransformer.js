@@ -33,6 +33,7 @@ export default class SlideTransformer extends Transformer {
     this.edgeBehavior = "clamp";
     this.spreadAnchor = ANCHOR.MIDPOINT; // TODO: rename this to anchor
     this.tension = 1;
+    this.strumUnlockEnd = false;
   }
 
   set notes(notes) {
@@ -134,20 +135,27 @@ export default class SlideTransformer extends Transformer {
     const { range } = this.metadata.strum;
     const indexForPitch = this.strumIndexForPitch;
     const total = Object.keys(indexForPitch).length - 1;
+    const unlockEnd = this.strumUnlockEnd;
 
     this.newNotes.forEach((newNote, noteIndex) => {
       const oldNote = this.oldNotes[noteIndex];
       const index = indexForPitch[oldNote.pitch];
+      let shift = 0;
       switch (this.spreadAnchor) {
         case ANCHOR.MIN:
-          newNote[property] = oldNote[property] + Math.pow(index / total, this.tension) * range * amount;
+          shift = Math.pow(index / total, this.tension) * range * amount;
           break;
         case ANCHOR.MIDPOINT:
-          newNote[property] = oldNote[property] + (Math.pow(index / total, this.tension) - 1 / 2) * range * amount;
+          shift = (Math.pow(index / total, this.tension) - 1 / 2) * range * amount;
           break;
         case ANCHOR.MAX:
-          newNote[property] = oldNote[property] + Math.pow((total - index) / total, this.tension) * range * amount;
+          shift = Math.pow((total - index) / total, this.tension) * range * amount;
           break;
+      }
+      newNote[property] = oldNote[property] + shift;
+      if (property === "start" && !unlockEnd) {
+        // the end is locked in place so we need to change the duration to compensate the start time shift
+        newNote.duration = oldNote.duration - shift;
       }
     });
 

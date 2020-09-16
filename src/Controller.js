@@ -109,6 +109,10 @@ export default class Controller {
     this.slideTransformer.tension = amount;
   }
 
+  setStrumUnlockEnd(unlocked) {
+    this.slideTransformer.strumUnlockEnd = unlocked;
+  }
+
   slideSpread(property, amount) {
     const prop = property.toLowerCase();
     if (prop === "strum") {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 301 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect id="icon-unlocked" x="0.305" y="0" width="300" height="300" style="fill:none;"/>
+    <clipPath id="_clip1">
+        <rect x="0.305" y="0" width="300" height="300"/>
+    </clipPath>
+    <g clip-path="url(#_clip1)">
+        <path d="M45.884,104.344C45.929,46.744 92.702,0 150.305,0C207.938,0 254.729,46.79 254.729,104.423L254.745,150L300.305,150L300.305,299.584L0.305,299.584L0.305,150L202.498,150L202.517,104.423C202.517,75.607 179.122,52.212 150.305,52.212C121.515,52.212 98.136,75.565 98.098,104.344L45.884,104.344L45.882,104.423L45.882,104.344L45.884,104.344ZM157.177,240.148C152.13,247.976 143.335,253.157 133.339,253.157C117.684,253.157 104.974,240.447 104.974,224.792C104.974,209.137 117.684,196.427 133.339,196.427C143.335,196.427 152.13,201.609 157.177,209.436L195.637,209.436L195.637,240.148L157.177,240.148ZM98.098,104.344L98.173,104.344L98.094,104.423L98.098,104.344Z"/>
+    </g>
+</svg>

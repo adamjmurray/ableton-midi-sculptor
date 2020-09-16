@@ -26,6 +26,7 @@ describe("SlideTransformer", () => {
       slideTransformer.notes = notes;
       slideTransformer.range = 1;
       slideTransformer.spreadAnchor = "min";
+      slideTransformer.strumUnlockEnd = true;
       assert.deepStrictEqual(slideTransformer.strum("start", 1), expected);
     });
 
@@ -39,6 +40,7 @@ describe("SlideTransformer", () => {
       slideTransformer.notes = notes;
       slideTransformer.range = 1;
       slideTransformer.spreadAnchor = "min";
+      slideTransformer.strumUnlockEnd = true;
       assert.deepStrictEqual(slideTransformer.strum("start", -1), expected);
     });
   });

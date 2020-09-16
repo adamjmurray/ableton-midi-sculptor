@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 469.0, 368.0, 123.0, 22.0 ],
+					"text" : "strum_unlock_end $1"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-32",
 					"maxclass" : "message",
 					"numinlets" : 2,
@@ -56,8 +68,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 560.0, 184.0, 73.0, 22.0 ],
-					"text" : "set Duration"
+					"patching_rect" : [ 560.0, 184.0, 49.0, 22.0 ],
+					"text" : "set End"
 				}
 
 			}
@@ -105,7 +117,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 334.0, 142.5, 33.0, 22.0 ],
-					"text" : "-125"
+					"text" : "-150"
 				}
 
 			}
@@ -140,7 +152,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 454.0, 368.0, 49.0, 22.0 ],
+					"patching_rect" : [ 410.5, 368.0, 49.0, 22.0 ],
 					"text" : "qlim 15"
 				}
 
@@ -164,7 +176,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 474.0, 243.5, 60.0, 34.0 ],
+					"patching_rect" : [ 504.0, 265.5, 60.0, 34.0 ],
 					"text" : "TODO: Colors"
 				}
 
@@ -193,12 +205,12 @@
 					"maxclass" : "bpatcher",
 					"name" : "ui-slide-center-panel.maxpat",
 					"numinlets" : 1,
-					"numoutlets" : 2,
+					"numoutlets" : 3,
 					"offset" : [ 0.0, 0.0 ],
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 352.0, 216.0, 121.0, 138.0 ],
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 352.0, 216.0, 136.0, 138.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 45.0, 20.0, 121.0, 138.0 ],
+					"presentation_rect" : [ 45.0, 18.0, 147.0, 141.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -674,7 +686,7 @@
 					"name" : "ui-slide-range.maxpat",
 					"numinlets" : 1,
 					"numoutlets" : 1,
-					"offset" : [ 0.0, -30.0 ],
+					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 930.0, 419.0, 152.0, 17.0 ],
 					"presentation" : 1,
@@ -751,7 +763,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 840.0, 344.0, 74.0, 22.0 ],
+					"patching_rect" : [ 832.0, 352.0, 74.0, 22.0 ],
 					"text" : "prepend set"
 				}
 
@@ -858,7 +870,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 426.0, 567.0, 74.0, 22.0 ],
+					"patching_rect" : [ 464.0, 560.0, 74.0, 22.0 ],
 					"text" : "s ---sculptor"
 				}
 
@@ -1007,6 +1019,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-19", 0 ],
 					"source" : [ "obj-14", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-15", 0 ]
 				}
 
 			}
@@ -1175,6 +1194,13 @@
 					"destination" : [ "obj-63", 0 ],
 					"order" : 1,
 					"source" : [ "obj-36", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"source" : [ "obj-38", 2 ]
 				}
 
 			}
@@ -1406,16 +1432,17 @@
 		"parameters" : 		{
 			"obj-11::obj-16" : [ "live.menu[2]", "live.menu", 0 ],
 			"obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-38::obj-1::obj-5" : [ "live.toggle[1]", "live.toggle", 0 ],
 			"obj-42" : [ "live.menu[1]", "live.menu[1]", 0 ],
 			"obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
 			"obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
+			"obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
 			"obj-11::obj-17" : [ "velocity range[1]", "velrange", 0 ],
 			"obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
 			"obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
 			"obj-35" : [ "live.tab[1]", "live.tab", 0 ],
-			"obj-11::obj-23" : [ "live.text[1]", "live.text[2]", 0 ],
 			"obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
+			"obj-11::obj-23" : [ "live.text[1]", "live.text[2]", 0 ],
 			"obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
 			"obj-22" : [ "live.tab", "live.tab", 0 ],
 			"parameterbanks" : 			{
@@ -1425,6 +1452,10 @@
 			"parameter_overrides" : 			{
 				"obj-11::obj-16" : 				{
 					"parameter_longname" : "live.menu[2]"
+				}
+,
+				"obj-38::obj-1::obj-5" : 				{
+					"parameter_longname" : "live.toggle[1]"
 				}
 ,
 				"obj-11::obj-50" : 				{
@@ -1511,6 +1542,27 @@
 				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ui-lock.maxpat",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "icon-locked.svg",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "icon-unlocked.svg",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "svg",
 				"implicit" : 1
 			}
  ],

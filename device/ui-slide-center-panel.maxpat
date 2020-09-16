@@ -39,6 +39,40 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"comment" : "",
+					"id" : "obj-2",
+					"index" : 0,
+					"maxclass" : "outlet",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 423.0, 398.0, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-1",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "ui-lock.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 423.0, 215.0, 68.0, 42.5 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 269.0, -1.0, 20.0, 20.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-24",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -178,7 +212,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 260.5, 163.0, 104.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 157.0, 0.0, 57.0, 18.0 ],
+					"presentation_rect" : [ 182.0, 2.0, 57.0, 18.0 ],
 					"text" : "Tension",
 					"textjustification" : 1
 				}
@@ -192,7 +226,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 89.5, 160.0, 90.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 32.5, 0.0, 57.0, 18.0 ],
+					"presentation_rect" : [ 32.5, 2.0, 57.0, 18.0 ],
 					"text" : "Randomize",
 					"textjustification" : 1
 				}
@@ -207,7 +241,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 32.5, 215.0, 5.0, 100.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ -2.0, 77.0, 121.0, 9.25 ]
+					"presentation_rect" : [ -2.0, 79.0, 121.0, 9.25 ]
 				}
 
 			}
@@ -220,7 +254,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 50.0, 215.0, 5.0, 100.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 60.0, 17.0, 5.0, 121.0 ]
+					"presentation_rect" : [ 60.0, 19.0, 5.0, 121.0 ]
 				}
 
 			}
@@ -242,7 +276,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 74.0, 183.0, 121.0, 121.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 17.0, 121.0, 121.0 ],
+					"presentation_rect" : [ 0.0, 19.0, 121.0, 121.0 ],
 					"rightmargin" : 1,
 					"rightvalue" : 100,
 					"scaleknob" : 1,
@@ -266,16 +300,23 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
-					"outlettype" : [ "float" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 252.0, 183.0, 121.0, 121.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 125.0, 17.0, 121.0, 121.0 ],
+					"presentation_rect" : [ 150.0, 19.0, 121.0, 121.0 ],
 					"viewvisibility" : 1
 				}
 
 			}
  ],
 		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-16", 0 ],
 					"source" : [ "obj-14", 0 ]
@@ -346,11 +387,40 @@
 
 			}
  ],
+		"parameters" : 		{
+			"obj-1::obj-5" : [ "live.toggle", "live.toggle", 0 ],
+			"parameterbanks" : 			{
+
+			}
+
+		}
+,
 		"dependency_cache" : [ 			{
 				"name" : "ui-tension.maxpat",
 				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ui-lock.maxpat",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "icon-locked.svg",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "icon-unlocked.svg",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "svg",
 				"implicit" : 1
 			}
  ],
@@ -376,8 +446,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
