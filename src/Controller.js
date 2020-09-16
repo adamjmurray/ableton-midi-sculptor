@@ -99,7 +99,7 @@ export default class Controller {
     const prop = property.toLowerCase();
     if (prop === "strum") {
       // strum shares the UI slider with shift
-      this.transformNotes(() => this.slideTransformer.strum(amount));
+      this.transformNotes(() => this.slideTransformer.strum("start", amount));
     } else {
       this.transformNotes(() => this.slideTransformer.shift(prop, amount));
     }
@@ -110,7 +110,13 @@ export default class Controller {
   }
 
   slideSpread(property, amount) {
-    this.transformNotes(() => this.slideTransformer.spread(property.toLowerCase(), amount));
+    const prop = property.toLowerCase();
+    if (prop === "strum") {
+      // strum shares the UI slider with spread
+      this.transformNotes(() => this.slideTransformer.strum("duration", amount));
+    } else {
+      this.transformNotes(() => this.slideTransformer.spread(property.toLowerCase(), amount));
+    }
   }
 
   setSwapTarget(property, enabled) {

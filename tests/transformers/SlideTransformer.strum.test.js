@@ -16,6 +16,8 @@ describe("SlideTransformer", () => {
     slideTransformer = new SlideTransformer();
   });
 
+  // TODO: enhance the runSlideTransformerTests() helper to handle these tests
+
   describe("strum()", () => {
     it("strums the notes", () => {
       const notes = notesWithPitches([1, 2, 3, 4, 5]);
@@ -24,7 +26,7 @@ describe("SlideTransformer", () => {
       slideTransformer.notes = notes;
       slideTransformer.range = 1;
       slideTransformer.spreadAnchor = "min";
-      assert.deepStrictEqual(slideTransformer.strum(1), expected);
+      assert.deepStrictEqual(slideTransformer.strum("start", 1), expected);
     });
 
     it("can 'unstrum' in the negative direction", () => {
@@ -37,7 +39,7 @@ describe("SlideTransformer", () => {
       slideTransformer.notes = notes;
       slideTransformer.range = 1;
       slideTransformer.spreadAnchor = "min";
-      assert.deepStrictEqual(slideTransformer.strum(-1), expected);
+      assert.deepStrictEqual(slideTransformer.strum("start", -1), expected);
     });
   });
 });

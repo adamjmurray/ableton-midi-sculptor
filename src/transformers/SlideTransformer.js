@@ -130,29 +130,26 @@ export default class SlideTransformer extends Transformer {
     return this.transform(property, (value) => value + (amount * range * (value - spreadPoint)) / largestDelta);
   }
 
-  strum(amount) {
+  strum(property, amount) {
     const { range } = this.metadata.strum;
     const indexForPitch = this.strumIndexForPitch;
     const total = Object.keys(indexForPitch).length - 1;
+
     this.newNotes.forEach((newNote, noteIndex) => {
       const oldNote = this.oldNotes[noteIndex];
       const index = indexForPitch[oldNote.pitch];
       switch (this.spreadAnchor) {
         case ANCHOR.MIN:
-          newNote.start = oldNote.start + Math.pow(index / total, this.tension) * range * amount;
+          newNote[property] = oldNote[property] + Math.pow(index / total, this.tension) * range * amount;
           break;
         case ANCHOR.MIDPOINT:
-          newNote.start = oldNote.start + (Math.pow(index / total, this.tension) - 1 / 2) * range * amount;
+          newNote[property] = oldNote[property] + (Math.pow(index / total, this.tension) - 1 / 2) * range * amount;
           break;
         case ANCHOR.MAX:
-          newNote.start = oldNote.start + Math.pow((total - index) / total, this.tension) * range * amount;
+          newNote[property] = oldNote[property] + Math.pow((total - index) / total, this.tension) * range * amount;
           break;
       }
     });
-
-    // TODO:
-    // - add ability to lock end
-    // - add ability to affect the end time (use spread slider), and optionally lock start
 
     return applyEdgeBehavior(this.edgeBehavior, "start", this.newNotes, this.clip);
   }
