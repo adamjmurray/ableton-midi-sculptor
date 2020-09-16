@@ -159,7 +159,12 @@ export default class SlideTransformer extends Transformer {
       }
     });
 
-    return applyEdgeBehavior(this.edgeBehavior, "start", this.newNotes, this.clip);
+    if (property === "start") {
+      return applyEdgeBehavior(this.edgeBehavior, "start", this.newNotes, this.clip, !unlockEnd);
+    } else {
+      // it doesn't seem necessary or desirable to apply edge behavior to duration in strum mode
+      return this.newNotes;
+    }
   }
 
   /**

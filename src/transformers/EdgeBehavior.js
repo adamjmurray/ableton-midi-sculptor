@@ -16,12 +16,16 @@ const behaviors = {
       notes.forEach((note) => (note.velocity = clamp(note.velocity, 0, 127)));
       return notes;
     },
-    start: (notes, clip) => {
+    start: (notes, clip, lockEnd) => {
       if (clip) {
         // We use clip.end - Note.MIN_DURATION as the max start time so the note will be audible.
         // Otherwise if it starts exactly at the end of the clip, it will not play.
         const maxStart = clip.end - Note.MIN_DURATION;
-        notes.forEach((note) => (note.start = clamp(note.start, clip.start, maxStart)));
+        notes.forEach((note) => {
+          const oldVal = note.start;
+          note.start = clamp(note.start, clip.start, maxStart);
+          if (lockEnd) note.duration -= note.start - oldVal;
+        });
       }
       return notes;
     },
@@ -42,11 +46,13 @@ const behaviors = {
       notes.forEach((note) => (note.velocity = mod(note.velocity, 128)));
       return notes;
     },
-    start: (notes, clip) => {
+    start: (notes, clip, lockEnd) => {
       if (clip) {
         notes.forEach((note) => {
+          const oldVal = note.start;
           const relativeStart = note.start - clip.start;
           note.start = mod(relativeStart, clip.length) + clip.start;
+          if (lockEnd) note.duration -= note.start - oldVal;
         });
       }
       return notes;
@@ -71,14 +77,16 @@ const behaviors = {
       notes.forEach((note) => (note.velocity = reflectedMod(note.velocity, 127)));
       return notes;
     },
-    start: (notes, clip) => {
+    start: (notes, clip, lockEnd) => {
       if (clip) {
         notes.forEach((note) => {
+          const oldVal = note.start;
           const relativeStart = note.start - clip.start;
           note.start = reflectedMod(relativeStart, clip.length) + clip.start;
           // We use clip.end - Note.MIN_DURATION as the max start time so the note will be audible
           // Otherwise if it starts exactly at the end of the clip, it will not play.
           note.start = Math.min(note.start, clip.end - Note.MIN_DURATION);
+          if (lockEnd) note.duration -= note.start - oldVal;
         });
       }
       return notes;
@@ -115,6 +123,6 @@ const behaviors = {
   },
 };
 
-export function applyEdgeBehavior(behavior, property, notes, clip) {
-  return behaviors[behavior]?.[property]?.(notes, clip);
+export function applyEdgeBehavior(behavior, property, notes, clip, lockEnd) {
+  return behaviors[behavior]?.[property]?.(notes, clip, lockEnd);
 }
