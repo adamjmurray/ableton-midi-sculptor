@@ -1,10 +1,10 @@
 import "./polyfills";
 import Controller from "./Controller";
 
-const c = new Controller();
-
 console.log("___________________________________________________");
 console.log("Reload:", new Date());
+
+const c = new Controller();
 
 //************************************************************** */
 // The interface for Max:

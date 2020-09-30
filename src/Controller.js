@@ -71,6 +71,7 @@ export default class Controller {
   }
 
   onClipChange() {
+    this.isSynced = false;
     this.selectedClip = undefined;
   }
   /**
