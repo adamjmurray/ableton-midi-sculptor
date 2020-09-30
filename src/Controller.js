@@ -106,7 +106,15 @@ export default class Controller {
   }
 
   setStrumTension(amount) {
-    this.slideTransformer.tension = amount;
+    // the UI goes from -1 to 1 but we use this as an exponent going from 0.5 (sqrt) to 2 (squared)
+    // where the midpoint (amount == 0) is an exponent of 1.
+    if (amount < 0) {
+      // -1..0 => 0.5..1
+      this.slideTransformer.tension = amount / 2 + 1;
+    } else {
+      // 0..1 => 1..2
+      this.slideTransformer.tension = amount + 1;
+    }
   }
 
   setStrumUnlockEnd(unlocked) {
