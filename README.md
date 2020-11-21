@@ -9,7 +9,7 @@ that makes it easy to create variations of MIDI clips with tools to modify pitch
 
 ## Installation and Usage
 
-1. [Download Sculptor.amxd v1.0](./releases/1.0/Sculptor.amxd?raw=true)
+1. [Download Sculptor.amxd v1.1](./releases/1.1/Sculptor.amxd?raw=true)
 2. Drag the `Sculptor.amxd` device onto any MIDI track
 3. Click the "Sculpting Tools" button to open the main UI in a window
 4. Adjust the zoom level as desired
@@ -37,8 +37,13 @@ Some of the things you can do with this device:
   * _Note: If nothing is happening, it's probably because you only have one note selected._
 * Hovering over any part of the UI shows **documentation** in Live's Info View
 
-There are **3 sculpting tools**.
+#### New in version 1.1
 
+The button to open the Sculpting Tools can now be mapped to MIDI or the computer keyboard. So you can bind this button to a letter
+on your keyboard and press that key to toggle the window open and closed.
+
+
+### There are **3 sculpting tools**.
 
 ### Slide Tool
 
@@ -59,6 +64,12 @@ There are **3 sculpting tools**.
   * **Lowest**: don't move the note with the lowest value
   * **Middle**: don't move the note with the average value. In other words, spread away from / towards the center.
   * **Highest**: don't move the note with the hihest value
+
+#### New in version 1.1
+
+![Sculptor Device](./etc/strum.gif)
+
+A **Strum** option in the Slide Tool moves notes based on their relative pitch.
 
 
 ### Swap Tool
