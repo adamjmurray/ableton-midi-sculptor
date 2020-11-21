@@ -67,9 +67,9 @@ on your keyboard and press that key to toggle the window open and closed.
 
 #### New in version 1.1
 
-![Sculptor Device](./etc/strum.gif)
-
 A **Strum** option in the Slide Tool moves notes based on their relative pitch.
+
+![Sculptor Device](./etc/strum.gif)
 
 
 ### Swap Tool
