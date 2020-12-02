@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "npx rollup -c",
-    "ci": "npm run clean && npm run test-strict && npm run build",
+    "build-strict": "npm run clean && npm run test-strict && npm run build",
     "clean": "rm -f device/sculptor.js",
     "dev": "npx rollup -w -c",
     "test": "npx mocha -c -r @babel/register --file tests/setup.js 'tests/**/*test.js'",
