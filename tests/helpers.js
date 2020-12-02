@@ -46,8 +46,11 @@ export function runSlideTransformerTests(operation, testCases) {
         const test = { operation, noteProperty, ...tests[0] };
         const slideTransformer = setupSlideTransformer(test);
         const inputNotes = test.input.map((value) => new Note({ [noteProperty]: value }));
-        const actualNotes1 = slideTransformer[operation](noteProperty, test.amount);
-        const actualNotes2 = slideTransformer[operation](noteProperty, tests.amount);
+
+        // make a copy so it can't be destructively modified on the second transformation:
+        const actualNotes1 = slideTransformer[operation](noteProperty, test.amount).map((note) => note.clone());
+        const actualNotes2 = slideTransformer[operation](noteProperty, test.amount);
+
         assert.notDeepStrictEqual(actualNotes1, inputNotes); // check that a transformation happpened
         assert.deepStrictEqual(actualNotes1, actualNotes2);
       });
