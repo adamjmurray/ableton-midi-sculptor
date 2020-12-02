@@ -65,8 +65,9 @@ export default class SlideTransformer extends Transformer {
           pitches.push(note.pitch);
         }
       }
+      const sortedPitches = pitches.sort((a, b) => a - b);
       const indexForPitch = {};
-      pitches.sort().forEach((pitch, index) => (indexForPitch[pitch] = index));
+      sortedPitches.forEach((pitch, index) => indexForPitch[pitch] = index);
       this._strumIndexForPitch = indexForPitch;
     }
     return this._strumIndexForPitch;
