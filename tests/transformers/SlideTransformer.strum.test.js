@@ -1,47 +1,76 @@
-import assert from "assert";
-import { cloneAll } from "../helpers";
-import { Clip, Note, SlideTransformer } from "../../src";
+import { runStrumTests } from "../helpers";
 
-function notesWithPitches(pitches) {
-  return pitches.map((value) => new Note({ pitch: value }));
-}
-
-function makeNotes(noteData) {
-  return noteData.map((data) => new Note(data));
-}
-
-describe("SlideTransformer", () => {
-  let slideTransformer;
-  beforeEach(() => {
-    slideTransformer = new SlideTransformer();
-  });
-
-  // TODO: enhance the runSlideTransformerTests() helper to handle these tests
-
-  describe("strum()", () => {
-    it("strums the notes", () => {
-      const notes = notesWithPitches([1, 2, 3, 4, 5]);
-      const expectedStartTimes = [0, 0.25, 0.5, 0.75, 1];
-      const expected = notes.map((note, idx) => new Note({ ...note.toJSON(), start: expectedStartTimes[idx] }));
-      slideTransformer.notes = notes;
-      slideTransformer.range = 1;
-      slideTransformer.spreadAnchor = "min";
-      slideTransformer.strumUnlockEnd = true;
-      assert.deepStrictEqual(slideTransformer.strum("start", 1), expected);
-    });
-
-    it("can 'unstrum' in the negative direction", () => {
-      const notes = makeNotes([
-        { start: 0, pitch: 1 },
-        { start: 0.5, pitch: 2 },
-        { start: 1, pitch: 3 },
-      ]);
-      const expected = notes.map((note) => new Note({ ...note.toJSON(), start: 0 }));
-      slideTransformer.notes = notes;
-      slideTransformer.range = 1;
-      slideTransformer.spreadAnchor = "min";
-      slideTransformer.strumUnlockEnd = true;
-      assert.deepStrictEqual(slideTransformer.strum("start", -1), expected);
-    });
-  });
+describe("SlideTransformer.strum", () => {
+  runStrumTests([
+    {
+      notes: [
+        { pitch: 1, start: 0 },
+        { pitch: 2, start: 0 },
+        { pitch: 3, start: 0 },
+        { pitch: 4, start: 0 },
+        { pitch: 5, start: 0 },
+      ],
+      range: 1,
+      amount: 1,
+      anchor: "min",
+      unlockEnd: true,
+      expected: [0, 0.25, 0.5, 0.75, 1],
+    },
+    {
+      notes: [
+        { pitch: 1, start: 0 },
+        { pitch: 2, start: 1 },
+        { pitch: 3, start: 2 },
+        { pitch: 4, start: 3 },
+        { pitch: 5, start: 4 },
+      ],
+      range: 1,
+      amount: 1,
+      anchor: "min",
+      unlockEnd: true,
+      expected: [0, 1.25, 2.5, 3.75, 5],
+    },
+    {
+      notes: [
+        { pitch: 1, start: 2 },
+        { pitch: 2, start: 2 },
+        { pitch: 3, start: 2 },
+        { pitch: 4, start: 2 },
+        { pitch: 5, start: 2 },
+      ],
+      range: 2,
+      amount: -1,
+      anchor: "min",
+      unlockEnd: true,
+      expected: [2, 1.5, 1, 0.5, 0],
+    },
+    {
+      notes: [
+        { pitch: 1, start: 0 },
+        { pitch: 2, start: 0 },
+        { pitch: 3, start: 0 },
+        { pitch: 4, start: 0 },
+        { pitch: 5, start: 0 },
+      ],
+      range: 1,
+      amount: 1,
+      anchor: "max",
+      unlockEnd: true,
+      expected: [1, 0.75, 0.5, 0.25, 0],
+    },
+    // TODO:
+    // anchor middle
+    // unlockEnd
+    // duration (end time)
+    // tension positive
+    // tension negative
+    // clamp min
+    // clamp max
+    // reflect min
+    // reflect max
+    // remove min
+    // remove max
+    // rotate min
+    // rotate max
+  ]);
 });
