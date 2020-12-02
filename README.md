@@ -19,12 +19,13 @@ that makes it easy to create variations of MIDI clips with tools to modify pitch
 ## Features
 
 Some of the things you can do with this device:
-* "Humanize" (randomize) the timing and velocity of notes within a controllable range
+* "Humanize" (randomize) the timing and velocity of notes within a controllable range.
+* "Strum" chords by making simultaneous notes play in quick succession.
 * "Compress" velocity ranges to tame wild recordings with notes that are too quiet or too loud, or spread the velocities farther apart for more dynamic range.
-* Reverse all the pitches without changing timing or velocity
-* Randomly swap notes in a drum rack clip for sonic variations with the same timing as the original
-* Randomly delete notes to "thin out" a clip to create lower energy variations
-* Randomize in all sorts of ways to experiment and overcome writer's block
+* Reverse all the pitches without changing timing or velocity.
+* Randomly swap notes in a drum rack clip for sonic variations with the same timing as the original.
+* Randomly delete notes to "thin out" a clip to create lower energy variations.
+* Randomize in all sorts of ways to experiment and overcome writer's block.
 
 
 ### Device Panel
@@ -35,12 +36,12 @@ Some of the things you can do with this device:
 * The UI is **zoomable** for high resolution monitors.
 * Sculpting operations apply to the **selected notes** of the clip, so you can control what's affected.
   * _Note: If nothing is happening, it's probably because you only have one note selected._
-* Hovering over any part of the UI shows **documentation** in Live's Info View
+* Hovering over any part of the UI shows **documentation** in Live's Info View.
 
 #### New in version 1.1
 
-The button to open the Sculpting Tools can now be mapped to MIDI or the computer keyboard. So you can bind this button to a letter
-on your keyboard and press that key to toggle the window open and closed.
+The button to open the Sculpting Tools can now be mapped to MIDI or the computer keyboard.
+You can bind this button to a letter on your keyboard and press that key to toggle the window open and closed.
 
 
 ### There are **3 sculpting tools**.
