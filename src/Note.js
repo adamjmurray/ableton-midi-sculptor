@@ -1,4 +1,4 @@
-import { fuzzyEquals } from "./utils";
+import { clamp, fuzzyEquals } from "./utils";
 
 export default class Note {
   static get MIN_DURATION() {
@@ -38,19 +38,18 @@ export default class Note {
   }
 
   serialize() {
+    // If we don't call round() or toFixed() on these numbers, they can sometimes serialize as values the Live API won't accept.
     return [
-      Math.round(this.pitch),
+      clamp(Math.round(this.pitch), 0, 127),
       this.start.toFixed(4),
-      this.duration.toFixed(4),
-      this.velocity > 127 ? 127 : Math.round(this.velocity),
-      Number(this.muted),
+      (this.duration < Note.MIN_DURATION ? Note.MIN_DURATION : this.duration).toFixed(4),
+      clamp(Math.round(this.velocity), 0, 127),
+      this.muted ? 1 : 0,
     ];
   }
 
   toString() {
-    return `Note{pitch:${this.pitch},velocity:${this.velocity},duration:${this.duration},start:${this.start}${
-      this.muted ? ",muted:true" : ""
-    }}`;
+    return `Note{pitch:${this.pitch},velocity:${this.velocity},duration:${this.duration},start:${this.start}${this.muted ? ",muted:true" : ""}}`;
   }
 
   equals(note, ignoreDuration = false) {
