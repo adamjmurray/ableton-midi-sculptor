@@ -98,10 +98,20 @@ export function runStrumTests(tests) {
 
       it(describesSlideTransformerTest(test), () => {
         const slideTransformer = setupSlideTransformer({ ...test, noteProperty: 'strum' });
-        const expectedNotes = test.expected.map((value, index) => new Note({
-          ...notes[index]?.toJSON(),
-          [noteProperty]: value
-        }));
+        const expectedNotes = test.expected.map((value, index) => {
+          if (value instanceof Object) {
+            return new Note({
+              ...notes[index]?.toJSON(),
+              ...value
+            })
+          }
+          else {
+            return new Note({
+              ...notes[index]?.toJSON(),
+              [noteProperty]: value
+            })
+          }
+        });
         const actualNotes = slideTransformer[operation](noteProperty, test.amount);
         assert.deepStrictEqual(actualNotes, expectedNotes);
       });

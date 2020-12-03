@@ -100,9 +100,65 @@ describe("SlideTransformer.strum", () => {
       unlockEnd: true,
       expected: [4, 3, 2, 1, 0],
     },
+    {
+      notes: [
+        { pitch: 1, start: 0, duration: 2 },
+        { pitch: 2, start: 0, duration: 2 },
+        { pitch: 3, start: 0, duration: 2 },
+        { pitch: 4, start: 0, duration: 2 },
+        { pitch: 5, start: 0, duration: 2 },
+      ],
+      range: 1,
+      amount: 1,
+      anchor: "min",
+      unlockEnd: false,
+      expected: [
+        { start: 0, duration: 2 },
+        { start: 0.25, duration: 1.75 },
+        { start: 0.5, duration: 1.5 },
+        { start: 0.75, duration: 1.25 },
+        { start: 1, duration: 1 }
+      ],
+    },
+    {
+      notes: [
+        { pitch: 1, start: 0, duration: 1 },
+        { pitch: 2, start: 0, duration: 1 },
+        { pitch: 3, start: 0, duration: 1 },
+        { pitch: 4, start: 0, duration: 1 },
+        { pitch: 5, start: 0, duration: 1 },
+      ],
+      range: 1,
+      amount: 1,
+      anchor: "min",
+      unlockEnd: false,
+      expected: [
+        { start: 0, duration: 1 },
+        { start: 0.25, duration: 0.75 },
+        { start: 0.5, duration: 0.5 },
+        { start: 0.75, duration: 0.25 },
+        { start: 1, duration: 0 } // note will have min duration
+      ],
+    },
+    {
+      notes: [
+        { pitch: 1, start: 0, duration: 1 },
+        { pitch: 2, start: 0.5, duration: 0.5 },
+        { pitch: 3, start: 1, duration: 0 },
+      ],
+      range: 1,
+      amount: 1,
+      anchor: "min",
+      unlockEnd: false,
+      expected: [
+        // TODO: There's a bug where it gets "stuck" trying to
+        // strum any further when any duration goes <= 0.
+        { start: 0, duration: 1 },
+        { start: 1, duration: 0 },
+        { start: 2, duration: -1 } // probably shouldn't allow this
+      ],
+    },
     // TODO:
-    // unlockEnd
-    // duration (end time)
     // tension positive
     // tension negative
     // clamp min
@@ -113,5 +169,13 @@ describe("SlideTransformer.strum", () => {
     // remove max
     // rotate min
     // rotate max
+    // duration (end time)
+    // - min anchor positive
+    // - min anchor negative
+    // - max anchor positive
+    // - max anchor negative
+    // - mid anchor positive
+    // - mid anchor negative
+    // - etc
   ]);
 });
