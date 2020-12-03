@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 1,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 413.0, 738.0, 674.0, 567.0 ],
+		"rect" : [ 413.0, 85.0, 674.0, 1224.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-42",
@@ -101,12 +102,15 @@
 					"presentation_rect" : [ 131.700011999999987, 0.0, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Swap Duration",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial" : [ 1.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
 							"parameter_longname" : "live.text[13]",
 							"parameter_mmax" : 1,
-							"parameter_shortname" : "live.text"
+							"parameter_shortname" : "live.text",
+							"parameter_type" : 2
 						}
 
 					}
@@ -132,12 +136,15 @@
 					"presentation_rect" : [ 83.499999999999986, 0.0, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Swap Velocity",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial" : [ 1.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
 							"parameter_longname" : "live.text[1]",
 							"parameter_mmax" : 1,
-							"parameter_shortname" : "live.text"
+							"parameter_shortname" : "live.text",
+							"parameter_type" : 2
 						}
 
 					}
@@ -163,12 +170,15 @@
 					"presentation_rect" : [ 35.700011999999987, 0.0, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Swap Pitch",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial" : [ 1.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
 							"parameter_longname" : "live.text",
 							"parameter_mmax" : 1,
-							"parameter_shortname" : "live.text"
+							"parameter_shortname" : "live.text",
+							"parameter_type" : 2
 						}
 
 					}
@@ -231,13 +241,13 @@
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
-							"parameter_longname" : "live.text[9]",
+							"parameter_initial" : [ 0.0 ],
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
+							"parameter_longname" : "live.text[9]",
 							"parameter_mmax" : 1,
-							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.text[6]"
+							"parameter_shortname" : "live.text[6]",
+							"parameter_type" : 2
 						}
 
 					}
@@ -415,7 +425,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 1,
+							"revision" : 7,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -448,6 +458,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-26",
@@ -604,7 +615,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 1,
+							"revision" : 7,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -637,6 +648,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-4",
@@ -880,15 +892,15 @@
 					"presentation_rect" : [ 176.0, 56.0, 34.0, 19.5 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Swap Consecutive Pairs",
-							"parameter_longname" : "live.text[20]",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial" : [ 0.0 ],
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
+							"parameter_longname" : "live.text[20]",
 							"parameter_mmax" : 1,
-							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.text[6]"
+							"parameter_shortname" : "live.text[6]",
+							"parameter_type" : 2
 						}
 
 					}
@@ -914,15 +926,15 @@
 					"presentation_rect" : [ 176.0, 120.0, 34.014403999999999, 19.5 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Zipper Swap",
-							"parameter_longname" : "live.text[16]",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial" : [ 0.0 ],
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
+							"parameter_longname" : "live.text[16]",
 							"parameter_mmax" : 1,
-							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.text[6]"
+							"parameter_shortname" : "live.text[6]",
+							"parameter_type" : 2
 						}
 
 					}
@@ -1010,15 +1022,15 @@
 					"presentation_rect" : [ 176.0, 88.0, 34.014403999999999, 19.5 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Reverse",
-							"parameter_longname" : "live.text[6]",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial" : [ 0.0 ],
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
+							"parameter_longname" : "live.text[6]",
 							"parameter_mmax" : 1,
-							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.text[6]"
+							"parameter_shortname" : "live.text[6]",
+							"parameter_type" : 2
 						}
 
 					}
@@ -1316,17 +1328,18 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-7" : [ "live.text", "live.text", 0 ],
-			"obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
 			"obj-10" : [ "live.text[1]", "live.text", 0 ],
-			"obj-110" : [ "live.text[16]", "live.text[6]", 0 ],
-			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
 			"obj-11" : [ "live.text[13]", "live.text", 0 ],
+			"obj-110" : [ "live.text[16]", "live.text[6]", 0 ],
+			"obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
+			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
 			"obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
+			"obj-7" : [ "live.text", "live.text", 0 ],
 			"parameterbanks" : 			{
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [  ],
