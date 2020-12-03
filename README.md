@@ -36,12 +36,6 @@ Some of the things you can do with this device:
 * The UI is **zoomable** for high resolution monitors.
 * Sculpting operations apply to the **selected notes** of the clip, so you can control what's affected.
   * _Note: If nothing is happening, it's probably because you only have one note selected._
-* Hovering over any part of the UI shows **documentation** in Live's Info View.
-
-#### New in version 1.1
-
-The button to open the Sculpting Tools can now be mapped to MIDI or the computer keyboard.
-You can bind this button to a letter on your keyboard and press that key to toggle the window open and closed.
 
 
 ### There are **3 sculpting tools**.
