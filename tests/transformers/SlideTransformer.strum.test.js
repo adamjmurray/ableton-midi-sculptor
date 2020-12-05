@@ -1,3 +1,4 @@
+import { Note } from "../../src";
 import { runStrumTests } from "../helpers";
 
 describe("SlideTransformer.strum", () => {
@@ -137,25 +138,23 @@ describe("SlideTransformer.strum", () => {
         { start: 0.25, duration: 0.75 },
         { start: 0.5, duration: 0.5 },
         { start: 0.75, duration: 0.25 },
-        { start: 1, duration: 0 } // note will have min duration
+        { start: 1 - Note.MIN_DURATION, duration: Note.MIN_DURATION },
       ],
     },
     {
       notes: [
         { pitch: 1, start: 0, duration: 1 },
         { pitch: 2, start: 0.5, duration: 0.5 },
-        { pitch: 3, start: 1, duration: 0 },
+        { pitch: 3, start: 1, duration: 1 },
       ],
       range: 1,
       amount: 1,
       anchor: "min",
       unlockEnd: false,
       expected: [
-        // TODO: There's a bug where it gets "stuck" trying to
-        // strum any further when any duration goes <= 0.
         { start: 0, duration: 1 },
-        { start: 1, duration: 0 },
-        { start: 2, duration: -1 } // probably shouldn't allow this
+        { start: 1 - Note.MIN_DURATION, duration: Note.MIN_DURATION },
+        { start: 2 - Note.MIN_DURATION, duration: Note.MIN_DURATION },
       ],
     },
     // TODO:

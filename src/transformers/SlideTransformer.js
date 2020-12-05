@@ -161,10 +161,14 @@ export default class SlideTransformer extends Transformer {
     });
 
     if (property === "start") {
-      return applyEdgeBehavior(this.edgeBehavior, "start", this.newNotes, this.clip, !unlockEnd);
+      if (unlockEnd) {
+        // we're sliding the notes around without changing the duration and can apply standard edge behavior
+        return applyEdgeBehavior(this.edgeBehavior, "start", this.newNotes, this.clip);
+      } else {
+        return applyEdgeBehavior(this.edgeBehavior, "strumStart", this.newNotes, this.clip);
+      }
     } else {
-      // it doesn't seem necessary or desirable to apply edge behavior to duration in strum mode
-      return this.newNotes;
+      return applyEdgeBehavior(this.edgeBehavior, "strumEnd", this.newNotes, this.clip);
     }
   }
 
