@@ -49,28 +49,8 @@ export default class Clip {
   }
 
   get selectedNotes() {
-    const data = this.api.call("get_selected_notes");
-    /* =>
-    "notes" count
-    "note" pitch start duration velocity muted // 0 or more 6-tuples
-    "note" pitch start duration velocity muted
-    ...
-    "done" */
-    if (!(data instanceof Array)) return [];
-    const notes = [];
-
-    for (let i = 2; i < data.length - 1; i += 6) {
-      // `i = 2` skips "notes count" at beginning, `< data.length-1` skips "done" at end
-      notes.push(
-        new Note({
-          pitch: Number(data[i + 1]),
-          start: Number(data[i + 2]),
-          duration: Number(data[i + 3]),
-          velocity: Number(data[i + 4]),
-          muted: Boolean(data[i + 5]),
-        })
-      );
-    }
+    const data = this.api.call("get_selected_notes_extended");
+    const notes = JSON.parse(data).notes.map(Note.fromLiveAPI);
     notes.sort((n1, n2) => n1.start - n2.start || n1.pitch - n2.pitch);
     return notes;
   }
@@ -85,9 +65,11 @@ export default class Clip {
       console.log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`);
       notes = notes.slice(0, Clip.MAX_NOTES);
     }
-    this.api.call("replace_selected_notes");
-    this.api.call("notes", notes.length);
-    notes.forEach((note) => this.api.call("note", ...note.serialize()));
-    this.api.call("done");
+    // TODO: `apply_note modifications` cannot add new notes or delete notes
+    // we need to use `add_new_notes` and `remove_notes_by_id`
+    // so we'll need to keep track of which notes were deleted (compare orig to transformed lists or persist it in
+    // this class) and delete them explicitly.
+    const data = JSON.stringify({ notes: notes.map(note => note.toLiveAPI()) })
+    this.api.call("apply_note_modifications", data);
   }
 }
