@@ -1,8 +1,17 @@
 {
   "name": "ableton-midi-sculptor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Ableton MIDI Sculptor is a[Max for Live device for Ableton Live that makes it easy to create variations of MIDI clips with tools to modify velocity and timing.",
-  "main": "src/index.js",
+  "author": "Adam Murray",
+  "license": "GPL3",
+  "homepage": "https://github.com/adamjmurray/ableton-midi-sculptor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamjmurray/ableton-midi-sculptor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adamjmurray/ableton-midi-sculptor/issues"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.10",
@@ -12,6 +21,7 @@
     "rollup": "^2.34.2",
     "rollup-plugin-babel": "^4.4.0"
   },
+  "main": "src/index.js",
   "scripts": {
     "build": "npx rollup -c",
     "build-strict": "npm run clean && npm run test-strict && npm run build",
@@ -20,15 +30,5 @@
     "test": "npx mocha -c -r @babel/register --file tests/setup.js 'tests/**/*test.js'",
     "test-strict": "npx mocha --forbid-only -c -r @babel/register --file tests/setup.js 'tests/**/*test.js'",
     "tdd": "npx mocha -c -R min -w -r @babel/register --file tests/setup.js 'tests/**/*test.js'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/adamjmurray/ableton-midi-sculptor.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/adamjmurray/ableton-midi-sculptor/issues"
-  },
-  "homepage": "https://github.com/adamjmurray/ableton-midi-sculptor#readme"
+  }
 }
