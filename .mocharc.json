@@ -1,0 +1,10 @@
+{
+  "require": [
+    "@babel/register"
+  ],
+  "file": [
+    "tests/setup.js"
+  ],
+  "spec": "tests/**/*.test.js",
+  "color": true
+}

@@ -26,9 +26,9 @@
     "build": "npx rollup -c",
     "build-strict": "npm run clean && npm run test-strict && npm run build",
     "clean": "rm -f device/sculptor.js",
-    "dev": "npx rollup -w -c",
-    "test": "npx mocha -c -r @babel/register --file tests/setup.js 'tests/**/*test.js'",
-    "test-strict": "npx mocha --forbid-only -c -r @babel/register --file tests/setup.js 'tests/**/*test.js'",
-    "tdd": "npx mocha -c -R min -w -r @babel/register --file tests/setup.js 'tests/**/*test.js'"
+    "dev": "npx rollup -c --watch",
+    "test": "npx mocha",
+    "test-strict": "npx mocha --forbid-only",
+    "tdd": "npx mocha --reporter min --watch"
   }
 }
