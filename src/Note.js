@@ -41,8 +41,8 @@ export default class Note {
     // If we don't call round() or toFixed() on these numbers, they can sometimes serialize as values the Live API won't accept.
     return [
       clamp(Math.round(this.pitch), 0, 127),
-      this.start.toFixed(4),
-      (this.duration < Note.MIN_DURATION ? Note.MIN_DURATION : this.duration).toFixed(4),
+      this.start.toFixed(6),
+      (this.duration < Note.MIN_DURATION ? Note.MIN_DURATION : this.duration).toFixed(6),
       clamp(Math.round(this.velocity), 0, 127),
       this.muted ? 1 : 0,
     ];
