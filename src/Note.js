@@ -63,8 +63,8 @@ export default class Note {
     return {
       note_id: this.id, // Note only use this for apply_note_modifications, not adding new notes!
       pitch: this.pitch, // Do we need this anymore? clamp(Math.round(this.pitch), 0, 127). Same for velocity, etc
-      start_time: this.start,  // we used to have to call toFixed(4)
-      duration: this.duration < Note.MIN_DURATION ? Note.MIN_DURATION : this.duration, // we used to have to call toFixed(4)
+      start_time: this.start,  // we used to have to call toFixed(6)
+      duration: this.duration < Note.MIN_DURATION ? Note.MIN_DURATION : this.duration, // we used to have to call toFixed(6)
       velocity: this.velocity,
       velocity_deviation: this.velrange,
       release_velocity: this.release,
