@@ -1,7 +1,5 @@
 Bugs
-- Adding the device creates ~3 unnecessary undo history states
 - When moving a clip to another track, an unnecesary undo history state is created
-- "Flicking" the mouse can shift an additional time at the maximum amount
 
 Ideas
 - Slide

@@ -18,15 +18,15 @@ export function cloneAll(cloneables) {
 
 export const defaultClip = Object.freeze({ start: 0, end: 16, length: 16 });
 
-function describesSlideTransformerTest({ operation, noteProperty, range, amount, edgeBehavior, anchor, unlockEnd, clip, description }) {
+function describesSlideTransformerTest({ operation, noteProperty, range, amount, edgeBehavior, anchor, unlockEnd, tension, clip, description }) {
   const baseDescription = description || `${operation}s the ${noteProperty} as expected`;
-  return `${baseDescription} for ${Object.entries({ range, amount, edgeBehavior, anchor, unlockEnd, clip })
+  return `${baseDescription} for ${Object.entries({ range, amount, edgeBehavior, anchor, unlockEnd, tension, clip })
     .filter(([_, value]) => value != null)
     .map(([name, value]) => `${name}=${JSON.stringify(value)}`)
     .join(", ")}`;
 }
 
-function setupSlideTransformer({ notes, input, noteProperty, range, edgeBehavior, anchor, unlockEnd, clip }) {
+function setupSlideTransformer({ notes, input, noteProperty, range, edgeBehavior, anchor, unlockEnd, tension, clip }) {
   const slideTransformer = new SlideTransformer();
   slideTransformer.notes = notes || input.map((value) => new Note({ [noteProperty]: value }));
   slideTransformer.setRange(noteProperty, range);
@@ -38,6 +38,9 @@ function setupSlideTransformer({ notes, input, noteProperty, range, edgeBehavior
   }
   if (unlockEnd) {
     slideTransformer.strumUnlockEnd = unlockEnd;
+  }
+  if (tension) {
+    slideTransformer.tension = tension;
   }
   const c = clip || defaultClip;
   if (!c.length) c.length = c.end - c.start;
@@ -63,7 +66,9 @@ export function runSlideTransformerTests(operation, testCases) {
 
       tests.forEach((testParams) => {
         const test = { operation, noteProperty, ...testParams };
-        it(describesSlideTransformerTest(test), () => {
+        const runTest = testParams.only ? it.only : it;
+
+        runTest(describesSlideTransformerTest(test), () => {
           const slideTransformer = setupSlideTransformer(test);
           const expectedNotes = test.expected.map((value) => new Note({ [noteProperty]: value }));
           const actualNotes = slideTransformer[operation](noteProperty, test.amount);
@@ -95,8 +100,9 @@ export function runStrumTests(tests) {
     tests.forEach((testParams) => {
       const notes = testParams.notes.map(noteParams => new Note(noteParams));
       const test = { operation, noteProperty, ...testParams, notes };
+      const runTest = testParams.only ? it.only : it;
 
-      it(describesSlideTransformerTest(test), () => {
+      runTest(describesSlideTransformerTest(test), () => {
         const slideTransformer = setupSlideTransformer({ ...test, noteProperty: 'strum' });
         const expectedNotes = test.expected.map((value, index) => {
           if (value instanceof Object) {
