@@ -24,14 +24,14 @@ export default class Clip {
   }
 
   get exists() {
+    // TODO: all of these lazy initializers should be doing null checks
     return (this._exists = this._exists || this.api.id !== "0");
   }
 
   get isMidi() {
     if (!this.exists) return false;
     if (this._isMidi == null) {
-      const value = this.api.get("is_midi_clip");
-      this._isMidi = Boolean(value instanceof Array ? value[0] : value); // api quirk
+      this._isMidi = this.api.get("is_midi_clip");
     }
     return this._isMidi;
   }

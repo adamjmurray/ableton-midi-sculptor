@@ -3,7 +3,7 @@ export function clamp(value, min, max) {
 }
 
 // check if two numbers are almost equal to compensate for floating point round-off error
-export function fuzzyEquals(num1, num2, delta = 0.001) {
+export function fuzzyEquals(num1, num2, delta = 0.0001) {
   return Math.abs(num1 - num2) < delta || Object.is(num1, num2);
 }
 

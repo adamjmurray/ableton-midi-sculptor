@@ -56,7 +56,7 @@ export default class Note {
       release: data.release_velocity,
       probability: data.probability,
       muted: !!data.mute,
-    })
+    });
   }
 
   toLiveAPI() {
@@ -77,13 +77,16 @@ export default class Note {
     return `Note(${JSON.stringify(this.toJSON())})`;
   }
 
-  // TODO: update for the new props
-  equals(note, ignoreDuration = false) {
+  equals(note) {
     return (
+      this.id === note.id &&
       this.pitch === note.pitch &&
-      this.velocity === note.velocity &&
       fuzzyEquals(this.start, note.start) &&
-      (ignoreDuration || fuzzyEquals(this.duration, note.duration)) &&
+      fuzzyEquals(this.duration, note.duration) &&
+      this.velocity === note.velocity &&
+      this.velrange === note.velrange &&
+      this.release === note.release &&
+      fuzzyEquals(this.probability, note.probability) &&
       this.muted === note.muted
     );
   }

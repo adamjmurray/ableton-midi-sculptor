@@ -2,51 +2,71 @@ import assert from "assert";
 import { Note } from "../src";
 
 // TODO: Update for new Live API
-describe.skip("Note", () => {
-  describe("serialize", () => {
+describe("Note", () => {
+  describe("fromLiveAPI()", () => {
 
-    it("returns [pitch, start, duration, velocity, muted] in the expected format", () => {
-      assert.deepStrictEqual(
-        new Note({ pitch: 60, velocity: 70, start: 0, duration: 1, muted: false }).serialize(),
-        [60, '0.000000', '1.000000', 70, 0]
-      );
-      assert.deepStrictEqual(
-        new Note({ pitch: 0, velocity: 0, start: -0.5, duration: 1.5, muted: true }).serialize(),
-        [0, '-0.500000', '1.500000', 0, 1]
-      );
+    it('parses the Live API data into a Note object', () => {
+      const apiData = {
+        "note_id": 38,
+        "pitch": 84,
+        "start_time": 8,
+        "duration": 1.5,
+        "velocity": 78,
+        "mute": 1,
+        "probability": 0.5,
+        "velocity_deviation": -37,
+        "release_velocity": 41,
+      };
+      const note = Note.fromLiveAPI(apiData);
+
+      assert.strictEqual(note.id, 38);
+      assert.strictEqual(note.pitch, 84);
+      assert.strictEqual(note.start, 8);
+      assert.strictEqual(note.duration, 1.5);
+      assert.strictEqual(note.velocity, 78);
+      assert.strictEqual(note.muted, true);
+      assert.strictEqual(note.probability, 0.5);
+      assert.strictEqual(note.velrange, -37);
+      assert.strictEqual(note.release, 41);
+
+      assert.deepStrictEqual(note, new Note({
+        id: 38,
+        pitch: 84,
+        start: 8,
+        duration: 1.5,
+        velocity: 78,
+        muted: true,
+        probability: 0.5,
+        velrange: -37,
+        release: 41,
+      }))
     });
+  });
 
-    it("ensures pitch is between 0 and 127", () => {
-      assert.deepStrictEqual(
-        new Note({ pitch: -1, velocity: 70, start: 0, duration: 1, muted: false }).serialize(),
-        [0, '0.000000', '1.000000', 70, 0]
-      );
-      assert.deepStrictEqual(
-        new Note({ pitch: 128, velocity: 70, start: 0, duration: 1, muted: false }).serialize(),
-        [127, '0.000000', '1.000000', 70, 0]
-      );
-    });
-
-    it("ensures duration is at least the Note.MIN_DURATION", () => {
-      assert.deepStrictEqual(
-        new Note({ pitch: 60, velocity: 70, start: 0, duration: -1, muted: false }).serialize(),
-        [60, '0.000000', '0.003906', 70, 0]
-      );
-      assert.deepStrictEqual(
-        new Note({ pitch: 60, velocity: 70, start: 0, duration: 0, muted: false }).serialize(),
-        [60, '0.000000', '0.003906', 70, 0]
-      );
-    });
-
-    it("ensures velocity is between 0 and 127", () => {
-      assert.deepStrictEqual(
-        new Note({ pitch: 60, velocity: -1, start: 0, duration: 1, muted: false }).serialize(),
-        [60, '0.000000', '1.000000', 0, 0]
-      );
-      assert.deepStrictEqual(
-        new Note({ pitch: 60, velocity: 128, start: 0, duration: 1, muted: false }).serialize(),
-        [60, '0.000000', '1.000000', 127, 0]
-      );
+  describe('toLiveAPI()', () => {
+    it('serializes the Note into data for the Live API', () => {
+      const note = new Note({
+        id: 2,
+        pitch: 65,
+        start: 1.5,
+        duration: 0.5,
+        velocity: 99,
+        muted: false,
+        probability: 0.9,
+        velrange: 10,
+        release: 0,
+      });
+      assert.deepStrictEqual(note.toLiveAPI(), {
+        "note_id": 2,
+        "pitch": 65,
+        "start_time": 1.5,
+        "duration": 0.5,
+        "velocity": 99,
+        "mute": 0,
+        "probability": 0.9,
+        "velocity_deviation": 10,
+        "release_velocity": 0,
+      });
     });
   });
 });
