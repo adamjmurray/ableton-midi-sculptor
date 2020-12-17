@@ -60,17 +60,22 @@ export default class Note {
   }
 
   toLiveAPI() {
-    return {
-      note_id: this.id, // Note only use this for apply_note_modifications, not adding new notes!
-      pitch: this.pitch, // Do we need this anymore? clamp(Math.round(this.pitch), 0, 127). Same for velocity, etc
+    const data = {
+      pitch: clamp(Math.round(this.pitch), 0, 127),
       start_time: this.start,  // we used to have to call toFixed(6)
       duration: this.duration < Note.MIN_DURATION ? Note.MIN_DURATION : this.duration, // we used to have to call toFixed(6)
-      velocity: this.velocity,
-      velocity_deviation: this.velrange,
-      release_velocity: this.release,
-      probability: this.probability,
+      velocity: clamp(this.velocity, 1, 127),
+      velocity_deviation: clamp(this.velrange, -127, 127),
+      release_velocity: clamp(this.release, 0, 127),
+      probability: clamp(this.probability, 0, 1),
       mute: this.muted ? 1 : 0,
     };
+    // `add_new_notes` will not accept an id, while `apply_note_modifications` requires one.
+    // Clip.replaceSelectedNotes() will call the correct Live API function depending on the existence of the id.
+    if (this.id != null) {
+      data.note_id = this.id; // Note only use this for apply_note_modifications, not adding new notes!
+    }
+    return data;
   }
 
   toString() {

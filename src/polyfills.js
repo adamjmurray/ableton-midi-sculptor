@@ -9,6 +9,8 @@ console = {
         post(s);
       } else if (message === null) {
         post("<null>");
+      } else if (message === false) {
+        post("false"); // otherwise prints as 0
       } else {
         post(message);
       }
@@ -68,7 +70,7 @@ if (typeof Object.values != "function") {
 
 // String.includes()
 if (!String.prototype.includes) {
-  String.prototype.includes = function (search, start) {
+  String.prototype.includes = function(search, start) {
     "use strict";
     if (typeof start !== "number") {
       start = 0;
@@ -83,7 +85,7 @@ if (!String.prototype.includes) {
 
 // Array.find()
 if (!Array.prototype.find) {
-  Array.prototype.find = function (predicate, thisArg) {
+  Array.prototype.find = function(predicate, thisArg) {
     thisArg = thisArg || this;
     for (var i = 0; i < this.length; i++) {
       var value = this[i];
@@ -92,5 +94,17 @@ if (!Array.prototype.find) {
       }
     }
     return undefined;
+  };
+}
+
+// Array.includes()
+if (!Array.prototype.includes) {
+  Array.prototype.includes = function(value, fromIndex = 0) {
+    for (var i = fromIndex; i < this.length; i++) {
+      if (this[i] === value) {
+        return true;
+      }
+    }
+    return false;
   };
 }
