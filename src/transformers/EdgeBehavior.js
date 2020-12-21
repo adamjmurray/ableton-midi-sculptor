@@ -9,11 +9,11 @@ import { clamp, mod, reflectedMod } from "../utils";
 const behaviors = {
   clamp: {
     pitch: (notes) => {
-      notes.forEach((note) => (note.pitch = clamp(note.pitch, 0, 127)));
+      // Let Note.toLiveAPI() handle the clamping
       return notes;
     },
     velocity: (notes) => {
-      notes.forEach((note) => (note.velocity = clamp(note.velocity, 0, 127)));
+      // Let Note.toLiveAPI() handle the clamping
       return notes;
     },
     start: (notes, clip) => {
@@ -27,8 +27,7 @@ const behaviors = {
     },
     duration: (notes, clip) => {
       if (clip) {
-        // TODO: Consider making this clip.length - note.start
-        notes.forEach((note) => (note.duration = clamp(note.duration, Note.MIN_DURATION, clip.length)));
+        notes.forEach((note) => (note.duration = clamp(note.duration, Note.MIN_DURATION, clip.length - note.start)));
       }
       return notes;
     },
@@ -155,13 +154,16 @@ const behaviors = {
 
   remove: {
     pitch: (notes) => {
-      return notes.filter((note) => note.pitch >= 0 && note.pitch <= 127);
+      for (const note of notes) {
+        note.deleted = note.pitch < 0 || note.pitch > 127;
+      }
+      return notes;
     },
     velocity: (notes) => {
-      // Special exception: When velocity exceeds 127, it is clamped to 127
-      // because it's counterintuitive to remove a note that gets "too loud"
-      notes.forEach((note) => (note.velocity = Math.min(note.velocity, 127)));
-      return notes.filter((note) => note.velocity >= 0);
+      for (const note of notes) {
+        note.deleted = note.velocity < 0;
+      }
+      return notes;
     },
     start: (notes) => {
       // Let the notes go past the clip boundaries so they don't play.
@@ -169,13 +171,22 @@ const behaviors = {
       return notes;
     },
     duration: (notes) => {
-      return notes.filter((note) => note.duration >= Note.MIN_DURATION);
+      for (const note of notes) {
+        note.deleted = note.duration < Note.MIN_DURATION;
+      }
+      return notes;
     },
     strumStart: (notes) => {
-      return notes.filter((note) => note.duration >= Note.MIN_DURATION);
+      for (const note of notes) {
+        note.deleted = note.duration < Note.MIN_DURATION;
+      }
+      return notes;
     },
     strumEnd: (notes) => {
-      return notes.filter((note) => note.duration >= Note.MIN_DURATION);
+      for (const note of notes) {
+        note.deleted = note.duration < Note.MIN_DURATION;
+      }
+      return notes;
     },
   },
 };

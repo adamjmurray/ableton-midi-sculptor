@@ -18,6 +18,7 @@ export default class Note {
         release: 100, // 0 - 127
         probability: 1, // 0.0 - 1.0
         muted: false, // boolean
+        deleted: false, // boolean. Tracks if a note has been "soft deleted". See Clip.replaceSelectedNotes()
       },
       options
     );
@@ -42,6 +43,7 @@ export default class Note {
       release: this.release,
       probability: this.probability,
       muted: this.muted,
+      deleted: this.deleted,
     };
   }
 
@@ -69,7 +71,7 @@ export default class Note {
       velocity_deviation: clamp(this.velrange, -127, 127),
       release_velocity: clamp(this.release, 0, 127),
       probability: clamp(this.probability, 0, 1),
-      mute: this.muted ? 1 : 0,
+      mute: (this.muted || this.deleted) ? 1 : 0,
     };
   }
 
@@ -87,7 +89,8 @@ export default class Note {
       this.velrange === note.velrange &&
       this.release === note.release &&
       fuzzyEquals(this.probability, note.probability) &&
-      this.muted === note.muted
+      this.muted === note.muted &&
+      this.deleted === note.deleted
     );
   }
 
