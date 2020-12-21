@@ -1,26 +1,10 @@
-import Transformer from './Transformer';
-import Note from '../Note';
-import { mod, reflectedMod } from '../utils';
-
-function rotateOrReflect(notes, operation, clip) {
-  for (const note of notes) {
-    note.pitch = operation(note.pitch, 127);
-    note.velocity = operation(note.velocity, 127);
-
-    if (clip) {
-      const relativeStart = note.start - clip.start;
-      const relativeDuration = note.duration - Note.MIN_DURATION;
-      note.start = operation(relativeStart, clip.length) + clip.start;
-      note.duration = operation(relativeDuration, clip.length) + Note.MIN_DURATION;
-    }
-  }
-  return notes;
-}
+import Transformer from "./Transformer";
+import { applyEdgeBehavior } from "./EdgeBehavior";
 
 export const ANCHOR = Object.freeze({
-  MIN: 'min',
-  MIDPOINT: 'mid',
-  MAX: 'max',
+  MIN: "min",
+  MIDPOINT: "mid",
+  MAX: "max",
 });
 
 class SlidablePropertyMetadata {
@@ -38,71 +22,25 @@ class SlidablePropertiesMetadata {
     this.pitch = new SlidablePropertyMetadata(12);
     this.velocity = new SlidablePropertyMetadata(64);
     this.duration = new SlidablePropertyMetadata(1);
+    this.strum = new SlidablePropertyMetadata(1);
   }
 }
-// NOTE: All EdgeTransformers destructively modify the Notes for efficiency.
-// The Slider transformer keeps a separate copy of the original notes and regenerates modified notes
-// on each transformation, so we can safely modify here before serialization.
-// The return value still needs to be used, because the note list could be filtered.
-
-class EdgeTransformer {
-  clip(notes, clip) {
-    for (const note of notes) {
-      note.pitch = Math.max(0, Math.min(127, note.pitch));
-      note.velocity = Math.max(0, Math.min(127, note.velocity));
-      if (clip) {
-        // We use clip.end - Note.MIN_DURATION as the max start time so the note will be audible
-        // Otherwise if it starts exactly at the end of the clip, it will not play.
-        note.start = Math.max(clip.start, Math.min(clip.end - Note.MIN_DURATION, note.start));
-        note.duration = Math.max(Note.MIN_DURATION, Math.min(clip.length, note.duration));
-      }
-    }
-    return notes;
-  }
-
-  rotate(notes, clip) {
-    return rotateOrReflect(notes, mod, clip);
-  }
-
-  reflect(notes, clip) {
-    rotateOrReflect(notes, reflectedMod, clip);
-    if (clip) {
-      for (const note of notes) {
-        // We use clip.end - Note.MIN_DURATION as the max start time so the note will be audible
-        // Otherwise if it starts exactly at the end of the clip, it will not play.
-        note.start = Math.min(clip.end - Note.MIN_DURATION, note.start);
-      }
-    }
-    return notes;
-  }
-
-  remove(notes) {
-    // This serializers avoids clipping to min/max values.
-    // When property values bcome invalid, the note is removed.
-    // The one exception is when velocity exceeds 127, it is clipped to 127
-    // (because it's undesirable to remove a note that gets "too loud")
-    for (const note of notes) {
-      note.velocity = Math.min(127, note.velocity);
-    }
-    return notes.filter(note => note.valid);
-  }
-}
-
-const edgeTransformer = new EdgeTransformer();
 
 export default class SlideTransformer extends Transformer {
   constructor() {
     super();
     this.metadata = new SlidablePropertiesMetadata();
-    this.edgeTransformation = edgeTransformer.clip;
-    this.anchor = ANCHOR.MIDDLE;
+    this.edgeBehavior = "clamp";
+    this.spreadAnchor = ANCHOR.MIDPOINT; // TODO: rename this to anchor
+    this.tension = 1;
+    this.strumUnlockEnd = false;
   }
 
   set notes(notes) {
     super.setNotes(notes);
 
-    for (const property of ['start', 'pitch', 'velocity', 'duration']) {
-      let values = notes.map(note => note.get(property));
+    for (const property of ["start", "pitch", "velocity", "duration"]) {
+      let values = notes.map((note) => note.get(property));
 
       let min = Math.min.apply(null, values);
       let max = Math.max.apply(null, values);
@@ -113,14 +51,26 @@ export default class SlideTransformer extends Transformer {
       propertyMetadata.midpoint = midpoint;
       propertyMetadata.max = max;
     }
+
+    this._strumIndexForPitch = null;
   }
 
-  set edgeBehavior(transformationType) {
-    this.edgeTransformation = edgeTransformer[transformationType];
-  }
-
-  set spreadAnchor(anchor) {
-    this.anchor = anchor;
+  get strumIndexForPitch() {
+    if (!this._strumIndexForPitch) {
+      // Future enhancement: This could group by notes playing at the same time (group by chords) and
+      // index them separately, for consistent timing changes between each chord's top and bottom notes.
+      const pitches = [];
+      for (const note of this.oldNotes) {
+        if (pitches.indexOf(note.pitch) < 0) {
+          pitches.push(note.pitch);
+        }
+      }
+      const sortedPitches = pitches.sort((a, b) => a - b);
+      const indexForPitch = {};
+      sortedPitches.forEach((pitch, index) => indexForPitch[pitch] = index);
+      this._strumIndexForPitch = indexForPitch;
+    }
+    return this._strumIndexForPitch;
   }
 
   /**
@@ -138,7 +88,7 @@ export default class SlideTransformer extends Transformer {
       const oldNote = this.oldNotes[index];
       newNote.set(property, mapValue(oldNote.get(property), index));
     });
-    return this.edgeTransformation(this.newNotes, this.clip);
+    return applyEdgeBehavior(this.edgeBehavior, property, this.newNotes, this.clip);
   }
   /**
    Shift all notes' property values by the same amount.
@@ -147,7 +97,7 @@ export default class SlideTransformer extends Transformer {
    */
   shift(property, amount) {
     amount *= this.metadata[property].range;
-    return this.transform(property, value => value + amount);
+    return this.transform(property, (value) => value + amount);
   }
 
   /**
@@ -160,7 +110,7 @@ export default class SlideTransformer extends Transformer {
     let spreadPoint;
     let largestDelta = 0;
 
-    switch (this.anchor) {
+    switch (this.spreadAnchor) {
       case ANCHOR.MIN:
         spreadPoint = min;
         largestDelta = max - min;
@@ -179,8 +129,49 @@ export default class SlideTransformer extends Transformer {
 
     if (largestDelta === 0) return this.newNotes;
 
-    return this.transform(property, value => value + amount * range * (value - spreadPoint) / largestDelta);
+    return this.transform(property, (value) => value + (amount * range * (value - spreadPoint)) / largestDelta);
   }
+
+  strum(property, amount) {
+    const { range } = this.metadata.strum;
+    const indexForPitch = this.strumIndexForPitch;
+    const total = Object.keys(indexForPitch).length - 1;
+    const unlockEnd = this.strumUnlockEnd;
+
+    this.newNotes.forEach((newNote, noteIndex) => {
+      const oldNote = this.oldNotes[noteIndex];
+      const index = indexForPitch[oldNote.pitch];
+      let shift = 0;
+      switch (this.spreadAnchor) {
+        case ANCHOR.MIN:
+          shift = Math.pow(index / total, this.tension) * range * amount;
+          break;
+        case ANCHOR.MIDPOINT:
+          shift = (Math.pow(index / total, this.tension) - 1 / 2) * range * amount;
+          break;
+        case ANCHOR.MAX:
+          shift = Math.pow((total - index) / total, this.tension) * range * amount;
+          break;
+      }
+      newNote[property] = oldNote[property] + shift;
+      if (property === "start" && !unlockEnd) {
+        // the end is locked in place so we need to change the duration to compensate the start time shift
+        newNote.duration = oldNote.duration - shift;
+      }
+    });
+
+    if (property === "start") {
+      if (unlockEnd) {
+        // we're sliding the notes around without changing the duration and can apply standard edge behavior
+        return applyEdgeBehavior(this.edgeBehavior, "start", this.newNotes, this.clip);
+      } else {
+        return applyEdgeBehavior(this.edgeBehavior, "strumStart", this.newNotes, this.clip);
+      }
+    } else {
+      return applyEdgeBehavior(this.edgeBehavior, "strumEnd", this.newNotes, this.clip);
+    }
+  }
+
   /**
    2-D randomization for the notes' property value.
    - property is velocity, start, duration
@@ -189,10 +180,13 @@ export default class SlideTransformer extends Transformer {
    random('velocity', 0.5, -0.25) will always have the same effect until the next reset (i.e. mouseup)
   */
   randomize2D(property, amountX, amountY) {
-    const range = this.metadata[property].range; // We halve the range because two random values are added, which would have a max of range + range
-
+    const range = this.metadata[property].range;
+    // We halve the range because two random values are added, which would have a max of range + range
     amountX *= range / 2;
     amountY *= range / 2;
-    return this.transform(property, (value, index) => value + this.bipolarRandom1[index] * amountX + this.bipolarRandom2[index] * amountY);
+    return this.transform(
+      property,
+      (value, index) => value + this.bipolarRandom1[index] * amountX + this.bipolarRandom2[index] * amountY
+    );
   }
 }

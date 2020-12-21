@@ -3,7 +3,7 @@ Development Process
 The package.json scripts provide everything needed to develop this device.
 
 Setup
-1. Install Node 12 or higher
+1. Install Node.js 14 or higher
 2. `npm install`
 
 Development Process
@@ -23,7 +23,9 @@ Updating Screenshots
 2. Crop out the window toolbar
 
 Releasing
-1. Edit the device
-2. Freeze the device
-3. "Save as" the frozen device to the releases folder (e.g. releases/1.0/Sculptor.amxd)
-4. Confirm this copy of the device works by re-adding it to your set
+1. Bump the version number: Edit the device to update the version number text and save
+2. Freeze the device, then "Save as" the frozen device to the releases folder (e.g. releases/{VERSION}/Sculptor.amxd)
+3. Confirm this copy of the device works by re-adding it to your set
+4. Update the README's link to the device
+5. Update release/latest-version.txt
+5. Commit all changes and push

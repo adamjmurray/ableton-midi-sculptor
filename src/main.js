@@ -1,10 +1,10 @@
-import './polyfills'
-import Controller from './Controller'
+import "./polyfills";
+import Controller from "./Controller";
 
-const c = new Controller()
+console.log("___________________________________________________");
+console.log("Reload:", new Date());
 
-console.log("___________________________________________________")
-console.log("Reload:", new Date())
+const c = new Controller();
 
 //************************************************************** */
 // The interface for Max:
@@ -20,6 +20,8 @@ export const slide_random = c.slideRandomly.bind(c);
 export const slide_anchor = c.setSlideAnchor.bind(c);
 export const slide_edges = c.setSlideEdgeBehavior.bind(c);
 export const slide_range = c.setSlideRange.bind(c);
+export const strum_tension = c.setStrumTension.bind(c);
+export const strum_unlock_end = c.setStrumUnlockEnd.bind(c);
 
 // Swap
 export const reverse = c.swapReverse.bind(c);

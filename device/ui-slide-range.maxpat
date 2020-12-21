@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 1,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1020.0, 695.0, 604.0, 442.0 ],
+		"rect" : [ 329.0, 188.0, 972.0, 446.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,11 +39,158 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "live.comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 639.0, 21.0, 150.0, 18.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 25.0, 119.0, 17.0, 18.0 ],
+					"text" : "/",
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 612.5, 163.0, 86.0, 22.0 ],
+					"text" : "prepend strum"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-14",
+					"maxclass" : "newobj",
+					"numinlets" : 3,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 612.5, 111.0, 129.0, 22.0 ],
+					"text" : "covert-to-beats"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 612.5, 44.0, 103.5, 20.0 ],
+					"text" : "strum range"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"annotation" : "The maximum change in duration with each use of the controls below.\n\nThis value is the type of note: 4 is a quarter note, 8 is an eighth note, 16 is a 16th note, etc. This duration is multiplied by the previous value. So if this box shows 4 and the one to the left shows 3, that's 3 quarter notes.",
+					"annotation_name" : "Strum Range",
+					"id" : "obj-16",
+					"maxclass" : "live.menu",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "float" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 667.0, 66.0, 49.0, 15.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 35.0, 120.0, 36.0, 15.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_shortname" : "live.menu",
+							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
+							"parameter_type" : 2,
+							"parameter_annotation_name" : "Strum Range",
+							"parameter_longname" : "live.menu[1]",
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
+							"parameter_mmax" : 7,
+							"parameter_initial" : [ 2.0 ]
+						}
+
+					}
+,
+					"varname" : "live.menu[1]"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"annotation" : "The maximum change in duration with each use of the controls below.\n\nThis value is multipled by the duration set by the next value, where /4 is a quarter note, /8 is an eighth note, etc. So if this box shows 3 and the one to the right shows 4, that's 3 quarter notes.",
+					"annotation_name" : "Strum Range",
+					"id" : "obj-17",
+					"maxclass" : "live.numbox",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "float" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 612.5, 66.0, 35.0, 15.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 120.0, 27.0, 15.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_speedlim" : 5.0,
+							"parameter_shortname" : "velrange",
+							"parameter_type" : 1,
+							"parameter_unitstyle" : 0,
+							"parameter_annotation_name" : "Strum Range",
+							"parameter_mmin" : 1.0,
+							"parameter_longname" : "velocity range[1]",
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
+							"parameter_mmax" : 128.0,
+							"parameter_initial" : [ 1.0 ]
+						}
+
+					}
+,
+					"varname" : "velrange[4]"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"annotation" : "The maximum change in duration with each use of the controls below.\n\nThis toggles triplet time.",
+					"annotation_name" : "Strum Range",
+					"id" : "obj-23",
+					"maxclass" : "live.text",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 722.5, 66.0, 39.0, 17.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 73.0, 120.0, 39.0, 15.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_shortname" : "live.text[2]",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_type" : 2,
+							"parameter_annotation_name" : "Strum Range",
+							"parameter_longname" : "live.text[1]",
+							"parameter_invisible" : 2,
+							"parameter_mmax" : 1
+						}
+
+					}
+,
+					"text" : "Triplet",
+					"texton" : "Triplet",
+					"varname" : "live.text[1]"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "live.comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 25.450012000000001, -1.0, 150.0, 18.0 ],
+					"patching_rect" : [ 29.0, 8.0, 150.0, 18.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 25.0, -1.0, 17.0, 18.0 ],
 					"text" : "/",
@@ -57,7 +204,7 @@
 					"maxclass" : "live.comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 29.0, 121.0, 150.0, 18.0 ],
+					"patching_rect" : [ 427.0, 17.0, 150.0, 18.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 25.0, 89.0, 17.0, 18.0 ],
 					"text" : "/",
@@ -234,6 +381,7 @@
 					"presentation_rect" : [ 35.0, 90.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.menu",
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_type" : 2,
 							"parameter_annotation_name" : "Duration Range",
@@ -241,8 +389,7 @@
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 7,
-							"parameter_initial" : [ 2.0 ],
-							"parameter_shortname" : "live.menu"
+							"parameter_initial" : [ 2.0 ]
 						}
 
 					}
@@ -266,6 +413,8 @@
 					"presentation_rect" : [ 0.0, 90.0, 27.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_speedlim" : 5.0,
+							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_annotation_name" : "Duration Range",
@@ -274,9 +423,7 @@
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 128.0,
-							"parameter_initial" : [ 1.0 ],
-							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange"
+							"parameter_initial" : [ 1.0 ]
 						}
 
 					}
@@ -300,6 +447,7 @@
 					"presentation_rect" : [ 35.0, 0.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.menu",
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_type" : 2,
 							"parameter_annotation_name" : "Start Time Range",
@@ -307,8 +455,7 @@
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 7,
-							"parameter_initial" : [ 2.0 ],
-							"parameter_shortname" : "live.menu"
+							"parameter_initial" : [ 2.0 ]
 						}
 
 					}
@@ -332,6 +479,8 @@
 					"presentation_rect" : [ 0.0, 0.0, 27.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_speedlim" : 5.0,
+							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_annotation_name" : "Start Time Range",
@@ -340,9 +489,7 @@
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_mmax" : 128.0,
-							"parameter_initial" : [ 1.0 ],
-							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange"
+							"parameter_initial" : [ 1.0 ]
 						}
 
 					}
@@ -366,13 +513,13 @@
 					"presentation_rect" : [ 73.0, 90.0, 39.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.text[2]",
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
 							"parameter_annotation_name" : "Duration Range",
 							"parameter_longname" : "live.text[14]",
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 1,
-							"parameter_shortname" : "live.text[2]"
+							"parameter_mmax" : 1
 						}
 
 					}
@@ -398,13 +545,13 @@
 					"presentation_rect" : [ 73.0, 0.0, 39.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.text[2]",
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
 							"parameter_annotation_name" : "Start Time Range",
 							"parameter_longname" : "live.text[11]",
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 1,
-							"parameter_shortname" : "live.text[2]"
+							"parameter_mmax" : 1
 						}
 
 					}
@@ -430,6 +577,8 @@
 					"presentation_rect" : [ 0.0, 30.0, 41.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_speedlim" : 5.0,
+							"parameter_shortname" : "pitchrange",
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_annotation_name" : "Pitch Range",
@@ -437,9 +586,7 @@
 							"parameter_longname" : "pitchrange",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
-							"parameter_initial" : [ 12 ],
-							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "pitchrange"
+							"parameter_initial" : [ 12 ]
 						}
 
 					}
@@ -463,6 +610,8 @@
 					"presentation_rect" : [ 0.0, 60.0, 41.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_speedlim" : 5.0,
+							"parameter_shortname" : "velrange",
 							"parameter_type" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_annotation_name" : "Velocity Range",
@@ -470,9 +619,7 @@
 							"parameter_longname" : "velocity range[5]",
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
-							"parameter_initial" : [ 64.0 ],
-							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange"
+							"parameter_initial" : [ 64.0 ]
 						}
 
 					}
@@ -505,6 +652,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-5", 1 ],
 					"source" : [ "obj-131", 1 ]
 				}
@@ -528,6 +682,27 @@
 				"patchline" : 				{
 					"destination" : [ "obj-18", 0 ],
 					"source" : [ "obj-135", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"source" : [ "obj-14", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 1 ],
+					"source" : [ "obj-16", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"source" : [ "obj-17", 0 ]
 				}
 
 			}
@@ -568,6 +743,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-14", 2 ],
+					"source" : [ "obj-23", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-19", 0 ],
 					"source" : [ "obj-5", 0 ]
 				}
@@ -589,14 +771,17 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-135" : [ "velocity range[17]", "velrange", 0 ],
-			"obj-11" : [ "velocity range[5]", "velrange", 0 ],
 			"obj-131" : [ "live.menu[10]", "live.menu", 0 ],
-			"obj-132" : [ "velocity range[16]", "velrange", 0 ],
-			"obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-11" : [ "velocity range[5]", "velrange", 0 ],
 			"obj-134" : [ "live.menu[11]", "live.menu", 0 ],
+			"obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
+			"obj-16" : [ "live.menu[1]", "live.menu", 0 ],
 			"obj-50" : [ "pitchrange", "pitchrange", 0 ],
+			"obj-132" : [ "velocity range[16]", "velrange", 0 ],
+			"obj-17" : [ "velocity range[1]", "velrange", 0 ],
+			"obj-23" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-135" : [ "velocity range[17]", "velrange", 0 ],
+			"obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -633,8 +818,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",

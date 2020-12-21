@@ -3,3 +3,4 @@ build
 device/sculptor.js
 *.stackdump
 Ableton Folder Info
+.vscode

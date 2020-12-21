@@ -1,12 +1,11 @@
-import AppView from './AppView';
-import Clip from './Clip';
-import SlideTransformer from './transformers/SlideTransformer';
-import SetTransformer from './transformers/SetTransformer';
-import SwapTransformer from './transformers/SwapTransformer';
-import SplitTransformer from './transformers/SplitTransformer';
+import AppView from "./AppView";
+import Clip from "./Clip";
+import SlideTransformer from "./transformers/SlideTransformer";
+import SetTransformer from "./transformers/SetTransformer";
+import SwapTransformer from "./transformers/SwapTransformer";
+import SplitTransformer from "./transformers/SplitTransformer";
 
 export default class Controller {
-
   constructor() {
     this.isSynced = false;
     this.selectedNotes = [];
@@ -28,7 +27,7 @@ export default class Controller {
   sync() {
     if (this.isSynced) return true;
 
-    const selectedClip = this.selectedClip = this.selectedClip || Clip.getSelectedClip();
+    const selectedClip = (this.selectedClip = this.selectedClip || Clip.getSelectedClip());
     if (!selectedClip.isMidi) return false;
 
     this.appView = this.appView || new AppView();
@@ -72,6 +71,7 @@ export default class Controller {
   }
 
   onClipChange() {
+    this.isSynced = false;
     this.selectedClip = undefined;
   }
   /**
@@ -80,8 +80,6 @@ export default class Controller {
    - property is velocity, start, duration
    - amount is from 0 to 127 for velocity, or a positive number in beats for start/duration
    */
-
-
   setSlideRange(property, amount) {
     this.slideTransformer.setRange(property.toLowerCase(), amount);
   }
@@ -91,7 +89,7 @@ export default class Controller {
   }
 
   setSlideAnchor(anchor) {
-    this.slideTransformer.spreadAnchor = anchor.toLowerCase();;
+    this.slideTransformer.spreadAnchor = anchor.toLowerCase();
   }
 
   slideRandomly(property, amountX, amountY) {
@@ -99,11 +97,39 @@ export default class Controller {
   }
 
   slideShift(property, amount) {
-    this.transformNotes(() => this.slideTransformer.shift(property.toLowerCase(), amount));
+    const prop = property.toLowerCase();
+    if (prop === "strum") {
+      // strum shares the UI slider with shift
+      this.transformNotes(() => this.slideTransformer.strum("start", amount));
+    } else {
+      this.transformNotes(() => this.slideTransformer.shift(prop, amount));
+    }
+  }
+
+  setStrumTension(amount) {
+    // the UI goes from -1 to 1 but we use this as an exponent going from 0.5 (sqrt) to 2 (squared)
+    // where the midpoint (amount == 0) is an exponent of 1.
+    if (amount < 0) {
+      // -1..0 => 0.5..1
+      this.slideTransformer.tension = amount / 2 + 1;
+    } else {
+      // 0..1 => 1..2
+      this.slideTransformer.tension = amount + 1;
+    }
+  }
+
+  setStrumUnlockEnd(unlocked) {
+    this.slideTransformer.strumUnlockEnd = unlocked;
   }
 
   slideSpread(property, amount) {
-    this.transformNotes(() => this.slideTransformer.spread(property.toLowerCase(), amount));
+    const prop = property.toLowerCase();
+    if (prop === "strum") {
+      // strum shares the UI slider with spread
+      this.transformNotes(() => this.slideTransformer.strum("duration", amount));
+    } else {
+      this.transformNotes(() => this.slideTransformer.spread(property.toLowerCase(), amount));
+    }
   }
 
   setSwapTarget(property, enabled) {
@@ -139,7 +165,7 @@ export default class Controller {
   }
 
   setSettableValue(value) {
-    this.setTransformer.value = (typeof value === 'string') ? value.toLowerCase() : value;
+    this.setTransformer.value = typeof value === "string" ? value.toLowerCase() : value;
   }
 
   setAll() {
@@ -156,7 +182,7 @@ export default class Controller {
 
   setSplitGate(amount) {
     this.splitTransformer.gate = amount;
-    this.transformNotes(() => this.splitTransformer.isResplit() ? this.splitTransformer.split() : null);
+    this.transformNotes(() => (this.splitTransformer.isResplit() ? this.splitTransformer.split() : null));
   }
 
   setSplitEnvelope(type) {

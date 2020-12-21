@@ -1,5 +1,4 @@
 export default class Transformer {
-
   constructor() {
     this.oldNotes = []; // Don't change this
 
@@ -11,12 +10,11 @@ export default class Transformer {
     this.bipolarRandom1 = [];
     this.bipolarRandom2 = []; // Override this setter in the subclass, and call super.setNotes(notes) to trigger the common behavior.
     // We use super.setNotes(notes) because you (currently) can't call super.notes = notes from a child class when you override the setter.
-
   }
 
   setNotes(notes) {
     this.oldNotes = Object.freeze(notes);
-    this.newNotes = notes.map(note => note.clone());
+    this.newNotes = notes.map((note) => note.clone());
     notes.forEach((_, index) => {
       for (const random of this.randoms) {
         // use exponential curves for better usability, so you can see an effect with less mouse movement:
@@ -49,5 +47,4 @@ export default class Transformer {
       }
     }
   }
-
 }

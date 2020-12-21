@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 1,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -37,7 +37,80 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-38",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 559.606995000000097, 91.0, 45.0, 22.0 ],
+					"text" : "wclose"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-14",
+					"maxclass" : "newobj",
+					"numinlets" : 3,
+					"numoutlets" : 3,
+					"outlettype" : [ "bang", "bang", "" ],
+					"patching_rect" : [ 479.315308000000016, 55.0, 60.0, 22.0 ],
+					"text" : "select 1 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-41",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 279.0, 408.0, 29.5, 22.0 ],
+					"text" : "0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-39",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 279.0, 372.0, 63.0, 22.0 ],
+					"text" : "closebang"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"comment" : "",
+					"id" : "obj-37",
+					"index" : 0,
+					"maxclass" : "outlet",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 252.0, 442.0, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-29",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 252.0, 342.0, 40.0, 22.0 ],
+					"text" : "active"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-35",
 					"maxclass" : "newobj",
@@ -327,7 +400,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 1,
+							"revision" : 7,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -360,6 +433,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-15",
@@ -690,7 +764,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 431.0, 29.5, 24.0, 24.0 ]
+					"patching_rect" : [ 434.0, 55.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -807,15 +881,15 @@
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_annotation_name" : "Sculptor Tool",
-							"parameter_longname" : "Sculptor tool",
+							"parameter_enum" : [ "slide", "swap", "set" ],
+							"parameter_initial" : [ 0 ],
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
+							"parameter_longname" : "Sculptor tool",
 							"parameter_mmax" : 2,
-							"parameter_initial" : [ 0 ],
 							"parameter_shortname" : "tool",
-							"parameter_enum" : [ "slide", "swap", "set" ],
 							"parameter_type" : 2,
-							"parameter_unitstyle" : 0
+							"parameter_unitstyle" : 9
 						}
 
 					}
@@ -916,7 +990,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "bang" ],
-					"patching_rect" : [ 479.315308000000016, 69.0, 34.0, 22.0 ],
+					"patching_rect" : [ 479.315308000000016, 91.0, 34.0, 22.0 ],
 					"text" : "t b b"
 				}
 
@@ -930,18 +1004,6 @@
 					"outlettype" : [ "int", "int", "int", "int", "int" ],
 					"patching_rect" : [ 465.315308000000016, 133.5, 173.000060999999988, 22.0 ],
 					"text" : "mousestate"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-73",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 516.315307999999959, 23.5, 61.0, 34.0 ],
-					"text" : "open this window"
 				}
 
 			}
@@ -984,7 +1046,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 479.315308000000016, 13.5, 34.0, 34.0 ]
+					"patching_rect" : [ 479.315308000000016, 10.0, 34.0, 34.0 ]
 				}
 
 			}
@@ -1044,6 +1106,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-12", 0 ],
 					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-38", 0 ],
+					"source" : [ "obj-14", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-61", 0 ],
+					"source" : [ "obj-14", 0 ]
 				}
 
 			}
@@ -1224,6 +1300,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-37", 0 ],
+					"source" : [ "obj-29", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-3", 0 ]
 				}
@@ -1272,6 +1355,27 @@
 				"patchline" : 				{
 					"destination" : [ "obj-10", 0 ],
 					"source" : [ "obj-35", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-75", 0 ],
+					"source" : [ "obj-38", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-41", 0 ],
+					"source" : [ "obj-39", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-37", 0 ],
+					"source" : [ "obj-41", 0 ]
 				}
 
 			}
@@ -1347,7 +1451,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-61", 0 ],
+					"destination" : [ "obj-14", 0 ],
 					"source" : [ "obj-77", 0 ]
 				}
 
@@ -1379,113 +1483,61 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-1::obj-8::obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
-			"obj-1::obj-11::obj-5::obj-27" : [ "live.text[3]", "live.text[2]", 0 ],
-			"obj-1::obj-3::obj-110" : [ "live.text[17]", "live.text[6]", 0 ],
-			"obj-1::obj-11::obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
+			"obj-1::obj-10::obj-11" : [ "live.text", "live.text", 0 ],
+			"obj-1::obj-10::obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
+			"obj-1::obj-10::obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
+			"obj-1::obj-10::obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
+			"obj-1::obj-10::obj-4::obj-197" : [ "live.menu[2]", "live.menu", 0 ],
 			"obj-1::obj-10::obj-4::obj-198" : [ "velocity range[3]", "velrange", 0 ],
-			"obj-1::obj-11::obj-5::obj-21" : [ "velocity range[2]", "velrange", 0 ],
-			"obj-20" : [ "Sculptor tool", "tool", 0 ],
-			"obj-1::obj-8::obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
-			"obj-1::obj-8::obj-35" : [ "live.tab[1]", "live.tab", 0 ],
+			"obj-1::obj-10::obj-4::obj-199" : [ "live.text[2]", "live.text[2]", 0 ],
+			"obj-1::obj-10::obj-4::obj-2" : [ "live.menu[3]", "live.menu", 0 ],
 			"obj-1::obj-10::obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
-			"obj-1::obj-11::obj-5::obj-142" : [ "velocity range[18]", "velrange", 0 ],
+			"obj-1::obj-10::obj-4::obj-3" : [ "velocity range[10]", "velrange", 0 ],
+			"obj-1::obj-10::obj-4::obj-4" : [ "live.text[21]", "live.text[2]", 0 ],
+			"obj-1::obj-11::obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
+			"obj-1::obj-11::obj-2" : [ "live.tab[2]", "live.tab", 0 ],
+			"obj-1::obj-11::obj-25" : [ "velocity range[9]", "velrange", 0 ],
 			"obj-1::obj-11::obj-5::obj-141" : [ "velocity range[12]", "velrange", 0 ],
+			"obj-1::obj-11::obj-5::obj-142" : [ "velocity range[18]", "velrange", 0 ],
+			"obj-1::obj-11::obj-5::obj-144" : [ "velocity range[19]", "velrange", 0 ],
+			"obj-1::obj-11::obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-1::obj-11::obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-1::obj-11::obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
+			"obj-1::obj-11::obj-5::obj-20" : [ "velocity range[6]", "velrange", 0 ],
+			"obj-1::obj-11::obj-5::obj-21" : [ "velocity range[2]", "velrange", 0 ],
+			"obj-1::obj-11::obj-5::obj-27" : [ "live.text[3]", "live.text[2]", 0 ],
+			"obj-1::obj-11::obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
+			"obj-1::obj-3::obj-10" : [ "live.text[15]", "live.text", 0 ],
+			"obj-1::obj-3::obj-11" : [ "live.text[13]", "live.text", 0 ],
+			"obj-1::obj-3::obj-110" : [ "live.text[17]", "live.text[6]", 0 ],
+			"obj-1::obj-3::obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
+			"obj-1::obj-3::obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
 			"obj-1::obj-3::obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
 			"obj-1::obj-3::obj-7" : [ "live.text[16]", "live.text", 0 ],
-			"obj-1::obj-8::obj-22" : [ "live.tab", "live.tab", 0 ],
-			"obj-1::obj-11::obj-5::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-1::obj-8::obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
-			"obj-1::obj-11::obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-1::obj-10::obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ],
-			"obj-1::obj-3::obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
-			"obj-1::obj-10::obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
-			"obj-1::obj-10::obj-4::obj-3" : [ "velocity range[10]", "velrange", 0 ],
-			"obj-1::obj-3::obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
+			"obj-1::obj-8::obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
+			"obj-1::obj-8::obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
 			"obj-1::obj-8::obj-11::obj-132" : [ "velocity range[16]", "velrange", 0 ],
 			"obj-1::obj-8::obj-11::obj-134" : [ "live.menu[11]", "live.menu", 0 ],
-			"obj-1::obj-10::obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
-			"obj-1::obj-8::obj-11::obj-131" : [ "live.menu[10]", "live.menu", 0 ],
-			"obj-1::obj-8::obj-11::obj-11" : [ "velocity range[5]", "velrange", 0 ],
-			"obj-1::obj-11::obj-5::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
-			"obj-1::obj-11::obj-5::obj-20" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-1::obj-10::obj-4::obj-199" : [ "live.text[2]", "live.text[2]", 0 ],
-			"obj-1::obj-10::obj-11" : [ "live.text", "live.text", 0 ],
-			"obj-1::obj-11::obj-2" : [ "live.tab[2]", "live.tab", 0 ],
-			"obj-1::obj-10::obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-135" : [ "velocity range[17]", "velrange", 0 ],
+			"obj-1::obj-8::obj-11::obj-16" : [ "live.menu[1]", "live.menu", 0 ],
+			"obj-1::obj-8::obj-11::obj-17" : [ "velocity range[1]", "velrange", 0 ],
+			"obj-1::obj-8::obj-11::obj-23" : [ "live.text[1]", "live.text[2]", 0 ],
 			"obj-1::obj-8::obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
-			"obj-1::obj-3::obj-11" : [ "live.text[13]", "live.text", 0 ],
-			"obj-1::obj-11::obj-5::obj-144" : [ "velocity range[19]", "velrange", 0 ],
-			"obj-1::obj-3::obj-10" : [ "live.text[15]", "live.text", 0 ],
+			"obj-1::obj-8::obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-22" : [ "live.tab", "live.tab", 0 ],
+			"obj-1::obj-8::obj-35" : [ "live.tab[1]", "live.tab", 0 ],
+			"obj-1::obj-8::obj-38::obj-1::obj-5" : [ "live.toggle", "live.toggle", 0 ],
 			"obj-1::obj-8::obj-42" : [ "live.menu[22]", "live.menu[1]", 0 ],
-			"obj-1::obj-10::obj-179" : [ "live.menu[18]", "live.menu[1]", 0 ],
-			"obj-1::obj-11::obj-25" : [ "velocity range[9]", "velrange", 0 ],
-			"obj-1::obj-10::obj-4::obj-197" : [ "live.menu[2]", "live.menu", 0 ],
-			"obj-1::obj-11::obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
+			"obj-20" : [ "Sculptor tool", "tool", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-1::obj-11::obj-5::obj-27" : 				{
-					"parameter_longname" : "live.text[3]"
-				}
-,
-				"obj-1::obj-3::obj-110" : 				{
-					"parameter_longname" : "live.text[17]"
-				}
-,
-				"obj-1::obj-10::obj-4::obj-198" : 				{
-					"parameter_longname" : "velocity range[3]"
-				}
-,
-				"obj-1::obj-10::obj-4::obj-201" : 				{
-					"parameter_longname" : "live.menu[21]",
-					"parameter_shortname" : "live.menu[1]"
-				}
-,
-				"obj-1::obj-3::obj-7" : 				{
-					"parameter_longname" : "live.text[16]"
-				}
-,
-				"obj-1::obj-10::obj-4::obj-194" : 				{
-					"parameter_longname" : "velocity range[23]",
-					"parameter_shortname" : "velrange"
-				}
-,
-				"obj-1::obj-10::obj-4::obj-3" : 				{
-					"parameter_longname" : "velocity range[10]"
-				}
-,
-				"obj-1::obj-10::obj-4::obj-192" : 				{
-					"parameter_longname" : "velocity range[22]",
-					"parameter_shortname" : "velrange"
-				}
-,
-				"obj-1::obj-10::obj-4::obj-199" : 				{
-					"parameter_longname" : "live.text[2]"
-				}
-,
 				"obj-1::obj-10::obj-11" : 				{
 					"parameter_longname" : "live.text",
 					"parameter_shortname" : "live.text"
-				}
-,
-				"obj-1::obj-11::obj-2" : 				{
-					"parameter_longname" : "live.tab[2]"
-				}
-,
-				"obj-1::obj-8::obj-11::obj-50" : 				{
-					"parameter_longname" : "velocity range[7]",
-					"parameter_shortname" : "velrange"
-				}
-,
-				"obj-1::obj-3::obj-10" : 				{
-					"parameter_longname" : "live.text[15]"
-				}
-,
-				"obj-1::obj-8::obj-42" : 				{
-					"parameter_longname" : "live.menu[22]"
 				}
 ,
 				"obj-1::obj-10::obj-179" : 				{
@@ -1493,12 +1545,81 @@
 					"parameter_shortname" : "live.menu[1]"
 				}
 ,
+				"obj-1::obj-10::obj-4::obj-192" : 				{
+					"parameter_longname" : "velocity range[22]",
+					"parameter_shortname" : "velrange"
+				}
+,
+				"obj-1::obj-10::obj-4::obj-194" : 				{
+					"parameter_longname" : "velocity range[23]",
+					"parameter_shortname" : "velrange"
+				}
+,
 				"obj-1::obj-10::obj-4::obj-197" : 				{
 					"parameter_longname" : "live.menu[2]"
 				}
+,
+				"obj-1::obj-10::obj-4::obj-198" : 				{
+					"parameter_longname" : "velocity range[3]"
+				}
+,
+				"obj-1::obj-10::obj-4::obj-199" : 				{
+					"parameter_longname" : "live.text[2]"
+				}
+,
+				"obj-1::obj-10::obj-4::obj-2" : 				{
+					"parameter_longname" : "live.menu[3]"
+				}
+,
+				"obj-1::obj-10::obj-4::obj-201" : 				{
+					"parameter_longname" : "live.menu[21]",
+					"parameter_shortname" : "live.menu[1]"
+				}
+,
+				"obj-1::obj-10::obj-4::obj-3" : 				{
+					"parameter_longname" : "velocity range[10]"
+				}
+,
+				"obj-1::obj-10::obj-4::obj-4" : 				{
+					"parameter_longname" : "live.text[21]"
+				}
+,
+				"obj-1::obj-11::obj-2" : 				{
+					"parameter_longname" : "live.tab[2]"
+				}
+,
+				"obj-1::obj-11::obj-5::obj-20" : 				{
+					"parameter_longname" : "velocity range[6]"
+				}
+,
+				"obj-1::obj-11::obj-5::obj-27" : 				{
+					"parameter_longname" : "live.text[3]"
+				}
+,
+				"obj-1::obj-3::obj-10" : 				{
+					"parameter_longname" : "live.text[15]"
+				}
+,
+				"obj-1::obj-3::obj-110" : 				{
+					"parameter_longname" : "live.text[17]"
+				}
+,
+				"obj-1::obj-3::obj-7" : 				{
+					"parameter_longname" : "live.text[16]"
+				}
+,
+				"obj-1::obj-8::obj-11::obj-50" : 				{
+					"parameter_longname" : "velocity range[7]",
+					"parameter_shortname" : "velrange"
+				}
+,
+				"obj-1::obj-8::obj-42" : 				{
+					"parameter_longname" : "live.menu[22]"
+				}
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -1580,6 +1701,41 @@
 			}
 , 			{
 				"name" : "icon-anchor-end.svg",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ui-slide-center-panel.maxpat",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ui-tension.maxpat",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ui-lock.maxpat",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "icon-locked.svg",
+				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"patcherrelativepath" : ".",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "icon-unlocked.svg",
 				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",

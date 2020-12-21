@@ -1,4 +1,4 @@
-import { MockLiveAPI } from './mocks';
+import { MockLiveAPI } from "./mocks";
 
 global.LiveAPI = MockLiveAPI;
 

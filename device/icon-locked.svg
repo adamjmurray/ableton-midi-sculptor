@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect id="icon-locked" x="0" y="0" width="300" height="300" style="fill:none;"/>
+    <path d="M45.576,150L45.577,146.342C45.577,88.709 92.367,41.919 150,41.919C207.633,41.919 254.423,88.709 254.423,146.342L254.424,150L300,150L300,299.584L-0,299.584L-0,150L45.576,150ZM134.644,231.663C126.817,226.616 121.635,217.821 121.635,207.826C121.635,192.171 134.345,179.461 150,179.461C165.655,179.461 178.365,192.171 178.365,207.826C178.365,217.821 173.183,226.616 165.356,231.663L165.356,270.124L134.644,270.124L134.644,231.663ZM202.21,150L202.212,146.342C202.212,117.526 178.816,94.131 150,94.131C121.184,94.131 97.788,117.526 97.788,146.342L97.79,150L202.21,150Z"/>
+</svg>
