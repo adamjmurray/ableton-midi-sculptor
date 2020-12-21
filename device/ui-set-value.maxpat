@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 1,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 466.0, 324.0, 889.0, 525.0 ],
+		"rect" : [ 466.0, 324.0, 889.0, 917.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-17",
@@ -130,7 +131,7 @@
 					"maxclass" : "live.comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 671.516845999999987, 202.0, 150.0, 18.0 ],
+					"patching_rect" : [ 666.516845999999987, 176.0, 150.0, 18.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 25.0, 119.0, 17.0, 18.0 ],
 					"text" : "/",
@@ -153,15 +154,14 @@
 					"presentation_rect" : [ 35.0, 120.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Set Duration",
-							"parameter_longname" : "live.menu[1]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 7,
+							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_initial" : [ 2.0 ],
-							"parameter_shortname" : "live.menu"
+							"parameter_invisible" : 2,
+							"parameter_longname" : "live.menu[1]",
+							"parameter_mmax" : 7,
+							"parameter_shortname" : "live.menu",
+							"parameter_type" : 2
 						}
 
 					}
@@ -185,17 +185,16 @@
 					"presentation_rect" : [ 0.0, 120.0, 27.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_type" : 1,
-							"parameter_unitstyle" : 0,
 							"parameter_annotation_name" : "Set Duration",
-							"parameter_mmin" : 1.0,
-							"parameter_longname" : "velocity range[1]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 128.0,
 							"parameter_initial" : [ 1.0 ],
+							"parameter_invisible" : 2,
+							"parameter_longname" : "velocity range[1]",
+							"parameter_mmax" : 128.0,
+							"parameter_mmin" : 1.0,
+							"parameter_shortname" : "velrange",
 							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange"
+							"parameter_type" : 1,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -219,13 +218,13 @@
 					"presentation_rect" : [ 73.0, 120.0, 39.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Set Duration",
-							"parameter_longname" : "live.text[1]",
+							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_invisible" : 2,
+							"parameter_longname" : "live.text[1]",
 							"parameter_mmax" : 1,
-							"parameter_shortname" : "live.text[2]"
+							"parameter_shortname" : "live.text[2]",
+							"parameter_type" : 2
 						}
 
 					}
@@ -251,13 +250,15 @@
 					"presentation_rect" : [ 0.0, 0.0, 65.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "Deleted", "Muted", "Unmuted" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Mute or Delete Notes",
-							"parameter_longname" : "Mute or Delete Notes",
+							"parameter_enum" : [ "Deleted", "Muted", "Unmuted" ],
+							"parameter_initial" : [ 1.0 ],
+							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
+							"parameter_longname" : "Mute or Delete Notes",
 							"parameter_mmax" : 2,
-							"parameter_shortname" : "Mute or Delete Notes"
+							"parameter_shortname" : "Mute or Delete Notes",
+							"parameter_type" : 2
 						}
 
 					}
@@ -272,7 +273,7 @@
 					"maxclass" : "live.comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 240.816894999999988, 198.0, 150.0, 18.0 ],
+					"patching_rect" : [ 246.5, 176.0, 150.0, 18.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 25.0, 29.0, 17.0, 18.0 ],
 					"text" : "/",
@@ -295,15 +296,14 @@
 					"presentation_rect" : [ 35.0, 30.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Set Start Time",
-							"parameter_longname" : "live.menu[20]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 7,
+							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
 							"parameter_initial" : [ 2.0 ],
-							"parameter_shortname" : "live.menu"
+							"parameter_invisible" : 2,
+							"parameter_longname" : "live.menu[20]",
+							"parameter_mmax" : 7,
+							"parameter_shortname" : "live.menu",
+							"parameter_type" : 2
 						}
 
 					}
@@ -327,17 +327,16 @@
 					"presentation_rect" : [ 0.0, 30.0, 27.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_type" : 1,
-							"parameter_unitstyle" : 0,
 							"parameter_annotation_name" : "Set Start Time",
-							"parameter_longname" : "velocity range[24]",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
-							"parameter_mmax" : 128.0,
-							"parameter_steps" : 256,
 							"parameter_initial" : [ 0 ],
+							"parameter_invisible" : 2,
+							"parameter_longname" : "velocity range[24]",
+							"parameter_mmax" : 128.0,
+							"parameter_shortname" : "velrange",
 							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "velrange"
+							"parameter_steps" : 256,
+							"parameter_type" : 1,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -361,13 +360,13 @@
 					"presentation_rect" : [ 73.0, 30.0, 39.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Set Start Time",
-							"parameter_longname" : "live.text[23]",
+							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_invisible" : 2,
+							"parameter_longname" : "live.text[23]",
 							"parameter_mmax" : 1,
-							"parameter_shortname" : "live.text[2]"
+							"parameter_shortname" : "live.text[2]",
+							"parameter_type" : 2
 						}
 
 					}
@@ -393,16 +392,15 @@
 					"presentation_rect" : [ 0.0, 60.0, 32.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_type" : 1,
-							"parameter_unitstyle" : 8,
 							"parameter_annotation_name" : "Set Pitch",
-							"parameter_mmin" : 1.0,
-							"parameter_longname" : "Set Pitch",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
 							"parameter_initial" : [ 64.0 ],
+							"parameter_invisible" : 2,
+							"parameter_longname" : "Set Pitch",
+							"parameter_mmin" : 1.0,
+							"parameter_shortname" : "Set Pitch",
 							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "Set Pitch"
+							"parameter_type" : 1,
+							"parameter_unitstyle" : 8
 						}
 
 					}
@@ -426,16 +424,15 @@
 					"presentation_rect" : [ 0.0, 90.0, 30.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_type" : 1,
-							"parameter_unitstyle" : 0,
 							"parameter_annotation_name" : "Set Velocity",
-							"parameter_mmin" : 1.0,
-							"parameter_longname" : "Set Velocity",
-							"parameter_initial_enable" : 1,
-							"parameter_invisible" : 2,
 							"parameter_initial" : [ 64.0 ],
+							"parameter_invisible" : 2,
+							"parameter_longname" : "Set Velocity",
+							"parameter_mmin" : 1.0,
+							"parameter_shortname" : "Set Velocity",
 							"parameter_speedlim" : 5.0,
-							"parameter_shortname" : "Set Velocity"
+							"parameter_type" : 1,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -573,19 +570,20 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
 			"obj-192" : [ "Set Velocity", "Set Velocity", 0 ],
-			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-194" : [ "Set Pitch", "Set Pitch", 0 ],
+			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-198" : [ "velocity range[24]", "velrange", 0 ],
 			"obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-2" : [ "live.menu[1]", "live.menu", 0 ],
 			"obj-201" : [ "Mute or Delete Notes", "Mute or Delete Notes", 0 ],
-			"obj-194" : [ "Set Pitch", "Set Pitch", 0 ],
 			"obj-3" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
 			"parameterbanks" : 			{
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
