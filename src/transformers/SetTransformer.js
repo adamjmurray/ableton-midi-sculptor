@@ -17,7 +17,7 @@ export default class SetTransformer extends Transformer {
 
     if (property === "note") {
       if (value === "deleted") {
-        return null;
+        note.deleted = true;
       } else if (value === "muted") {
         note.muted = true;
       } else if (value === "unmuted") {
@@ -42,7 +42,6 @@ export default class SetTransformer extends Transformer {
         } else {
           return this.oldNotes[index];
         }
-      })
-      .filter((note) => note != null);
+      });
   }
 }

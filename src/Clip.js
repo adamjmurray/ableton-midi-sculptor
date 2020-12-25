@@ -18,7 +18,7 @@ export default class Clip {
   desync() {
     if (this._replacedNotes) {
       const deletedNoteIds = this._replacedNotes.filter(note => note.deleted).map(note => note.id);
-      this.api.call("remove_notes_by_id", deletedNoteIds);
+      this.api.call("remove_notes_by_id", ...deletedNoteIds);
       this._replacedNotes = null;
     }
     this._exists = null;
@@ -71,8 +71,6 @@ export default class Clip {
   replaceSelectedNotes(notes) {
     this._replacedNotes = notes;
     const existingNoteIds = this._notes.map(note => note.id);
-    const noteIds = notes.map(note => note.id);
-    const deletedNotes = this._notes.filter(note => !noteIds.includes(note.id));
     const updatedNotes = [];
     let newNotes = [];
     notes.forEach(note => {
@@ -83,36 +81,37 @@ export default class Clip {
       }
     });
 
-    if (deletedNotes.length) {
-      // TODO: this will have a problem that it will restore the original notes duration when you make the duration so
-      // short the note would normally be deleted. What we need to do is adjust the edge behaviors to apply the soft
-      // deletions.
-      const softDeletedNoteData = JSON.stringify({
-        notes: deletedNotes.map(note => Object.assign(note.toLiveAPI(), { mute: 1 }))
-      });
-      this.api.call("apply_note_modifications", softDeletedNoteData);
-      // TODO: now we need to keep track of what's been soft deleted so we can "commit" when the mouse is lifted
-    }
     if (updatedNotes.length) {
       const updatedNoteData = JSON.stringify({ notes: updatedNotes.map(note => note.toLiveAPI()) });
       this.api.call("apply_note_modifications", updatedNoteData);
     }
-    if (newNotes.length) {
-      if (notes.length > Clip.MAX_NOTES) {
-        console.log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`);
-        newNotes = newNotes.slice(0, Math.min(0, Clip.MAX_NOTES - updatedNotes.length));
-      }
-      const newNotesData = JSON.stringify({
-        notes: updatedNotes.map(note => {
-          const newNoteData = note.toLiveAPI();
-          delete newNoteData.note_id; // not sure we actually need to do this
-          return newNoteData;
-        })
-      });
-      this.api.call("add_new_notes", newNotesData);
-      // WARNING: adding any new notes loses the selection. We should only do this when splitting/generating notes.
-      // TODO: select the notes just created
-    }
+
+    // TODO: When randomizing start time, if one note completely covers another, it will delete it,
+    // then if we keep randomizing and it comes back, we'd need to add the new notes.
+    // But this has the problem that it loses the selection. We could try to reselect the range but there
+    // is also the major downside that we'll lose all expression data as soon as the note is deleted and we
+    // can't recreate it when adding the note. Therefore, we are going to send all the deleted notes to a
+    // "waiting area", like at -1 time at pitch 0, with the duration of the note really short so we can stack
+    // a bunch of them there, and from there we can restore as needed if you keep dragging the random x-y control.
+    // To pull this off, we will need a note collision algoritm to determine when a note will be deleted.
+
+    // if (newNotes.length) {
+    //   console.log('Warning: adding new notes not properly supported yet!');
+    //   if (notes.length > Clip.MAX_NOTES) {
+    //     console.log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`);
+    //     newNotes = newNotes.slice(0, Math.min(0, Clip.MAX_NOTES - updatedNotes.length));
+    //   }
+    //   const newNotesData = JSON.stringify({
+    //     notes: updatedNotes.map(note => {
+    //       const newNoteData = note.toLiveAPI();
+    //       delete newNoteData.note_id; // not sure we actually need to do this
+    //       return newNoteData;
+    //     })
+    //   });
+    //   this.api.call("add_new_notes", newNotesData);
+    //   // WARNING: adding any new notes loses the selection. We should only do this when splitting/generating notes.
+    //   // TODO: select the notes just created
+    // }
 
     // If you randomize the start times with notes that are close together, sometimes notes will collide and one will
     // get deleted automatically by Live without this code deleting it. We'll get an error if we try to apply
