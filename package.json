@@ -14,11 +14,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "@babel/register": "^7.12.10",
     "babel-plugin-transform-for-of-as-array": "^1.1.1",
     "mocha": "^8.2.1",
-    "rollup": "^2.34.2",
+    "rollup": "^2.35.1",
     "rollup-plugin-babel": "^4.4.0"
   },
   "main": "src/index.js",
