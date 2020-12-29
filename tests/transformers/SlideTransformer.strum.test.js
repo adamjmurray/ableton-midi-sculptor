@@ -343,6 +343,9 @@ describe("SlideTransformer.strum", () => {
         expected: [
           { start: 0, duration: 1 },
           { start: 0.5, duration: 0.5 },
+          { start: 1, duration: 0, deleted: true },
+          { start: 1.5, duration: -0.5, deleted: true },
+          { start: 2, duration: -1, deleted: true },
         ],
       },
       {

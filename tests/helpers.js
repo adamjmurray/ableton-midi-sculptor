@@ -18,7 +18,7 @@ export function cloneAll(cloneables) {
 
 export const defaultClip = Object.freeze({ start: 0, end: 16, length: 16 });
 
-function describesSlideTransformerTest({ operation, noteProperty, range, amount, edgeBehavior, anchor, unlockEnd, tension, clip, description }) {
+function describeSlideTransformerTest({ operation, noteProperty, range, amount, edgeBehavior, anchor, unlockEnd, tension, clip, description }) {
   const baseDescription = description || `${operation}s the ${noteProperty} as expected`;
   return `${baseDescription} for ${Object.entries({ range, amount, edgeBehavior, anchor, unlockEnd, tension, clip })
     .filter(([_, value]) => value != null)
@@ -66,11 +66,13 @@ export function runSlideTransformerTests(operation, testCases) {
 
       tests.forEach((testParams) => {
         const test = { operation, noteProperty, ...testParams };
-        const runTest = testParams.only ? it.only : it;
+        const runTest = testParams.skip ? it.skip : (testParams.only ? it.only : it);
 
-        runTest(describesSlideTransformerTest(test), () => {
+        runTest(describeSlideTransformerTest(test), () => {
           const slideTransformer = setupSlideTransformer(test);
-          const expectedNotes = test.expected.map((value) => new Note({ [noteProperty]: value }));
+          const expectedNotes = test.expected.map((value) => {
+            return new Note(value instanceof Object ? value : { [noteProperty]: value })
+          });
           const actualNotes = slideTransformer[operation](noteProperty, test.amount);
           assert.deepStrictEqual(actualNotes, expectedNotes);
         });
@@ -101,9 +103,9 @@ export function runStrumTests(testCases) {
       tests.forEach((testParams) => {
         const notes = testParams.notes.map(noteParams => new Note(noteParams));
         const test = { operation, noteProperty, ...testParams, notes };
-        const runTest = testParams.only ? it.only : it;
+        const runTest = testParams.skip ? it.skip : (testParams.only ? it.only : it);
 
-        runTest(describesSlideTransformerTest(test), () => {
+        runTest(describeSlideTransformerTest(test), () => {
           const slideTransformer = setupSlideTransformer({ ...test, noteProperty: 'strum' });
           const expectedNotes = test.expected.map((value, index) => {
             if (value instanceof Object) {

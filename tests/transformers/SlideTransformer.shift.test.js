@@ -21,16 +21,16 @@ describe("SlideTransformer.shift", () => {
         edgeBehavior: "clamp",
         range: 116,
         amount: 1,
-        expected: [126, 127, 127, 127],
-        description: "clamps to a max pitch of 127",
+        expected: [126, 127, 128, 129],
+        description: "does not clamp to a max pitch (in the transformer)", // it used to clamp but now we let Node.toLiveAPI() handle it to avoid unnecessary work
       },
       {
         input: [10, 11, 12, 13],
         edgeBehavior: "clamp",
         range: 12,
         amount: -1,
-        expected: [0, 0, 0, 1],
-        description: "clamps to a min pitch of 0",
+        expected: [-2, -1, 0, 1],
+        description: "does not clamp to a min pitch (in the transformer)", // it used to clamp but now we let Node.toLiveAPI() handle it to avoid unnecessary work
       },
       {
         input: [10, 11, 12, 13],
@@ -53,16 +53,16 @@ describe("SlideTransformer.shift", () => {
         edgeBehavior: "remove",
         range: 116,
         amount: 1,
-        expected: [126, 127],
-        description: "removes notes with pitches above 127",
+        expected: [126, 127, { pitch: 128, deleted: true }, { pitch: 129, deleted: true }],
+        description: "soft-deletes notes with pitches above 127",
       },
       {
         input: [10, 11, 12, 13],
         edgeBehavior: "remove",
         range: 12,
         amount: -1,
-        expected: [0, 1],
-        description: "removes notes with pitches below 0",
+        expected: [{ pitch: -2, deleted: true }, { pitch: -1, deleted: true }, 0, 1],
+        description: "soft-deletes  notes with pitches below 0",
       },
       {
         input: [10, 11, 12, 13],
@@ -100,16 +100,16 @@ describe("SlideTransformer.shift", () => {
         edgeBehavior: "clamp",
         range: 116,
         amount: 1,
-        expected: [126, 127, 127, 127],
-        description: "clamps to a max velocity of 127",
+        expected: [126, 127, 128, 129],
+        description: "does not clamp to a max velocity (in the transformer)", // it used to clamp but now we let Node.toLiveAPI() handle it to avoid unnecessary work
       },
       {
         input: [10, 11, 12, 13],
         edgeBehavior: "clamp",
         range: 12,
         amount: -1,
-        expected: [0, 0, 0, 1],
-        description: "clamps to a min velocity of 0",
+        expected: [-2, -1, 0, 1],
+        description: "does not clamp to a min velocity (in the transformer)", // it used to clamp but now we let Node.toLiveAPI() handle it to avoid unnecessary work
       },
       {
         input: [10, 11, 12, 13],
@@ -133,16 +133,16 @@ describe("SlideTransformer.shift", () => {
         edgeBehavior: "remove",
         range: 116,
         amount: 1,
-        expected: [126, 127, 127, 127],
-        description: "does not remove notes with velocities above 127 and just clamps them to 127",
+        expected: [126, 127, 128, 129],
+        description: "does not soft-dlete notes with velocities above 127", // clamping is handled in Note.toLiveAPI()
       },
       {
         input: [10, 11, 12, 13],
         edgeBehavior: "remove",
         range: 12,
         amount: -1,
-        expected: [0, 1],
-        description: "removes notes with velocities below 0",
+        expected: [{ velocity: -2, deleted: true }, { velocity: -1, deleted: true }, 0, 1],
+        description: "soft-deletes notes with velocities below 0",
       },
       {
         input: [10, 11, 12, 13],
@@ -447,12 +447,18 @@ describe("SlideTransformer.shift", () => {
         description: "imposes no max on durations",
       },
       {
-        input: [0.5, 1, 1 + Note.MIN_DURATION, 2],
+        input: [0.5, 1, 1.0001, 1 + Note.MIN_DURATION, 2],
         edgeBehavior: "remove",
         range: 1,
         amount: -1,
-        expected: [Note.MIN_DURATION, 1],
-        description: "removes notes shorter than Note.MIN_DURATION",
+        expected: [
+          { duration: -0.5, deleted: true },
+          { duration: 0, deleted: true },
+          { duration: 0.00009999999999998899, deleted: true }, // should be 0.0001, but there's floating point round-off error
+          Note.MIN_DURATION,
+          1,
+        ],
+        description: "soft-deletes notes shorter than Note.MIN_DURATION",
       },
     ],
   });
