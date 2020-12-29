@@ -30,28 +30,24 @@ export default class Clip {
   }
 
   get exists() {
-    // TODO: all of these lazy initializers should be doing null checks
-    return (this._exists = this._exists || this.api.id !== "0");
+    return this._exists ??= this.api.id !== "0";
   }
 
   get isMidi() {
     if (!this.exists) return false;
-    if (this._isMidi == null) {
-      this._isMidi = this.api.get("is_midi_clip");
-    }
-    return this._isMidi;
+    return this._isMidi ??= this.api.get("is_midi_clip");
   }
 
   get length() {
-    return (this._length = this._length || Number(this.api.get("length")));
+    return this._length ??= Number(this.api.get("length"));
   }
 
   get start() {
-    return (this._start = this._start || Number(this.api.get("loop_start")));
+    return this._start ??= Number(this.api.get("loop_start"));
   }
 
   get end() {
-    return (this._end = this._end || Number(this.api.get("loop_end")));
+    return this._end ??= Number(this.api.get("loop_end"));
   }
 
   get selectedNotes() {
