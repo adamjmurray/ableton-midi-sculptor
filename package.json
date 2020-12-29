@@ -18,6 +18,7 @@
     "@babel/register": "^7.12.10",
     "babel-plugin-transform-for-of-as-array": "^1.1.1",
     "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
     "rollup": "^2.35.1",
     "rollup-plugin-babel": "^4.4.0"
   },
@@ -26,6 +27,7 @@
     "build": "npx rollup -c",
     "build-strict": "npm run clean && npm run test-strict && npm run build",
     "clean": "rm -f device/sculptor.js",
+    "coverage": "npx nyc --reporter=lcov --reporter=text mocha",
     "dev": "npx rollup -c --watch",
     "test": "npx mocha",
     "test-strict": "npx mocha --forbid-only",

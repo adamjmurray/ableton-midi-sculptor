@@ -1,6 +1,8 @@
-node_modules
-build
-device/sculptor.js
-*.stackdump
-Ableton Folder Info
+.nyc_output
 .vscode
+Ableton Folder Info
+build
+coverage
+device/sculptor.js
+node_modules
+*.stackdump
