@@ -1,7 +1,7 @@
 import { Note } from "../../src";
 import { runSlideTransformerTests } from "../helpers";
 
-describe("SlideTransformer.shift", () => {
+describe("SlideTransformer", () => {
   runSlideTransformerTests("shift", {
     pitch: [
       {

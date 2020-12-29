@@ -1,6 +1,6 @@
 import { runSlideTransformerTests } from "../helpers";
 
-describe("SlideTransformer.spread", () => {
+describe("SlideTransformer", () => {
   runSlideTransformerTests("spread", {
     pitch: [
       {

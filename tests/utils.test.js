@@ -2,7 +2,7 @@ import assert from "assert";
 import { clamp, fuzzyEquals, mod, reflectedMod } from "../src";
 
 describe("utils", () => {
-  describe("clamp", () => {
+  describe("clamp(value, min, max)", () => {
     it("does not change values between the given minimum and maximum (inclusive)", () => {
       assert.strictEqual(clamp(0, 0, 3), 0);
       assert.strictEqual(clamp(1, 0, 3), 1);
@@ -30,7 +30,7 @@ describe("utils", () => {
     });
   });
 
-  describe("fuzzyEquals", () => {
+  describe("fuzzyEquals(num1, num2)", () => {
     it("is true when the numbers are equal", () => {
       assert(fuzzyEquals(0, 0));
       assert(fuzzyEquals(1.5, 1.5));
@@ -54,7 +54,7 @@ describe("utils", () => {
       assert(fuzzyEquals(2 / 3, (2 / 3 / Number.MAX_VALUE) * Number.MAX_VALUE));
     });
 
-    it("is false whent he numbers are different and not close in value", () => {
+    it("is false when the numbers are different and not close in value", () => {
       assert(!fuzzyEquals(0, 1));
       assert(!fuzzyEquals(0, 0.01));
       assert(!fuzzyEquals(-1, 1));
@@ -62,7 +62,9 @@ describe("utils", () => {
       assert(!fuzzyEquals(Number.MAX_VALUE, Infinity));
       assert(!fuzzyEquals(Infinity, -Infinity));
     });
+  });
 
+  describe("fuzzyEquals(num1, num2, delta)", () => {
     it("allows the fuzziness to be controlled", () => {
       assert(fuzzyEquals(0, 0.0999999999, 0.1));
       assert(fuzzyEquals(0.0999999999, 0, 0.1));
@@ -73,7 +75,7 @@ describe("utils", () => {
     });
   });
 
-  describe("mod()", () => {
+  describe("mod(dividend, divisor)", () => {
     it("behaves like the % operator for positive numbers and handles negative numbers with wrap-around to always return a postive value", () => {
       const tests = {
         // divisor: {dividend: expected}
@@ -235,7 +237,7 @@ describe("utils", () => {
     });
   });
 
-  describe("reflectedMod()", () => {
+  describe("reflectedMod(dividend, divisor)", () => {
     it('"bounces" off the boundary', () => {
       const tests = {
         // divisor: {dividend: expected}

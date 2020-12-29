@@ -3,7 +3,7 @@ import { Note } from "../src";
 
 // TODO: Update for new Live API
 describe("Note", () => {
-  describe("fromLiveAPI()", () => {
+  describe(".fromLiveAPI(apiData)", () => {
 
     it('parses the Live API data into a Note object', () => {
       const apiData = {

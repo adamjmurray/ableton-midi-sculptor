@@ -9,7 +9,7 @@ describe("SwapTransformer", () => {
     swapTransformer = new SwapTransformer();
   });
 
-  describe("rotate()", () => {
+  describe("rotate(amount)", () => {
     beforeEach(() => {
       notes = makeNotes(1, 2, 3, 4);
       swapTransformer.notes = notes;

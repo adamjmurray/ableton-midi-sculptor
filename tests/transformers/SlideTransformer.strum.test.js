@@ -1,7 +1,7 @@
 import { Note } from "../../src";
 import { runStrumTests } from "../helpers";
 
-describe("SlideTransformer.strum", () => {
+describe("SlideTransformer", () => {
   runStrumTests({
     start: [
       {
