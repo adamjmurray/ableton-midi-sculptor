@@ -34,8 +34,7 @@ export default class Clip {
   }
 
   get isMidi() {
-    if (!this.exists) return false;
-    return this._isMidi ??= this.api.get("is_midi_clip");
+    return this._isMidi ??= this.exists && this.api.get("is_midi_clip");
   }
 
   get length() {
