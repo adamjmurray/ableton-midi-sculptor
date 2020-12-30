@@ -2,6 +2,7 @@ import Note from "./Note";
 
 export const SELECTED_CLIP_PATH = "live_set view detail_clip";
 
+
 export default class Clip {
   static get MAX_NOTES() {
     return 1000;
@@ -11,12 +12,13 @@ export default class Clip {
     this.api = new LiveAPI(path);
   }
 
-  static getSelectedClip() {
+  static get selectedClip() {
     return new Clip(SELECTED_CLIP_PATH);
   }
 
   desync() {
     if (this._replacedNotes) {
+      // This creates an extra undo step but it seems unavoidable.
       const deletedNoteIds = this._replacedNotes.filter(note => note.deleted).map(note => note.id);
       this.api.call("remove_notes_by_id", ...deletedNoteIds);
       this._replacedNotes = null;
@@ -63,55 +65,65 @@ export default class Clip {
     return this.selectedNotes;
   }
 
-  replaceSelectedNotes(notes) {
-    this._replacedNotes = notes;
-    const existingNoteIds = this._notes.map(note => note.id);
-    const updatedNotes = [];
-    let newNotes = [];
-    notes.forEach(note => {
-      if (note.id != null && existingNoteIds.includes(note.id)) {
-        updatedNotes.push(note);
-      } else {
-        newNotes.push(note);
+  updateSelectedNotes(notes) {
+    // Don't destructively modify the input:
+    notes = notes.map(note => note.clone());
+
+    // Sort by pitch and then by start time:
+    notes.sort((n1, n2) => n1.pitch - n2.pitch || n1.start - n2.start);
+
+    notes.reduce((prev, note) => { // Apply soft deletions...
+      if (note.deleted || // ...to notes deleted by the transformer...
+        (prev?.pitch == note.pitch && note.start < prev.end) // ...and overlapping notes.
+      ) {
+        note.deleted = true;
+        return prev; // Compare the next note against the last non-deleted note
       }
-    });
+      else return note;
+    }, null);
 
-    if (updatedNotes.length) {
-      const updatedNoteData = JSON.stringify({ notes: updatedNotes.map(note => note.toLiveAPI()) });
-      this.api.call("apply_note_modifications", updatedNoteData);
-    }
+    this.api.call("apply_note_modifications",
+      JSON.stringify({
+        // !!! TODO: Make sure nothing is at pitch 0 that we're overwriting. toLiveAPI() takes a deletion pitch !!!
+        notes: notes.map(note => note.toLiveAPI()),
+      })
+    );
 
-    // TODO: When randomizing start time, if one note completely covers another, it will delete it,
-    // then if we keep randomizing and it comes back, we'd need to add the new notes.
-    // But this has the problem that it loses the selection. We could try to reselect the range but there
-    // is also the major downside that we'll lose all expression data as soon as the note is deleted and we
-    // can't recreate it when adding the note. Therefore, we are going to send all the deleted notes to a
-    // "waiting area", like at -1 time at pitch 0, with the duration of the note really short so we can stack
-    // a bunch of them there, and from there we can restore as needed if you keep dragging the random x-y control.
-    // To pull this off, we will need a note collision algoritm to determine when a note will be deleted.
+    // Keep track of the soft-deletions so we can hard-delete on desync():
+    this._replacedNotes = notes;
 
-    // if (newNotes.length) {
-    //   console.log('Warning: adding new notes not properly supported yet!');
-    //   if (notes.length > Clip.MAX_NOTES) {
-    //     console.log(`Reached maximum of ${Clip.MAX_NOTES} notes. Some notes were not created.`);
-    //     newNotes = newNotes.slice(0, Math.min(0, Clip.MAX_NOTES - updatedNotes.length));
-    //   }
-    //   const newNotesData = JSON.stringify({
-    //     notes: updatedNotes.map(note => {
-    //       const newNoteData = note.toLiveAPI();
-    //       delete newNoteData.note_id; // not sure we actually need to do this
-    //       return newNoteData;
-    //     })
-    //   });
-    //   this.api.call("add_new_notes", newNotesData);
-    //   // WARNING: adding any new notes loses the selection. We should only do this when splitting/generating notes.
-    //   // TODO: select the notes just created
+    // // TODO: Make this more efficient? Hopefully it's not needed though! Leaving here for debugging.
+    // const updatedNotes = this.selectedNotes;
+    // if (updatedNotes.length < notes.length) {
+    //   console.log("WARNING: Some notes were unexpected deleted.");
+    //   console.log('note modifications:', apiData);
+    //   console.log('result:', updatedNotes);
+    //   // TODO: If this happens, we can't attempt to update hard-deleted notes
+    //   // and this._replacedNotes has to omit the deleted notes.
     // }
-
-    // If you randomize the start times with notes that are close together, sometimes notes will collide and one will
-    // get deleted automatically by Live without this code deleting it. We'll get an error if we try to apply
-    // note modifications to a deleted note, so we need to know the notes that were deleted. That's why we call
-    // get selectedNotes again:
-    return this.selectedNotes;
+    // return updatedNotes;
   }
+
+  addNotes(notes) {
+    const newNotesData = JSON.stringify({
+      notes: notes.map(note => {
+        const data = note.toLiveAPI();
+        delete data.note_id; // TODO: not sure we actually need to do this
+        return data;
+      })
+    });
+    this.api.call("add_new_notes", newNotesData);
+  }
+
+  deleteNotes(notes) {
+    this.api.call("remove_notes_by_id", ...notes.map(n => n.id));
+  }
+
+  deleteAllNotes() {
+    this.api.call("select_all_notes");
+    const data = this.api.call("get_selected_notes_extended");
+    const notes = JSON.parse(data).notes.map(Note.fromLiveAPI);
+    this.api.call("remove_notes_by_id", ...notes.map(n => n.id));
+  }
+
 }

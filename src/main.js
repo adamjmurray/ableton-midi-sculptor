@@ -1,8 +1,8 @@
 import "./polyfills";
 import Controller from "./Controller";
 
-console.log("___________________________________________________");
-console.log("Reload:", new Date());
+console.log("___________________________________________________________");
+console.log(`Initialized on ${new Date()}`);
 
 const c = new Controller();
 

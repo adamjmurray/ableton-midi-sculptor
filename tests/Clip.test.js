@@ -3,7 +3,7 @@ import { Clip, Note } from "../src";
 
 describe("Clip", () => {
   let clip;
-  beforeEach(() => (clip = Clip.getSelectedClip()));
+  beforeEach(() => clip = Clip.selectedClip);
 
   describe("exists", () => {
     it('is false if the LiveAPI.id is "0"', () => {

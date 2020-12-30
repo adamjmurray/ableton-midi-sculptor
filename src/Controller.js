@@ -27,7 +27,7 @@ export default class Controller {
   sync() {
     if (this.isSynced) return true;
 
-    const selectedClip = (this.selectedClip = this.selectedClip || Clip.getSelectedClip());
+    const selectedClip = this.selectedClip ??= Clip.selectedClip;
     if (!selectedClip.isMidi) return false;
 
     this.appView = this.appView || new AppView();
@@ -54,7 +54,9 @@ export default class Controller {
     if (!this.selectedNotes.length) return;
 
     const notes = transform();
-    if (notes) this.selectedClip.replaceSelectedNotes(notes);
+    if (notes) {
+      this.selectedClip.updateSelectedNotes(notes);
+    }
   }
 
   /**
