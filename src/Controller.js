@@ -83,7 +83,7 @@ export default class Controller {
    - amount is from 0 to 127 for velocity, or a positive number in beats for start/duration
    */
   setSlideRange(property, amount) {
-    this.slideTransformer.setRange(property.toLowerCase(), amount);
+    this.slideTransformer.setRange(property, amount);
   }
 
   setSlideEdgeBehavior(behavior) {
@@ -95,16 +95,15 @@ export default class Controller {
   }
 
   slideRandomly(property, amountX, amountY) {
-    this.transformNotes(() => this.slideTransformer.randomize2D(property.toLowerCase(), amountX, amountY));
+    this.transformNotes(() => this.slideTransformer.randomize2D(property, amountX, amountY));
   }
 
   slideShift(property, amount) {
-    const prop = property.toLowerCase();
-    if (prop === "strum") {
+    if (property === "strum") {
       // strum shares the UI slider with shift
       this.transformNotes(() => this.slideTransformer.strum("start", amount));
     } else {
-      this.transformNotes(() => this.slideTransformer.shift(prop, amount));
+      this.transformNotes(() => this.slideTransformer.shift(property, amount));
     }
   }
 
@@ -125,12 +124,11 @@ export default class Controller {
   }
 
   slideSpread(property, amount) {
-    const prop = property.toLowerCase();
-    if (prop === "strum") {
+    if (property === "strum") {
       // strum shares the UI slider with spread
       this.transformNotes(() => this.slideTransformer.strum("duration", amount));
     } else {
-      this.transformNotes(() => this.slideTransformer.spread(property.toLowerCase(), amount));
+      this.transformNotes(() => this.slideTransformer.spread(property, amount));
     }
   }
 

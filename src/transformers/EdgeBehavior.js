@@ -31,6 +31,18 @@ const behaviors = {
       }
       return notes;
     },
+    velrange: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
+      return notes;
+    },
+    release: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
+      return notes;
+    },
+    probability: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
+      return notes;
+    },
     strumStart: (notes, clip) => {
       notes.forEach((note) => {
         // stop moving the start once duration hits the beginning of the clip or the min duration
@@ -74,6 +86,19 @@ const behaviors = {
           note.duration = Math.max(note.duration, Note.MIN_DURATION);
         });
       }
+      return notes;
+    },
+    // TODO:
+    velrange: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
+      return notes;
+    },
+    release: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
+      return notes;
+    },
+    probability: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
       return notes;
     },
     strumStart: (notes, clip) => {
@@ -129,6 +154,19 @@ const behaviors = {
       }
       return notes;
     },
+    // TODO:
+    velrange: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
+      return notes;
+    },
+    release: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
+      return notes;
+    },
+    probability: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
+      return notes;
+    },
     strumStart: (notes, clip) => {
       // reflect between the note end time and start of the clip
       notes.forEach((note) => {
@@ -174,6 +212,19 @@ const behaviors = {
       for (const note of notes) {
         note.deleted = note.duration < Note.MIN_DURATION;
       }
+      return notes;
+    },
+    // TODO:
+    velrange: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
+      return notes;
+    },
+    release: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
+      return notes;
+    },
+    probability: (notes) => {
+      // Let Note.toLiveAPI() handle the clamping
       return notes;
     },
     strumStart: (notes) => {

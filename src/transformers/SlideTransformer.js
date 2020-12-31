@@ -23,6 +23,9 @@ class SlidablePropertiesMetadata {
     this.velocity = new SlidablePropertyMetadata(64);
     this.duration = new SlidablePropertyMetadata(1);
     this.strum = new SlidablePropertyMetadata(1);
+    this.velrange = new SlidablePropertyMetadata(-64);
+    this.release = new SlidablePropertyMetadata(64);
+    this.probability = new SlidablePropertyMetadata(0.5);
   }
 }
 
@@ -39,7 +42,7 @@ export default class SlideTransformer extends Transformer {
   set notes(notes) {
     super.setNotes(notes);
 
-    for (const property of ["start", "pitch", "velocity", "duration"]) {
+    for (const property of ["start", "pitch", "velocity", "duration", "velrange", "release", "probability"]) {
       let values = notes.map((note) => note.get(property));
 
       let min = Math.min.apply(null, values);
