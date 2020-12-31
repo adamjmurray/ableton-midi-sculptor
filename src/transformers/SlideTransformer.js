@@ -23,7 +23,7 @@ class SlidablePropertiesMetadata {
     this.velocity = new SlidablePropertyMetadata(64);
     this.duration = new SlidablePropertyMetadata(1);
     this.strum = new SlidablePropertyMetadata(1);
-    this.velrange = new SlidablePropertyMetadata(-64);
+    this.velrange = new SlidablePropertyMetadata(64);
     this.release = new SlidablePropertyMetadata(64);
     this.probability = new SlidablePropertyMetadata(0.5);
   }

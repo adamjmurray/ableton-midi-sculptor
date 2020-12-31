@@ -88,17 +88,16 @@ const behaviors = {
       }
       return notes;
     },
-    // TODO:
     velrange: (notes) => {
-      // Let Note.toLiveAPI() handle the clamping
+      notes.forEach((note) => (note.velrange = mod(note.velrange + 127, 255) - 127));
       return notes;
     },
     release: (notes) => {
-      // Let Note.toLiveAPI() handle the clamping
+      notes.forEach((note) => (note.release = mod(note.release, 128)));
       return notes;
     },
     probability: (notes) => {
-      // Let Note.toLiveAPI() handle the clamping
+      notes.forEach((note) => (note.probability = mod(note.probability, 1.0)));
       return notes;
     },
     strumStart: (notes, clip) => {
@@ -154,17 +153,16 @@ const behaviors = {
       }
       return notes;
     },
-    // TODO:
     velrange: (notes) => {
-      // Let Note.toLiveAPI() handle the clamping
+      notes.forEach((note) => (note.velrange = reflectedMod(note.velrange + 127, 254) - 127));
       return notes;
     },
     release: (notes) => {
-      // Let Note.toLiveAPI() handle the clamping
+      notes.forEach((note) => (note.release = reflectedMod(note.release, 127)));
       return notes;
     },
     probability: (notes) => {
-      // Let Note.toLiveAPI() handle the clamping
+      notes.forEach((note) => (note.probability = reflectedMod(note.probability, 1.0)));
       return notes;
     },
     strumStart: (notes, clip) => {
@@ -214,17 +212,18 @@ const behaviors = {
       }
       return notes;
     },
-    // TODO:
     velrange: (notes) => {
-      // Let Note.toLiveAPI() handle the clamping
+      // Never remove for any velrange value
       return notes;
     },
     release: (notes) => {
-      // Let Note.toLiveAPI() handle the clamping
+      // Never remove for any release value (does < 0 make sense? release is not really fundamental to the note)
       return notes;
     },
     probability: (notes) => {
-      // Let Note.toLiveAPI() handle the clamping
+      for (const note of notes) {
+        note.deleted = note.probability < 0;
+      }
       return notes;
     },
     strumStart: (notes) => {

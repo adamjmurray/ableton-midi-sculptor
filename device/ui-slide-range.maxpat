@@ -136,11 +136,11 @@
 						"valueof" : 						{
 							"parameter_annotation_name" : "Range of Velocity Range",
 							"parameter_info" : "The maximum change in velocity range with each use of the controls below.",
-							"parameter_initial" : [ -64 ],
+							"parameter_initial" : [ 64 ],
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_longname" : "pitchrange[3]",
-							"parameter_mmin" : -127.0,
+							"parameter_mmax" : 254.0,
 							"parameter_shortname" : "pitchrange",
 							"parameter_speedlim" : 5.0,
 							"parameter_type" : 1,
