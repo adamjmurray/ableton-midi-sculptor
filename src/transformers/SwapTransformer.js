@@ -4,7 +4,7 @@ import { mod } from "../utils";
 export default class SwapTransformer extends Transformer {
   constructor() {
     super();
-    this.targets = ["pitch", "velocity", "duration"];
+    this.targets = ["pitch", "velocity", "duration", "velrange", "release", "duration"];
   }
 
   set notes(notes) {

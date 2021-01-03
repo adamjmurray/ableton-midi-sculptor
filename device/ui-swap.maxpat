@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 7,
+			"revision" : 9,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 413.0, 85.0, 674.0, 1224.0 ],
+		"rect" : [ 413.0, 85.0, 860.0, 662.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -40,26 +40,128 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-42",
+					"id" : "obj-23",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 296.0, 176.0, 43.0, 22.0 ],
-					"text" : "set $1"
+					"patching_rect" : [ 257.0, 128.0, 55.0, 22.0 ],
+					"text" : "velrange"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-40",
-					"linecount" : 3,
+					"annotation" : "When enabled, note durations will be affected by the swap operation.",
+					"annotation_name" : "Swap Duration",
+					"id" : "obj-5",
+					"maxclass" : "live.text",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 328.0, 104.0, 44.0, 15.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 139.483363398671258, 18.0, 52.0, 15.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_annotation_name" : "Swap Duration",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial" : [ 1.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
+							"parameter_longname" : "live.text[2]",
+							"parameter_mmax" : 1,
+							"parameter_shortname" : "live.text",
+							"parameter_type" : 2
+						}
+
+					}
+,
+					"text" : "Probability",
+					"texton" : "Probability",
+					"varname" : "live.text[3]"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"annotation" : "When enabled, the velocity will be affected by the swap operation.",
+					"annotation_name" : "Swap Velocity",
+					"id" : "obj-12",
+					"maxclass" : "live.text",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 279.799987999999985, 104.0, 44.0, 15.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 80.091687699335637, 18.0, 52.0, 15.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_annotation_name" : "Swap Velocity",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial" : [ 1.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
+							"parameter_longname" : "live.text[3]",
+							"parameter_mmax" : 1,
+							"parameter_shortname" : "live.text",
+							"parameter_type" : 2
+						}
+
+					}
+,
+					"text" : "Release",
+					"texton" : "Release",
+					"varname" : "live.text[5]"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"annotation" : "When enabled, the velocity range will be affected by the swap operation.",
+					"annotation_name" : "Swap Vel. Range",
+					"id" : "obj-19",
+					"maxclass" : "live.text",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 231.999999999999972, 104.0, 44.0, 15.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 20.700012000000001, 18.0, 52.0, 15.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_annotation_name" : "Swap Vel. Range",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_info" : "When enabled, the velocity range will be affected by the swap operation.",
+							"parameter_initial" : [ 1.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
+							"parameter_longname" : "live.text[10]",
+							"parameter_mmax" : 1,
+							"parameter_shortname" : "live.text",
+							"parameter_type" : 2
+						}
+
+					}
+,
+					"text" : "Vel. Range",
+					"texton" : "Vel. Range",
+					"varname" : "live.text[7]"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-42",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 128.0, 312.0, 50.0, 50.0 ],
-					"text" : "swap_target Pitch 1"
+					"patching_rect" : [ 296.0, 192.0, 43.0, 22.0 ],
+					"text" : "set $1"
 				}
 
 			}
@@ -82,7 +184,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 248.0, 216.0, 55.0, 22.0 ],
+					"patching_rect" : [ 248.0, 232.0, 55.0, 22.0 ],
 					"text" : "prepend"
 				}
 
@@ -97,9 +199,9 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 271.0, 117.0, 44.0, 15.0 ],
+					"patching_rect" : [ 176.0, 104.0, 44.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 131.700011999999987, 0.0, 44.0, 15.0 ],
+					"presentation_rect" : [ 139.483363398671258, 0.0, 52.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_annotation_name" : "Swap Duration",
@@ -131,9 +233,9 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 200.0, 117.0, 44.0, 15.0 ],
+					"patching_rect" : [ 113.75, 104.0, 44.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 83.499999999999986, 0.0, 44.0, 15.0 ],
+					"presentation_rect" : [ 80.091687699335637, 0.0, 52.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_annotation_name" : "Swap Velocity",
@@ -165,9 +267,9 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 137.799988000000013, 128.0, 44.0, 15.0 ],
+					"patching_rect" : [ 50.799988000000013, 104.0, 44.0, 15.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 35.700011999999987, 0.0, 44.0, 15.0 ],
+					"presentation_rect" : [ 20.700012000000001, 0.0, 52.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_annotation_name" : "Swap Pitch",
@@ -373,7 +475,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 248.0, 264.0, 123.0, 22.0 ],
+					"patching_rect" : [ 248.0, 280.0, 123.0, 22.0 ],
 					"text" : "prepend swap_target"
 				}
 
@@ -425,7 +527,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 7,
+							"revision" : 9,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -615,7 +717,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 7,
+							"revision" : 9,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1000,7 +1102,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 557.199341000000004, 227.5, 150.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ -4.0, 20.0, 40.824463000000002, 18.0 ],
+					"presentation_rect" : [ -4.0, 156.0, 40.824463000000002, 18.0 ],
 					"text" : "Rotate",
 					"textjustification" : 1
 				}
@@ -1048,7 +1150,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 388.5, 229.0, 150.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 77.5, 20.0, 57.0, 18.0 ],
+					"presentation_rect" : [ 77.0, 156.0, 57.0, 18.0 ],
 					"text" : "Randomize",
 					"textjustification" : 1
 				}
@@ -1099,6 +1201,20 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-25", 0 ],
+					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-42", 0 ],
+					"source" : [ "obj-12", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-15", 0 ],
 					"source" : [ "obj-14", 0 ]
 				}
@@ -1143,6 +1259,20 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-23", 0 ],
+					"source" : [ "obj-19", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-25", 0 ],
+					"source" : [ "obj-19", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-92", 0 ],
 					"source" : [ "obj-20", 0 ]
 				}
@@ -1152,6 +1282,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"source" : [ "obj-21", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-42", 0 ],
+					"source" : [ "obj-23", 0 ]
 				}
 
 			}
@@ -1226,7 +1363,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-10", 0 ],
-					"order" : 1,
+					"order" : 4,
 					"source" : [ "obj-38", 0 ]
 				}
 
@@ -1234,6 +1371,30 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-11", 0 ],
+					"order" : 3,
+					"source" : [ "obj-38", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"order" : 1,
+					"source" : [ "obj-38", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-19", 0 ],
+					"order" : 2,
+					"source" : [ "obj-38", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
 					"order" : 0,
 					"source" : [ "obj-38", 0 ]
 				}
@@ -1242,7 +1403,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-7", 0 ],
-					"order" : 2,
+					"order" : 5,
 					"source" : [ "obj-38", 0 ]
 				}
 
@@ -1250,15 +1411,6 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
-					"order" : 0,
-					"source" : [ "obj-4", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-40", 1 ],
-					"order" : 1,
 					"source" : [ "obj-4", 0 ]
 				}
 
@@ -1274,6 +1426,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-27", 0 ],
 					"source" : [ "obj-44", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-25", 0 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-42", 0 ],
+					"source" : [ "obj-5", 1 ]
 				}
 
 			}
@@ -1331,8 +1497,11 @@
 			"obj-10" : [ "live.text[1]", "live.text", 0 ],
 			"obj-11" : [ "live.text[13]", "live.text", 0 ],
 			"obj-110" : [ "live.text[16]", "live.text[6]", 0 ],
+			"obj-12" : [ "live.text[3]", "live.text", 0 ],
 			"obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
+			"obj-19" : [ "live.text[10]", "live.text", 0 ],
 			"obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
+			"obj-5" : [ "live.text[2]", "live.text", 0 ],
 			"obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
 			"obj-7" : [ "live.text", "live.text", 0 ],
 			"parameterbanks" : 			{
@@ -1365,8 +1534,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
