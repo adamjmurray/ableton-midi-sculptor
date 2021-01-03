@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 7,
+			"revision" : 9,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 466.0, 324.0, 889.0, 917.0 ],
+		"rect" : [ 578.0, 226.0, 1000.0, 483.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -40,13 +40,127 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "float" ],
+					"patching_rect" : [ 862.199951000000056, 231.0, 39.0, 22.0 ],
+					"text" : "/ 100."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"annotation" : "The probability to set.",
+					"annotation_name" : "Set Probability",
+					"id" : "obj-9",
+					"maxclass" : "live.numbox",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "float" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 862.199951000000056, 202.0, 42.0, 15.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 210.0, 36.0, 15.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_annotation_name" : "Set Probability",
+							"parameter_enum" : [ "0", "1" ],
+							"parameter_info" : "The probability to set.",
+							"parameter_initial" : [ 50 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
+							"parameter_longname" : "Set Velocity[3]",
+							"parameter_mmax" : 100.0,
+							"parameter_shortname" : "Set Velocity",
+							"parameter_speedlim" : 5.0,
+							"parameter_type" : 1,
+							"parameter_unitstyle" : 5
+						}
+
+					}
+,
+					"varname" : "velrange[4]"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"annotation" : "The release velocity to set.",
+					"annotation_name" : "Set Release Velocity",
+					"id" : "obj-8",
+					"maxclass" : "live.numbox",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "float" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 770.199951000000056, 202.0, 42.0, 15.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 180.0, 30.0, 15.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_annotation_name" : "Set Release Velocity",
+							"parameter_info" : "The release velocity to set.",
+							"parameter_initial" : [ 64.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
+							"parameter_longname" : "Set Velocity[2]",
+							"parameter_shortname" : "Set Velocity",
+							"parameter_speedlim" : 5.0,
+							"parameter_type" : 1,
+							"parameter_unitstyle" : 0
+						}
+
+					}
+,
+					"varname" : "velrange[3]"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"annotation" : "The velocity range to set.",
+					"annotation_name" : "Set Velocity Range",
+					"id" : "obj-7",
+					"maxclass" : "live.numbox",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "float" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 679.199951000000056, 202.0, 42.0, 15.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 150.0, 30.0, 15.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_annotation_name" : "Set Velocity Range",
+							"parameter_info" : "The velocity range to set.",
+							"parameter_initial" : [ 64 ],
+							"parameter_initial_enable" : 1,
+							"parameter_invisible" : 2,
+							"parameter_longname" : "Set Velocity[1]",
+							"parameter_mmin" : -127.0,
+							"parameter_shortname" : "Set Velocity",
+							"parameter_speedlim" : 5.0,
+							"parameter_type" : 1,
+							"parameter_unitstyle" : 0
+						}
+
+					}
+,
+					"varname" : "velrange[2]"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-17",
 					"maxclass" : "newobj",
-					"numinlets" : 6,
-					"numoutlets" : 6,
-					"outlettype" : [ "", "", "", "", "", "" ],
-					"patching_rect" : [ 307.75, 75.0, 219.0, 22.0 ],
-					"text" : "route Note Start Pitch Velocity Duration"
+					"numinlets" : 9,
+					"numoutlets" : 9,
+					"outlettype" : [ "", "", "", "", "", "", "", "", "" ],
+					"patching_rect" : [ 318.699951000000056, 87.0, 358.0, 22.0 ],
+					"text" : "route note start pitch velocity duration velrange release probability"
 				}
 
 			}
@@ -59,7 +173,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 307.75, 19.0, 30.0, 30.0 ]
+					"patching_rect" : [ 318.699951000000056, 25.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -71,7 +185,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 337.199950999999999, 410.0, 30.0, 30.0 ]
+					"patching_rect" : [ 442.199951000000056, 397.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -82,7 +196,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 639.199951000000056, 245.0, 132.0, 22.0 ],
+					"patching_rect" : [ 488.199951000000056, 237.0, 132.0, 22.0 ],
 					"text" : "covert-to-beats.maxpat"
 				}
 
@@ -94,7 +208,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 208.5, 245.0, 132.0, 22.0 ],
+					"patching_rect" : [ 173.5, 245.0, 132.0, 22.0 ],
 					"text" : "covert-to-beats.maxpat"
 				}
 
@@ -131,7 +245,7 @@
 					"maxclass" : "live.comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 666.516845999999987, 176.0, 150.0, 18.0 ],
+					"patching_rect" : [ 524.516845999999987, 196.0, 17.0, 18.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 25.0, 119.0, 17.0, 18.0 ],
 					"text" : "/",
@@ -149,14 +263,15 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 690.699951000000056, 206.0, 49.0, 15.0 ],
+					"patching_rect" : [ 539.699951000000056, 198.0, 49.0, 15.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 35.0, 120.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_annotation_name" : "Set Duration",
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
-							"parameter_initial" : [ 2.0 ],
+							"parameter_initial" : [ 2 ],
+							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_longname" : "live.menu[1]",
 							"parameter_mmax" : 7,
@@ -180,13 +295,14 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 639.199951000000056, 206.0, 36.0, 15.0 ],
+					"patching_rect" : [ 488.199951000000056, 198.0, 36.0, 15.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 120.0, 27.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_annotation_name" : "Set Duration",
 							"parameter_initial" : [ 1.0 ],
+							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_longname" : "velocity range[1]",
 							"parameter_mmax" : 128.0,
@@ -213,7 +329,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 738.449951000000056, 206.0, 40.0, 20.0 ],
+					"patching_rect" : [ 587.449951000000056, 198.0, 40.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 73.0, 120.0, 39.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
@@ -245,7 +361,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 40.516846000000001, 202.0, 100.0, 15.0 ],
+					"patching_rect" : [ 46.199950999999999, 225.0, 100.0, 15.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 65.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
@@ -273,7 +389,7 @@
 					"maxclass" : "live.comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 246.5, 176.0, 150.0, 18.0 ],
+					"patching_rect" : [ 211.5, 201.0, 18.0, 18.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 25.0, 29.0, 17.0, 18.0 ],
 					"text" : "/",
@@ -291,14 +407,15 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 260.0, 202.0, 49.0, 15.0 ],
+					"patching_rect" : [ 225.0, 202.0, 49.0, 15.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 35.0, 30.0, 36.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_annotation_name" : "Set Start Time",
 							"parameter_enum" : [ "1", "2", "4", "8", "16", "32", "64", "128" ],
-							"parameter_initial" : [ 2.0 ],
+							"parameter_initial" : [ 2 ],
+							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_longname" : "live.menu[20]",
 							"parameter_mmax" : 7,
@@ -322,13 +439,14 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 208.5, 202.0, 36.0, 15.0 ],
+					"patching_rect" : [ 173.5, 202.0, 36.0, 15.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 30.0, 27.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_annotation_name" : "Set Start Time",
-							"parameter_initial" : [ 0 ],
+							"parameter_initial" : [ 0.0 ],
+							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_longname" : "velocity range[24]",
 							"parameter_mmax" : 128.0,
@@ -355,7 +473,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 307.75, 202.0, 40.0, 20.0 ],
+					"patching_rect" : [ 272.75, 202.0, 40.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 73.0, 30.0, 39.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
@@ -387,13 +505,14 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 403.199950999999999, 202.0, 44.0, 15.0 ],
+					"patching_rect" : [ 343.074951000000112, 202.0, 44.0, 15.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 60.0, 32.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_annotation_name" : "Set Pitch",
-							"parameter_initial" : [ 64.0 ],
+							"parameter_initial" : [ 60 ],
+							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_longname" : "Set Pitch",
 							"parameter_mmin" : 1.0,
@@ -419,13 +538,14 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 519.199951000000056, 202.0, 42.0, 15.0 ],
+					"patching_rect" : [ 416.199951000000056, 202.0, 42.0, 15.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 90.0, 30.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_annotation_name" : "Set Velocity",
 							"parameter_initial" : [ 64.0 ],
+							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
 							"parameter_longname" : "Set Velocity",
 							"parameter_mmin" : 1.0,
@@ -443,6 +563,13 @@
 			}
  ],
 		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-15", 0 ],
 					"source" : [ "obj-13", 0 ]
@@ -495,6 +622,27 @@
 				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
 					"source" : [ "obj-17", 4 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"source" : [ "obj-17", 5 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
+					"source" : [ "obj-17", 6 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"source" : [ "obj-17", 7 ]
 				}
 
 			}
@@ -568,6 +716,27 @@
 				}
 
 			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"source" : [ "obj-7", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"source" : [ "obj-8", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"source" : [ "obj-9", 0 ]
+				}
+
+			}
  ],
 		"parameters" : 		{
 			"obj-192" : [ "Set Velocity", "Set Velocity", 0 ],
@@ -579,6 +748,9 @@
 			"obj-201" : [ "Mute or Delete Notes", "Mute or Delete Notes", 0 ],
 			"obj-3" : [ "velocity range[1]", "velrange", 0 ],
 			"obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-7" : [ "Set Velocity[1]", "Set Velocity", 0 ],
+			"obj-8" : [ "Set Velocity[2]", "Set Velocity", 0 ],
+			"obj-9" : [ "Set Velocity[3]", "Set Velocity", 0 ],
 			"parameterbanks" : 			{
 
 			}

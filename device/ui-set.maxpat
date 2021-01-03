@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 1,
+			"revision" : 9,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -2.0, 254.0, 714.0, 601.0 ],
+		"rect" : [ 621.0, 473.0, 714.0, 601.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -37,13 +37,80 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 200.0, 217.5, 77.0, 22.0 ],
+					"text" : "route symbol"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"coll_data" : 					{
+						"count" : 8,
+						"data" : [ 							{
+								"key" : 0,
+								"value" : [ "note" ]
+							}
+, 							{
+								"key" : 1,
+								"value" : [ "start" ]
+							}
+, 							{
+								"key" : 2,
+								"value" : [ "pitch" ]
+							}
+, 							{
+								"key" : 3,
+								"value" : [ "velocity" ]
+							}
+, 							{
+								"key" : 4,
+								"value" : [ "duration" ]
+							}
+, 							{
+								"key" : 5,
+								"value" : [ "velrange" ]
+							}
+, 							{
+								"key" : 6,
+								"value" : [ "release" ]
+							}
+, 							{
+								"key" : 7,
+								"value" : [ "probability" ]
+							}
+ ]
+					}
+,
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 4,
+					"outlettype" : [ "", "", "", "" ],
+					"patching_rect" : [ 200.0, 179.0, 89.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"embed" : 1,
+						"precision" : 6
+					}
+,
+					"text" : "coll @embed 1"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-28",
 					"maxclass" : "live.comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 343.0, 255.0, 151.0, 18.0 ],
+					"patching_rect" : [ 48.0, 271.0, 44.0, 18.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 68.5, -1.0, 24.0, 18.0 ],
 					"text" : "to",
@@ -57,7 +124,7 @@
 					"maxclass" : "live.comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 296.0, 168.0, 150.0, 18.0 ],
+					"patching_rect" : [ 487.0, 187.5, 96.0, 18.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 77.5, 20.0, 57.0, 18.0 ],
 					"text" : "Randomize",
@@ -91,48 +158,12 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-35",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 272.0, 180.5, 72.0, 34.0 ],
-					"text" : "\"start time\" => start"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-40",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 184.0, 185.5, 73.0, 22.0 ],
-					"text" : "fromsymbol"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-51",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 184.0, 219.0, 68.0, 22.0 ],
-					"text" : "unpack s s"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-42",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 104.0, 119.0, 29.5, 22.0 ],
+					"patching_rect" : [ 104.0, 96.0, 29.5, 22.0 ],
 					"text" : "0"
 				}
 
@@ -228,15 +259,15 @@
 					"presentation_rect" : [ 171.0, 86.9375, 40.0, 21.125 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Set All",
-							"parameter_longname" : "Set All",
+							"parameter_enum" : [ "val1", "val2" ],
+							"parameter_initial" : [ 0.0 ],
 							"parameter_initial_enable" : 1,
 							"parameter_invisible" : 2,
+							"parameter_longname" : "Set All",
 							"parameter_mmax" : 1,
-							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "Set All"
+							"parameter_shortname" : "Set All",
+							"parameter_type" : 2
 						}
 
 					}
@@ -258,7 +289,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 1,
+							"revision" : 9,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -291,6 +322,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-26",
@@ -483,8 +515,8 @@
 					"name" : "ui-set-value.maxpat",
 					"numinlets" : 2,
 					"numoutlets" : 1,
-					"offset" : [ 0.0, 0.0 ],
-					"outlettype" : [ "" ],
+					"offset" : [ 0.0, -210.0 ],
+					"outlettype" : [ "float" ],
 					"patching_rect" : [ 104.0, 271.0, 99.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 100.383178999999998, 0.0, 145.616821000000016, 18.0 ],
@@ -528,7 +560,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 1,
+							"revision" : 9,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -561,6 +593,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -770,18 +803,18 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "float" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 104.0, 151.0, 96.0, 15.0 ],
+					"patching_rect" : [ 104.0, 128.0, 96.0, 15.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 64.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "Note", "Start Time", "Pitch", "Velocity", "Duration" ],
-							"parameter_type" : 2,
 							"parameter_annotation_name" : "Note Property",
-							"parameter_longname" : "Note Property",
+							"parameter_enum" : [ "Note", "Start Time", "Pitch", "Velocity", "Duration", "Vel. Range", "Release", "Probability" ],
 							"parameter_invisible" : 2,
-							"parameter_mmax" : 4,
-							"parameter_shortname" : "Note Property"
+							"parameter_longname" : "Note Property",
+							"parameter_mmax" : 7,
+							"parameter_shortname" : "Note Property",
+							"parameter_type" : 2
 						}
 
 					}
@@ -857,14 +890,16 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-25", 0 ],
+					"order" : 1,
 					"source" : [ "obj-179", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-40", 0 ],
-					"source" : [ "obj-179", 1 ]
+					"destination" : [ "obj-6", 0 ],
+					"order" : 0,
+					"source" : [ "obj-179", 0 ]
 				}
 
 			}
@@ -905,6 +940,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-27", 0 ],
+					"order" : 0,
+					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 1 ],
+					"order" : 1,
+					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"color" : [ 0.67451, 0.819608, 0.572549, 1.0 ],
 					"destination" : [ "obj-14", 0 ],
 					"order" : 0,
@@ -938,13 +989,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-51", 0 ],
-					"source" : [ "obj-40", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-179", 0 ],
 					"source" : [ "obj-42", 0 ]
 				}
@@ -959,17 +1003,8 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-27", 0 ],
-					"order" : 0,
-					"source" : [ "obj-51", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-4", 1 ],
-					"order" : 1,
-					"source" : [ "obj-51", 0 ]
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}
@@ -989,25 +1024,28 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-11" : [ "Set All", "Set All", 0 ],
+			"obj-179" : [ "Note Property", "Note Property", 0 ],
+			"obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
+			"obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
+			"obj-4::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
+			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
+			"obj-4::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-4::obj-2" : [ "live.menu[1]", "live.menu", 0 ],
 			"obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
-			"obj-11" : [ "Set All", "Set All", 0 ],
-			"obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
-			"obj-4::obj-198" : [ "velocity range[24]", "velrange", 0 ],
-			"obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
-			"obj-179" : [ "Note Property", "Note Property", 0 ],
-			"obj-4::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
-			"obj-4::obj-197" : [ "live.menu[20]", "live.menu", 0 ],
 			"obj-4::obj-3" : [ "velocity range[1]", "velrange", 0 ],
-			"obj-4::obj-192" : [ "velocity range[22]", "velrange", 0 ],
+			"obj-4::obj-4" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-4::obj-7" : [ "Set Velocity[1]", "Set Velocity", 0 ],
+			"obj-4::obj-8" : [ "Set Velocity[2]", "Set Velocity", 0 ],
+			"obj-4::obj-9" : [ "Set Velocity[3]", "Set Velocity", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-4::obj-201" : 				{
-					"parameter_longname" : "live.menu[21]",
-					"parameter_shortname" : "live.menu[1]"
+				"obj-4::obj-192" : 				{
+					"parameter_longname" : "velocity range[22]",
+					"parameter_shortname" : "velrange"
 				}
 ,
 				"obj-4::obj-194" : 				{
@@ -1015,13 +1053,14 @@
 					"parameter_shortname" : "velrange"
 				}
 ,
-				"obj-4::obj-192" : 				{
-					"parameter_longname" : "velocity range[22]",
-					"parameter_shortname" : "velrange"
+				"obj-4::obj-201" : 				{
+					"parameter_longname" : "live.menu[21]",
+					"parameter_shortname" : "live.menu[1]"
 				}
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
