@@ -29,6 +29,7 @@ export default class Clip {
     this._start = null;
     this._end = null;
     this._notes = null;
+    this._deletionTime = null;
   }
 
   get exists() {
@@ -51,10 +52,27 @@ export default class Clip {
     return this._end ??= Number(this.api.get("loop_end"));
   }
 
+  get deletionTime() {
+    // Soft deleted notes are muted, drastically shrank in duration, and moved to pitch 0 in a certain time slot.
+    // This logic attempts to find a safe time slot that doesn't overwrite notes or interfere with a transformation.
+    if (this._deletionTime == null) {
+      // Look for the earliest note before the clip start and use the time slot ~2 clip lengths before that.
+      // The assumption is longer clips will use higher range time transformations so we want a bigger buffer.
+      // Search 256 measures before the start of the clip. I don't know why anyone would put notes that far back.
+      const earliestStart = this.getNotes(0, 128, this.start - 1024, 1024)[0]?.start ?? this.start;
+      this._deletionTime = earliestStart - Math.max(2 * this.length, 16); // minimum of 4 measures
+    }
+    return this._deletionTime;
+  }
+
+  getNotes(start_pitch, pitch_range, start_time, time_range) {
+    return Note.listFromLiveAPI(
+      this.api.call("get_notes_extended", start_pitch, pitch_range, start_time, time_range)
+    );
+  }
+
   get selectedNotes() {
-    const data = this.api.call("get_selected_notes_extended");
-    const notes = JSON.parse(data).notes.map(Note.fromLiveAPI);
-    notes.sort((n1, n2) => n1.start - n2.start || n1.pitch - n2.pitch);
+    const notes = Note.listFromLiveAPI(this.api.call("get_selected_notes_extended"));
     Object.freeze(notes);
     this._notes = notes;
     return notes;
@@ -85,7 +103,7 @@ export default class Clip {
     this.api.call("apply_note_modifications",
       JSON.stringify({
         // !!! TODO: Make sure nothing is at pitch 0 that we're overwriting. toLiveAPI() takes a deletion pitch !!!
-        notes: notes.map(note => note.toLiveAPI()),
+        notes: notes.map(note => note.toLiveAPI(this.deletionTime)),
       })
     );
 

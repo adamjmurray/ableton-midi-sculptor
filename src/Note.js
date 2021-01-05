@@ -72,15 +72,22 @@ export default class Note {
     });
   }
 
-  toLiveAPI(deletionPitch = 0) {
+  static listFromLiveAPI(dictionary) {
+    const notes = JSON.parse(dictionary).notes.map(Note.fromLiveAPI);
+    notes.sort((n1, n2) => n1.start - n2.start || n1.pitch - n2.pitch);
+    return notes;
+  }
+
+  toLiveAPI(deletionTime = 0) {
     if (this.deleted || this.duration < Note.MIN_DURATION) {
       // Soft deletion is handled by muting the note and moving it out of the way in a "holding area" so we can undelete.
       // We also set most values to 0 to keep it from "polluting" the velocity/probability editor.
+      // deletionTime should be at or before the start of the clip and we go backwards from there.
       return {
         note_id: this.id,
-        pitch: deletionPitch,
-        start_time: Number(this.id) * 0.01,
-        duration: 0.009,
+        pitch: 0,
+        start_time: deletionTime - Number(this.id) * 0.001,
+        duration: 0.0009,
         velocity: 1,
         velocity_deviation: 0,
         release_velocity: 0,
