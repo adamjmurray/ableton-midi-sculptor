@@ -20,9 +20,9 @@ that makes it easy to create variations of MIDI clips with tools to modify pitch
 ## Features
 
 Some of the things you can do with this device:
-* "Humanize" (randomize) the timing and velocity of notes within a controllable range.
-* "Strum" chords by making simultaneous notes play in quick succession.
-* "Compress" velocity ranges to tame wild recordings with notes that are too quiet or too loud, or spread the velocities farther apart for more dynamic range.
+* Randomize the timing and velocity of notes within a controllable range.
+* Strum chords by making simultaneous notes play in quick succession.
+* Compress velocity ranges to tame wild recordings with notes that are too quiet or too loud, or spread the velocities farther apart for more dynamic range.
 * Reverse all the pitches without changing timing or velocity.
 * Randomly swap notes in a drum rack clip for sonic variations with the same timing as the original.
 * Randomly delete notes to "thin out" a clip to create lower energy variations.
