@@ -27,5 +27,5 @@ Releasing
 2. Freeze the device, then "Save as" the frozen device to the releases folder (e.g. releases/{VERSION}/Sculptor.amxd)
 3. Confirm this copy of the device works by re-adding it to your set
 4. Update the README's link to the device
-5. Update release/latest-version.txt
+5. Update release/latest-version.txt (if not releasing a beta)
 5. Commit all changes and push
