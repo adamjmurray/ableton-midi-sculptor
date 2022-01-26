@@ -182,7 +182,8 @@ export default class Controller {
 
   setSplitGate(amount) {
     this.splitTransformer.gate = amount;
-    this.transformNotes(() => (this.splitTransformer.isResplit() ? this.splitTransformer.split() : null));
+    // TODO: Do we want this? It causes an error during init
+    // this.transformNotes(() => (this.splitTransformer.isResplit() ? this.splitTransformer.split() : null));
   }
 
   setSplitEnvelope(type) {

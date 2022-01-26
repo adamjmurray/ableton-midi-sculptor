@@ -18,10 +18,13 @@ export default class Clip {
 
   desync() {
     if (this._replacedNotes) {
-      // This creates an extra undo step but it seems unavoidable.
       const deletedNoteIds = this._replacedNotes.filter(note => note.deleted).map(note => note.id);
-      this.api.call("remove_notes_by_id", ...deletedNoteIds);
-      this._replacedNotes = null;
+      if (deletedNoteIds.length) {
+        // This creates an extra undo step but it seems unavoidable with the soft deletion
+        // strategy used to avoid losing MPE data as soon as a note disappears.
+        this.api.call("remove_notes_by_id", ...deletedNoteIds);
+        this._replacedNotes = null;
+      }
     }
     this._exists = null;
     this._isMidi = null;
