@@ -6,3 +6,4 @@ coverage
 device/sculptor.js
 node_modules
 *.stackdump
+.DS_Store
