@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 7,
+			"minor" : 2,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1020.0, 544.0, 417.0, 669.0 ],
+		"rect" : [ 414.0, 353.0, 417.0, 669.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -129,7 +129,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1056.0, 353.0, 150.0, 34.0 ],
+					"patching_rect" : [ 1056.0, 353.0, 150.0, 33.0 ],
 					"text" : "zoom doesn't work when nogrow is enabled"
 				}
 
@@ -142,7 +142,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 850.0, 401.0, 127.0, 36.0 ],
+					"patching_rect" : [ 850.0, 401.0, 127.0, 35.0 ],
 					"text" : "window flags nogrow, window exec"
 				}
 
@@ -155,7 +155,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1032.0, 401.0, 115.0, 36.0 ],
+					"patching_rect" : [ 1032.0, 401.0, 115.0, 35.0 ],
 					"text" : "window flags grow, window exec"
 				}
 
@@ -181,9 +181,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 328.865295000000003, 145.0, 83.0, 93.0 ],
+					"patching_rect" : [ 328.865295000000003, 145.0, 86.0, 78.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 18.5, 105.5, 207.0, 35.0 ],
+					"presentation_rect" : [ 18.5, 105.5, 207.0, 30.0 ],
 					"text" : "Select a MIDI clip",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 					"textjustification" : 1
@@ -399,8 +399,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 7,
+							"minor" : 2,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -777,11 +777,12 @@
 					"enablevscroll" : 0,
 					"id" : "obj-1",
 					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "ui.maxpat",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"offset" : [ 0.0, 0.0 ],
+					"offset" : [ -240.0, 0.0 ],
 					"patching_rect" : [ 36.0, 246.0, 165.0, 184.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 15.0, 34.25, 214.0, 191.0 ],
@@ -869,7 +870,7 @@
 					"fontsize" : 11.0,
 					"id" : "obj-20",
 					"maxclass" : "live.tab",
-					"num_lines_patching" : 1,
+					"num_lines_patching" : 2,
 					"num_lines_presentation" : 1,
 					"numinlets" : 1,
 					"numoutlets" : 3,
@@ -877,8 +878,32 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 36.0, 54.0, 213.0, 26.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 2.375, 227.0, 23.0 ],
+					"presentation_rect" : [ 8.0, 2.375, 227.0, 21.0 ],
 					"saved_attribute_attributes" : 					{
+						"activebgcolor" : 						{
+							"expression" : ""
+						}
+,
+						"focusbordercolor" : 						{
+							"expression" : ""
+						}
+,
+						"activebgoncolor" : 						{
+							"expression" : ""
+						}
+,
+						"textcolor" : 						{
+							"expression" : ""
+						}
+,
+						"textoncolor" : 						{
+							"expression" : ""
+						}
+,
+						"bordercolor" : 						{
+							"expression" : ""
+						}
+,
 						"valueof" : 						{
 							"parameter_annotation_name" : "Sculptor Tool",
 							"parameter_enum" : [ "slide", "swap", "set" ],
@@ -1017,7 +1042,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 503.981934000000024, 302.5, 147.0, 77.0 ],
+					"patching_rect" : [ 503.981934000000024, 302.5, 147.0, 76.0 ],
 					"text" : "window flags nomenu, window flags float, window size $1 $2 $3 $4, window flags nogrow, window exec, front"
 				}
 
@@ -1489,11 +1514,14 @@
 			"obj-1::obj-10::obj-4::obj-194" : [ "velocity range[23]", "velrange", 0 ],
 			"obj-1::obj-10::obj-4::obj-197" : [ "live.menu[2]", "live.menu", 0 ],
 			"obj-1::obj-10::obj-4::obj-198" : [ "velocity range[3]", "velrange", 0 ],
-			"obj-1::obj-10::obj-4::obj-199" : [ "live.text[2]", "live.text[2]", 0 ],
+			"obj-1::obj-10::obj-4::obj-199" : [ "live.text[18]", "live.text[2]", 0 ],
 			"obj-1::obj-10::obj-4::obj-2" : [ "live.menu[3]", "live.menu", 0 ],
 			"obj-1::obj-10::obj-4::obj-201" : [ "live.menu[21]", "live.menu[1]", 0 ],
 			"obj-1::obj-10::obj-4::obj-3" : [ "velocity range[10]", "velrange", 0 ],
 			"obj-1::obj-10::obj-4::obj-4" : [ "live.text[21]", "live.text[2]", 0 ],
+			"obj-1::obj-10::obj-4::obj-7" : [ "Set Velocity[1]", "Set Velocity", 0 ],
+			"obj-1::obj-10::obj-4::obj-8" : [ "Set Velocity[2]", "Set Velocity", 0 ],
+			"obj-1::obj-10::obj-4::obj-9" : [ "Set Velocity[3]", "Set Velocity", 0 ],
 			"obj-1::obj-11::obj-15" : [ "live.menu[6]", "live.menu[5]", 0 ],
 			"obj-1::obj-11::obj-2" : [ "live.tab[2]", "live.tab", 0 ],
 			"obj-1::obj-11::obj-25" : [ "velocity range[9]", "velrange", 0 ],
@@ -1505,13 +1533,16 @@
 			"obj-1::obj-11::obj-5::obj-199" : [ "live.text[23]", "live.text[2]", 0 ],
 			"obj-1::obj-11::obj-5::obj-20" : [ "velocity range[6]", "velrange", 0 ],
 			"obj-1::obj-11::obj-5::obj-21" : [ "velocity range[2]", "velrange", 0 ],
-			"obj-1::obj-11::obj-5::obj-27" : [ "live.text[3]", "live.text[2]", 0 ],
-			"obj-1::obj-11::obj-62" : [ "live.text[10]", "live.text[6]", 0 ],
+			"obj-1::obj-11::obj-5::obj-27" : [ "live.text[19]", "live.text[2]", 0 ],
+			"obj-1::obj-11::obj-62" : [ "live.text[24]", "live.text[6]", 0 ],
 			"obj-1::obj-3::obj-10" : [ "live.text[15]", "live.text", 0 ],
 			"obj-1::obj-3::obj-11" : [ "live.text[13]", "live.text", 0 ],
 			"obj-1::obj-3::obj-110" : [ "live.text[17]", "live.text[6]", 0 ],
+			"obj-1::obj-3::obj-12" : [ "live.text[3]", "live.text", 0 ],
 			"obj-1::obj-3::obj-156" : [ "live.text[20]", "live.text[6]", 0 ],
+			"obj-1::obj-3::obj-19" : [ "live.text[10]", "live.text", 0 ],
 			"obj-1::obj-3::obj-44" : [ "live.text[6]", "live.text[6]", 0 ],
+			"obj-1::obj-3::obj-5" : [ "live.text[2]", "live.text", 0 ],
 			"obj-1::obj-3::obj-6" : [ "live.text[9]", "live.text[6]", 0 ],
 			"obj-1::obj-3::obj-7" : [ "live.text[16]", "live.text", 0 ],
 			"obj-1::obj-8::obj-11::obj-107" : [ "live.text[14]", "live.text[2]", 0 ],
@@ -1523,6 +1554,9 @@
 			"obj-1::obj-8::obj-11::obj-16" : [ "live.menu[1]", "live.menu", 0 ],
 			"obj-1::obj-8::obj-11::obj-17" : [ "velocity range[1]", "velrange", 0 ],
 			"obj-1::obj-8::obj-11::obj-23" : [ "live.text[1]", "live.text[2]", 0 ],
+			"obj-1::obj-8::obj-11::obj-24" : [ "pitchrange[1]", "pitchrange", 0 ],
+			"obj-1::obj-8::obj-11::obj-25" : [ "pitchrange[2]", "pitchrange", 0 ],
+			"obj-1::obj-8::obj-11::obj-26" : [ "pitchrange[3]", "pitchrange", 0 ],
 			"obj-1::obj-8::obj-11::obj-50" : [ "velocity range[7]", "velrange", 0 ],
 			"obj-1::obj-8::obj-11::obj-98" : [ "live.text[11]", "live.text[2]", 0 ],
 			"obj-1::obj-8::obj-22" : [ "live.tab", "live.tab", 0 ],
@@ -1564,7 +1598,7 @@
 				}
 ,
 				"obj-1::obj-10::obj-4::obj-199" : 				{
-					"parameter_longname" : "live.text[2]"
+					"parameter_longname" : "live.text[18]"
 				}
 ,
 				"obj-1::obj-10::obj-4::obj-2" : 				{
@@ -1593,7 +1627,11 @@
 				}
 ,
 				"obj-1::obj-11::obj-5::obj-27" : 				{
-					"parameter_longname" : "live.text[3]"
+					"parameter_longname" : "live.text[19]"
+				}
+,
+				"obj-1::obj-11::obj-62" : 				{
+					"parameter_longname" : "live.text[24]"
 				}
 ,
 				"obj-1::obj-3::obj-10" : 				{
@@ -1624,189 +1662,189 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "ui.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ui-swap.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ui-slide.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ui-slide-range.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "covert-to-beats.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-clip.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-reflect.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-rotate.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-remove.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-anchor-start.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-anchor-mid.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-anchor-end.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ui-slide-center-panel.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ui-tension.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ui-lock.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-locked.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-unlocked.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ui-set.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ui-set-value.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ui-split.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ui-split-into.maxpat",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-envelope-none.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-envelope-fade-in.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-envelope-fade-out.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-envelope-ramp-up.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "icon-envelope-ramp-down.svg",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "zoom.js",
-				"bootpath" : "D:/workspace/Max/Max-for-Live/ableton-midi-sculptor/device",
+				"bootpath" : "~/workspace/ableton-midi-sculptor/device",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -1834,8 +1872,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
