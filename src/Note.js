@@ -2,7 +2,7 @@ import { clamp, fuzzyEquals } from "./utils";
 
 export default class Note {
   static get MIN_DURATION() {
-    return 1 / 256;
+    return 1 / 1024;
   }
 
   constructor(options = {}) {

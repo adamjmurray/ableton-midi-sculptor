@@ -93,36 +93,29 @@ export default class Clip {
     // Sort by pitch and then by start time:
     notes.sort((n1, n2) => n1.pitch - n2.pitch || n1.start - n2.start);
 
-    notes.reduce((prev, note) => { // Apply soft deletions...
-      if (note.deleted || // ...to notes deleted by the transformer...
-        (prev?.pitch == note.pitch && note.start < prev.end) // ...and overlapping notes.
-      ) {
-        note.deleted = true;
+    // use reduce() to process each pair of consecutive notes (rather than actually reduce to a value)
+    notes.reduce((prev, note) => {
+      if (note.deleted) {
         return prev; // Compare the next note against the last non-deleted note
+      } else if (prev?.pitch == note.pitch && note.start < prev.end) {
+        // Shrink the previous note. We have to ensure the end of the previous note is
+        // a little before the start of this one, or Live might automatically delete it
+        // and then all calls to apply_note_modifications fail because of an invalid note_id.
+        prev.duration = note.start - prev.start - 0.00001;
+        // Be aware that in Note.toLiveAPI(), it will be soft deleted if it's too short
       }
-      else return note;
+      return note;
     }, null);
 
     this.api.call("apply_note_modifications",
       JSON.stringify({
-        // !!! TODO: Make sure nothing is at pitch 0 that we're overwriting. toLiveAPI() takes a deletion pitch !!!
+        // TODO: Make sure nothing is at pitch 0 that we're overwriting. toLiveAPI() takes a deletion pitch...
         notes: notes.map(note => note.toLiveAPI(this.deletionTime)),
       })
     );
 
     // Keep track of the soft-deletions so we can hard-delete on desync():
     this._replacedNotes = notes;
-
-    // // TODO: Make this more efficient? Hopefully it's not needed though! Leaving here for debugging.
-    // const updatedNotes = this.selectedNotes;
-    // if (updatedNotes.length < notes.length) {
-    //   console.log("WARNING: Some notes were unexpected deleted.");
-    //   console.log('note modifications:', apiData);
-    //   console.log('result:', updatedNotes);
-    //   // TODO: If this happens, we can't attempt to update hard-deleted notes
-    //   // and this._replacedNotes has to omit the deleted notes.
-    // }
-    // return updatedNotes;
   }
 
   addNotes(notes) {
