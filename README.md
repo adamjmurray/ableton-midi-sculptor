@@ -9,8 +9,8 @@ that makes it easy to create variations of MIDI clips with tools to modify pitch
 
 ## Installation and Usage
 
-1. [Download Sculptor.amxd v1.1](./releases/1.1/Sculptor.amxd?raw=true)
-   * Or the **Live 11 Beta**: [Download Sculptor.amxd v2.0 beta](./releases/2.0-beta/Sculptor.amxd?raw=true)
+1. [Download Sculptor.amxd v2.0 beta 2](./releases/2.0-beta-2/Sculptor.amxd?raw=true) for Live 11
+   * Or [Download Sculptor.amxd v1.1](./releases/1.1/Sculptor.amxd?raw=true) for Live 10 
 2. Drag the `Sculptor.amxd` device onto any MIDI track
 3. Click the "Sculpting Tools" button to open the main UI in a window
 4. Adjust the zoom level as desired
