@@ -102,7 +102,10 @@ export default class Clip {
         // a little before the start of this one, or Live might automatically delete it
         // and then all calls to apply_note_modifications fail because of an invalid note_id.
         prev.duration = note.start - prev.start - 0.00001;
-        // Be aware that in Note.toLiveAPI(), it will be soft deleted if it's too short
+        // if it's too short, just delete it
+        if (prev.duration < Note.MIN_DURATION) {
+          prev.deleted = true;
+        }
       }
       return note;
     }, null);
