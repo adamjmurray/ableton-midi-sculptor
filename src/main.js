@@ -1,8 +1,7 @@
 import "./polyfills";
 import Controller from "./Controller";
 
-console.log("___________________________________________________________");
-console.log(`Initialized on ${new Date()}`);
+console.log(`» MIDI Sculptor 2.0 loaded on ${new Date().toUTCString()}`);
 
 const c = new Controller();
 
